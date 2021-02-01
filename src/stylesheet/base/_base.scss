@@ -36,10 +36,9 @@ html {
 body {
   position: relative;
   font-family: Garamond;
-  font-size: 1.6rem;
-  color: $color-white;
+  font-size: 1.6rem; 
+  background-color: var(--color-page-background);
  
-  background-color: $color-mine-shaft;
   box-sizing: border-box;
   scrollbar-width: none;
   overflow: hidden;
@@ -55,3 +54,6 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+
+

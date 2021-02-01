@@ -1,4 +1,8 @@
 // Colors
+
+$color-white: white;
+$color-black: black;
+
 $color-azure-radiance: #00A8FF;
 $color-dodger-blue: #1E78FF;
 $color-green: #07D100;
@@ -7,5 +11,11 @@ $color-gray: #858585;
 $color-tundora: #404040;
 $color-aqua: #00D3FF;
 $color-java: #18BCD6;
+
+:root {
+  --color-page-background: #{$color-white};
+  --color-text: #{$color-black};
+}
+
 
 
