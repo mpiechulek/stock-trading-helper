@@ -1,7 +1,49 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MainLayoutComponent } from './layout/main/main-layout.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch:'full'
+  },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/home/home.module').then(
+            m => m.HomeModule
+          )
+      },
+      // {
+      //   path: '',
+      //   loadChildren: () => 
+      //     import('./modules/home/home.module').then(
+      //       m => m.HomeModule
+      //     )
+      // },
+      // {
+      //   path: '',
+      //   loadChildren: () => 
+      //     import('./modules/home/home.module').then(
+      //       m => m.HomeModule
+      //     )
+      // },
+      // {
+      //   path: '',
+      //   loadChildren: () => 
+      //     import('./modules/home/home.module').then(
+      //       m => m.HomeModule
+      //     )
+      // }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
