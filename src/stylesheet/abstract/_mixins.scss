@@ -1,0 +1,53 @@
+// MEDIA QUERY MANAGER
+
+/*
+
+    xs (for phones - screens less than 360px wide)
+    sm (for tablets - screens equal to or greater than 768px wide)
+    md (for small laptops - screens equal to or greater than 992px wide)
+    lg (for laptops and desktops - screens equal to or greater than 1200px wide)
+
+1em = 16px
+
+*/
+
+// In this spot we are using em's because there value is global 
+@mixin respond($breakpoint) {
+
+  @if $breakpoint==xs {
+    @media only screen and (max-width: 22.5em) {
+      @content
+    }
+
+    ;
+    // 360px
+  }
+
+  @if $breakpoint==sm {
+    @media only screen and (max-width: 48em) {
+      @content
+    }
+
+    ;
+    // 768px
+  }
+
+  @if $breakpoint==md {
+    @media only screen and (max-width: 62em) {
+      @content
+    }
+
+    ;
+    // 992px
+  }
+
+  @if $breakpoint==ld{
+    @media only screen and (max-width: 75em) {
+      @content
+    }
+
+    ;
+    // 1200px
+  }
+
+}

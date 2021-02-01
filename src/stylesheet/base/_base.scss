@@ -1,0 +1,57 @@
+html {
+
+  font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
+
+  @include respond(lg) {
+    // width < 1800px ? 1rem = 9px, 9/16 = 56.25%
+    font-size: 75%;
+  }
+
+  @include respond(md) {
+    // width < 1200px ? 1rem = 9px, 9/16 = 56.25%
+    font-size: 56.25%;
+  }
+
+  @include respond(sm) {
+    // width < 900px ? 1rem = 8px, 8/16 = 50%
+    font-size: 50%;
+  }
+
+  @include respond(xs) {
+    // width < 600px ? 1rem = 7px, 7/16 = 43.75%
+    font-size: 43.75%;
+  }
+
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;  
+}
+
+body {
+  position: relative;
+  font-family: Garamond;
+  font-size: 1.6rem;
+  color: $color-white;
+ 
+  background-color: $color-mine-shaft;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  overflow: hidden;
+  /* Hide scrollbars */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
