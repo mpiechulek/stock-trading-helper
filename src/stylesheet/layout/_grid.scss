@@ -1,8 +1,9 @@
-.main {
-  width: 100vw;
-  height: 100rem;
+.main { 
   display: grid;
-  grid-template-columns: 1rf;
-  grid-template-rows: 15% 80% 5%;
-  background-color: red;
+  height: 100%;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 80% 5%;
+  
+  margin: 0 5rem
+ 
 }
