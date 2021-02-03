@@ -4,6 +4,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    // background:
+	// 	linear-gradient(90deg, white (3rem - .2rem), transparent 1%) center,
+	// 	linear-gradient(white (3rem - .2rem), transparent 1%) center,
+	// 	black;
+	//     background-size: 3rem 3rem;
     
     
     &__container {
@@ -49,8 +54,8 @@
 
     &__image {
         position: absolute;
-        left: -770px;
-        bottom: -390px;
+        left: -60vw;
+        bottom: -70vh;
         z-index: -1;
         scale: 0.5;
     }
