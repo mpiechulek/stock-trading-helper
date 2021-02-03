@@ -1,17 +1,17 @@
 .nav-bar-tag {
-    color: blue;
+    color: gray;
     font-size: 1.6rem;
     font-weight: 500;
     cursor: pointer;    
 }
 
 .main-header-h1 {
-    color: blue;
+    color: rgb(44, 97, 241);
 
     span {
         color: black;
         -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: .1px;
+        -webkit-text-stroke-width: .4px;
         -webkit-text-stroke-color: black;     
     }
 }

@@ -1,82 +1,96 @@
-.home {     
-    height: 100%; 
-    position: relative;  
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    
-    /**
+.home {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  // background:
+  // 	linear-gradient(90deg, white (3rem - .2rem), transparent 1%) center,
+  // 	linear-gradient(white (3rem - .2rem), transparent 1%) center,
+  // 	black;
+  //     background-size: 3rem 3rem;   
+  /**
         Wpakowac url do zmienej  
     **/
-    background-image: url('./../../assets/img/dot-back.png');
-    background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: left;
-    // background:
-	// 	linear-gradient(90deg, white (3rem - .2rem), transparent 1%) center,
-	// 	linear-gradient(white (3rem - .2rem), transparent 1%) center,
-	// 	black;
-	//     background-size: 3rem 3rem;
-    
-    
-    &__container {
-        width: 98rem;
-        height: 53rem;
-        display: block; 
-        position: relative;  
-        margin-right: 5rem;          
+  background-image: url('./../../assets/img/dot-back.png');
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: left;
 
-        .home-grid-1{
-            position: absolute;  
-            left: 0;
-            top: 4rem;    
-            width: 50rem;
-            height: 15rem;
-            background-color: #18BCD6;
+  &__container {
+    width: 98rem;
+    height: 53rem;
+    display: block;
+    position: relative;
+    margin-right: 5rem;
+    animation-name: example;
+    animation-duration: 2s;
+    transition: ease-in;
 
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-        }
+    @keyframes example {
+      0% {
+        right: -1000px;
+        opacity: 0;
+      }
 
-        .home-grid-2{
-            position: absolute;    
-            left: 30rem;
-            top: 19rem;     
-            z-index: 2;
-            width: 40rem;
-            height: 29rem;
-            background-color:#858585;
-        }
-
-        .home-grid-3{
-            position: absolute;   
-            left: 50rem;
-            top: 0;        
-            width: 48rem;
-            height: 53rem;
-            background-color: #00D3FF;
-        }
+      100% {
+        right: 0;
+        opacity: 1;
+      }
     }
 
-    &__image {       
-        
-        z-index: -1;            
+    .home-grid-1 {
+      position: absolute;
+      left: 0;
+      top: 4rem;
+      width: 50rem;
+      height: 15rem;
+      background-color: #18BCD6;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
     }
 
-
-    .home-grid-img-1 {
-        width: 12rem;
-
+    .home-grid-2 {
+      position: absolute;
+      left: 30rem;
+      top: 19rem;
+      z-index: 2;
+      width: 40rem;
+      height: 29rem;
+      background-color: #858585;
     }
 
-    .home-grid-img-2 {
-        width: 11rem;
+    .home-grid-3 {
+      position: absolute;
+      left: 50rem;
+      top: 0;
+      width: 48rem;
+      height: 53rem;
+      background-color: #00D3FF;
     }
+  }
 
-    .home-grid-img-3 {
-        width: 14rem;
-    }
-    
+  &__image {
+
+    z-index: -1;
+  }
+
+
+  .home-grid-img-1 {
+    width: 12rem;
+
+  }
+
+  .home-grid-img-2 {
+    width: 11rem;
+  }
+
+  .home-grid-img-3 {
+    width: 14rem;
+  }
+
 }
