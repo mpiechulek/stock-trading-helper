@@ -9,10 +9,9 @@
     color: blue;
 
     span {
-        color: black;
+        color: gray;
         -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: .03px;
-        -webkit-text-stroke-color: black;     
-
+        -webkit-text-stroke-width: .1px;
+        -webkit-text-stroke-color: gray;     
     }
 }
