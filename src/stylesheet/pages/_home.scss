@@ -4,6 +4,14 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
+    /**
+        Wpakowac url do zmienej  
+    **/
+    background-image: url('./../../assets/img/dot-back.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: left;
     // background:
 	// 	linear-gradient(90deg, white (3rem - .2rem), transparent 1%) center,
 	// 	linear-gradient(white (3rem - .2rem), transparent 1%) center,
