@@ -15,3 +15,30 @@
         -webkit-text-stroke-color: gray;     
     }
 }
+
+.home {
+    .home-grid-header-1 {
+        color: white;
+        font-size: 9rem;
+        font-weight: 400;
+        letter-spacing: 1rem;
+    }
+
+    .home-grid-header-2 {
+        color: white;
+        font-size: 4rem;
+        font-weight: 500;       
+    }
+
+    .home-grid-header-3 {
+        color: white;
+        font-size: 3rem;
+        font-weight: 400;       
+    }
+
+    .home-grid-text {
+        color: white;
+        font-size: 1.2rem;
+    }
+
+}
