@@ -1,21 +1,17 @@
 .nav-bar {
-   flex-grow: 2;
+  flex-grow: 2;
 
-    &__list {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-        .nav-list-item {   
+    .nav-list-item {
 
-        .nav-icon{
-            margin: 1rem;
-        }
-          
-        }
-
-
+      .nav-icon {
+        margin: 1rem;
+      }
     }
-
+  }
 }
