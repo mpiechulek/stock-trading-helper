@@ -17,28 +17,29 @@
 }
 
 .home {
-    .home-grid-header-1 {
+    .home-grid-1-header {
         color: white;
         font-size: 9rem;
         font-weight: 400;
         letter-spacing: 1rem;
     }
 
-    .home-grid-header-2 {
+    .home-grid-2-header {
         color: white;
-        font-size: 4rem;
-        font-weight: 500;       
+        font-size: 5.5rem;
+        font-weight: 400;       
     }
 
-    .home-grid-header-3 {
+    .home-grid-3-header {
         color: white;
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 400;       
     }
 
     .home-grid-text {
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
     }
 
 }
