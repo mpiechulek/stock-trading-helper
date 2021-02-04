@@ -7,7 +7,7 @@
 
 .main-header-h1 {
     color: $color-java;
-    font-size: 4rem;
+    font-size: $font-size-header-main;
 
     span {
         color:  var(--color-text-stroke-1);
