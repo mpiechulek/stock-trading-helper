@@ -1,24 +1,13 @@
+<div class="main">
 
-    <div class="main">
+    <app-nav-bar-ui></app-nav-bar-ui>   
 
-        <header>
-            <nav class=nav-bar>
-                <ul>
-                    <li>
-                        <a class="">Home</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+    <main class="mian-container">      
+            <router-outlet></router-outlet>         
+    </main>
 
-        <main class="mian-container">
-            <article>
-                <router-outlet></router-outlet> 
-            </article>
-        </main>
+    <footer class="footer">
+        <p>Stock Helper</p>
+    </footer>
 
-        <footer>
-
-        </footer>
-
-    </div>
+</div>

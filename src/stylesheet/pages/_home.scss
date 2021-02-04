@@ -1,0 +1,131 @@
+.home {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  background-image: var(--home-background-img);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: left;
+  animation-name: show;
+  animation-duration: 1s;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  &__container {
+    width: 98rem;
+    height: 53rem;
+    display: block;
+    position: relative;
+    margin-right: 5rem;
+    animation-name: slide-from-right;
+    animation-duration: 1.2s;
+    transition: ease-in;
+
+    @keyframes slide-from-right {
+      0% {
+        right: -10000px;
+        opacity: 0;
+      }
+
+      100% {
+        right: 0;
+        opacity: 1;
+      }
+    }
+
+    .home-grid-1 {
+      position: absolute;
+      left: 0;
+      top: 4rem;
+      width: 50rem;
+      height: 15rem;
+      background-color: #18BCD6;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3rem;
+    }
+
+    .home-grid-2 {
+      position: absolute;
+      left: 30rem;
+      top: 19rem;
+      z-index: 2;
+      width: 40rem;
+      height: 29rem;
+      background-color: #858585;
+
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 4rem;
+
+      .home-grid-2-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 3rem;
+      }
+    }
+
+    .home-grid-3 {
+      position: absolute;
+      left: 50rem;
+      top: 0;
+      width: 48rem;
+      height: 53rem;
+      background-color: #00D3FF;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 4rem;
+
+      .home-grid-3-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 3rem;
+
+        .home-grid-3-header-margin {
+          margin-bottom: 2rem;
+        }
+
+        .container-width {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  &__image {
+    z-index: -1;
+  }
+
+  .home-grid-img-1 {
+    width: 10rem;
+  }
+
+  .home-grid-img-2 {
+    width: 8rem;
+  }
+
+  .home-grid-img-3 {
+    width: 14rem;
+  }
+
+}

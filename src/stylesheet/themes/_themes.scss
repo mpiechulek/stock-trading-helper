@@ -1,5 +1,12 @@
-
 .dark-theme {
-    --color-page-background: #{$color-black};
-    --color-text: #{$color-white};
+
+  --color-page-background: #{$color-tundora};
+  --color-icon-logo: #{$color-white};
+  --color-icon: #{$color-white};
+  --color-text-nav: #{$color-white};
+  --color-text-stroke-1: #{$color-white};
+  --color-text-stroke-2: #{$color-tundora};
+  --home-background-img: url(./../../assets/img/dot-back-dark.jpg);
+
+
 }

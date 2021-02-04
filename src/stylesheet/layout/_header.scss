@@ -1,0 +1,19 @@
+.header {
+    margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10rem;
+
+    .header-icon {
+      margin-right: 2rem;
+      width: 4rem;
+    }
+  }
+}

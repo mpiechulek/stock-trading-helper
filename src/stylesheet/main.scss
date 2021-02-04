@@ -8,4 +8,20 @@
         'base/helper',
         'base/typography';
 
+@import 'components/buttons';
+
+@import 'layout/footer',
+        'layout/header',
+        'layout/forms',
+        'layout/sidebar',
+        'layout/navbar',
+        'layout/tables',
+        'layout/grid';
+      
+@import 'pages/home';
+
 @import 'themes/themes';
+
+@import 'vendors/material',
+        'vendors/normalize';
+

@@ -2,20 +2,43 @@
 
 $color-white: white;
 $color-black: black;
+$color-tundora: #404040;
+$color-gray: #858585;
 
 $color-azure-radiance: #00A8FF;
 $color-dodger-blue: #1E78FF;
-$color-green: #07D100;
-$color-red :#D80925;
-$color-gray: #858585;
-$color-tundora: #404040;
 $color-aqua: #00D3FF;
 $color-java: #18BCD6;
 
+$color-green: #07D100;
+$color-red :#D80925;
+$color-buddha-gold :#cfa900;
+
+$font-size-header-main: 4.5rem; 
+$font-size-home-1: 9rem; 
+$font-size-home-2: 5.5rem; 
+$font-size-home-3: 3.5rem; 
+$font-size-home-text: 1.4rem; 
+$font-size-navbar: 1.6rem; 
+
 :root {
   --color-page-background: #{$color-white};
-  --color-text: #{$color-black};
+
+  --color-icon-logo: #{$color-java};
+  --color-icon: #{$color-tundora};
+
+  --color-button-primary: #{$color-dodger-blue};
+  --color-button-cancel: #{$color-buddha-gold };
+
+  --color-text-1: #{$color-black};
+  --color-text-nav: #{$color-tundora};
+  --color-text-stroke-1: #{$color-tundora};
+  --color-text-stroke-2: #{$color-white};
+  --color-text-form: #{$color-tundora};
+  --color-text-calculator: #{$color-tundora};
+  --color-text-calculator-button: #{$color-white};
+  --color-text-table: #{$color-tundora};
+  --color-text-charts: #{$color-dodger-blue};
+
+  --home-background-img: url(./../../assets/img/dot-back.jpg);
 }
-
-
-

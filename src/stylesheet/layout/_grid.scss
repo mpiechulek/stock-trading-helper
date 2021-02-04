@@ -1,0 +1,14 @@
+.main { 
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 100%;
+  grid-template-rows: 8% 87% 5%;
+  
+  margin: 0 5rem;
+
+  .mian-container {
+    height: 100%;
+    position: relative;
+  }
+ 
+}
