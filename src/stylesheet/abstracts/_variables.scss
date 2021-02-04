@@ -2,19 +2,29 @@
 
 $color-white: white;
 $color-black: black;
+$color-tundora: #404040;
+$color-gray: #858585;
 
 $color-azure-radiance: #00A8FF;
 $color-dodger-blue: #1E78FF;
-$color-green: #07D100;
-$color-red :#D80925;
-$color-gray: #858585;
-$color-tundora: #404040;
 $color-aqua: #00D3FF;
 $color-java: #18BCD6;
 
+$color-green: #07D100;
+$color-red :#D80925;
+
 :root {
   --color-page-background: #{$color-white};
-  --color-text: #{$color-black};
+  --color-icon:#{$color-tundora};
+  --color-button-primary:#{$color-dodger-blue};
+  --color-icon:#{$color-tundora};
+  --color-icon-logo:#{$color-java};
+  --color-text-1: #{$color-black};
+  --color-text-2: #{$color-tundora};
+  --color-text-3: #{$color-white};
+  --color-text-3: #{$color-dodger-blue};
+
+  --home-background-img: url(./../../assets/img/dot-back.jpg);
 }
 
 

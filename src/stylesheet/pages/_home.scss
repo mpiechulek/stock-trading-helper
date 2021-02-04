@@ -5,15 +5,7 @@
   justify-content: flex-end;
   align-items: center;
 
-  // background:
-  // 	linear-gradient(90deg, white (3rem - .2rem), transparent 1%) center,
-  // 	linear-gradient(white (3rem - .2rem), transparent 1%) center,
-  // 	black;
-  //     background-size: 3rem 3rem;   
-  /**
-        Wpakowac url do zmienej  
-    **/
-  background-image: url('./../../assets/img/dot-back.jpg');
+  background-image: var(--home-background-img);
   background-repeat: no-repeat;
   background-size: 50%;
   background-position: left;
@@ -35,7 +27,7 @@
     height: 53rem;
     display: block;
     position: relative;
-    margin-right: 5rem;   
+    margin-right: 5rem;
     animation-name: slide-from-right;
     animation-duration: 1.2s;
     transition: ease-in;
@@ -50,7 +42,7 @@
         right: 0;
         opacity: 1;
       }
-    }  
+    }
 
     .home-grid-1 {
       position: absolute;
@@ -97,12 +89,12 @@
       height: 53rem;
       background-color: #00D3FF;
 
-      display:flex;
+      display: flex;
       flex-direction: column;
       justify-content: flex-start;
       padding: 4rem;
 
-      .home-grid-3-wrapper {       
+      .home-grid-3-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -116,7 +108,7 @@
         .container-width {
           width: 50%;
         }
-      }      
+      }
     }
   }
 
