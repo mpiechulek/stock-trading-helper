@@ -11,7 +11,6 @@ export class NavBarComponent implements OnInit {
   sliderChecked: boolean;
   selectedLanguage = 'pl'
 
-
   constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
