@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 // Materials
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import {MatSelectModule} from '@angular/material/select'; 
 import { FormsModule } from '@angular/forms';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 @NgModule({
   declarations: [ 
@@ -18,7 +19,8 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     MatSlideToggleModule,
     RouterModule, 
     MatSelectModule ,
-    FormsModule
+    FormsModule,
+    MatSidenavModule
   ],
   // entryComponents: [ComicSliderDialogComponent],
   exports: [ 
