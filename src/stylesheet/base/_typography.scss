@@ -1,6 +1,6 @@
 .nav-bar-tag {
     color: gray;
-    font-size: 1.6rem;
+    font-size: $font-size-navbar;
     font-weight: 500;
     cursor: pointer;    
 }
@@ -20,26 +20,26 @@
 .home {
     .home-grid-1-header {
         color: white;
-        font-size: 9rem;
+        font-size: $font-size-home-1;
         font-weight: 400;
         letter-spacing: 1rem;
     }
 
     .home-grid-2-header {
         color: white;
-        font-size: 5.5rem;
+        font-size: $font-size-home-2;
         font-weight: 400;       
     }
 
     .home-grid-3-header {
         color: white;
-        font-size: 3.5rem;
+        font-size: $font-size-home-3;
         font-weight: 400;       
     }
 
     .home-grid-text {
         color: white;
-        font-size: 1.4rem;
+        font-size: $font-size-home-text;
         line-height: 1.8rem;
     }
 
