@@ -15,10 +15,10 @@ $color-red :#D80925;
 
 :root {
   --color-page-background: #{$color-white};
-  --color-icon:#{$color-tundora};
-  --color-button-primary:#{$color-dodger-blue};
-  --color-icon:#{$color-tundora};
-  --color-icon-logo:#{$color-java};
+  --color-icon: #{$color-tundora};
+  --color-button-primary: #{$color-dodger-blue};
+  --color-icon: #{$color-tundora};
+  --color-icon-logo: #{$color-java};
   --color-text-1: #{$color-black};
   --color-text-2: #{$color-tundora};
   --color-text-3: #{$color-white};
@@ -26,6 +26,3 @@ $color-red :#D80925;
 
   --home-background-img: url(./../../assets/img/dot-back.jpg);
 }
-
-
-
