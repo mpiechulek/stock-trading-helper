@@ -17,20 +17,32 @@
   background-repeat: no-repeat;
   background-size: 50%;
   background-position: left;
+  animation-name: show;
+  animation-duration: 1s;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 100%;
+    }
+  }
 
   &__container {
     width: 98rem;
     height: 53rem;
     display: block;
     position: relative;
-    margin-right: 5rem;
-    animation-name: example;
-    animation-duration: 2s;
+    margin-right: 5rem;   
+    animation-name: slide-from-right;
+    animation-duration: 1.2s;
     transition: ease-in;
 
-    @keyframes example {
+    @keyframes slide-from-right {
       0% {
-        right: -1000px;
+        right: -10000px;
         opacity: 0;
       }
 
@@ -38,7 +50,7 @@
         right: 0;
         opacity: 1;
       }
-    }
+    }  
 
     .home-grid-1 {
       position: absolute;
