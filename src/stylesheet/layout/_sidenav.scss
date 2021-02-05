@@ -1,0 +1,37 @@
+.sidenav {
+    position: fixed;
+    height: 100%;
+    width: 30rem;
+    z-index: 1000;
+    background-color: var(--color-page-background);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;  
+    justify-content: flex-start;
+    align-items: center;
+
+  &__settings {
+
+    .theme-wrapper {}
+
+    .icon-theme {
+      margin-left: 1rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .language-wrapper {}
+
+  }
+
+  &__menu {
+
+    .sidenav-liste {}
+
+    .sidenav-list-item {}
+
+    .nav-bar-tag {}
+
+  }
+
+}

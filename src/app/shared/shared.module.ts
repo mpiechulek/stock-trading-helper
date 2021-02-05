@@ -8,7 +8,6 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSlideToggleModule,
     RouterModule,
     MatSelectModule,
-    FormsModule,
-    MatSidenavModule
+    FormsModule
   ],
   // entryComponents: [ComicSliderDialogComponent],
   exports: [
