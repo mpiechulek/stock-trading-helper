@@ -5,6 +5,13 @@
     cursor: pointer;    
 }
 
+.sidenav-header  {
+    color: var(--color-text-nav);
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
 .main-header-h1 {
     color: $color-java;
     font-size: $font-size-header-main;
