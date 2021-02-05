@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
 
-  // display: none;
+  display: none;
 
   .sidenav-container {
     position: relative;
@@ -25,11 +25,10 @@
     box-shadow: 30px 32px 4px 14px rgba(0, 0, 0, 0), 0px 5px 36px 10px rgba(0, 0, 0, 0.63);
 
     animation-name: slide-right;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 
     .sidenav-header {
       width: 100%;
-
       margin-bottom: 2rem;
     }
 
@@ -98,7 +97,7 @@
     background-color: black;
     opacity: 0.6;
     animation-name: slide-right;
-    animation-duration: 1.2s;
+    animation-duration: 1.5s;
   }
   
   @keyframes slide-right {
