@@ -5,26 +5,28 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 // Materials
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
-import {MatSelectModule} from '@angular/material/select'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import {MatSidenavModule} from '@angular/material/sidenav'; 
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
-  declarations: [ 
-    NavBarComponent, SideNavComponent
+  declarations: [
+    NavBarComponent,
+    SideNavComponent
   ],
   imports: [
     CommonModule,
     MatSlideToggleModule,
-    RouterModule, 
-    MatSelectModule ,
+    RouterModule,
+    MatSelectModule,
     FormsModule,
     MatSidenavModule
   ],
   // entryComponents: [ComicSliderDialogComponent],
-  exports: [ 
-    NavBarComponent  
+  exports: [
+    NavBarComponent,
+    SideNavComponent
   ]
 })
 export class SharedModule { }

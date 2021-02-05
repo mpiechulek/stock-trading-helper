@@ -52,28 +52,8 @@
             </li>
 
         </ul>
-
-        <div class="theme-wrapper">
-            <mat-slide-toggle 
-            class="example-margin"
-            [checked]="sliderChecked"
-            (change)="changeTheme($event)"
-            >
-            </mat-slide-toggle>
-
-            <img class="icon-theme" src="./assets/icon/Icon awesome-sun.svg" alt="icon" *ngIf="!sliderChecked">
-            <img class="icon-theme" src="./assets/icon/Icon awesome-moon.svg" alt="icon" *ngIf="sliderChecked">               
-            
-        </div>  
-        
-        <div class="language-wrapper">
-            <mat-form-field>               
-                <mat-select [(value)]="selectedLanguage">                
-                  <mat-option value="pl">PL</mat-option>
-                  <mat-option value="en">EN</mat-option>              
-                </mat-select>
-              </mat-form-field>
-        </div>
+       
+        <button class="btn btn--sidenav">BB</button>
         
     </nav>
 </header>

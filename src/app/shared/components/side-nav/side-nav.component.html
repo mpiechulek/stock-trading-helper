@@ -1,1 +1,78 @@
-<p>side-nav works!</p>
+<div class="sidenav">
+
+    <div class="sidenav__settings">
+
+        <div class="theme-wrapper">
+            <mat-slide-toggle 
+                class="example-margin"
+                [checked]="sliderChecked"
+                (change)="changeTheme($event)"
+            >
+            </mat-slide-toggle>
+
+            <img class="icon-theme" src="./assets/icon/Icon awesome-sun.svg" alt="icon" *ngIf="!sliderChecked">
+            <img class="icon-theme" src="./assets/icon/Icon awesome-moon.svg" alt="icon" *ngIf="sliderChecked">               
+            
+        </div>  
+        
+        <div class="language-wrapper">
+            <mat-form-field>               
+                <mat-select [(value)]="selectedLanguage">                
+                  <mat-option value="pl">PL</mat-option>
+                  <mat-option value="en">EN</mat-option>              
+                </mat-select>
+              </mat-form-field>
+        </div>       
+
+    </div>
+
+    <div class="sidenav__menu">
+        <ul class="sidenav-list">
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon awesome-home.svg" alt="icon">
+                    Home
+                </a>
+            </li>
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon ionic-ios-list-box.svg" alt="icon">
+                    Trade
+                </a>
+            </li>
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon awesome-calculator.svg" alt="icon">
+                    Calculator
+                </a>
+            </li>
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon awesome-money-bill-alt.svg" alt="icon">
+                    Currency
+                </a>
+            </li>
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon metro-chart-dots.svg" alt="icon">
+                    Statistics
+                </a>
+            </li>
+
+            <li class="sidenav-list-item">
+                <a class="nav-bar-tag">
+                    <img class="nav-icon" src="./assets/icon/Icon metro-chart-dots.svg" alt="icon">
+                    Calendar
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>

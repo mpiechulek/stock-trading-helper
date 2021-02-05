@@ -8,7 +8,6 @@
 // $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 // @include angular-material-theme($candy-app-theme)
 
-
 .language-wrapper mat-form-field {
   margin-left: 1rem;
   width: 5rem;
@@ -24,4 +23,17 @@
 
 .language-wrapper .mat-select-arrow {
   color: var(--color-text-nav);
+}
+
+//==============================================================================
+
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+
+  .material-sidenav {
+    width:500px;
+
+  }
+
 }
