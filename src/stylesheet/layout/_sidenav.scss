@@ -3,7 +3,7 @@
   height: 100vh;
   width: 100vw;
   z-index: 300;
-  display: flex;
+  
   flex-direction: row;
 
   display: none;
@@ -110,5 +110,13 @@
     }
   }
 
+}
+
+.hide-side-nav {
+  display: none;
+}
+
+.show-side-nav {
+  display: flex;
 }
 
