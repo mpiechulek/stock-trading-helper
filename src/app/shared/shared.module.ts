@@ -8,6 +8,11 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,17 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     RouterModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule, 
+    MatInputModule,  
+    HttpClientModule ,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateModule,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   // entryComponents: [ComicSliderDialogComponent],
   exports: [
@@ -28,3 +43,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class SharedModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+

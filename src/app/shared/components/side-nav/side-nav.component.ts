@@ -12,16 +12,17 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 export class SideNavComponent implements OnInit {
 
   sliderChecked: boolean;
-  selectedLanguage = 'pl'
+  selectedLanguage = 'en'
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
+  languages: string[];
 
   //============================================================================
 
   constructor(
     private themeService: ThemeService,
     private sideNavService: SideNavService,
-    private translate: TranslateService
+    public translate: TranslateService
   ) {
     translate.addLangs(['en', 'pl']);
     translate.setDefaultLang('en');
@@ -30,6 +31,7 @@ export class SideNavComponent implements OnInit {
   //============================================================================
 
   ngOnInit(): void {
+    this.languages = this.translate.getLangs();
     this.sliderChecked = this.themeService.checkLocaleStorage();
 
     this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
@@ -44,6 +46,8 @@ export class SideNavComponent implements OnInit {
   //============================================================================
 
   switchLang(lang: string) {
+    console.log(lang);
+    
     this.translate.use(lang);
   }
 
