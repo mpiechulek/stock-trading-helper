@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class SideNavService {
     this.sideNavIsOpen$.next(this.sideNav);
   }
 
-  sideNavOpen() {  
-    return  this.sideNavIsOpen$.asObservable(); 
+  sideNavOpen() {
+    return this.sideNavIsOpen$.asObservable();
   }
 }
