@@ -1,8 +1,10 @@
 {
-    "homeNavBarHome": "Główna",
-    "homeNavBarTrade": "Transakcje",
-    "homeNavBarCalculator": "Kalkulator",
-    "homeNavBarCurrency": "Waluty",
-    "homeNavBarStatistics": "Statystyki",
-    "homeNavBarCalendar": "Kalendarz"
+    "home": {
+        "navBarHome": "Główna",
+        "navBarTrade": "Transakcje",
+        "navBarCalculator": "Kalkulator",
+        "navBarCurrency": "Waluty",
+        "navBarStatistics": "Statystyki",
+        "navBarCalendar": "Kalendarz"
+    }
 }

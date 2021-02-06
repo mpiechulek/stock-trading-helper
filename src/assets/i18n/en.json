@@ -1,8 +1,10 @@
 {
-    "homeNavBarHome": "Home",
-    "homeNavBarTrade": "Trade",
-    "homeNavBarCalculator": "Calculator",
-    "homeNavBarCurrency": "Currency",
-    "homeNavBarStatistics": "Statistics",
-    "homeNavBarCalendar": "Calendar"
+    "home": {
+        "navBarHome": "Home",
+        "navBarTrade": "Trade",
+        "navBarCalculator": "Calculator",
+        "navBarCurrency": "Currency",
+        "navBarStatistics": "Statistics",
+        "navBarCalendar": "Calendar"
+    }
 }
