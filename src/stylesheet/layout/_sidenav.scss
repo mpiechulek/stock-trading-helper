@@ -23,7 +23,18 @@
     box-shadow: 30px 32px 4px 14px rgba(0, 0, 0, 0), 0px 5px 36px 10px rgba(0, 0, 0, 0.63);
 
     animation-name: slide-right;
-    animation-duration: 1.5s;
+    animation-duration: 0.7s;
+
+    .sidenav-btn-wrapper {
+      padding: 1px;
+      position: absolute;
+      top: 13px;
+      right: 13px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .sidenav-header {
       width: 100%;
@@ -37,7 +48,11 @@
       justify-content: space-between;
       align-items: center;
 
-      .theme-wrapper {}
+      .theme-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       .language-wrapper {}
 
@@ -65,10 +80,21 @@
 
         &:not(last-child) {
           margin-bottom: 2rem;
-        }
+        }       
       }
 
-      .sidenav-link {}
+      .sidenav-link {
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .side-nav-icon-wrapper {
+          width: 6rem;
+        }
+          
+      }
 
       .sidenav-list-item:hover {
         border-bottom: 1px solid var(--color-border);
@@ -77,13 +103,8 @@
       .sidenav-list-item .sidenav-link {
         cursor: pointer;
         pointer-events: auto;
-      }
+      }  
 
-      .sidenav-icon {
-        margin-right: 2rem;
-        width: 2rem;
-        height: auto;
-      }
     }
   }
 
@@ -94,7 +115,7 @@
     background-color: black;
     opacity: 0.6;
     animation-name: slide-right-opacity;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
   }
 
   @keyframes slide-right-opacity{

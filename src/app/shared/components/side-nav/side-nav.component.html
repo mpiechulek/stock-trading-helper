@@ -2,7 +2,11 @@
 
     <div class="sidenav-container">
 
-        <button (click)="onToggleSideNav()">dfdff</button>
+        <div class="sidenav-btn-wrapper">
+            <button class="btn" (click)="onToggleSideNav()">
+                <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+            </button>
+        </div>
 
         <h1 class="sidenav-header">Settings:</h1>
 
@@ -36,43 +40,55 @@
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon awesome-home.svg" alt="icon">
-                        Home
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--home"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Home</p>
                     </a>
                 </li>
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon ionic-ios-list-box.svg" alt="icon">
-                        Trade
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--plan"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Trade</p>
                     </a>
                 </li>
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon awesome-calculator.svg" alt="icon">
-                        Calculator
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--calculator"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Calculator</p>
                     </a>
                 </li>
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon awesome-money-bill-alt.svg" alt="icon">
-                        Currency
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--money"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Currency</p>
                     </a>
                 </li>
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon metro-chart-dots.svg" alt="icon">
-                        Statistics
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--chart"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Statistics</p>
                     </a>
                 </li>
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
-                        <img class="sidenav-icon" src="./assets/icon/Icon metro-chart-dots.svg" alt="icon">
-                        Calendar
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--calendar"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Calendar</p>
                     </a>
                 </li>
 
