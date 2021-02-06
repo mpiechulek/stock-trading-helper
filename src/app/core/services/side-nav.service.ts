@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,16 +7,17 @@ import { Injectable } from '@angular/core';
 
 export class SideNavService {
 
-  private sideNavIsOpen: boolean = false;
+  private sideNav: boolean = false;
+  private sideNavIsOpen$ = new Subject<boolean>();
 
   constructor() { }
 
-  toggleSideNav(): boolean {
-    this.sideNavIsOpen = !this.sideNavIsOpen;
-    return this.sideNavIsOpen;
+  toggleSideNav(): void {
+    this.sideNav = !this.sideNav;
+    this.sideNavIsOpen$.next(this.sideNav);
   }
 
-  sideNavOpen() {
-    return this.sideNavIsOpen;
+  sideNavOpen() {  
+    return  this.sideNavIsOpen$.asObservable(); 
   }
 }
