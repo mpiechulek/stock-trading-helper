@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { SideNavService } from 'src/app/core/services/side-nav.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 
@@ -15,10 +16,21 @@ export class SideNavComponent implements OnInit {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
 
-  constructor(private themeService: ThemeService, private sideNavService: SideNavService) { }
+  //============================================================================
+
+  constructor(
+    private themeService: ThemeService,
+    private sideNavService: SideNavService,
+    private translate: TranslateService
+  ) {
+    translate.addLangs(['en', 'pl']);
+    translate.setDefaultLang('en');
+  }
+
+  //============================================================================
 
   ngOnInit(): void {
-    this.sliderChecked = this.themeService.checkLocaleStorage();   
+    this.sliderChecked = this.themeService.checkLocaleStorage();
 
     this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
       this.sideNavVisible = value;
@@ -28,6 +40,12 @@ export class SideNavComponent implements OnInit {
   ngOnDestroy(): void {
     this.sideNavVisibleSubscription.unsubscribe();
   }
+  
+  //============================================================================
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
   changeTheme(event): void {
     this.themeService.changeThemes(event.checked);
@@ -36,6 +54,6 @@ export class SideNavComponent implements OnInit {
 
   onToggleSideNav() {
     this.sideNavService.toggleSideNav();
-   
+
   }
 }
