@@ -2,13 +2,11 @@
   display: grid;
   height: 100vh;
   grid-template-columns: 100%;
-  grid-template-rows: 8% 87% 5%;
-  
+  grid-template-rows: 12% 85% 3%; 
   margin: 0 5rem;
 
   .mian-container {
     height: 100%;
     position: relative;
-  }
- 
+  } 
 }

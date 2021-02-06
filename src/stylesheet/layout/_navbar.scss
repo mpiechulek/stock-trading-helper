@@ -6,12 +6,13 @@
   align-items: center;
 
   &__list {
-    width: 75rem;
+    width: 88rem;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-right: 1rem;
 
     .nav-list-item {
 
@@ -20,7 +21,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 0.4rem 1.6rem;
+        padding: 0.6rem 1.8rem;
         transition: all 0.5s ease;
         // Border transparent to remove the hover movement not wanted effect
         border: 1px solid transparent;
@@ -31,20 +32,11 @@
         }
       }
 
-      .nav-icon {
-        margin-right: 1rem;
-        width: 1.7rem;
-        height: 1.5rem;
-      }     
+      .nav-bar-text-margin-left {
+        margin-left: 1.3rem;
+      }
+
     }
-  }
+  } 
 
-  .icon-theme {  
-    margin-left: 1rem;   
-    width: 2rem;
-    height: 2rem;       
-  }
-  
 }
-
-

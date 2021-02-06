@@ -1,0 +1,103 @@
+<div class="sidenav" [ngClass]="[sideNavVisible ? 'show-side-nav' : 'hide-side-nav']">
+
+    <div class="sidenav-container">
+
+        <div class="sidenav-btn-wrapper">
+            <button class="btn" (click)="onToggleSideNav()">
+                <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+            </button>
+        </div>
+
+        <h1 class="sidenav-header">Settings:</h1>
+
+        <div class="sidenav-container__settings">
+
+            <div class="theme-wrapper">
+
+                <mat-slide-toggle [checked]="sliderChecked" (change)="changeTheme($event)">
+                </mat-slide-toggle>
+
+                <img class="icon-theme" src="./assets/icon/Icon awesome-sun.svg" alt="icon" *ngIf="!sliderChecked">
+                <img class="icon-theme" src="./assets/icon/Icon awesome-moon.svg" alt="icon" *ngIf="sliderChecked">
+
+            </div>
+
+            <div class="language-wrapper">
+                <mat-form-field>
+                    <mat-select [(value)]="selectedLanguage">
+                        <mat-option value="pl">PL</mat-option>
+                        <mat-option value="en">EN</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <h1 class="sidenav-header">Menu:</h1>
+
+        <div class="sidenav-container__menu">
+            <ul class="sidenav-list">
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--home"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Home</p>
+                    </a>
+                </li>
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--plan"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Trade</p>
+                    </a>
+                </li>
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--calculator"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Calculator</p>
+                    </a>
+                </li>
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--money"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Currency</p>
+                    </a>
+                </li>
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--chart"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Statistics</p>
+                    </a>
+                </li>
+
+                <li class="sidenav-list-item">
+                    <a class="sidenav-link">
+                        <div class="side-nav-icon-wrapper">
+                            <svg class="icon icon--calendar"></svg>
+                        </div>
+                        <p class="nav-bar-text side-bar-text-margin-left">Calendar</p>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="dark-field"></div>
+
+</div>
