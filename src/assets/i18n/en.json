@@ -5,6 +5,7 @@
         "navBarCalculator": "Calculator",
         "navBarCurrency": "Currency",
         "navBarStatistics": "Statistics",
-        "navBarCalendar": "Calendar"
-    }
+        "navBarCalendar": "Calendar",
+        "sideNavHeaderMenu": "Menu:",
+        "sideNavHeaderSettings": "Settings:"
 }
