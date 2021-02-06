@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 })
 export class LanguageService {
 
-  private chosenLanguage: string = 'en';
-  chosenLanguage$ = new Subject<string>();
+  private chosenLanguage: string;
+  private chosenLanguage$ = new Subject<string>();
 
   constructor() { }
 
@@ -15,21 +15,19 @@ export class LanguageService {
     localStorage.setItem('language', language);  
   }
 
-  getFormLocalStorage() {
+  getFromLocalStorage() {
     
     if(localStorage.hasOwnProperty('language')) {
       this.chosenLanguage = localStorage.getItem('language');
-
     } else {
       this.chosenLanguage = 'en';
       this.addToLocalStorage(this.chosenLanguage);
-
     }
 
     this.chosenLanguage$.next(this.chosenLanguage);
   }
 
-  getCurrentLanguage(): string{
-    return this.chosenLanguage;
+  getCurrentLanguage(){
+    return this.chosenLanguage$.asObservable();
   }
 }

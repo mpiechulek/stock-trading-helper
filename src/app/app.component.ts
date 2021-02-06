@@ -14,6 +14,6 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
-    this.themeService.lodeTheme();
+    this.themeService.lodeTheme(); 
   }
 }
