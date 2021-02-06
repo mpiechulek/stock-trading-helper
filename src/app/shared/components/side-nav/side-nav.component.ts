@@ -45,9 +45,7 @@ export class SideNavComponent implements OnInit {
   
   //============================================================================
 
-  switchLang(lang: string) {
-    console.log(lang);
-    
+  switchLang(lang: string) {    
     this.translate.use(lang);
   }
 
