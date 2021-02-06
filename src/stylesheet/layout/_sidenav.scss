@@ -93,17 +93,29 @@
     height: 100%;
     background-color: black;
     opacity: 0.6;
-    animation-name: slide-right;
+    animation-name: slide-right-opacity;
     animation-duration: 1.5s;
   }
 
-  @keyframes slide-right {
+  @keyframes slide-right-opacity{
     0% {
       left: -1500px;
+      opacity: 0;
     }
 
     100% {
       left: 0;
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes slide-right{
+    0% {
+      left: -1500px;     
+    }
+
+    100% {
+      left: 0;      
     }
   }
 
