@@ -1,45 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { homeDateModel } from 'src/app/data/models/home-date.model';
+import { DateTimePresenterService } from './date-time.presenter';
 
 @Component({
   selector: 'app-date-time',
-  templateUrl: './date-time.component.html'
+  templateUrl: './date-time.component.html',
+  providers: [DateTimePresenterService]
 })
-export class DateTimeComponent implements OnInit {
+export class DateTimeComponent implements OnInit, OnDestroy {
 
-  dayNames: string[] = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
-
-  dateData: Date;
   time: string;
-  date: string;
-  dayOfTheWeekTranslate: string;
+  dateObject: homeDateModel;
 
-  //============================================================================
+  dateObjectSubscription: Subscription;
+  timeSubscription: Subscription;
 
-  constructor() { }
+  constructor(private dateTimePresenterService: DateTimePresenterService) { }
 
-  ngOnInit(): void {   
-    this.calculateCurrentTime();
-    this.getCurrentDate() 
+  ngOnInit(): void {
+    // Initializing the service   
+
+    // Getting time data from service
+    this.timeSubscription = this.dateTimePresenterService.getTime().subscribe((time) => {
+      this.time = time;
+      console.log(this.time);      
+    });
+    
+    // Getting date data from service
+    this.dateObjectSubscription = this.dateTimePresenterService.getDateData().subscribe((dateData) => {
+        this.dateObject = dateData;
+        console.log(this.dateObject);
+        
+    });
   }
 
-  calculateCurrentTime() {
-    setInterval(() => {
-      this.dateData = new Date();
-      this.time = this.dateData.toLocaleTimeString();      
-    }, 1000);
+  ngOnDestroy(): void {
+
+    if (!!this.timeSubscription) {
+      this.timeSubscription.unsubscribe();
+      console.log('destory time');
+    }
+
+    if (!!this.dateObjectSubscription) {
+      this.dateObjectSubscription.unsubscribe();
+      console.log('destory date');
+    }
+
   }
 
-  getCurrentDate() {
-    this.dateData = new Date();
-    this.date = this.dateData.toLocaleDateString();   
-    this.dayOfTheWeekTranslate = this.dayNames[(this.dateData.getDate()) - 1];
-  }
 }

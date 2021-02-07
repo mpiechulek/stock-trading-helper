@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { SideNavService } from 'src/app/core/services/side-nav.service';
@@ -10,7 +10,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   templateUrl: './side-nav.component.html'
 })
 
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, OnDestroy {
 
   sliderChecked: boolean;
   selectedLanguage: string;
@@ -30,30 +30,32 @@ export class SideNavComponent implements OnInit {
   //============================================================================
 
   ngOnInit(): void {
-   
+
+    // Setting the slider position
+    this.sliderChecked = this.themeService.checkLocaleStorage();
+
     // Getting the list of languages to display in the select tag 
     this.languages = this.translate.getLangs();
 
     // Setting on start the chosen language form local storage or default 'en'
     this.selectedLanguage = this.languageService.getFromLocalStorage();
 
-    // Setting the slider position
-    this.sliderChecked = this.themeService.checkLocaleStorage();
-
-     // Setting the component visibility
+    // Setting the component visibility
     this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
-      this.sideNavVisible = value;      
+      this.sideNavVisible = value;
     });
   }
 
   ngOnDestroy(): void {
-    this.sideNavVisibleSubscription.unsubscribe();
+    if (!!this.sideNavVisibleSubscription) {
+      this.sideNavVisibleSubscription.unsubscribe();
+    }
   }
-  
+
   //============================================================================
 
-  switchLang(lang: string) {   
-    this.languageService.switchLang(lang);     
+  switchLang(lang: string) {
+    this.languageService.switchLang(lang);
     this.languageService.addToLocalStorage(lang);
   }
 
