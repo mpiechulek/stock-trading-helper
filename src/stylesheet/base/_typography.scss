@@ -54,14 +54,18 @@
   }
 
   .home-date-text,
-  .home-time-text {
-    color: $color-tundora;
-    font-size: 2rem;
+  .home-time-text,
+  .home-day-text {
+    color: $color-white; 
+    font-size: 3rem;
     font-weight: 500;
   }
 
-  .home-time-text {
-    color: $color-white; 
+  .home-date-text{
+    font-size: 1.8rem;
+  }
+
+  .home-time-text {    
     font-weight: 600;
     font-size: 3.5rem;
     letter-spacing: 4px;
