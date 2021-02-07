@@ -14,6 +14,15 @@
     align-items: center;
     margin-right: 1rem;
 
+    @include respond(ld) {
+      width: auto;
+      flex-grow: 2;
+    }
+
+    @include respond(md) {
+      display: none;
+    }
+
     .nav-list-item {
 
       .nav-bar-tag {
@@ -26,13 +35,26 @@
         // Border transparent to remove the hover movement not wanted effect
         border: 1px solid transparent;
 
-        @include respond(xlg) {
+        @include respond(xld) {
           padding: 0.5rem 1.5rem;
         }
 
+        @include respond(ld) {
+          padding: 0.2rem 0.5rem;
+          border: none;
+          border-bottom: 1px solid transparent;
+        }
+
+
         &:hover {
-          border: 1px solid gray;
+          border: 1px solid $color-tundora;
           border-radius: 20rem;
+
+          @include respond(ld) {
+            padding: 0.2rem 0.5rem;
+            border: none;
+            border-bottom: 1px solid $color-tundora;
+          }
         }
       }
 

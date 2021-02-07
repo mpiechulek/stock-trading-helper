@@ -1,22 +1,22 @@
 .nav-bar-tag,
 .sidenav-link {
   color: var(--color-text-nav);
-  font-size: $font-size-navbar-xld;
+  font-size: $font-size-navbar-xxld;
   font-weight: 500;
   cursor: pointer;
 
   @include respond(xld) {
-    font-size: $font-size-navbar-ld;
+    font-size: $font-size-navbar-xld;
   }
 
 }
 
 .nav-bar-text {
-  font-size: $font-size-navbar-xld;
+  font-size: $font-size-navbar-xxld;
   letter-spacing: 2px;
 
   @include respond(xld) {
-    font-size: $font-size-navbar-ld;
+    font-size: $font-size-navbar-xld;
   }
 }
 
@@ -29,9 +29,13 @@
 
 .main-header-h1 {
   color: $color-java;
-  font-size: $font-size-header-main-xld;
+  font-size: $font-size-navbar-xxld;
 
   @include respond(xld) {
+    font-size: $font-size-header-main-xld;
+  }
+
+  @include respond(ld) {
     font-size: $font-size-header-main-ld;
   }
 
@@ -39,6 +43,10 @@
     color: var(--color-text-stroke-1);
 
     @include respond(xld) {
+      font-size: $font-size-header-main-xld;
+    }
+
+    @include respond(ld) {
       font-size: $font-size-header-main-ld;
     }
   }
