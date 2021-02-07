@@ -5,6 +5,12 @@
   background-position: center center;
   object-fit: contain;
 
+  &--header-main {
+    background-image: url('./../../assets/icon/stock-chart-1.svg');
+    width: 5rem;
+    height: 3.8rem;
+  }
+
   &--close {  
     background-image: url('./../../assets/icon/Icon ionic-ios-close-circle-outline.svg');
     

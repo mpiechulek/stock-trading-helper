@@ -6,6 +6,7 @@
     sm (for tablets - screens equal to or greater than 768px wide)
     md (for small laptops - screens equal to or greater than 992px wide)
     lg (for laptops and desktops - screens equal to or greater than 1200px wide)
+    xlg (for laptops and desktops - screens equal to or greater than 1400px wide)
 
 1em = 16px
 
@@ -44,6 +45,14 @@
     };
     
     // 1200px
+  }
+
+  @if $breakpoint==xld{
+    @media only screen and (max-width: 87.5em) {
+      @content
+    };
+    
+    // 1400px
   }
 
 }
