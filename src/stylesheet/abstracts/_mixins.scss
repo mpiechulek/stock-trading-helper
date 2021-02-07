@@ -17,36 +17,32 @@
   @if $breakpoint==xs {
     @media only screen and (max-width: 22.5em) {
       @content
-    }
-
-    ;
+    };
+    
     // 360px
   }
 
   @if $breakpoint==sm {
     @media only screen and (max-width: 48em) {
       @content
-    }
-
-    ;
+    };
+    
     // 768px
   }
 
   @if $breakpoint==md {
     @media only screen and (max-width: 62em) {
       @content
-    }
-
-    ;
+    };
+    
     // 992px
   }
 
   @if $breakpoint==ld{
     @media only screen and (max-width: 75em) {
       @content
-    }
-
-    ;
+    };
+    
     // 1200px
   }
 

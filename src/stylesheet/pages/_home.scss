@@ -32,6 +32,10 @@
     animation-duration: 1.2s;
     transition: ease-in;
 
+    @include respond(lg) {
+      
+     }
+
     @keyframes slide-from-right {
       0% {
         right: -10000px;
