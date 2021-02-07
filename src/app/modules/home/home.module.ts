@@ -16,7 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     CommonModule,
     HomeRoutingModule,
     HttpClientModule ,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateModule,
         useFactory: httpTranslateLoader,

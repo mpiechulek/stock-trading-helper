@@ -23,17 +23,7 @@
     font-size: $font-size-header-main;
 
     span {
-        color:  var(--color-text-stroke-1);
-
-        -webkit-text-fill-color: var(--color-text-stroke-2); /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: 0.01px;
-        -webkit-text-stroke-color:  var(--color-text-stroke-1);  
-        
-        // niedziala na firefoxie
-        -moz-text-fill-color: var(--color-text-stroke-2);
-        -moz-text-stroke-width: 0.01px;
-        -moz-text-stroke-color:  var(--color-text-stroke-1);  
-        
+        color:  var(--color-text-stroke-1);          
     }
 }
 

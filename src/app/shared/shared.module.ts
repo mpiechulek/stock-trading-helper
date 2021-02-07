@@ -6,7 +6,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 // Translations
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Materials
@@ -30,7 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule, 
     MatInputModule,  
     HttpClientModule ,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateModule,
         useFactory: httpTranslateLoader,
@@ -41,8 +41,10 @@ import { MatInputModule } from '@angular/material/input';
   // entryComponents: [ComicSliderDialogComponent],
   exports: [
     NavBarComponent,
-    SideNavComponent
-  ]
+    SideNavComponent,
+    TranslateModule
+  ],
+  providers: [TranslateService]
 })
 export class SharedModule { }
 

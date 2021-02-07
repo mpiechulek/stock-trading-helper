@@ -30,9 +30,7 @@ export class SideNavComponent implements OnInit {
   //============================================================================
 
   ngOnInit(): void {
-
-    this.translate.addLangs(['en', 'pl']);
-    this.translate.setDefaultLang('en');
+   
     // Getting the list of languages to display in the select tag 
     this.languages = this.translate.getLangs();
 
@@ -51,8 +49,8 @@ export class SideNavComponent implements OnInit {
   
   //============================================================================
 
-  switchLang(lang: string) {    
-    this.translate.use(lang);
+  switchLang(lang: string) {   
+    this.languageService.switchLang(lang);     
     this.languageService.addToLocalStorage(lang);
   }
 
@@ -63,6 +61,5 @@ export class SideNavComponent implements OnInit {
 
   onToggleSideNav() {
     this.sideNavService.toggleSideNav();
-
   }
 }
