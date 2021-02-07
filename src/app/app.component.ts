@@ -20,8 +20,8 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
+    // setting theme
     this.themeService.lodeTheme();
-
     // setting translations    
     this.currentLanguage =this.languageService.getFromLocalStorage();
     this.translateService.addLangs(['en', 'pl']);
