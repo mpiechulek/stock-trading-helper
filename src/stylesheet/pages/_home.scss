@@ -99,7 +99,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-end;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
 
         .home-grid-3-header-margin {
           margin-bottom: 2rem;
@@ -110,12 +110,7 @@
         }
       }
     }
-
-    .home-grid-4 {
-      position: absolute;
-      left: -5rem;
-      top: 26rem;     
-    }
+    
   }
 
   &__image {

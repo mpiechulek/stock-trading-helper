@@ -1,63 +1,69 @@
-.nav-bar-tag, .sidenav-link {
-    color: var(--color-text-nav);
-    font-size: $font-size-navbar;
-    font-weight: 500;
-    cursor: pointer;    
+.nav-bar-tag,
+.sidenav-link {
+  color: var(--color-text-nav);
+  font-size: $font-size-navbar;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .nav-bar-text {
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 2px;
+  font-size: 1.5rem; 
+  letter-spacing: 2px;
 }
 
-.sidenav-header  {
-    color: var(--color-text-nav);
-    font-size: 2.2rem;
-    font-weight: 500;
-    letter-spacing: 4px;
+.sidenav-header {
+  color: var(--color-text-nav);
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 4px;
 }
 
 .main-header-h1 {
-    color: $color-java;
-    font-size: $font-size-header-main;
+  color: $color-java;
+  font-size: $font-size-header-main;
 
-    span {
-        color:  var(--color-text-stroke-1);          
-    }
+  span {
+    color: var(--color-text-stroke-1);
+  }
 }
 
 .home {
-    .home-grid-1-header {
-        color: white;
-        font-size: $font-size-home-1;
-        font-weight: 400;
-        letter-spacing: 1rem;
-    }
+  .home-grid-1-header {
+    color: $color-white;
+    font-size: $font-size-home-1;
+    font-weight: 400;
+    letter-spacing: 1rem;
+  }
 
-    .home-grid-2-header {
-        color: white;
-        font-size: $font-size-home-2;
-        font-weight: 400;       
-    }
+  .home-grid-2-header {
+    color: $color-white;
+    font-size: $font-size-home-2;
+    font-weight: 400;
+  }
 
-    .home-grid-3-header {
-        color: white;
-        font-size: $font-size-home-3;
-        font-weight: 400;       
-    }
+  .home-grid-3-header {
+    color: $color-white;
+    font-size: $font-size-home-3;
+    font-weight: 400;
+  }
 
-    .home-grid-text {
-        color: white;
-        font-size: $font-size-home-text;
-        line-height: 1.8rem;
-    }
+  .home-grid-text {
+    color: $color-white;
+    font-size: $font-size-home-text;
+    line-height: 1.8rem;
+  }
 
-    .home-date-text, .home-time-text  {
-        color: var(--color-text-nav);
-        font-size: 3rem;
-        font-weight: 600;
-        text-shadow: 1px 1px $color-buddha-gold;       
-    }       
+  .home-date-text,
+  .home-time-text {
+    color: $color-tundora;
+    font-size: 2rem;
+    font-weight: 500;
+  }
 
+  .home-time-text {
+    color: $color-white; 
+    font-weight: 600;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+  }
 }
