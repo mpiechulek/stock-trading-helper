@@ -1,14 +1,23 @@
 .nav-bar-tag,
 .sidenav-link {
   color: var(--color-text-nav);
-  font-size: $font-size-navbar;
+  font-size: $font-size-navbar-xld;
   font-weight: 500;
   cursor: pointer;
+
+  @include respond(xld) {
+    font-size: $font-size-navbar-ld;
+  }
+
 }
 
 .nav-bar-text {
-  font-size: 1.5rem; 
+  font-size: $font-size-navbar-xld;
   letter-spacing: 2px;
+
+  @include respond(xld) {
+    font-size: $font-size-navbar-ld;
+  }
 }
 
 .sidenav-header {
@@ -20,10 +29,18 @@
 
 .main-header-h1 {
   color: $color-java;
-  font-size: $font-size-header-main;
+  font-size: $font-size-header-main-xld;
+
+  @include respond(xld) {
+    font-size: $font-size-header-main-ld;
+  }
 
   span {
     color: var(--color-text-stroke-1);
+
+    @include respond(xld) {
+      font-size: $font-size-header-main-ld;
+    }
   }
 }
 
@@ -56,16 +73,16 @@
   .home-date-text,
   .home-time-text,
   .home-day-text {
-    color: $color-white; 
+    color: $color-white;
     font-size: 3rem;
     font-weight: 500;
   }
 
-  .home-date-text{
+  .home-date-text {
     font-size: 1.8rem;
   }
 
-  .home-time-text {    
+  .home-time-text {
     font-weight: 600;
     font-size: 3.5rem;
     letter-spacing: 4px;

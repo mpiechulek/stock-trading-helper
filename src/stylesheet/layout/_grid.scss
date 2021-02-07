@@ -5,6 +5,10 @@
   grid-template-rows: 12% 85% 3%; 
   margin: 0 5rem;
 
+  @include respond(xld) {
+    margin: 0 2rem;
+  }
+
   .mian-container {
     height: 100%;
     position: relative;

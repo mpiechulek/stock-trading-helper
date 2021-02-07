@@ -26,6 +26,10 @@
         // Border transparent to remove the hover movement not wanted effect
         border: 1px solid transparent;
 
+        @include respond(xlg) {
+          padding: 0.5rem 1.5rem;
+        }
+
         &:hover {
           border: 1px solid gray;
           border-radius: 20rem;
@@ -34,6 +38,10 @@
 
       .nav-bar-text-margin-left {
         margin-left: 1.3rem;
+
+        @include respond(xld) {
+          margin-left: 0.8rem;
+        }
       }
 
     }
