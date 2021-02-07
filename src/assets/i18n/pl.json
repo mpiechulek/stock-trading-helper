@@ -14,6 +14,13 @@
         "gridComponentTwoText": "Największym ryzykiem jest niepodejmowanie żadnego ryzyka. W świecie, który zmienia się naprawdę szybko, jedyną strategią, która gwarantuje niepowodzenie, jest brak ryzyka .”",
         "gridComponentThreeText": "“Możemy mieć całą wiedzę świata, ale to nic nie znaczy bez mądrości, by wiedzieć, co z nią zrobić.”",
         "gridComponentTwoAuthor":"- Mark Zuckerberg",
-        "gridComponentThreeAuthor":"- Marie Osmond"
+        "gridComponentThreeAuthor":"- Marie Osmond",
+        "dayMonday": "Poniedziałek",
+        "dayTuesday": "Wtorek",
+        "dayWednesday": "Środa",
+        "dayThursday": "Czwartek",
+        "dayFriday": "Piątek",
+        "daySaturday": "Sobota",
+        "daySunday": "Niedziela"
     }
 }

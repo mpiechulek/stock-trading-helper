@@ -14,6 +14,13 @@
         "gridComponentTwoText": "The biggest risk is not taking any risk. in a world that’s changing really quickly, the only strategy that is guaranteed to fail is not taking risks.”",
         "gridComponentThreeText": "“We can have all the knowledge in the world, but it means nothing without the wisdom to know what to do with it.”",
         "gridComponentTwoAuthor":"- Mark Zuckerberg",
-        "gridComponentThreeAuthor":"- Marie Osmond"
+        "gridComponentThreeAuthor":"- Marie Osmond",
+        "dayMonday": "Monday",
+        "dayTuesday": "Tuesday",
+        "dayWednesday": "Wednesday",
+        "dayThursday": "Thursday",
+        "dayFriday": "Friday",
+        "daySaturday": "Saturday",
+        "daySunday": "Sunday"
     }
 }

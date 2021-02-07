@@ -19,17 +19,15 @@ export class DateTimeComponent implements OnInit {
   dateData: Date;
   time: string;
   date: string;
-  dayOfTheWeek: string;
+  dayOfTheWeekTranslate: string;
+
+  //============================================================================
 
   constructor() { }
 
-  ngOnInit(): void {
-
-    this.dateData = new Date();
-    this.date = this.dateData.toLocaleDateString();   
-    this.dayOfTheWeek = this.dayNames[(this.dateData.getDate()) - 1];
-
+  ngOnInit(): void {   
     this.calculateCurrentTime();
+    this.getCurrentDate() 
   }
 
   calculateCurrentTime() {
@@ -37,5 +35,11 @@ export class DateTimeComponent implements OnInit {
       this.dateData = new Date();
       this.time = this.dateData.toLocaleTimeString();      
     }, 1000);
+  }
+
+  getCurrentDate() {
+    this.dateData = new Date();
+    this.date = this.dateData.toLocaleDateString();   
+    this.dayOfTheWeekTranslate = this.dayNames[(this.dateData.getDate()) - 1];
   }
 }
