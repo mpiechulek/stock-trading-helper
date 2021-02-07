@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SideNavService } from 'src/app/core/services/side-nav.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar-ui',
@@ -8,14 +9,22 @@ import { SideNavService } from 'src/app/core/services/side-nav.service';
 
 export class NavBarComponent implements OnInit {
 
-  constructor(private sideNavService: SideNavService) { }
+  languageSubscription: Subscription;
 
-  ngOnInit(): void {
-    
+  constructor(
+              private sideNavService: SideNavService  
+  )
+   { }
+          
+  ngOnInit(): void {    
+  } 
+  
+  ngOnDestroy(): void {
+
   }
 
-  onToggleSideNavBar(): void{
+  onToggleSideNavBar(): void {
     this.sideNavService.toggleSideNav();
-  }  
+  }
 
 }

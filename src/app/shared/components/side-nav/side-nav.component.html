@@ -8,7 +8,7 @@
             </button>
         </div>
 
-        <h1 class="sidenav-header">Settings:</h1>
+        <h1 class="sidenav-header">{{'home.sideNavHeaderSettings' | translate }}</h1>
 
         <div class="sidenav-container__settings">
 
@@ -23,72 +23,93 @@
             </div>
 
             <div class="language-wrapper">
-                <mat-form-field>
-                    <mat-select [(value)]="selectedLanguage">
-                        <mat-option value="pl">PL</mat-option>
-                        <mat-option value="en">EN</mat-option>
+
+                <mat-form-field>                    
+                    <mat-select 
+                            [(value)]="selectedLanguage"
+                            (selectionChange)="switchLang($event.value)"
+                    >
+                        <mat-option 
+                                *ngFor="let language of languages"
+                                value="{{language}}"
+                        >
+                            {{ language }}
+                        </mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field>           
+
             </div>
 
         </div>
 
-        <h1 class="sidenav-header">Menu:</h1>
+        <h1 class="sidenav-header">{{'home.sideNavHeaderMenu' | translate }}</h1>
 
         <div class="sidenav-container__menu">
             <ul class="sidenav-list">
+
+                <!-- Home -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--home"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Home</p>
+                        <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarHome' | translate }}</p>
                     </a>
                 </li>
+
+                  <!-- Trades -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--plan"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Trade</p>
+                        <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarTrade' | translate }}</p>
                     </a>
                 </li>
+
+                <!-- Calculator -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--calculator"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Calculator</p>
+                        <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarCalculator' | translate }}</p>
                     </a>
                 </li>
+
+                <!-- Currency -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--money"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Currency</p>
+                        <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarCurrency' | translate }}</p>
                     </a>
                 </li>
+                
+                <!-- Statistics -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--chart"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Statistics</p>
+                        <p class="nav-bar-text side-bar-text-margin-left"> {{'home.navBarStatistics' | translate }}</p>
                     </a>
                 </li>
+
+                 <!-- Calendar -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
                         <div class="side-nav-icon-wrapper">
                             <svg class="icon icon--calendar"></svg>
                         </div>
-                        <p class="nav-bar-text side-bar-text-margin-left">Calendar</p>
+                        <p class="nav-bar-text side-bar-text-margin-left"> {{'home.navBarCalendar' | translate }}</p>
                     </a>
                 </li>
 
