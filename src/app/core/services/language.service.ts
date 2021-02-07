@@ -10,7 +10,7 @@ export class LanguageService {
   private chosenLanguage: string;
   private chosenLanguage$ = new Subject<string>();
 
-  constructor(public translate: TranslateService) { }
+  constructor(public translate: TranslateService) {}
 
   addToLocalStorage(language: string) {
     localStorage.setItem('language', language);
@@ -20,18 +20,12 @@ export class LanguageService {
 
     if (localStorage.hasOwnProperty('language')) {
       this.chosenLanguage = localStorage.getItem('language');
-    } else {
-      this.chosenLanguage = 'en';
+    } else {  
+      this.chosenLanguage = 'en';   
       this.addToLocalStorage(this.chosenLanguage);
-    }
-
-    this.chosenLanguage$.next(this.chosenLanguage);
+    }   
+    return this.chosenLanguage;
   }
-
-  getCurrentLanguage() {
-    return this.chosenLanguage$.asObservable();
-  }
-
 
   switchLang(lang: string) {
     this.translate.use(lang);

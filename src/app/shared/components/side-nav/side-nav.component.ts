@@ -13,7 +13,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
 export class SideNavComponent implements OnInit {
 
   sliderChecked: boolean;
-  selectedLanguage = 'en'
+  selectedLanguage: string;
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
@@ -33,6 +33,9 @@ export class SideNavComponent implements OnInit {
    
     // Getting the list of languages to display in the select tag 
     this.languages = this.translate.getLangs();
+
+    // Setting on start the chosen language form local storage or default 'en'
+    this.selectedLanguage = this.languageService.getFromLocalStorage();
 
     // Setting the slider position
     this.sliderChecked = this.themeService.checkLocaleStorage();
