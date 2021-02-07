@@ -53,4 +53,11 @@
         line-height: 1.8rem;
     }
 
+    .home-date-text, .home-time-text  {
+        color: var(--color-text-nav);
+        font-size: 3rem;
+        font-weight: 600;
+        text-shadow: 1px 1px $color-buddha-gold;       
+    }       
+
 }
