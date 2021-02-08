@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Translations
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     NavBarComponent,
-    SideNavComponent
+    SideNavComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { MatInputModule } from '@angular/material/input';
   exports: [
     NavBarComponent,
     SideNavComponent,
-    TranslateModule
+    TranslateModule,
+    FooterComponent
   ],
   providers: [TranslateService]
 })
