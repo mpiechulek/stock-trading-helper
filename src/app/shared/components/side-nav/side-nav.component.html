@@ -17,26 +17,20 @@
                 <mat-slide-toggle [checked]="sliderChecked" (change)="changeTheme($event)">
                 </mat-slide-toggle>
 
-                <img class="icon-theme" src="./assets/icon/Icon awesome-sun.svg" alt="icon" *ngIf="!sliderChecked">
-                <img class="icon-theme" src="./assets/icon/Icon awesome-moon.svg" alt="icon" *ngIf="sliderChecked">
+                <svg class="icon icon--moon theme-icon-margin-left" *ngIf="sliderChecked"></svg>
+                <svg class="icon icon--sun theme-icon-margin-left" *ngIf="!sliderChecked"></svg>
 
             </div>
 
             <div class="language-wrapper">
 
-                <mat-form-field>                    
-                    <mat-select 
-                            [(value)]="selectedLanguage"
-                            (selectionChange)="switchLang($event.value)"
-                    >
-                        <mat-option 
-                                *ngFor="let language of languages"
-                                value="{{language}}"
-                        >
+                <mat-form-field>
+                    <mat-select [(value)]="selectedLanguage" (selectionChange)="switchLang($event.value)">
+                        <mat-option *ngFor="let language of languages" value="{{language}}">
                             {{ language }}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>           
+                </mat-form-field>
 
             </div>
 
@@ -58,7 +52,7 @@
                     </a>
                 </li>
 
-                  <!-- Trades -->
+                <!-- Trades -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">
@@ -90,7 +84,7 @@
                         <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarCurrency' | translate }}</p>
                     </a>
                 </li>
-                
+
                 <!-- Statistics -->
 
                 <li class="sidenav-list-item">
@@ -102,7 +96,7 @@
                     </a>
                 </li>
 
-                 <!-- Calendar -->
+                <!-- Calendar -->
 
                 <li class="sidenav-list-item">
                     <a class="sidenav-link">

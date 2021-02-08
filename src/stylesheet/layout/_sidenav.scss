@@ -54,6 +54,10 @@
         align-items: center;
       }
 
+      .theme-icon-margin-left {
+        margin-left: 1.9rem;
+      }
+
       .language-wrapper {}
 
       .icon-theme {
@@ -80,11 +84,11 @@
 
         &:not(last-child) {
           margin-bottom: 2rem;
-        }       
+        }
       }
 
       .sidenav-link {
-        
+
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -93,7 +97,7 @@
         .side-nav-icon-wrapper {
           width: 6rem;
         }
-          
+
       }
 
       .sidenav-list-item:hover {
@@ -103,7 +107,7 @@
       .sidenav-list-item .sidenav-link {
         cursor: pointer;
         pointer-events: auto;
-      }  
+      }
 
     }
   }
@@ -118,7 +122,7 @@
     animation-duration: 1s;
   }
 
-  @keyframes slide-right-opacity{
+  @keyframes slide-right-opacity {
     0% {
       left: -1500px;
       opacity: 0;
@@ -130,13 +134,13 @@
     }
   }
 
-  @keyframes slide-right{
+  @keyframes slide-right {
     0% {
-      left: -1500px;     
+      left: -1500px;
     }
 
     100% {
-      left: 0;      
+      left: 0;
     }
   }
 
