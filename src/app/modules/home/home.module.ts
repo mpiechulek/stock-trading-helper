@@ -9,9 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DateTimeComponent } from './components/home/date-time/date-time.component';
 
 @NgModule({
-  declarations: [HomeContainerComponent, HomeComponent],
+  declarations: [HomeContainerComponent, HomeComponent, DateTimeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

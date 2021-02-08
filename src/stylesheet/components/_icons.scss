@@ -5,30 +5,49 @@
   background-position: center center;
   object-fit: contain;
 
-  &--close {  
-    background-image: url('./../../assets/icon/Icon ionic-ios-close-circle-outline.svg');
-    
+  &--header-main {
+    background-image: url('./../../assets/icon/stock-chart-1.svg');
+    width: 5rem;
+    height: 3.8rem;
+
+    @include respond(xld) {
+      width: 3.6rem;
+      height: 2.9rem;
+    }
+  }
+
+  &--moon {
+    background-image: url('./../../assets/icon/Icon awesome-moon.svg');
     width: 2rem;
     height: 2rem;
+  }
+
+  &--sun {
+    background-image: url('./../../assets/icon/Icon awesome-sun.svg');
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &--close {
+    background-image: url('./../../assets/icon/Icon ionic-ios-close-circle-outline.svg');
+    width: 20px;
+    height: 20px;
   }
 
   &--sidenav-open {
     background-image: url('./../../assets/icon/Icon awesome-cog.svg');
-    
-    width: 2rem;
-    height: 2rem;
+    width: 20px;
+    height: 20px;
   }
-  
+
   &--add {
     background-image: url('./../../assets/icon/Icon ionic-ios-add-circle-outline.svg');
-    
     width: 2rem;
     height: 2rem;
   }
 
-  &--pencil{
+  &--pencil {
     background-image: url('./../../assets/icon/Icon awesome-pencil-alt.svg');
-    
     width: 2rem;
     height: 2rem;
   }
@@ -37,43 +56,37 @@
 
   &--home {
     background-image: url('./../../assets/icon/Icon awesome-home.svg');
-
-    width: 2.2rem;
-    height: 2rem;
+    width: 1.6rem;
+    height: 1.4rem;
   }
 
   &--plan {
     background-image: url('./../../assets/icon/Icon ionic-ios-list-box.svg');
-    
-    width: 2rem;
-    height: 2rem;
+    width: 1.4rem;
+    height: 1.4rem;
   }
 
-  &--calculator{
+  &--calculator {
     background-image: url('./../../assets/icon/Icon awesome-calculator.svg');
-    
-    width: 1.8rem;
-    height: 2rem;
+    width: 1.2rem;
+    height: 1.4rem;
   }
 
-  &--money{
+  &--money {
     background-image: url('./../../assets/icon/Icon awesome-money-bill-alt.svg');
-    
-    width: 3.5rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 1.4rem;
   }
 
-  &--chart{
+  &--chart {
     background-image: url('./../../assets/icon/Icon metro-chart-dots.svg');
-    
-    width: 2.1rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.4rem;
   }
 
-  &--calendar{
+  &--calendar {
     background-image: url('./../../assets/icon/Icon awesome-calendar-alt.svg');
-    
-    width: 2rem;
-    height: 2rem;
+    width: 1.2rem;
+    height: 1.4rem;
   }
 }

@@ -12,16 +12,12 @@ export class NavBarComponent implements OnInit {
   languageSubscription: Subscription;
 
   constructor(
-              private sideNavService: SideNavService  
-  )
-   { }
-          
-  ngOnInit(): void {    
-  } 
-  
-  ngOnDestroy(): void {
+    private sideNavService: SideNavService
+  ) { }
 
+  ngOnInit(): void {
   }
+
 
   onToggleSideNavBar(): void {
     this.sideNavService.toggleSideNav();

@@ -1,56 +1,129 @@
-.nav-bar-tag, .sidenav-link {
-    color: var(--color-text-nav);
-    font-size: $font-size-navbar;
-    font-weight: 500;
-    cursor: pointer;    
+.nav-bar-tag,
+.sidenav-link {
+  color: var(--color-text-nav);
+  font-size:  1.6rem; 
+  font-weight: 500;
+  cursor: pointer;
+
+  @include respond(xld) {
+    font-size: 1.4rem; 
+  }
+
+  @include respond(md) {
+    font-size: 12px; ;
+  }
 }
 
 .nav-bar-text {
-    font-size: 1.5rem;
+  font-size:  1.6rem; ;
+  letter-spacing: 2px;
+
+  @include respond(xld) {
+    font-size: 1.4rem;
     font-weight: 400;
-    letter-spacing: 2px;
+  }
+
+  @include respond(md) {
+    font-size: 12px; ;
+  }
 }
 
-.sidenav-header  {
-    color: var(--color-text-nav);
-    font-size: 2.2rem;
-    font-weight: 500;
-    letter-spacing: 4px;
+.sidenav-header {
+  color: var(--color-text-nav);
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 4px;
 }
 
 .main-header-h1 {
-    color: $color-java;
-    font-size: $font-size-header-main;
+  color: $color-java;
+  font-size: 4.5rem; 
 
-    span {
-        color:  var(--color-text-stroke-1);          
+  @include respond(xld) {
+    font-size:  3.3rem; 
+  }
+
+  @include respond(ld) {
+    font-size: 2.8rem; 
+  }
+
+  span {
+    color: var(--color-text-stroke-1);
+    font-size: 4.5rem; 
+
+    @include respond(xld) {
+      font-size:  3.3rem; 
     }
+
+    @include respond(ld) {
+      font-size: 2.8rem; 
+    }
+  }
 }
 
 .home {
-    .home-grid-1-header {
-        color: white;
-        font-size: $font-size-home-1;
-        font-weight: 400;
-        letter-spacing: 1rem;
+  .home-grid-1-header {
+    color: $color-white;
+    font-size: 8.2rem;
+    font-weight: 400;
+    letter-spacing: 1rem;
+
+    @include respond(ld) {
+      font-size: 7rem;
     }
 
-    .home-grid-2-header {
-        color: white;
-        font-size: $font-size-home-2;
-        font-weight: 400;       
+    @include respond(xs) {
+      font-size: 5.5rem;
+    }
+  }
+
+  .home-grid-2-header {
+    color: $color-white;
+    font-size: 5.5rem;
+    font-weight: 400;
+
+    @include respond(ld) {
+      font-size: 5rem;
+    }
+  }
+
+  .home-grid-3-header {
+    color: $color-white;
+    font-size: 3.5rem;
+    font-weight: 400;
+
+    @include respond(sm) {
+      text-align: right;
     }
 
-    .home-grid-3-header {
-        color: white;
-        font-size: $font-size-home-3;
-        font-weight: 400;       
-    }
+  }
 
-    .home-grid-text {
-        color: white;
-        font-size: $font-size-home-text;
-        line-height: 1.8rem;
-    }
+  .home-grid-text {
+    color: $color-white;
+    font-size: $font-size-home-text;
+    line-height: 1.8rem;
+  }
 
+  .home-date-text,
+  .home-time-text,
+  .home-day-text {
+    color: $color-white;
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  .home-date-text {
+    font-size: 1.8rem;
+  }
+
+  .home-time-text {
+    font-weight: 600;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+  }
+}
+
+.footer-text {
+  color: var(--color-text-nav);
+  font-size: 1.3rem;
 }
