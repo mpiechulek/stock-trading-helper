@@ -2,24 +2,29 @@ html {
 
   font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
 
-  @include respond(lg) {
-    // width < 1800px ? 1rem = 9px, 9/16 = 56.25%
-    font-size: 75%;
+  @include respond(xlg) {
+    // width < 1400px ? 1rem = 10px, 10/16 = 75%
+    font-size: 62.5%;
   }
 
-  @include respond(md) {
+  @include respond(lg) {
     // width < 1200px ? 1rem = 9px, 9/16 = 56.25%
     font-size: 56.25%;
   }
 
-  @include respond(sm) {
-    // width < 900px ? 1rem = 8px, 8/16 = 50%
+  @include respond(md) {
+    // width < 992px ? 1rem = 8px, 8/16 = 50%
     font-size: 50%;
   }
 
+  @include respond(sm) {
+    // width < 768px ? 1rem = 7px, 7/16 = 43.7%
+    font-size: 43.7%;
+  }
+
   @include respond(xs) {
-    // width < 600px ? 1rem = 7px, 7/16 = 43.75%
-    font-size: 43.75%;
+    // width < 360px ? 1rem = 6px, 6/16 = 43.75%
+    font-size: 37.5%;
   }
 
 }
