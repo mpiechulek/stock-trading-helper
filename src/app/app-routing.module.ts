@@ -54,7 +54,7 @@ const routes: Routes = [
           import('./modules/calendar/calendar.module').then(
             m => m.CalendarModule
           )
-      },
+      }
      
     ]
   }
