@@ -6,7 +6,7 @@
   cursor: pointer;
 
   @include respond(xld) {
-    font-size: 1.4rem; ;
+    font-size: 1.4rem; 
   }
 
   @include respond(md) {
@@ -20,6 +20,7 @@
 
   @include respond(xld) {
     font-size: 1.4rem;
+    font-weight: 400;
   }
 
   @include respond(md) {
@@ -120,4 +121,9 @@
     font-size: 3.5rem;
     letter-spacing: 4px;
   }
+}
+
+.footer-text {
+  color: var(--color-text-nav);
+  font-size: 1.3rem;
 }
