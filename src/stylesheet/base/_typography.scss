@@ -8,7 +8,6 @@
   @include respond(xld) {
     font-size: $font-size-navbar-xld;
   }
-
 }
 
 .nav-bar-text {
@@ -28,8 +27,8 @@
 }
 
 .main-header-h1 {
-  color: $color-java; 
-  font-size: $font-size-header-main-xxld; 
+  color: $color-java;
+  font-size: $font-size-header-main-xxld;
 
   @include respond(xld) {
     font-size: $font-size-header-main-xld;
@@ -41,7 +40,7 @@
 
   span {
     color: var(--color-text-stroke-1);
-    font-size: $font-size-header-main-xxld; 
+    font-size: $font-size-header-main-xxld;
 
     @include respond(xld) {
       font-size: $font-size-header-main-xld;
@@ -56,21 +55,38 @@
 .home {
   .home-grid-1-header {
     color: $color-white;
-    font-size: $font-size-home-1;
+    font-size: 8.2rem;
     font-weight: 400;
     letter-spacing: 1rem;
+
+    @include respond(ld) {
+      font-size: 7rem;
+    }
+
+    @include respond(xs) {
+      font-size: 5.5rem;
+    }
   }
 
   .home-grid-2-header {
     color: $color-white;
-    font-size: $font-size-home-2;
+    font-size: 5.5rem;
     font-weight: 400;
+
+    @include respond(ld) {
+      font-size: 5rem;
+    }
   }
 
   .home-grid-3-header {
     color: $color-white;
-    font-size: $font-size-home-3;
+    font-size: 3.5rem;
     font-weight: 400;
+
+    @include respond(sm) {
+      text-align: right;
+    }
+
   }
 
   .home-grid-text {

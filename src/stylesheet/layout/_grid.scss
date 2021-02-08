@@ -9,6 +9,14 @@
     margin: 0 2rem;
   }
 
+  @include respond(md) {
+    grid-template-rows: 8% 89% 3%; 
+  }
+
+  @include respond(xs) {
+    grid-template-rows: 6% 91% 3%; 
+  }
+
   .mian-container {
     height: 100%;
     position: relative;
