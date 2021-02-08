@@ -20,27 +20,42 @@ const routes: Routes = [
             m => m.HomeModule
           )
       },
-      // {
-      //   path: '',
-      //   loadChildren: () => 
-      //     import('./modules/home/home.module').then(
-      //       m => m.HomeModule
-      //     )
-      // },
-      // {
-      //   path: '',
-      //   loadChildren: () => 
-      //     import('./modules/home/home.module').then(
-      //       m => m.HomeModule
-      //     )
-      // },
-      // {
-      //   path: '',
-      //   loadChildren: () => 
-      //     import('./modules/home/home.module').then(
-      //       m => m.HomeModule
-      //     )
-      // }
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/trade/trade.module').then(
+            m => m.TradeModule
+          )
+      },
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/calculator/calculator.module').then(
+            m => m.CalculatorModule
+          )
+      },
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/currency/currency.module').then(
+            m => m.CurrencyModule
+          )
+      },
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/statistics/statistics.module').then(
+            m => m.StatisticsModule
+          )
+      },
+      {
+        path: '',
+        loadChildren: () => 
+          import('./modules/calendar/calendar.module').then(
+            m => m.CalendarModule
+          )
+      }
+     
     ]
   }
 ];
