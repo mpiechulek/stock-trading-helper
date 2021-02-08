@@ -28,8 +28,8 @@
 }
 
 .main-header-h1 {
-  color: $color-java;
-  font-size: $font-size-navbar-xxld;
+  color: $color-java; 
+  font-size: $font-size-header-main-xxld; 
 
   @include respond(xld) {
     font-size: $font-size-header-main-xld;
@@ -41,6 +41,7 @@
 
   span {
     color: var(--color-text-stroke-1);
+    font-size: $font-size-header-main-xxld; 
 
     @include respond(xld) {
       font-size: $font-size-header-main-xld;

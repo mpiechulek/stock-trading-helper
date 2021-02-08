@@ -50,7 +50,7 @@ export class DateTimePresenterService {
       dayOfWeek: this.getDayOfWeek(),
       date: this.getCurrentDate()
     }
-    
+
     this.dateObject$.next(object);
   }
 
@@ -61,7 +61,7 @@ export class DateTimePresenterService {
 
   getDayOfWeek(): string {
     const dateData = new Date();
-    return this.dayNames[(dateData.getDate()) - 1];
+    return this.dayNames[dateData.getDay() - 1];
   }
 
 }

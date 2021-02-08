@@ -23,30 +23,23 @@ export class DateTimeComponent implements OnInit, OnDestroy {
 
     // Getting time data from service
     this.timeSubscription = this.dateTimePresenterService.getTime().subscribe((time) => {
-      this.time = time;
-      console.log(this.time);      
+      this.time = time;   
     });
     
     // Getting date data from service
     this.dateObjectSubscription = this.dateTimePresenterService.getDateData().subscribe((dateData) => {
-        this.dateObject = dateData;
-        console.log(this.dateObject);
-        
+        this.dateObject = dateData;        
     });
   }
 
   ngOnDestroy(): void {
 
     if (!!this.timeSubscription) {
-      this.timeSubscription.unsubscribe();
-      console.log('destory time');
+      this.timeSubscription.unsubscribe();   
     }
 
     if (!!this.dateObjectSubscription) {
       this.dateObjectSubscription.unsubscribe();
-      console.log('destory date');
     }
-
   }
-
 }
