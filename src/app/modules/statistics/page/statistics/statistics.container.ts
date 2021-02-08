@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-statistics',
-  templateUrl: './statistics.component.html'
+  templateUrl: './statistics.container.html'
 
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsContainerComponent implements OnInit {
 
   constructor() { }
 

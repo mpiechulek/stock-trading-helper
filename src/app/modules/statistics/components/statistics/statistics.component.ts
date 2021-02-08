@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-statistics',
+  selector: 'app-statistics-ui',
   templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.scss']
+
 })
 export class StatisticsComponent implements OnInit {
 
