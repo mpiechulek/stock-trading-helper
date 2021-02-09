@@ -8,20 +8,29 @@ import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
 })
 export class TradeComponent implements OnInit {
 
+  dialogData;
+  lasTypedData;
+
   constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  openModal() {
+  openModal(): void {
 
     const dialogConfig = new MatDialogConfig();
-   
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";  
-    dialogConfig.data = {};   
-    
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
-  }
 
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+    dialogConfig.data = this.lasTypedData;
+
+    // Initializing dialog
+    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+
+    // Receive data from dialog
+    modalDialog.afterClosed().subscribe(result => {
+           this.dialogData = result;
+      console.log(this.dialogData);      
+    });
+  }
 }
