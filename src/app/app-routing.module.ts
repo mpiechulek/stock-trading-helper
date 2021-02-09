@@ -55,7 +55,7 @@ const routes: Routes = [
             m => m.CalendarModule
           )
       },
-      { path: '**' }     
+      { path: '**', redirectTo: '/', pathMatch: 'full' } 
     ]
   }
 ];
