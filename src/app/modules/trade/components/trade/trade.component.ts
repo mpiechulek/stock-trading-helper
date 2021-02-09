@@ -14,12 +14,13 @@ export class TradeComponent implements OnInit {
   }
 
   openModal() {
+
     const dialogConfig = new MatDialogConfig();
-    // The user can't close the dialog by clicking outside its body
+   
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-  
-    // https://material.angular.io/components/dialog/overview
+    dialogConfig.id = "modal-component";  
+    dialogConfig.data = {};   
+    
     const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
   }
 
