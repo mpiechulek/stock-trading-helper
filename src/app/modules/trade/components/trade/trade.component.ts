@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
 
 @Component({
   selector: 'app-trade-ui',
@@ -6,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TradeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+  
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
   }
 
 }
