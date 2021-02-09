@@ -24,14 +24,21 @@ export class TradeDialogComponent implements OnInit {
         Validators.required
       ]],
       amountOfShares: ['', [
-        Validators.required
+        Validators.required,
+        Validators.pattern("^/[0-9]|\./*$")
       ]],
       buyPrice: ['', [
-        Validators.required
+        Validators.required    
       ]],
-      taxRate: ['', []],
-      commission: ['', []],
-      minCommission: ['', []]
+      taxRate: ['', [
+    
+      ]],
+      commission: ['', [
+ 
+      ]],
+      minCommission: ['', [
+     
+      ]]
     });
   }
 

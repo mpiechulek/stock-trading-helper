@@ -22,10 +22,13 @@
 
         <mat-form-field>
             <mat-label>Number of shares </mat-label>
-            <input matInput type="text" formControlName="amountOfShares">
-            <mat-error *ngIf="companyName.touched">
+            <input matInput type="number" formControlName="amountOfShares">
+            <mat-error *ngIf="amountOfShares.invalid && amountOfShares.touched">
                 Number of shares is required.
-            </mat-error>           
+            </mat-error>   
+            <mat-error *ngIf="amountOfShares.invalid && amountOfShares.touched">
+                Number of shares must by a integer number.
+            </mat-error>          
         </mat-form-field>
 
     </div>
@@ -36,8 +39,8 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Buy price</mat-label>
-            <input matInput type="text" formControlName="buyPrice">
-            <mat-error *ngIf="companyName.touched">
+            <input matInput type="number" formControlName="buyPrice">
+            <mat-error *ngIf="buyPrice.touched">
                 Buy price is required
             </mat-error>           
         </mat-form-field>
@@ -46,7 +49,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Tax rate %</mat-label>
-            <input matInput type="text" formControlName="taxRate">
+            <input matInput type="number" formControlName="taxRate">
             <mat-error>
                 Company name is required.
             </mat-error>
@@ -60,7 +63,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Brokers commission %</mat-label>
-            <input matInput type="text" formControlName="commission">
+            <input matInput type="number" formControlName="commission">
             <mat-error>
                 Brokers commission mus by a number.
             </mat-error>
@@ -70,7 +73,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Min. brokers commission</mat-label>
-            <input matInput type="text" formControlName="minCommission">
+            <input matInput type="number" formControlName="minCommission">
             <mat-error>
                 Min. brokers commission mus by a number.
             </mat-error>
