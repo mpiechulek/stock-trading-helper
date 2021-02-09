@@ -36,37 +36,26 @@
         border: 1px solid transparent;
 
         @include respond(xld) {
-          padding: 0.5rem 1.5rem;
+          padding: 0.6rem 1rem;
         }
 
         @include respond(ld) {
-          padding: 0.2rem 0.5rem;
+          padding: 0.4rem 0.8rem;
           border: none;
           border-bottom: 1px solid transparent;
         }
 
 
         &:hover {
-          border: 1px solid $color-tundora;
+          // border: 1px solid $color-tundora;
           border-radius: 20rem;
-
-          @include respond(ld) {
-            padding: 0.2rem 0.5rem;
-            border: none;
-            border-bottom: 1px solid $color-tundora;
-          }
+          background-color: $color-gray-light;        
         }
       }
 
       .router-link-active {
-        border: 1px solid $color-tundora;
         border-radius: 20rem;
-
-        @include respond(ld) {
-          padding: 0.2rem 0.5rem;
-          border: none;
-          border-bottom: 1px solid $color-tundora;
-        }
+        background-color: $color-gray-light;          
       }
 
       .nav-bar-text-margin-left {
