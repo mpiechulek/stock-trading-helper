@@ -7,7 +7,7 @@ import { TradeComponent } from './components/trade/trade.component';
 import { TradeDialogComponent } from './components/trade/trade-dialog/trade-dialog.component';
 
 // Angular materials
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -19,8 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
-    TradeRoutingModule,
-    BrowserAnimationsModule,
+    TradeRoutingModule,  
     MatButtonModule,
     MatDialogModule
   ]
