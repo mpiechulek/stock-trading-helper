@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TradeRoutingModule } from './trade-routing.module';
 import { TradeContainerComponent } from './page/trade/trade.container';
 import { TradeComponent } from './components/trade/trade.component';
@@ -11,6 +12,8 @@ import { TradeDialogComponent } from './components/trade/trade-dialog/trade-dial
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,11 @@ import { MatIconModule } from '@angular/material/icon';
     TradeRoutingModule,
     MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class TradeModule { }
