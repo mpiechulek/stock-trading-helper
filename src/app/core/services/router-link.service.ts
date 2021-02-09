@@ -9,6 +9,6 @@ export class RouterLinkService {
   constructor(private router: Router) { }
 
   goToItem(directory: string): void {    
-    this.router.navigate([directory]);
+    this.router.navigate(["/",directory]);   
   }
 }
