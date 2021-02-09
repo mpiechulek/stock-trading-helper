@@ -30,8 +30,8 @@ export class TradeComponent implements OnInit {
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
-           this.dialogData = result;
-      console.log(this.dialogData);      
+      this.dialogData = result;
+      console.log(this.dialogData);
     });
   }
 }
