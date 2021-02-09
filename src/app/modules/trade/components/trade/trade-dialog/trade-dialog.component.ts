@@ -69,12 +69,12 @@ export class TradeDialogComponent implements OnInit {
     this.onCloseDialog();
   }
 
-  onClearDialog() {
-
+  onClearForm() {
+    this.entryStockForm.reset();
   }
 
   onCloseDialog() {
-    this.dialogRef.close(this.entryStockForm);
+    this.dialogRef.close(this.entryStockForm.value);
   }
 
 }
