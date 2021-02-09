@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class TradeDialogComponent implements OnInit {
 
-  myForm:  FormGroup;
+  entryStockForm:  FormGroup;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -19,10 +19,27 @@ export class TradeDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.myForm = this.formBuilder.group({
-
-    })
+    this.entryStockForm = this.formBuilder.group({
+      companyName: ['', [
+        Validators.required
+      ]],
+      amountOfShares: ['', [
+        Validators.required
+      ]],
+      buyPrice: ['', [
+        Validators.required
+      ]],
+      taxRate: ['', [
+        Validators.required
+      ]],
+      commission: ['', []],
+      minCommission: ['', []]
+    });
   }  
+
+  get companyName() {
+    return this.entryStockForm.get('companyName');
+  }
 
   onSubmitDialog() {
     this.onCloseDialog();
