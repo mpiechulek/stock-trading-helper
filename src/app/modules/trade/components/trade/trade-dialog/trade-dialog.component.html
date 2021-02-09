@@ -1,6 +1,91 @@
 <form class="trade-entry-form">
-    <mat-form-field>
-        <mat-label>Legacy form field</mat-label>
-        <input matInput placeholder="Placeholder">       
-    </mat-form-field>
+
+    <h1>Add Stock</h1>
+
+    <div class="trade-entry-form__section-1">
+
+        <!-- Company name -->
+
+        <mat-form-field>
+            <mat-label>Enter company name</mat-label>
+            <input matInput>
+            <mat-error>
+                Company name is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Number of shares -->
+
+        <mat-form-field>
+            <mat-label>Number of shares </mat-label>
+            <input matInput>
+            <mat-error>
+                Number of shares is required.
+            </mat-error>
+            <mat-error>
+                Shares amount must be a positive integer number
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Buy price -->
+
+        <mat-form-field>
+            <mat-label>Buy price</mat-label>
+            <input matInput>
+            <mat-error>
+                Buy price is required
+            </mat-error>
+            <mat-error>
+                Buy price must be a positive number
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Tax rate -->
+
+        <mat-form-field>
+            <mat-label>Enter company name</mat-label>
+            <input matInput>
+            <mat-error>
+                Company name is required.
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="trade-entry-form__section-2">
+
+        <!-- Brokers commission -->
+
+        <mat-form-field>
+            <mat-label>Enter commission name</mat-label>
+            <input matInput>
+            <mat-error>
+                Company name is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Min Brokers commission -->
+
+        <mat-form-field>
+            <mat-label>Enter company name</mat-label>
+            <input matInput>
+            <mat-error>
+                Company name is required.
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="trade-entry-form__section-3">
+
+        <!-- Submit -->
+
+        <button  mat-raised-button type="button" color="primary">Submit</button>
+
+        <!-- clear -->
+
+        <button  mat-raised-button type="button">Clear</button>
+
+    </div>
+
 </form>
