@@ -17,7 +17,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onCloseDialog() {
-
+    this.dialogRef.close();
   }
 
   onClearDialog() {
@@ -25,7 +25,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onSubmitDialog() {
-    this.dialogRef.close();
+    this.onCloseDialog();
   }
 
 

@@ -1,9 +1,8 @@
 <form class="trade-entry-form" [formGroup]="myForm">
 
-        <button class="btn trade-entry-form__close-btn" (click)="onSubmitDialog()">
-            <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
-        </button>
-  
+    <button class="btn trade-entry-form__close-btn" (click)="onCloseDialog()">
+        <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+    </button>
 
     <h1 class="trade-entry-form-header trade-entry-form__header">Add Stock</h1>
 
@@ -89,11 +88,11 @@
 
         <!-- Submit -->
 
-        <button mat-raised-button type="button" color="primary" (click)="onClearDialog()">Submit</button>
+        <button mat-raised-button type="button" color="primary" (click)="onSubmitDialog()">Submit</button>
 
         <!-- clear -->
 
-        <button mat-raised-button type="button" (click)="onSubmitDialog()">Clear</button>
+        <button mat-raised-button type="button" (click)="onClearDialog()">Clear</button>
 
     </div>
 
