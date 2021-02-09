@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trade-dialog',
@@ -9,9 +10,23 @@ import { FormGroup } from '@angular/forms';
 export class TradeDialogComponent implements OnInit {
 
   myForm:  FormGroup;
-  constructor() { }
+  
+  constructor(public dialogRef: MatDialogRef<TradeDialogComponent>) { }
 
   ngOnInit(): void {
   }
+
+  onCloseDialog() {
+
+  }
+
+  onClearDialog() {
+
+  }
+
+  onSubmitDialog() {
+    this.dialogRef.close();
+  }
+
 
 }

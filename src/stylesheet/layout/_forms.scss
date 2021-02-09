@@ -1,4 +1,11 @@
 .trade-entry-form {
+  position: relative;
+
+  &__close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
 
   &__header {
     margin-bottom: 2.5rem;
