@@ -10,6 +10,7 @@ import { TradeDialogComponent } from './components/trade/trade-dialog/trade-dial
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,10 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
-    TradeRoutingModule,  
+    TradeRoutingModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ]
 })
 export class TradeModule { }
