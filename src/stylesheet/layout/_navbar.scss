@@ -25,13 +25,13 @@
 
     .nav-list-item {
 
-      .nav-bar-tag {
+      .nav-bar-link {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         padding: 0.6rem 1.8rem;
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
         // Border transparent to remove the hover movement not wanted effect
         border: 1px solid transparent;
 
@@ -58,6 +58,17 @@
         }
       }
 
+      .router-link-active {
+        border: 1px solid $color-tundora;
+        border-radius: 20rem;
+
+        @include respond(ld) {
+          padding: 0.2rem 0.5rem;
+          border: none;
+          border-bottom: 1px solid $color-tundora;
+        }
+      }
+
       .nav-bar-text-margin-left {
         margin-left: 1.3rem;
 
@@ -67,6 +78,6 @@
       }
 
     }
-  } 
+  }
 
 }

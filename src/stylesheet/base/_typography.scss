@@ -1,21 +1,14 @@
-.nav-bar-tag,
+.nav-bar-link,
 .sidenav-link {
   color: var(--color-text-nav);
-  font-size:  1.6rem; 
-  font-weight: 500;
   cursor: pointer;
-
-  @include respond(xld) {
-    font-size: 1.4rem; 
-  }
-
-  @include respond(md) {
-    font-size: 12px; ;
-  }
+  text-decoration: none;
 }
 
 .nav-bar-text {
-  font-size:  1.6rem; ;
+  color: var(--color-text-nav);
+  font-weight: 500;
+  font-size:  1.6rem;
   letter-spacing: 2px;
 
   @include respond(xld) {
