@@ -1,5 +1,9 @@
 .trade-entry-form {
 
+  &__header {
+    margin-bottom: 3rem;
+  }
+
   padding: 2rem;
   display: flex;
   flex-direction: column;
