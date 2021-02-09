@@ -12,7 +12,7 @@
         <ul class="nav-bar__list">
 
             <li class="nav-list-item">
-                <a class="nav-bar-tag" routerLink="/home" routerLinkActive="">
+                <a class="nav-bar-link" (click)="onRedirectTo('/home')" routerLinkActive="router-link-active">
                     <svg class="icon icon--home"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarHome' | translate }}</p>
                 </a>
@@ -21,7 +21,7 @@
             <!-- Trades -->
 
             <li class="nav-list-item">
-                <a class="nav-bar-tag" routerLink="/trade" routerLinkActive="">
+                <a class="nav-bar-link" (click)="onRedirectTo('/trade')" routerLinkActive="router-link-active">
                     <svg class="icon icon--plan"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarTrade' | translate }}</p>
                 </a>
@@ -29,8 +29,8 @@
 
             <!-- Calculator -->
 
-            <li class="nav-list-item" routerLink="/calculator" routerLinkActive="">
-                <a class="nav-bar-tag">
+            <li class="nav-list-item">
+                <a class="nav-bar-link" (click)="onRedirectTo('/calculator')" routerLinkActive="router-link-active">
                     <svg class="icon icon--calculator"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCalculator' | translate }}</p>
                 </a>
@@ -39,7 +39,7 @@
             <!-- Currency -->
 
             <li class="nav-list-item">
-                <a class="nav-bar-tag" routerLink="/currency" routerLinkActive="">
+                <a class="nav-bar-link" (click)="onRedirectTo('/currency')" routerLinkActive="router-link-active">
                     <svg class="icon icon--money"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCurrency' | translate }}</p>
                 </a>
@@ -48,7 +48,7 @@
             <!-- Statistics -->
 
             <li class="nav-list-item">
-                <a class="nav-bar-tag" routerLink="/statistics" routerLinkActive="">
+                <a class="nav-bar-link" (click)="onRedirectTo('/statistics')" routerLinkActive="router-link-active">
                     <svg class="icon icon--chart"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarStatistics' | translate }}</p>
                 </a>
@@ -57,7 +57,7 @@
             <!-- Calendar -->
 
             <li class="nav-list-item">
-                <a class="nav-bar-tag" routerLink="/calendar" routerLinkActive="">
+                <a class="nav-bar-link" (click)="onRedirectTo('/calendar')" routerLinkActive="router-link-active">
                     <svg class="icon icon--calendar"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarCalendar' | translate }}</p>
                 </a>

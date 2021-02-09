@@ -112,6 +112,10 @@
         pointer-events: auto;
       }
 
+      .router-link-active {
+        border-bottom: 1px solid var(--color-border);
+      }
+
     }
   }
 
