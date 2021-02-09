@@ -27,10 +27,16 @@
   color: var(--color-text-nav);
 }
 
+/* Trade component material elements */
+
 /* Overwrite the styles of the mat-dialog-container element globally, but only for those
 that have an id of `modal-component` */
 mat-dialog-container#modal-component {
-  width: 45rem;
-  height: 55rem;
+  width: 50rem;
+  height: auto;
   background-color: var(--color-page-background);
+}
+
+mat-form-field#trade-dialog-form {
+  width: 47%;
 }
