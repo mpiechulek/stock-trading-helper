@@ -12,8 +12,8 @@
 
         <mat-form-field>
             <mat-label>Enter company name</mat-label>
-            <input matInput>
-            <mat-error>
+            <input matInput type="text" formControlName="companyName">
+            <mat-error *ngIf="companyName.touched">
                 Company name is required.
             </mat-error>
         </mat-form-field>
@@ -22,13 +22,10 @@
 
         <mat-form-field>
             <mat-label>Number of shares </mat-label>
-            <input matInput>
-            <mat-error>
+            <input matInput type="text" formControlName="amountOfShares">
+            <mat-error *ngIf="companyName.touched">
                 Number of shares is required.
-            </mat-error>
-            <mat-error>
-                Shares amount must be a positive integer number
-            </mat-error>
+            </mat-error>           
         </mat-form-field>
 
     </div>
@@ -39,20 +36,17 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Buy price</mat-label>
-            <input matInput>
-            <mat-error>
+            <input matInput type="text" formControlName="buyPrice">
+            <mat-error *ngIf="companyName.touched">
                 Buy price is required
-            </mat-error>
-            <mat-error>
-                Buy price must be a positive number
-            </mat-error>
+            </mat-error>           
         </mat-form-field>
 
         <!-- Tax rate -->
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Tax rate %</mat-label>
-            <input matInput>
+            <input matInput type="text" formControlName="taxRate">
             <mat-error>
                 Company name is required.
             </mat-error>
@@ -66,7 +60,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Brokers commission %</mat-label>
-            <input matInput>
+            <input matInput type="text" formControlName="commission">
             <mat-error>
                 Brokers commission mus by a number.
             </mat-error>
@@ -76,7 +70,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Min. brokers commission</mat-label>
-            <input matInput>
+            <input matInput type="text" formControlName="minCommission">
             <mat-error>
                 Min. brokers commission mus by a number.
             </mat-error>
@@ -88,7 +82,15 @@
 
         <!-- Submit -->
 
-        <button mat-raised-button type="button" color="primary" (click)="onSubmitDialog()">Submit</button>
+        <button 
+            mat-raised-button
+            type="submit"
+            color="primary"
+            (click)="onSubmitDialog()"
+            [disabled]="entryStockForm.invalid"
+        >
+           Submit
+        </button>
 
         <!-- clear -->
 
