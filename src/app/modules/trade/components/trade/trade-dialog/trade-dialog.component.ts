@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-trade-dialog',
   templateUrl: './trade-dialog.component.html' 
 })
+
 export class TradeDialogComponent implements OnInit {
 
   constructor() { }
