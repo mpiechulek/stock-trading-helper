@@ -31,19 +31,17 @@ export class NumberDigitDirective {
     }
 
     // If entered string has a dot, and after the dot there are more than 4 characters
-    // if (this.stringHasEnoughNumbersAfterDecimal(this.elementEnterValue) && event.keyCode !== (110 || 180)) {     
-
-    //   this.assignOutputValues(this.previousNumber);
-    //   return;
-    // }
+    if (this.stringHasEnoughNumbersAfterDecimal(this.elementEnterValue)) {  
+      this.assignOutputValues(this.previousNumber);
+      return;
+    } 
 
     // Checking if the input string is a positive float number or has a comma (','), because '.'
     // is taken as a number
     if (
       this.isPositiveFloat(this.elementEnterValue) ||
       this.elementEnterValue.includes(',')
-    ) {
-      console.log(this.elementEnterValue);      
+    ) {         
       this.toValidNumber(this.elementEnterValue);
     } else {
       this.el.nativeElement.value = this.previousNumber;
