@@ -10,7 +10,7 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData | null = {    
+  formData: TradeFormData | null = {
     companyName: 'JSW',
     amountOfShares: '4',
     buyPrice: '462.6700',
@@ -24,7 +24,7 @@ export class TradeDialogComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<TradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any   
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
-        Validators.min(0)       
+        Validators.min(0)
       ]],
       taxRate: ['0.000', [
         Validators.min(0)
@@ -91,17 +91,37 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
-// =============================================================================
+  // =============================================================================
+
+  fixeNumberDecimalPlaces(value: string) {
+    let arr: string[];
+
+    if (value.includes('.')) {
+      arr = value.split('.');
+      return arr[0] + '.' + arr[1].slice(0, -2);
+    }
+    return value;
+  }
 
   onSubmitDialog() {
     if (this.entryStockForm.invalid) {
       return;
-    }
+    } 
+
+    this.entryStockForm.patchValue({
+      companyName: this.formData.companyName,
+      amountOfShares: this.formData.amountOfShares,
+      buyPrice: this.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
+      taxRate: this.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
+      commission: this.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
+      minCommission: this.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
+    });   
+
     this.dialogRef.close(this.entryStockForm.value);
   }
 
   onClearField(event) {
-    console.log(event);    
+    console.log(event);
   }
 
   onClearForm() {
@@ -109,7 +129,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onCloseDialog() {
-    this.dialogRef.close();   
+    this.dialogRef.close();
   }
 
 }
