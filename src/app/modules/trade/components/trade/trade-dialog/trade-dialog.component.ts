@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 
 @Component({
@@ -10,24 +11,20 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData | null = {
-    companyName: 'JSW',
-    amountOfShares: '4',
-    buyPrice: '462.6700',
-    taxRate: '19.0000',
-    commission: '0.3000',
-    minCommission: '3.0000'
-  };
+  formData: TradeFormData | null = null;
 
   entryStockForm: FormGroup;
 
   constructor(
+    private formService: FormService,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<TradeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
+
+
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -53,6 +50,8 @@ export class TradeDialogComponent implements OnInit {
         Validators.min(0)
       ]]
     });
+
+    this.formData = this.formService.getEntreFormDataFormLocalStorage();
 
     if (this.formData) {
       this.entryStockForm.patchValue({
@@ -93,29 +92,19 @@ export class TradeDialogComponent implements OnInit {
 
   // =============================================================================
 
-  fixeNumberDecimalPlaces(value: string) {
-    let arr: string[];
-
-    if (value.includes('.')) {
-      arr = value.split('.');
-      return arr[0] + '.' + arr[1].slice(0, -2);
-    }
-    return value;
-  }
-
   onSubmitDialog() {
     if (this.entryStockForm.invalid) {
       return;
-    } 
+    }
 
     this.entryStockForm.patchValue({
       companyName: this.formData.companyName,
       amountOfShares: this.formData.amountOfShares,
-      buyPrice: this.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
-      taxRate: this.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
-      commission: this.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
-      minCommission: this.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
-    });   
+      buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
+      taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
+      commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
+      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
+    });
 
     this.dialogRef.close(this.entryStockForm.value);
   }
