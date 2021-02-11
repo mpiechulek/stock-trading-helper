@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TradeFormData } from 'src/app/data/models/form.model';
 
 @Component({
   selector: 'app-trade-dialog',
@@ -9,12 +10,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class TradeDialogComponent implements OnInit {
 
+  formData: TradeFormData | null = {    
+    companyName: 'JSW',
+    amountOfShares: '4',
+    buyPrice: '462.6700',
+    taxRate: '19.000',
+    commission: '0.300',
+    minCommission: '3.000'
+  };
+
   entryStockForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<TradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any   
   ) { }
 
   ngOnInit(): void {
@@ -23,24 +33,40 @@ export class TradeDialogComponent implements OnInit {
       companyName: ['', [
         Validators.required
       ]],
-      amountOfShares: ['', [
+      amountOfShares: ['1', [
         Validators.required,
-        Validators.pattern("^/[0-9]|\./*$")
+        Validators.pattern('^[1-9][0-9]*$'),
+        Validators.min(1)
       ]],
-      buyPrice: ['', [
-        Validators.required    
+      buyPrice: ['0', [
+        Validators.required,
+        Validators.min(0)       
       ]],
-      taxRate: ['', [
-    
+      taxRate: ['0.000', [
+        Validators.min(0)
+
       ]],
-      commission: ['', [
- 
+      commission: ['0.000', [
+        Validators.min(0)
       ]],
-      minCommission: ['', [
-     
+      minCommission: [0.000, [
+        Validators.min(0)
       ]]
     });
+
+    if (this.formData) {
+      this.entryStockForm.patchValue({
+        companyName: this.formData.companyName,
+        amountOfShares: this.formData.amountOfShares,
+        buyPrice: this.formData.buyPrice,
+        taxRate: this.formData.taxRate,
+        commission: this.formData.commission,
+        minCommission: this.formData.minCommission,
+      });
+    }
   }
+
+  // ===========================================================================
 
   get companyName() {
     return this.entryStockForm.get('companyName');
@@ -65,8 +91,17 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
+// =============================================================================
+
   onSubmitDialog() {
-    this.onCloseDialog();
+    if (this.entryStockForm.invalid) {
+      return;
+    }
+    this.dialogRef.close(this.entryStockForm.value);
+  }
+
+  onClearField(event) {
+    console.log(event);    
   }
 
   onClearForm() {
@@ -74,7 +109,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onCloseDialog() {
-    this.dialogRef.close(this.entryStockForm.value);
+    this.dialogRef.close();   
   }
 
 }
