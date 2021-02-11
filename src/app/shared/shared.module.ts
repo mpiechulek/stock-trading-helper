@@ -16,12 +16,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NumberDigitDirective } from './directives/number-digit.directive';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     SideNavComponent,
-    FooterComponent
+    FooterComponent,
+    NumberDigitDirective
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatFormFieldModule, 
     MatInputModule,  
-    HttpClientModule ,
+    HttpClientModule,   
     TranslateModule.forChild({
       loader: {
         provide: TranslateModule,
@@ -45,7 +47,8 @@ import { MatInputModule } from '@angular/material/input';
     NavBarComponent,
     SideNavComponent,
     TranslateModule,
-    FooterComponent
+    FooterComponent,
+    NumberDigitDirective   
   ],
   providers: [TranslateService]
 })

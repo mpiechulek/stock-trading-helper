@@ -1,0 +1,41 @@
+.trade-entry-form {
+  position: relative;
+
+  &__close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  &__header {
+    margin-bottom: 2.5rem;
+  }
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+
+  &__section-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__section-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  &__section-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+}

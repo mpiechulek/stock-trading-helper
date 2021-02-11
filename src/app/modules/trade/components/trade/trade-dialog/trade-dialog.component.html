@@ -1,0 +1,95 @@
+<form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()">
+
+    <button class="btn trade-entry-form__close-btn" type="button" (click)="onCloseDialog()">
+        <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+    </button>
+
+    <h1 class="trade-entry-form-header trade-entry-form__header">Add Stock</h1>   
+
+    <div class="trade-entry-form__section-1">
+
+        <!-- Company name -->
+
+        <mat-form-field>
+            <mat-label>* Enter company name</mat-label>
+            <input matInput type="text" formControlName="companyName">       
+            <mat-error *ngIf="companyName.dirty || companyName.touched">
+                A company name is required.
+            </mat-error>     
+        </mat-form-field>
+
+        <!-- Number of shares -->
+
+        <mat-form-field>
+            <mat-label>* Number of shares </mat-label>
+            <input matInput type="number" formControlName="amountOfShares">                  
+            <mat-error *ngIf="amountOfShares.hasError('pattern')">
+                Number of shares must be a positive integer.
+            </mat-error>  
+            <mat-error *ngIf="amountOfShares.touched && !amountOfShares.hasError('pattern')">
+                Number of shares is required.
+            </mat-error>                              
+        </mat-form-field>
+
+    </div>
+
+    <div class="trade-entry-form__section-2">
+
+        <!-- Buy price -->
+
+        <mat-form-field id="trade-dialog-form">
+            <mat-label>* Buy price</mat-label>
+            <input matInput type="text" formControlName="buyPrice" appNumberDigit>            
+           
+            <mat-error *ngIf="buyPrice.invalid">
+                Buy price mus by a positive number
+            </mat-error>        
+        </mat-form-field>
+
+        <!-- Tax rate -->
+
+        <mat-form-field id="trade-dialog-form">
+            <mat-label>Tax rate %</mat-label>
+            <input matInput type="text" formControlName="taxRate" appNumberDigit>            
+        </mat-form-field>
+
+    </div>
+
+    <div class="trade-entry-form__section-2">
+
+        <!-- Brokers commission -->
+
+        <mat-form-field id="trade-dialog-form">
+            <mat-label>Brokers commission %</mat-label>
+            <input matInput type="text" formControlName="commission" appNumberDigit>           
+        </mat-form-field>
+
+        <!-- Min. Brokers commission -->
+
+        <mat-form-field id="trade-dialog-form">
+            <mat-label>Min. brokers commission</mat-label>
+            <input matInput type="text" formControlName="minCommission" appNumberDigit>           
+        </mat-form-field>
+
+    </div>
+
+    <div class="trade-entry-form__section-3">
+
+        <!-- Submit -->
+
+        <button 
+            mat-raised-button
+            type="submit"
+            color="primary"           
+            [disabled]="entryStockForm.invalid"
+        >
+           Submit
+        </button>
+
+        <!-- clear -->
+
+        <button mat-raised-button type="button" (click)="onClearForm()">Clear</button>
+
+    </div>
+
+</form>

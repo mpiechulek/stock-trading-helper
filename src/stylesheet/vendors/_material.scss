@@ -1,13 +1,15 @@
 @import '~@angular/material/theming';
 
+/* Overwriting angular material color themes */
 // @include mat-core();
-
 // $candy-app-primary: mat-palette($mat-pink, 800  , 50, A700);
 // $candy-app-accent: mat-palette($mat-red, A800, A100, A300);
 // $candy-app-warm: mat-palette($mat-red);
 // $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 // @include angular-material-theme($candy-app-theme)
 
+
+/*  Styling mat select in language choice */
 .language-wrapper mat-form-field {
   margin-left: 1rem;
   width: 5rem;
@@ -25,15 +27,16 @@
   color: var(--color-text-nav);
 }
 
-//==============================================================================
+/* Trade component material elements */
 
-.sidenav-container {
-  height: 100%;
-  width: 100%;
+/* Overwrite the styles of the mat-dialog-container element globally, but only for those
+that have an id of `modal-component` */
+mat-dialog-container#modal-component {
+  width: 50rem;
+  height: auto;
+  background-color: var(--color-page-background);
+}
 
-  .material-sidenav {
-    width:500px;
-
-  }
-
+mat-form-field#trade-dialog-form {
+  width: 47%;
 }
