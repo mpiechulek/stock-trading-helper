@@ -28,7 +28,6 @@ export class NumberDigitDirective {
 
   @HostListener('focus', ['$event']) onFocus() {
     this.isBlur = false;
-    // this.el.nativeElement.value = ''; 
   }
 
   verifyInput(event) {
@@ -51,15 +50,10 @@ export class NumberDigitDirective {
     // is taken as a number
     if ((this.isPositiveFloat(this.elementEnterValue) ||
       this.elementEnterValue.includes(','))) {
-
-      this.toValidNumber(this.elementEnterValue);
-      console.log('no blur');     
-      }
-      // If the input is blur and the entered numer is an integer, add '.0000'
-    // } else if (this.isBlur && this.isIntegerNumber(this.elementEnterValue)) {
-    //   console.log('blur');
-    //   this.el.nativeElement.value = this.previousNumber + '.0000';
-    // }
+      this.toValidNumber(this.elementEnterValue);      
+    } else  {     
+      this.el.nativeElement.value = this.previousNumber;
+    }
   }
 
   stringHasEnoughNumbersAfterDecimal(value: string): boolean {
