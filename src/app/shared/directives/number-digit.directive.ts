@@ -1,5 +1,5 @@
 
-import { Directive, ElementRef, HostListener, ReflectiveInjector } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, ReflectiveInjector } from '@angular/core';
 
 
 @Directive({
@@ -10,26 +10,24 @@ export class NumberDigitDirective {
   private el: ElementRef;
   private elementEnterValue: string;
   private previousNumber: string = '';
-  private numberOfDecimalPontPlaces: number;
+  private numberOfDecimalPontPlaces: number;  
 
   constructor(el: ElementRef) {
-    this.el = el;
+    this.el = el;    
   }
+
+  // @HostBinding('value') onInitValue: string;   
 
   @HostListener('keyup', ['$event']) onKeyboardEnter(event) {
     this.verifyInput(event);
   }
 
-  @HostListener('blur', ['$event']) onBlur(event) {
-    this.el.nativeElement.value = this.previousNumber;
+  @HostListener('blur', ['$event']) onBlur() {   
+    this.el.nativeElement.value = this.previousNumber;  
   }
   
-  @HostListener('focus', ['$event']) onFocus(event) {
-    console.log('focus');
+  @HostListener('focus', ['$event']) onFocus() {  
     this.el.nativeElement.value = ''; 
-  }
-
-  @HostListener('init', ['$event']) onInit(event) {
   }
 
   verifyInput(event) {
