@@ -20,6 +20,18 @@ export class NumberDigitDirective {
     this.verifyInput(event);
   }
 
+  @HostListener('blur', ['$event']) onBlur(event) {
+    this.el.nativeElement.value = this.previousNumber;
+  }
+  
+  @HostListener('focus', ['$event']) onFocus(event) {
+    console.log('focus');
+    this.el.nativeElement.value = ''; 
+  }
+
+  @HostListener('init', ['$event']) onInit(event) {
+  }
+
   verifyInput(event) {
 
     this.elementEnterValue = this.el.nativeElement.value;
