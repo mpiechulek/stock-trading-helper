@@ -14,9 +14,9 @@ export class TradeDialogComponent implements OnInit {
     companyName: 'JSW',
     amountOfShares: '4',
     buyPrice: '462.6700',
-    taxRate: '19.000',
-    commission: '0.300',
-    minCommission: '3.000'
+    taxRate: '19.0000',
+    commission: '0.3000',
+    minCommission: '3.0000'
   };
 
   entryStockForm: FormGroup;
@@ -42,14 +42,14 @@ export class TradeDialogComponent implements OnInit {
         Validators.required,
         Validators.min(0)
       ]],
-      taxRate: ['0.000', [
+      taxRate: ['0.0000', [
         Validators.min(0)
 
       ]],
-      commission: ['0.000', [
+      commission: ['0.0000', [
         Validators.min(0)
       ]],
-      minCommission: [0.000, [
+      minCommission: ['0.0000', [
         Validators.min(0)
       ]]
     });
