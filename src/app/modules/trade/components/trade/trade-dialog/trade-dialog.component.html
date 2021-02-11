@@ -50,7 +50,7 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Tax rate %</mat-label>
-            <input matInput type="text" formControlName="taxRate">            
+            <input matInput type="text" formControlName="taxRate" appNumberDigit>            
         </mat-form-field>
 
     </div>
@@ -61,14 +61,14 @@
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Brokers commission %</mat-label>
-            <input matInput type="text" formControlName="commission">           
+            <input matInput type="text" formControlName="commission" appNumberDigit>           
         </mat-form-field>
 
         <!-- Min. Brokers commission -->
 
         <mat-form-field id="trade-dialog-form">
             <mat-label>Min. brokers commission</mat-label>
-            <input matInput type="text" formControlName="minCommission">           
+            <input matInput type="text" formControlName="minCommission" appNumberDigit>           
         </mat-form-field>
 
     </div>

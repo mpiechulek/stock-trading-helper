@@ -10,10 +10,10 @@ export class NumberDigitDirective {
   private el: ElementRef;
   private elementEnterValue: string;
   private previousNumber: string = '';
-  private numberOfDecimalPontPlaces: number;  
+  private numberOfDecimalPontPlaces: number;
 
   constructor(el: ElementRef) {
-    this.el = el;    
+    this.el = el;
   }
 
   // @HostBinding('value') onInitValue: string;   
@@ -22,13 +22,13 @@ export class NumberDigitDirective {
     this.verifyInput(event);
   }
 
-  @HostListener('blur', ['$event']) onBlur() {   
-    this.el.nativeElement.value = this.previousNumber;  
-  }
-  
-  @HostListener('focus', ['$event']) onFocus() {  
-    this.el.nativeElement.value = ''; 
-  }
+  // @HostListener('blur', ['$event']) onBlur() {   
+  //   this.el.nativeElement.value = this.previousNumber;  
+  // }
+
+  // @HostListener('focus', ['$event']) onFocus() {  
+  //   this.el.nativeElement.value = ''; 
+  // }
 
   verifyInput(event) {
 
@@ -41,17 +41,18 @@ export class NumberDigitDirective {
     }
 
     // If entered string has a dot, and after the dot there are more than 4 characters
-    if (this.stringHasEnoughNumbersAfterDecimal(this.elementEnterValue)) {  
+    if (this.stringHasEnoughNumbersAfterDecimal(this.elementEnterValue)) {
       this.assignOutputValues(this.previousNumber);
       return;
-    } 
+    }
 
     // Checking if the input string is a positive float number or has a comma (','), because '.'
     // is taken as a number
     if (
       this.isPositiveFloat(this.elementEnterValue) ||
       this.elementEnterValue.includes(',')
-    ) {         
+    ) {
+      console.log(this.elementEnterValue);
       this.toValidNumber(this.elementEnterValue);
     } else {
       this.el.nativeElement.value = this.previousNumber;
@@ -68,7 +69,7 @@ export class NumberDigitDirective {
   }
 
   isPositiveFloat(value: any): boolean {
-    return !isNaN(value) && Number(value) > 0;
+    return !isNaN(value) && Number(value) >= 0;
   }
 
   toValidNumber(value: string) {
@@ -78,23 +79,23 @@ export class NumberDigitDirective {
     let fixedNumber: number
     let fixedToString: string
 
-    if (value.includes('.') || value.includes(',')) {     
-      
+    if (value.includes('.') || value.includes(',')) {
+
       commaToDot = this.changeCommaToDots(value);
       oneDotInString = this.onlyOneDotInString(commaToDot);
       // setting the fixedNumber value
       this.setDecimalPoints(oneDotInString);
       number = this.toFloatNumber(oneDotInString);
       fixedNumber = this.fixToDecimalNumbers(number);
-      fixedToString = this.numberToString(fixedNumber);     
-      
+      fixedToString = this.numberToString(fixedNumber);
+
       // If the entered string was '123.' or '123,', the last character was 
       // removed in the process of number fixing, we are adding it back
-      if (this.elementEnterValue[this.elementEnterValue.length - 1] === '.' ){
+      if (this.elementEnterValue[this.elementEnterValue.length - 1] === '.') {
         fixedToString = fixedToString + '.';
       }
 
-      if (this.elementEnterValue[this.elementEnterValue.length - 1] === ',' ){
+      if (this.elementEnterValue[this.elementEnterValue.length - 1] === ',') {
         fixedToString = fixedToString + '.';
       }
 
