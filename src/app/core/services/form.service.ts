@@ -30,8 +30,7 @@ export class FormService {
     if (this.checkIfEntreFormDataInLocalStorage()) {
       formData = JSON.parse(localStorage.getItem(this.storageFormKeyName));
       this.entreFormSubject.next(formData);
-    }
-    
+    }    
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
