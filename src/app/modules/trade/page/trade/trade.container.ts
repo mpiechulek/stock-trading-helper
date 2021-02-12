@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 
 @Component({
@@ -8,14 +9,13 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 })
 export class TradeContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formService: FormService) { }
 
   ngOnInit(): void {
   }
 
   saveFormData(formData: TradeFormData): void {
-    
-
+    this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
 }
