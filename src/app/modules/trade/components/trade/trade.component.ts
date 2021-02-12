@@ -8,18 +8,12 @@ import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
   templateUrl: './trade.component.html'
 })
 export class TradeComponent implements OnInit {
-
-  dialogData;
-  lastTypedData;
-
-  private dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
-
+  
+  private lastTypedData:TradeFormData;
+  
   @Output()
-  get getDataFromForm() {
-    return this.dataFromForm;
-  }
-
-
+  dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
+ 
 
   constructor(public matDialog: MatDialog) { }
 
@@ -39,9 +33,9 @@ export class TradeComponent implements OnInit {
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
-      this.dialogData = result;
-      if (this.dialogData !== undefined) {
-        this.dataFromForm.emit(this.dialogData);
+      const dialogData = result;
+      if (dialogData !== undefined) {        
+        this.dataFromForm.emit(dialogData);
       }
     });
   }

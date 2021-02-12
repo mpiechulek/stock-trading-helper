@@ -15,6 +15,7 @@ export class TradeContainerComponent implements OnInit {
   }
 
   saveFormData(formData: TradeFormData): void {
+    console.log('data in container');
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
