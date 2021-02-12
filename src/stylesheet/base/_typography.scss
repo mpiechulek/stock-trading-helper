@@ -41,7 +41,7 @@
   }
 
   span {
-    color: var(--color-text-stroke-1);
+    color: var(--color-text-prime);
     font-size: 4.5rem; 
 
     @include respond(xld) {
@@ -122,6 +122,6 @@
 }
 
 .footer-text {
-  color: var(--color-text-nav);
+  color: var(--color-text-prime);
   font-size: 1.3rem;
 }

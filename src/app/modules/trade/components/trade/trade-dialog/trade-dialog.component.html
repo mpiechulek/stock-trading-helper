@@ -10,8 +10,8 @@
 
         <!-- Company name -->
 
-        <mat-form-field>
-            <mat-label>* Enter company name</mat-label>
+        <mat-form-field id="trade-dialog-form">
+            <mat-label id="trade-dialog-form">* Enter company name</mat-label>
             <input matInput type="text" formControlName="companyName">       
             <mat-error *ngIf="companyName.dirty || companyName.touched">
                 A company name is required.
@@ -20,8 +20,8 @@
 
         <!-- Number of shares -->
 
-        <mat-form-field>
-            <mat-label>* Number of shares </mat-label>
+        <mat-form-field id="trade-dialog-form">
+            <mat-label id="trade-dialog-form">* Number of shares </mat-label>
             <input matInput type="number" formControlName="amountOfShares">                  
             <mat-error *ngIf="amountOfShares.hasError('pattern')">
                 Number of shares must be a positive integer.
@@ -38,7 +38,7 @@
         <!-- Buy price -->
 
         <mat-form-field id="trade-dialog-form">
-            <mat-label>* Buy price</mat-label>
+            <mat-label id="trade-dialog-form">* Buy price</mat-label>
             <input matInput type="text" formControlName="buyPrice" appNumberDigit>            
            
             <mat-error *ngIf="buyPrice.invalid">
@@ -49,7 +49,7 @@
         <!-- Tax rate -->
 
         <mat-form-field id="trade-dialog-form">
-            <mat-label>Tax rate %</mat-label>
+            <mat-label id="trade-dialog-form">Tax rate %</mat-label>
             <input matInput type="text" formControlName="taxRate" appNumberDigit>            
         </mat-form-field>
 
@@ -60,14 +60,14 @@
         <!-- Brokers commission -->
 
         <mat-form-field id="trade-dialog-form">
-            <mat-label>Brokers commission %</mat-label>
+            <mat-label id="trade-dialog-form">Brokers commission %</mat-label>
             <input matInput type="text" formControlName="commission" appNumberDigit>           
         </mat-form-field>
 
         <!-- Min. Brokers commission -->
 
         <mat-form-field id="trade-dialog-form">
-            <mat-label>Min. brokers commission</mat-label>
+            <mat-label id="trade-dialog-form">Min. brokers commission</mat-label>
             <input matInput type="text" formControlName="minCommission" appNumberDigit>           
         </mat-form-field>
 
