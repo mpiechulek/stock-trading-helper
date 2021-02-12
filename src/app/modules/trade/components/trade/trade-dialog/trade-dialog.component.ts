@@ -24,8 +24,6 @@ export class TradeDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
         Validators.required
@@ -53,16 +51,16 @@ export class TradeDialogComponent implements OnInit {
 
     this.formData = this.formService.getEntreFormDataFromLocalStorage();
 
-    if (this.formData) {
-      this.entryStockForm.patchValue({
-        companyName: this.formData.companyName,
-        amountOfShares: this.formData.amountOfShares,
-        buyPrice: this.formData.buyPrice,
-        taxRate: this.formData.taxRate,
-        commission: this.formData.commission,
-        minCommission: this.formData.minCommission,
-      });
-    }
+    // if (this.formData) {
+    //   this.entryStockForm.patchValue({
+    //     companyName: this.formData.companyName,
+    //     amountOfShares: this.formData.amountOfShares,
+    //     buyPrice: this.formData.buyPrice,
+    //     taxRate: this.formData.taxRate,
+    //     commission: this.formData.commission,
+    //     minCommission: this.formData.minCommission,
+    //   });
+    // }
   }
 
   // ===========================================================================
@@ -97,14 +95,14 @@ export class TradeDialogComponent implements OnInit {
       return;
     }
 
-    this.entryStockForm.patchValue({
-      companyName: this.formData.companyName,
-      amountOfShares: this.formData.amountOfShares,
-      buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
-      taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
-      commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
-      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
-    });
+    // this.entryStockForm.patchValue({
+    //   companyName: this.formData.companyName,
+    //   amountOfShares: this.formData.amountOfShares,
+    //   buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
+    //   taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
+    //   commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
+    //   minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
+    // });
 
     this.dialogRef.close(this.entryStockForm.value);
   }
