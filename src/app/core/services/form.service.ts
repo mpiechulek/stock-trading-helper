@@ -14,6 +14,11 @@ export class FormService {
   ngOnInit(): void {
   }
 
+// =============================================================================
+// ==== Support for the registration form of the transaction, registering  =====
+// ================================ the company  ===============================
+// =============================================================================  
+
   checkIfEntreFormDataInLocalStorage(): boolean {
     return localStorage.getItem(this.storageFormKeyName) === null;
   }
@@ -29,6 +34,11 @@ export class FormService {
     localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
   }
 
+// =============================================================================
+// ==== Bug fix, the form data comes with a number with too many decimal pl- ===
+// ====================== aces, when your typing to fast =======================
+// =============================================================================
+
   fixeNumberDecimalPlaces(value: string) {
     let arr: string[];
     if (value.includes('.')) {
@@ -37,5 +47,10 @@ export class FormService {
     }
     return value;
   }
+
+  
+// =============================================================================
+// =================== Saving/Reading the trade board data  ====================
+// =============================================================================
 
 }
