@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TradeFormData } from 'src/app/data/models/form.model';
 import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
 
 @Component({
@@ -11,11 +12,19 @@ export class TradeComponent implements OnInit {
   dialogData;
   lastTypedData;
 
+  private dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
+
+  @Output()
+  get getDataFromForm() {
+    return this.dataFromForm;
+  }
+
+
+
   constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-
 
   openFormDialog(): void {
 
@@ -31,8 +40,8 @@ export class TradeComponent implements OnInit {
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
       this.dialogData = result;
-      if(this.dialogData !== undefined) {
-        console.log(this.dialogData);
+      if (this.dialogData !== undefined) {
+        this.dataFromForm.emit(this.dialogData);
       }
     });
   }
