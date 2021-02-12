@@ -51,7 +51,7 @@ export class TradeDialogComponent implements OnInit {
       ]]
     });
 
-    this.formData = this.formService.getEntreFormDataFormLocalStorage();
+    this.formData = this.formService.getEntreFormDataFromLocalStorage();
 
     if (this.formData) {
       this.entryStockForm.patchValue({

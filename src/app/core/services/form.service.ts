@@ -18,7 +18,7 @@ export class FormService {
 
   }
 
-  getEntreFormDataFormLocalStorage(): TradeFormData {
+  getEntreFormDataFromLocalStorage(): TradeFormData {
 
     if(this.checkIfEntreFormDataInLocalStorage()){
 
