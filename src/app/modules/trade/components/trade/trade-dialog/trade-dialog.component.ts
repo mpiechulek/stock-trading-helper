@@ -66,6 +66,12 @@ export class TradeDialogComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    if( this.formDataSubscription) {
+      this.formDataSubscription.unsubscribe();
+    }
+  }
+
   // ===========================================================================
 
   get companyName() {
