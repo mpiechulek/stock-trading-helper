@@ -12,7 +12,6 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 export class TradeDialogComponent implements OnInit {
 
   formData: TradeFormData | null = null;
-
   entryStockForm: FormGroup;
 
   constructor(
@@ -22,7 +21,7 @@ export class TradeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -51,17 +50,18 @@ export class TradeDialogComponent implements OnInit {
 
     this.formData = this.formService.getEntreFormDataFromLocalStorage();
 
-    // if (this.formData) {
-    //   this.entryStockForm.patchValue({
-    //     companyName: this.formData.companyName,
-    //     amountOfShares: this.formData.amountOfShares,
-    //     buyPrice: this.formData.buyPrice,
-    //     taxRate: this.formData.taxRate,
-    //     commission: this.formData.commission,
-    //     minCommission: this.formData.minCommission,
-    //   });
-    // }
-  }
+    if (this.formData) {
+      this.entryStockForm.patchValue({
+        companyName: this.formData.companyName,
+        amountOfShares: this.formData.amountOfShares,
+        buyPrice: this.formData.buyPrice,
+        taxRate: this.formData.taxRate,
+        commission: this.formData.commission,
+        minCommission: this.formData.minCommission,
+      });
+    }
+
+  } 
 
   // ===========================================================================
 

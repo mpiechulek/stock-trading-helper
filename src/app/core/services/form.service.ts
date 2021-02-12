@@ -6,34 +6,31 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 })
 export class FormService {
 
-  storageFormKeyName: string = 'entreFormData';  
+  private storageFormKeyName: string = 'entreFormData';
 
   constructor(
-   
   ) { }
 
+  ngOnInit(): void {
+  }
+
   checkIfEntreFormDataInLocalStorage(): boolean {
-
-    return;
-
+    return localStorage.getItem(this.storageFormKeyName) === null;
   }
 
   getEntreFormDataFromLocalStorage(): TradeFormData {
-
-    if(this.checkIfEntreFormDataInLocalStorage()){
-
+    if (this.checkIfEntreFormDataInLocalStorage()) {
+      return JSON.parse(localStorage.getItem(this.storageFormKeyName));
     }
-
-    return;
+    return null;
   }
 
-  saveEntreFormDataToLocalStorage() {
-    
+  saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
+    localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
   }
 
   fixeNumberDecimalPlaces(value: string) {
     let arr: string[];
-
     if (value.includes('.')) {
       arr = value.split('.');
       return arr[0] + '.' + arr[1].slice(0, -2);
