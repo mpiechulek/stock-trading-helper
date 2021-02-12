@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { TradeFormData } from 'src/app/data/models/form.model';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 export class FormService {
 
   private storageFormKeyName: string = 'entreFormData';
+  private entreFormSubject = new Subject<TradeFormData>();
 
   constructor(
   ) { }
@@ -23,15 +25,21 @@ export class FormService {
     return localStorage.getItem(this.storageFormKeyName) === null;
   }
 
-  getEntreFormDataFromLocalStorage(): TradeFormData {
+  getEntreFormDataFromLocalStorage() {
+    let formData: TradeFormData;
     if (this.checkIfEntreFormDataInLocalStorage()) {
-      return JSON.parse(localStorage.getItem(this.storageFormKeyName));
+      formData = JSON.parse(localStorage.getItem(this.storageFormKeyName));
+      this.entreFormSubject.next(formData);
     }
-    return null;
+    
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
     localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
+  }
+
+  get getEntreFomData() {
+    return this.entreFormSubject.asObservable()
   }
 
 // =============================================================================
