@@ -12,7 +12,7 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData | null = null;
+  formData: TradeFormData;
   entryStockForm: FormGroup;
   formDataSubscription: Subscription;
 
@@ -23,21 +23,26 @@ export class TradeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
 
-    this.formDataSubscription = this.formService.getEntreFomData.subscribe((formData) => {
+    this.formService.getEntreFormDataFromLocalStorage();
+
+    this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
       this.formData = formData;
+      console.log('fdfdfsf');
+      
       if (this.formData) {
+
         this.entryStockForm.patchValue({
           companyName: this.formData.companyName,
           amountOfShares: this.formData.amountOfShares,
           buyPrice: this.formData.buyPrice,
           taxRate: this.formData.taxRate,
           commission: this.formData.commission,
-          minCommission: this.formData.minCommission,
+          minCommission: this.formData.minCommission
         });
       }
-    })
+    });
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -105,12 +110,12 @@ export class TradeDialogComponent implements OnInit {
     }
 
     this.entryStockForm.patchValue({
-      companyName: this.formData.companyName,
-      amountOfShares: this.formData.amountOfShares,
+      companyName: this.entryStockForm.value.companyName,
+      amountOfShares: this.entryStockForm.value.amountOfShares,
       buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
       taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
       commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
-      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
+      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
     });
 
     this.dialogRef.close(this.entryStockForm.value);
