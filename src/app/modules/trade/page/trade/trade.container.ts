@@ -9,14 +9,25 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 })
 export class TradeContainerComponent implements OnInit {
 
+  private dataToEdit: TradeFormData;
+
   constructor(private formService: FormService) { }
 
   ngOnInit(): void {
   }
 
+  get getDataToEdit():TradeFormData  {
+    return this.dataToEdit;
+
+  }
+
   saveFormData(formData: TradeFormData): void {
     console.log('data in container');
     this.formService.saveEntreFormDataToLocalStorage(formData);
+  }
+
+  editStockTileData() {
+
   }
 
 }
