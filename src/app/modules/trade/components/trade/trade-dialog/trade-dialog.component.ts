@@ -29,8 +29,7 @@ export class TradeDialogComponent implements OnInit {
 
     this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
       this.formData = formData;
-      console.log('fdfdfsf');
-      
+        
       if (this.formData) {
 
         this.entryStockForm.patchValue({
