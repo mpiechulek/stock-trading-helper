@@ -15,12 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { StockTileComponent } from './components/trade/stock-tile/stock-tile.component';
 
 @NgModule({
   declarations: [
     TradeContainerComponent,
     TradeComponent,
-    TradeDialogComponent
+    TradeDialogComponent,
+    StockTileComponent
   ],
   imports: [
     CommonModule,
