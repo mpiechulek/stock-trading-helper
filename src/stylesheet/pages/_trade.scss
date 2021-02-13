@@ -1,7 +1,17 @@
 .trade-board{
+    height: 100%;
+    display:flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: red;
 
     &__container {
-        
+        width: 100%;
+        flex-grow: 2;
+        background-color: aqua;
+        padding: 1rem 0;
     }
 
 }
