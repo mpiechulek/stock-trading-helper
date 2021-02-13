@@ -41,7 +41,7 @@
   }
 
   span {
-    color: var(--color-text-stroke-1);
+    color: var(--color-text-prime);
     font-size: 4.5rem; 
 
     @include respond(xld) {
@@ -88,7 +88,6 @@
     @include respond(sm) {
       text-align: right;
     }
-
   }
 
   .home-grid-text {
@@ -118,10 +117,11 @@
 
 // Trade dialog form header
 .trade-entry-form-header {
+  color: var(--color-text-form);
   text-align: center;
 }
 
 .footer-text {
-  color: var(--color-text-nav);
+  color: var(--color-text-prime);
   font-size: 1.3rem;
 }

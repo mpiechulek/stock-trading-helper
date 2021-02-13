@@ -37,6 +37,16 @@ mat-dialog-container#modal-component {
   background-color: var(--color-page-background);
 }
 
-mat-form-field#trade-dialog-form {
-  width: 47%;
+mat-form-field#trade-dialog-form {  
+  color: var( --color-text-form);
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-underline{ 
+  background-color: var( --color-text-form);
+}
+
+mat-label#trade-dialog-form {
+  color: var( --color-text-form);
+}
+
+

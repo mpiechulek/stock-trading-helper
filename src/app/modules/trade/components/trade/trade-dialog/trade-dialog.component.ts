@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 
 @Component({
@@ -10,24 +12,36 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData | null = {    
-    companyName: 'JSW',
-    amountOfShares: '4',
-    buyPrice: '462.6700',
-    taxRate: '19.000',
-    commission: '0.300',
-    minCommission: '3.000'
-  };
-
+  formData: TradeFormData;
   entryStockForm: FormGroup;
+  formDataSubscription: Subscription;
 
   constructor(
+    private formService: FormService,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<TradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any   
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+
+    this.formService.getEntreFormDataFromLocalStorage();
+
+    this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
+      this.formData = formData;
+        
+      if (this.formData) {
+
+        this.entryStockForm.patchValue({
+          companyName: this.formData.companyName,
+          amountOfShares: this.formData.amountOfShares,
+          buyPrice: this.formData.buyPrice,
+          taxRate: this.formData.taxRate,
+          commission: this.formData.commission,
+          minCommission: this.formData.minCommission
+        });
+      }
+    });
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -40,29 +54,25 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
-        Validators.min(0)       
+        Validators.min(0)
       ]],
-      taxRate: ['0.000', [
+      taxRate: ['0.0000', [
         Validators.min(0)
 
       ]],
-      commission: ['0.000', [
+      commission: ['0.0000', [
         Validators.min(0)
       ]],
-      minCommission: [0.000, [
+      minCommission: ['0.0000', [
         Validators.min(0)
       ]]
     });
 
-    if (this.formData) {
-      this.entryStockForm.patchValue({
-        companyName: this.formData.companyName,
-        amountOfShares: this.formData.amountOfShares,
-        buyPrice: this.formData.buyPrice,
-        taxRate: this.formData.taxRate,
-        commission: this.formData.commission,
-        minCommission: this.formData.minCommission,
-      });
+  }
+
+  ngOnDestroy(): void {
+    if( this.formDataSubscription) {
+      this.formDataSubscription.unsubscribe();
     }
   }
 
@@ -91,17 +101,27 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
-// =============================================================================
+  // =============================================================================
 
   onSubmitDialog() {
     if (this.entryStockForm.invalid) {
       return;
     }
+
+    this.entryStockForm.patchValue({
+      companyName: this.entryStockForm.value.companyName,
+      amountOfShares: this.entryStockForm.value.amountOfShares,
+      buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
+      taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
+      commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
+      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
+    });
+
     this.dialogRef.close(this.entryStockForm.value);
   }
 
   onClearField(event) {
-    console.log(event);    
+    console.log(event);
   }
 
   onClearForm() {
@@ -109,7 +129,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onCloseDialog() {
-    this.dialogRef.close();   
+    this.dialogRef.close();
   }
 
 }
