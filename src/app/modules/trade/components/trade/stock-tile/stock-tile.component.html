@@ -8,7 +8,7 @@
 
             <div class="trade-tile-stock-header-wrapper">
 
-                <div class="trade-triangle trade-triangle--green-big"></div>
+                <div class="trade-shape trade-shape--green-big"></div>
 
                 <p class="trade-tile-stock-percentage-change-text 
                 trade-tile-stock-percentage-change-text--color-green">
@@ -76,7 +76,7 @@
     <ul class="trade-tile__positive-stock-change">
         <li class="trade-tile-stock-change-container" *ngFor="let element of array">
             <div class="trade-tile-stock-change-wrapper">
-                <div class="trade-triangle trade-triangle--green-small"></div>
+                <div class="trade-shape trade-shape--green-small"></div>
                 <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{0.50}}%
                 </p>
                 <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.40</p>
@@ -92,6 +92,7 @@
     <div class="trade-tile__neutral-stock-change">
         <div class="trade-tile-stock-change-container">
             <div class="trade-tile-stock-change-wrapper">
+                <div class="trade-shape trade-shape--gray-dot"></div>
                 <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{0.00}}%
                 </p>
                 <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">0.00</p>
@@ -107,7 +108,7 @@
     <ul class="trade-tile__negative-stock-change">
         <li class="trade-tile-stock-change-container" *ngFor="let element of array">
         <div class="trade-tile-stock-change-wrapper">
-            <div class="trade-triangle trade-triangle--red-small"></div>
+            <div class="trade-shape trade-shape--red-small"></div>
             <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">-{{0.50}}%
             </p>
             <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.40</p>
