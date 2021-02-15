@@ -6,13 +6,15 @@ import { CalculatorContainerComponent } from './page/calculator/calculator.conta
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { CalcDeviceComponent } from './components/calculator/calc-device/calc-device.component';
 import { CalcFormComponent } from './components/calculator/calc-form/calc-form.component';
+import { ResultBoardComponent } from './components/calculator/result-board/result-board.component';
 
 @NgModule({
   declarations: [
     CalculatorContainerComponent,
     CalculatorComponent,
     CalcDeviceComponent,
-    CalcFormComponent
+    CalcFormComponent,
+    ResultBoardComponent
   ],
   imports: [
     CommonModule,
