@@ -150,7 +150,12 @@
 
   &--bigger{
     font-size: 1.3rem;
-    font-weight: 500;    
+    font-weight: 500;
+    max-width: 8ch;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+
   }
 
   &--red{
