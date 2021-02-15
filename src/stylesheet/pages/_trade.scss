@@ -63,10 +63,64 @@
     .trade-tile-stock-header-button-wrapper {
       display: flex;
     }
+  }  
+
+  &__positive-stock-change {
+    display: flex;
+    flex-direction: column-reverse;    
   }
 
+  &__neutral-stock-change {
+    display: flex;
+    align-items: center;
+    background-color: $color-gray;
+  }
+
+  &__negative-stock-change {
+    display: flex;
+    flex-direction: column;    
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 145, 0);
+  }
+
+  .trade-triangle {
+    display: inline-block;
+    width: 0;
+    height: 0;  
+
+    &--green-big {
+      border-bottom: 2rem solid $color-green;
+      border-left: 1.2rem solid transparent;
+      border-right: 1.2rem solid transparent;
+    }
+
+    &--red-big {
+      border-top: 2rem solid $color-red;
+      border-left: 1.2rem solid transparent;
+      border-right: 1.2rem solid transparent;
+    }
+
+    &--green-small {
+      border-bottom: 1.6rem solid $color-green;
+      border-left: 0.9rem solid transparent;
+      border-right: 0.9rem solid transparent;
+    }
+
+    &--red-small {
+      border-top: 1.6rem solid $color-red;
+      border-left: 0.9rem solid transparent;
+      border-right: 0.9rem solid transparent;
+    }
+  }
+  
   .trade-tile-stock-change-container {
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -81,38 +135,6 @@
 
     .stock-offer-change-margin-left {
       margin-left: 1rem;
-    }
-  }
-
-  &__positive-stock-change {
-    background-color: aqua;
-  }
-
-  &__neutral-stock-change {
-    background-color: rgb(2, 196, 196);
-  }
-
-  &__negative-stock-change {
-    background-color: rgb(0, 77, 77);
-  }
-
-  &__button-container {
-    background-color: rgb(255, 145, 0);
-  }
-
-  .trade-triangle {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 1.2rem solid transparent;
-    border-right: 1.2rem solid transparent;
-
-    &--green {
-      border-bottom: 2rem solid $color-green;
-    }
-
-    &--red {
-      border-top: 2rem solid $color-red;
     }
   }
 }

@@ -8,7 +8,7 @@
 
             <div class="trade-tile-stock-header-wrapper">
 
-                <div class="trade-triangle trade-triangle--green"></div>
+                <div class="trade-triangle trade-triangle--green-big"></div>
 
                 <p class="trade-tile-stock-percentage-change-text 
                 trade-tile-stock-percentage-change-text--color-green">
@@ -76,26 +76,47 @@
     <div class="trade-tile__positive-stock-change">
         <div class="trade-tile-stock-change-container">
             <div class ="trade-tile-stock-change-wrapper">
-                <div class="trade-triangle trade-triangle--green"></div>
-                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">0.500%</p>
-                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.4</p>
-                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{1.233}}%</p>
-                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{67.447}}</p>
+                <div class="trade-triangle trade-triangle--green-small"></div>
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{0.50}}%</p>
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.40</p>     
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">{{67.44}}$</p>
             </div>    
-            <input type="checkbox">     
-        </div>
+            <input type="radio">     
+        </div>   
     </div>
 
     <!-- Neutral share price  -->
 
-    <div class="trade-tile__neutral-stock-change"></div>
+    <div class="trade-tile__neutral-stock-change">
+        <div class="trade-tile-stock-change-container">
+            <div class ="trade-tile-stock-change-wrapper">          
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">+{{0.50}}%</p>
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.40</p>     
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">{{67.44}}$</p>
+            </div>    
+            <input type="radio">     
+        </div>  
+
+    </div>
 
     <!-- Negative share price  -->
 
-    <div class="trade-tile__negative-stock-change"></div>
+    <div class="trade-tile__negative-stock-change">
+        <div class="trade-tile-stock-change-container">
+            <div class ="trade-tile-stock-change-wrapper">
+                <div class="trade-triangle trade-triangle--red-small"></div>
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">-{{0.50}}%</p>
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">42.40</p>               
+                <p class="trade-tile-stock-text trade-tile-stock-text--xld stock-offer-change-margin-left">-{{67.44}}</p>
+            </div>    
+            <input type="radio">     
+        </div>  
+    </div>
 
     <!-- Btn container  -->
 
-    <div class="trade-tile__button-container"></div>
+    <div class="trade-tile__button-container">
+        <button>Sell</button>
+    </div>
 
 </div>
