@@ -121,6 +121,13 @@
   text-align: center;
 }
 
+// Trade tile percentage header text
+.trade-stock-percentage-change-text {
+  color: $color-green;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 .footer-text {
   color: var(--color-text-prime);
   font-size: 1.3rem;
