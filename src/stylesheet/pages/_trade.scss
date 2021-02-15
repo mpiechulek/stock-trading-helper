@@ -35,7 +35,7 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;   
+    justify-content: flex-start;   
 
     .trade-tile-header-margin-left {
       margin-left: 1rem;
@@ -46,6 +46,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 0.8rem;
     }
     
     .trade-tile-stock-header-wrapper {
