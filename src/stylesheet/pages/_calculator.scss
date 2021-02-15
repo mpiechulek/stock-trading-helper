@@ -8,9 +8,22 @@
     width: 100rem;
     height: 100rem;
     display: flex;  
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: $color-gray;
+  }
+
+  .calculator-wrapper {
+    display: flex;  
+    flex-direction: row;
+  }
+
+  .calculator-result-board {
+    height: 100%;
+    flex-grow: 2;
+    background-color: azure;
   }
 }
-
 
 .calc-device-container {
   display: inline-flex;

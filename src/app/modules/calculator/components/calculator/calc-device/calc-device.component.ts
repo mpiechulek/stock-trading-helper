@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalculatorPresenter } from './calculator.presenter';
+
 
 @Component({
   selector: 'app-calc-device',
@@ -22,7 +22,7 @@ export class CalcDeviceComponent implements OnInit {
   // is holding all of the equations and results
   calculationsArray: Object[] = [];
 
-  constructor(private calculatorPresenter: CalculatorPresenter) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
