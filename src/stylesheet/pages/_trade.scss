@@ -62,21 +62,7 @@
       align-items: center;
     }
 
-    .trade-triangle {
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-left: 1.2rem solid transparent;
-      border-right: 1.2rem solid transparent;
-
-      &--green {
-        border-bottom: 2rem solid $color-green;
-      }
-
-      &--red {
-        border-top: 2rem solid $color-red;
-      }
-    }
+   
 
     .trade-tile-stock-header-button-wrapper {
       display: flex;
@@ -97,6 +83,22 @@
 
   &__button-container {
     background-color: rgb(255, 145, 0);
+  }
+
+  .trade-triangle {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 1.2rem solid transparent;
+    border-right: 1.2rem solid transparent;
+
+    &--green {
+      border-bottom: 2rem solid $color-green;
+    }
+
+    &--red {
+      border-top: 2rem solid $color-red;
+    }
   }
 }
 
