@@ -54,15 +54,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;    
-    }
+    } 
 
-    .trade-tile-stock-positive-triangle-big {
+    .trade-triangle {
       display: inline-block;    
       width: 0;
       height: 0;
-      border-left: 1.5rem solid transparent;
-      border-right: 1.5rem solid transparent;
-      border-bottom: 2.3rem solid $color-green;     
+      border-left: 1.2rem solid transparent;
+      border-right: 1.2rem solid transparent;
+
+      &--green{
+        border-bottom: 2rem solid $color-green;     
+      }
+
+      &--red{
+        border-top: 2rem solid $color-red;     
+      }
     }
   }
 
