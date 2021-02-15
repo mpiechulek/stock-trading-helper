@@ -66,6 +66,7 @@
   }  
 
   &__positive-stock-change {
+    overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;    
   }
@@ -77,8 +78,9 @@
   }
 
   &__negative-stock-change {
+    overflow-y: auto;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
   }
 
   &__button-container {
