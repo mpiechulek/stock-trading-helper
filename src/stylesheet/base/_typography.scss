@@ -123,9 +123,16 @@
 
 // Trade tile 
 .trade-tile-stock-percentage-change-text {
-  color: $color-green;
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 500;  
+  
+  &--color-green {
+    color: $color-green;    
+  }
+
+  &--color-red {
+    color: $color-red;    
+  }
 }
 
 .trade-tile-stock-name-text {
