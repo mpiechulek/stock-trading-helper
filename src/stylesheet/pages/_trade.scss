@@ -48,19 +48,21 @@
       justify-content: center;
       align-items: center;
     }
-
+    
     .trade-tile-stock-header-wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: center;    
     }
 
     .trade-tile-stock-positive-triangle-big {
-      display: block;
-      width: 2rem;
-      height: 2rem;
-      background-color: green;
+      display: inline-block;    
+      width: 0;
+      height: 0;
+      border-left: 1.2rem solid transparent;
+      border-right: 1.2rem solid transparent;
+      border-bottom: 2rem solid $color-green;     
     }
   }
 
