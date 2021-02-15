@@ -121,7 +121,66 @@
   text-align: center;
 }
 
+// Trade tile 
+.trade-tile-stock-percentage-change-text {
+  font-size: 1.8rem;
+  font-weight: 500;  
+  
+  &--color-green {
+    color: $color-green;    
+  }
+
+  &--color-red {
+    color: $color-red;    
+  }
+}
+
+.trade-tile-stock-name-text {
+   color: var(--color-text-prime);
+   max-width: 13ch;
+   overflow:hidden; 
+   white-space:nowrap; 
+   text-overflow: ellipsis;
+   font-size: 2.3rem;
+}
+
+.trade-tile-stock-text{
+  color: var(--color-text-prime);
+  font-size: 1.2rem;
+
+  &--ld{
+    font-size: 1.3rem;
+    font-weight: 500;
+    max-width: 8ch;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+  }
+
+  &--xld{
+    font-size: 1.5rem;
+    font-weight: 500;
+    max-width: 10ch;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+
+  &--red{
+    color: $color-red;    
+    font-size: 1.3rem;
+    font-weight: 500;    
+  }
+
+  &--green{
+    color: $color-green;    
+    font-size: 1.3rem;
+    font-weight: 500;    
+  }
+}
+
 .footer-text {
   color: var(--color-text-prime);
-  font-size: 1.3rem;
+  font-size: 1.3rem;  
 }

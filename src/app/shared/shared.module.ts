@@ -52,6 +52,7 @@ import { NumberDigitDirective } from './directives/number-digit.directive';
   ],
   providers: [TranslateService]
 })
+
 export class SharedModule { }
 
 // AOT compilation support
