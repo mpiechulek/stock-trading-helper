@@ -35,7 +35,10 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: none;  
+  outline: none; 
+  scrollbar-width: none; 
+  overflow: hidden;
+  /* Hide scrollbars */ 
 }
 
 body {
@@ -47,7 +50,7 @@ body {
   background-color: var(--color-page-background);
  
   box-sizing: border-box;
-  scrollbar-width: none;
+  scrollbar-width: none; 
   overflow: hidden;
   /* Hide scrollbars */
 

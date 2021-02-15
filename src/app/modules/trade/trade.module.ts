@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
-    MatRadioModule
+    MatRadioModule,
+    ScrollingModule
   ]
 })
 export class TradeModule { }
