@@ -148,14 +148,22 @@
   color: var(--color-text-prime);
   font-size: 1.2rem;
 
-  &--bigger{
+  &--ld{
     font-size: 1.3rem;
     font-weight: 500;
     max-width: 8ch;
     overflow:hidden; 
     white-space:nowrap; 
     text-overflow: ellipsis;
+  }
 
+  &--xld{
+    font-size: 1.5rem;
+    font-weight: 500;
+    max-width: 8ch;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
   }
 
   &--red{
