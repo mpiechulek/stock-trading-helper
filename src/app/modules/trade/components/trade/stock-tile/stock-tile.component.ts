@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY} from '@angular/cdk/scrolling';
+import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-stock-tile',
@@ -8,7 +8,9 @@ import {FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY} from '@angular/
 })
 export class StockTileComponent implements OnInit {
 
-  array = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  array = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+  {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+  {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
 
   constructor() { }
 

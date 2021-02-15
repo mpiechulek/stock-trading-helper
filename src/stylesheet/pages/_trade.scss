@@ -20,7 +20,7 @@
 }
 
 .trade-tile {
-  max-width: 35rem;
+  width: 35rem;
   min-width: 32rem;
   height: calc(100vh - 19rem);
   border: 1px solid var(--color-border);
@@ -36,10 +36,6 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-bottom: 5px;
-
-    .trade-tile-header-margin-left {
-      margin-left: 1rem;
-    }
 
     .trade-tile-stock-header-container {
       display: flex;
@@ -63,6 +59,10 @@
 
     .trade-tile-stock-header-button-wrapper {
       display: flex;
+    }
+
+    .trade-tile-header-margin-left {
+      margin-left: 1.2rem;
     }
   }
 
@@ -136,26 +136,26 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
+
+    .stock-offer-change-width {
+      width: 30%;
+    }
    
-  }
-
-  .trade-tile-stock-change-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-
     .stock-offer-change-margin-left {
       margin-left: 1rem;
     }
-  }
+  }  
 }
 
 .trade-tile-margin {
   margin-bottom: 1rem;
+  margin-left: 0.5rem;    
+  margin-right: 0.5rem;
 }
 
-.trade-tile-margin:not(:first-child) {
-  margin-left: 1%;
+//
+.example-viewport {
+  height: 100%;
+  width: 100%;
 }

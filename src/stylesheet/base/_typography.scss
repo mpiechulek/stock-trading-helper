@@ -160,10 +160,11 @@
   &--xld{
     font-size: 1.5rem;
     font-weight: 500;
-    max-width: 8ch;
+    max-width: 10ch;
     overflow:hidden; 
     white-space:nowrap; 
     text-overflow: ellipsis;
+    text-align: right;
   }
 
   &--red{
