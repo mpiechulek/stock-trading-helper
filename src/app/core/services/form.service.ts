@@ -23,9 +23,9 @@ export class FormService {
   }
 
   // =============================================================================
-  // ==== Support for the registration form of the transaction, registering  =====
-  // ================================ the company  ===============================
-  // =============================================================================  
+  // ====== Saving to local storage the last state of the stock entry form =======
+  // =============================================================================
+
 
   checkIfEntreFormDataInLocalStorage(): boolean {
     return localStorage.getItem(this.storageFormKeyName) === null;
@@ -39,12 +39,10 @@ export class FormService {
     }
   }
 
-  saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {     
+  saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
     enteredObject.id = uuid.v4();
     localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
   }
-
-
 
   // =============================================================================
   // ==== Bug fix, the form data comes with a number with too many decimal pl- ===
@@ -66,5 +64,16 @@ export class FormService {
   // =============================================================================
   // =================== Saving/Reading the trade board data  ====================
   // =============================================================================
+
+  //1 get postions form local storage
+
+  // 2 append position to array
+
+  // 3 save position to local sotrage
+
+  // saveStockPositionToLocalStorage(enteredPosition: TradeFormData): void {
+  //   localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
+  // }
+
 
 }
