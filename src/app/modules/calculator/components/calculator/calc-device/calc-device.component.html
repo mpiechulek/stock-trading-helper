@@ -1,0 +1,39 @@
+<div class="calc-device-container">
+
+    <div class="calc-device-container__output">
+        <p class="equation">{{displayEquation}}</p>
+        <p class="calc-result">{{displayResult}}</p>
+    </div>
+
+    <div class="calc-device-container__input">
+
+        <button class="calc-button" (click)="onDelete('ce')">CA</button>
+        <button class="calc-button" (click)="onDelete('c')">C</button>
+        <button class="calc-button" (click)="onDelete('del')">del</button>
+        <button class="calc-button" (click)="onEnterOperation('/')">&#247;</button>
+
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('9')">9</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('8')">8</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('7')">7</button>
+
+        <button class="calc-button" (click)="onEnterOperation('*')">*</button>
+
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('4')">4</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('5')">5</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('6')">6</button>
+
+        <button class="calc-button" (click)="onEnterOperation('+')">+</button>
+
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('1')">1</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('2')">2</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('3')">3</button>
+
+        <button class="calc-button" (click)="onEnterOperation('-')">-</button>
+
+        <button class="calc-button calc-button--num btn-width" (click)="onEnterNumber('0')">0</button>
+        <button class="calc-button calc-button--num" (click)="onEnterNumber('.')">.</button>
+        <button class="calc-button calc-button--equale" (click)="onCompute('=')">=</button>
+
+    </div>
+
+</div>
