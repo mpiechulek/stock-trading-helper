@@ -50,11 +50,12 @@ export class TradeContainerComponent implements OnInit {
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
-
   editStockTileData() {
 
   }
 
+  deleteStockTileData() {
 
+  }
 
 }
