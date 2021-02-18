@@ -9,7 +9,7 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 })
 export class TradeContainerComponent implements OnInit {
 
-  private dataToEdit: TradeFormData;
+  private formDataToEdit: TradeFormData;
 
   constructor(private formService: FormService) { }
 
@@ -17,12 +17,10 @@ export class TradeContainerComponent implements OnInit {
   }
 
   get getDataToEdit():TradeFormData  {
-    return this.dataToEdit;
-
+    return this.formDataToEdit;
   }
 
-  saveEntreFormDataToLocalStorage(formData: TradeFormData): void {
-    console.log('data in container');
+  saveEntreFormDataToLocalStorage(formData: TradeFormData): void {   
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
