@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
+import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
+import { StockTileModel } from '../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-trade',
@@ -10,22 +12,49 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 export class TradeContainerComponent implements OnInit {
 
   private formDataToEdit: TradeFormData;
+  private stockBoardArray: StockTileModel[] | [] = [];
 
-  constructor(private formService: FormService) { }
+  constructor(
+    private formService: FormService,
+    private stockTradeBoardService: StockTradeBoardService
+  ) { }
 
   ngOnInit(): void {
+    this.stockBoardArray = this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
   }
 
-  get getDataToEdit():TradeFormData  {
+  get getDataToEdit(): TradeFormData {
     return this.formDataToEdit;
   }
 
-  saveEntreFormDataToLocalStorage(formData: TradeFormData): void {   
+  get getStockBoardArray(): StockTileModel[] {
+    return this.stockBoardArray;
+  }
+
+  /**
+   * Saving the entered data to, local storage trade array
+   * @param formData 
+   */
+
+  saveStockToBoardArray(formData: TradeFormData) {
+    this.stockTradeBoardService.creatingNewPosition(formData);
+    this.saveEntreFormDataToLocalStorage(formData);
+  }
+
+  /**
+   * Saving the entered data , for future reuse if we want to 
+   * open the form and it will by filled with the last session
+   * @param formData  
+   */
+  saveEntreFormDataToLocalStorage(formData: TradeFormData): void {
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
+
 
   editStockTileData() {
 
   }
+
+
 
 }
