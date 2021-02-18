@@ -43,7 +43,27 @@ export class StockTradeBoardService {
     // appending the list with the new position
     tradeBoardArr.push(newStockTile);
 
-    // Updating the storage 
-    localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(tradeBoardArr));
+    // Save to storage 
+    this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
+  }
+
+  saveTradeBoardDataToLocalStorage(data: StockTileModel[]) {
+    localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
+  }
+
+  // Updating a position in the stock trade board array
+  editTradeBoardData(objectEdit: StockTileModel) {
+    let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    let newArr: StockTileModel[];
+
+    const elementsIndex = tradeBoardArr.findIndex((element) => {
+      return element.id == objectEdit.id;
+    });
+
+    newArr = [...tradeBoardArr];
+
+    newArr[elementsIndex] = objectEdit;
+
+    this.saveTradeBoardDataToLocalStorage(newArr);
   }
 }
