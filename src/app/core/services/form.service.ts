@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { TradeFormData } from './../../data/models/form.model';
 import * as uuid from 'uuid';
+import { StockTileModel } from '../../data/models/stock-tile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import * as uuid from 'uuid';
 export class FormService {
 
   private storageFormKeyName: string = 'entreFormData';
+  private storageTradeBoardKeyName: string = 'tradeBoardData';
   private entreFormSubject = new Subject<TradeFormData>();
   // private entreFormSubject$: Observable<TradeFormData> = this.entreFormSubject.asObservable();
 
@@ -40,7 +42,6 @@ export class FormService {
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
-    enteredObject.id = uuid.v4();
     localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
   }
 
@@ -65,15 +66,38 @@ export class FormService {
   // =================== Saving/Reading the trade board data  ====================
   // =============================================================================
 
-  //1 get postions form local storage
+  checkIfTradeBoardDataInLocalStorage(): boolean {
+    return localStorage.getItem(this.storageTradeBoardKeyName) === null;
+  }
 
-  // 2 append position to array
+  getTradeBoardDataFromLocalStorage() {
+    let tradeBoardDataArray: [];
+    if (this.checkIfTradeBoardDataInLocalStorage()) {
+      tradeBoardDataArray = [];
+    } else {
+      tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
+    }
+    return tradeBoardDataArray;
+  }
 
-  // 3 save position to local sotrage
+  addTradeBoardDataToLocalStorage(formData: TradeFormData): void {
+    let tradeBoardArr: StockTileModel[];
+    let newStockTile: StockTileModel;
 
-  // saveStockPositionToLocalStorage(enteredPosition: TradeFormData): void {
-  //   localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
-  // }
+    // Creating a new stock trade tile object
+    newStockTile = { ...formData, id: uuid.v4(), selectedPrice: null };
+
+    // Getting the tile object list form local storage
+    tradeBoardArr = this.getTradeBoardDataFromLocalStorage();
+
+    // appending the list with the new position
+    tradeBoardArr.push(newStockTile);
+
+    // Updating the storage 
+    localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(tradeBoardArr));
+  }
+
+ 
 
 
 }
