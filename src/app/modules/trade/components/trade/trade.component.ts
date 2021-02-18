@@ -8,15 +8,19 @@ import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
   templateUrl: './trade.component.html'
 })
 export class TradeComponent implements OnInit {
-
-  private lastTypedData: TradeFormData;
+  
 
   @Input()
-  private formDataToEdit: TradeFormData
+  private formDataToEdit: TradeFormData;
 
   @Output()
   dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
 
+  @Output()
+  triggerEdit: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  triggerAdd: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public matDialog: MatDialog) { }
 
@@ -45,4 +49,13 @@ export class TradeComponent implements OnInit {
 
     });
   }
+
+  onTriggerAddOperation() {
+    this.triggerAdd.emit('add');
+  }
+
+  onTriggerEditOperation(tileId: string): void {
+
+  }
+  
 }

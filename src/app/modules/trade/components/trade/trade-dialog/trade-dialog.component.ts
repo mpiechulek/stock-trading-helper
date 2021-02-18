@@ -49,7 +49,8 @@ export class TradeDialogComponent implements OnInit {
       ]]
     });
 
-    if(this.data) {         
+    // Overwriting the form value with received data
+    if (this.data) {
       this.entryStockForm.patchValue(this.data);
     }
   }
@@ -97,7 +98,7 @@ export class TradeDialogComponent implements OnInit {
       minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
     });
 
-    
+
 
     this.dialogRef.close(this.entryStockForm.value);
   }

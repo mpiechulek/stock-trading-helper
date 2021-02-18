@@ -27,6 +27,7 @@ export class TradeContainerComponent implements OnInit {
 
     this.formDataSubscription = this.formService.getEntreFormSubject().subscribe((data) => {
       this.formDataToEdit = data;
+      console.log('form data from storage', data);
     });
   }
 
