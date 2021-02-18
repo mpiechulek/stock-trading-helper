@@ -1,7 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { FormService } from './../../../../../core/services/form.service';
 import { TradeFormData } from './../../../../../../../src/app/data/models/form.model';
 
@@ -12,9 +13,8 @@ import { TradeFormData } from './../../../../../../../src/app/data/models/form.m
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData;
-  entryStockForm: FormGroup;
   formDataSubscription: Subscription;
+  entryStockForm: FormGroup;
 
   constructor(
     private formService: FormService,
@@ -23,25 +23,7 @@ export class TradeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {    
-
-    // this.formService.getEntreFormDataFromLocalStorage();
-
-    // this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
-    //   this.formData = formData;
-        
-    //   if (this.formData) {
-
-    //     this.entryStockForm.patchValue({
-    //       companyName: this.formData.companyName,
-    //       amountOfShares: this.formData.amountOfShares,
-    //       buyPrice: this.formData.buyPrice,
-    //       taxRate: this.formData.taxRate,
-    //       commission: this.formData.commission,
-    //       minCommission: this.formData.minCommission
-    //     });
-    //   }
-    // });
+  ngOnInit(): void {
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -67,11 +49,8 @@ export class TradeDialogComponent implements OnInit {
       ]]
     });
 
-  }
-
-  ngOnDestroy(): void {
-    if( this.formDataSubscription) {
-      this.formDataSubscription.unsubscribe();
+    if(this.data) {         
+      this.entryStockForm.patchValue(this.data);
     }
   }
 
@@ -107,6 +86,8 @@ export class TradeDialogComponent implements OnInit {
       return;
     }
 
+    console.log(this.entryStockForm.value);
+
     this.entryStockForm.patchValue({
       companyName: this.entryStockForm.value.companyName,
       amountOfShares: this.entryStockForm.value.amountOfShares,
@@ -115,6 +96,8 @@ export class TradeDialogComponent implements OnInit {
       commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
       minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
     });
+
+    
 
     this.dialogRef.close(this.entryStockForm.value);
   }

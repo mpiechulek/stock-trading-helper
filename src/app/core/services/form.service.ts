@@ -9,33 +9,36 @@ export class FormService {
 
   private storageFormKeyName: string = 'entreFormData'; 
   private entreFormSubject = new Subject<TradeFormData>();
-  // private entreFormSubject$: Observable<TradeFormData> = this.entreFormSubject.asObservable();
 
   constructor(
   ) { }
 
   ngOnInit(): void {
+   
   }
 
-  get getEntreFormSubject(): Observable<TradeFormData> {
-    return this.entreFormSubject.asObservable();
-  }
-
+  
   // =============================================================================
   // ====== Saving to local storage the last state of the stock entry form =======
   // =============================================================================
-
-
+  
+  
   checkIfEntreFormDataInLocalStorage(): boolean {
-    return localStorage.getItem(this.storageFormKeyName) === null;
+    return localStorage.getItem(this.storageFormKeyName) !== null ;
+  }
+  
+  async getEntreFormDataFromLocalStorage(){
+    let formData: TradeFormData = null;
+
+    if (this.checkIfEntreFormDataInLocalStorage()) {      
+      formData = await JSON.parse(localStorage.getItem(this.storageFormKeyName));      
+    }     
+
+    this.entreFormSubject.next(formData);  
   }
 
-  getEntreFormDataFromLocalStorage() {
-    let formData: TradeFormData;
-    if (this.checkIfEntreFormDataInLocalStorage()) {
-      formData = JSON.parse(localStorage.getItem(this.storageFormKeyName));
-      this.entreFormSubject.next(formData);
-    }
+  getEntreFormSubject() {
+    return this.entreFormSubject.asObservable();
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
@@ -50,11 +53,11 @@ export class FormService {
   fixeNumberDecimalPlaces(value: string) {
     let arr: string[];
 
-    if (!value.includes('.')) return value;
+    if (!value.includes('.')) return value;    
 
-    arr = value.split('.');
+    arr = value.split('.'); 
 
-    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, -2);
+    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, 4);
 
     return value;
   }

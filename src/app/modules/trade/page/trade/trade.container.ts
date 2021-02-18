@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
@@ -12,6 +13,7 @@ import { StockTileModel } from '../../../../data/models/stock-tile.model';
 export class TradeContainerComponent implements OnInit {
 
   private formDataToEdit: TradeFormData;
+  private formDataSubscription: Subscription;
   private stockBoardArray: StockTileModel[] | [] = [];
 
   constructor(
@@ -20,8 +22,18 @@ export class TradeContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.stockBoardArray = this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
-    console.log('from local storage',this.stockBoardArray);    
+
+    this.formService.getEntreFormDataFromLocalStorage();
+
+    this.formDataSubscription = this.formService.getEntreFormSubject().subscribe((data) => {
+      this.formDataToEdit = data;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.formDataSubscription) {
+      this.formDataSubscription.unsubscribe();
+    }
   }
 
   get getDataToEdit(): TradeFormData {

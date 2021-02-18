@@ -1,1 +1,4 @@
-<app-trade-ui (dataFromForm)="saveStockToBoardArray($event)"></app-trade-ui>
+<app-trade-ui 
+    (dataFromForm)="saveStockToBoardArray($event)"
+    [formDataToEdit]="getDataToEdit"
+></app-trade-ui>
