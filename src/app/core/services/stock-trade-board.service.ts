@@ -11,16 +11,12 @@ export class StockTradeBoardService {
   private storageTradeBoardKeyName: string = 'tradeBoardData';
 
   constructor() { }
-
-  // =============================================================================
-  // =================== Saving/Reading the trade board data  ====================
-  // =============================================================================
-
+  
   checkIfTradeBoardDataInLocalStorage(): boolean {
     return localStorage.getItem(this.storageTradeBoardKeyName) === null;
   }
 
-  getTradeBoardDataFromLocalStorage() {
+  getTradeBoardDataFromLocalStorage(): StockTileModel[] {
     let tradeBoardDataArray: [];
     if (this.checkIfTradeBoardDataInLocalStorage()) {
       tradeBoardDataArray = [];
@@ -52,7 +48,7 @@ export class StockTradeBoardService {
     this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
   }
 
-  saveTradeBoardDataToLocalStorage(data: StockTileModel[]) {
+  saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
   }
 
@@ -60,7 +56,7 @@ export class StockTradeBoardService {
    * Updating a position in the stock trade board array
    * @param objectEdit 
    */
-  editTradeBoardData(objectEdit: StockTileModel) {
+  editTradeBoardData(objectEdit: StockTileModel): void {
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
     let newArr: StockTileModel[];
 
@@ -71,6 +67,17 @@ export class StockTradeBoardService {
     newArr = [...tradeBoardArr];
 
     newArr[elementsIndex] = objectEdit;
+
+    this.saveTradeBoardDataToLocalStorage(newArr);
+  }
+
+  deletePositionFromBoardData(stockId: string): void {
+    let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    let newArr= [...tradeBoardArr];
+
+    newArr = newArr.filter((element) => {
+      return element.id !== stockId;
+    });
 
     this.saveTradeBoardDataToLocalStorage(newArr);
   }
