@@ -77,134 +77,31 @@
     <ul class="trade-tile__positive-stock-change">
 
         <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
-            <li class="trade-tile-stock-change-container" *cdkVirtualFor="let element of array">
-                <div class="trade-shape trade-shape--green-small"></div>
-                            
-                <div class="stock-offer-change-width">
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld 
-                            stock-offer-change-margin-left                         
-                            "
-                    >
-                        +{{120.50}}%
-                    </p>
-                </div>
 
-                <div class="stock-offer-change-width">
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld
-                            stock-offer-change-margin-left    
-                            "  
-                    >            
-                    {{1345.40}}
-                    </p>
-                </div>
+            <app-one-offer-change *cdkVirtualFor="let element of array"></app-one-offer-change>  
 
-                <div class="stock-offer-change-width">
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld
-                            stock-offer-change-margin-left                       
-                            "
-                    >
-                        +{{1235243.44}}
-                    </p>
-                </div>
-            </li>
         </cdk-virtual-scroll-viewport>
+
     </ul>
 
     <!-- Neutral share price  -->
 
-    <div class="trade-tile__neutral-stock-change">
-        <div class="trade-tile-stock-change-container">
+    <div class="trade-tile__neutral-stock-change">  
 
-            <div class="trade-shape trade-shape--gray-dot"></div>
-            
-            <div class="stock-offer-change-width">
+        <app-one-offer-change></app-one-offer-change>    
 
-                <p class="trade-tile-stock-text
-                          trade-tile-stock-text--xld 
-                          stock-offer-change-margin-left                         
-                          "
-                >
-                    -{{120.50}}%
-                </p>
-
-            </div>
-
-            <div class="stock-offer-change-width">
-
-                <p class="trade-tile-stock-text
-                        trade-tile-stock-text--xld
-                        stock-offer-change-margin-left    
-                        "  
-                >            
-                {{1345.40}}
-                </p>
-
-            </div>
-
-            <div class="stock-offer-change-width">
-
-                <p class="trade-tile-stock-text
-                        trade-tile-stock-text--xld
-                        stock-offer-change-margin-left                       
-                        "
-                >
-                    -{{1235243.44}}
-                </p>
-
-            </div>
-            
-        </div>
     </div>
 
     <!-- Negative share price  -->
 
     <ul class="trade-tile__negative-stock-change">
+
         <cdk-virtual-scroll-viewport itemSize="2" class="example-viewport">
-            <li class="trade-tile-stock-change-container" *cdkVirtualFor="let element of array">
 
-                <div class="trade-shape trade-shape--red-small"></div>
+            <app-one-offer-change *cdkVirtualFor="let element of array"></app-one-offer-change>   
 
-                <div class="stock-offer-change-width">
-
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld 
-                            stock-offer-change-margin-left                         
-                            "
-                    >
-                        -{{120.50}}%
-                    </p>
-
-                </div>
-
-                <div class="stock-offer-change-width">
-
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld
-                            stock-offer-change-margin-left    
-                            "  
-                    >            
-                    {{1345.40}}
-                    </p>
-
-                </div>
-
-                <div class="stock-offer-change-width">
-
-                    <p class="trade-tile-stock-text
-                            trade-tile-stock-text--xld
-                            stock-offer-change-margin-left                       
-                            "
-                    >
-                        -{{1235243.44}}
-                    </p>
-
-                </div>
-
-            </li>
         </cdk-virtual-scroll-viewport>
+
     </ul>
 
     <!-- Btn container  -->
