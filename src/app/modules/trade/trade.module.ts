@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { OneOfferChangeComponent } from './components/trade/stock-tile/one-offer-change/one-offer-change.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     TradeContainerComponent,
     TradeComponent,
     TradeDialogComponent,
-    StockTileComponent
+    StockTileComponent,
+    OneOfferChangeComponent
   ],
   imports: [
     CommonModule,
