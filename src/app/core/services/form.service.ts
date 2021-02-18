@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { TradeFormData } from 'src/app/data/models/form.model';
+import { TradeFormData } from './../../data/models/form.model';
+import * as uuid from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,12 @@ export class FormService {
     }
   }
 
-  saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
+  saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {     
+    enteredObject.id = uuid.v4();
     localStorage.setItem(this.storageFormKeyName, JSON.stringify(enteredObject));
   }
+
+
 
   // =============================================================================
   // ==== Bug fix, the form data comes with a number with too many decimal pl- ===
@@ -55,7 +59,7 @@ export class FormService {
     arr = value.split('.');
 
     if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, -2);
-    
+
     return value;
   }
 
