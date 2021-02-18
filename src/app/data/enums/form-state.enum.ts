@@ -1,4 +1,5 @@
 export enum FormState {
-    New = 'New',
-    Edit = 'Edit'
+    Add = 'Add',
+    Edit = 'Edit',
+    Delete = 'Delete'
 }

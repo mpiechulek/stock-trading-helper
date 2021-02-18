@@ -1,61 +1,85 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TradeFormData } from 'src/app/data/models/form.model';
-import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-trade-ui',
   templateUrl: './trade.component.html'
 })
 export class TradeComponent implements OnInit {
-  
-
-  @Input()
-  private formDataToEdit: TradeFormData;
 
   @Output()
-  dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
+  addNewStock: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  triggerEdit: EventEmitter<string> = new EventEmitter<string>();
+  deleteTile: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  triggerAdd: EventEmitter<string> = new EventEmitter<string>();
+  editTile: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(public matDialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  openFormDialog(): void {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    dialogConfig.data = this.formDataToEdit;
-
-    // Initializing dialog
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
-
-    // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
-
-      const dialogData = result;
-
-      if (dialogData !== undefined) {
-        this.dataFromForm.emit(dialogData);
-      }
-
-    });
+  onAddNewStock():void {
+    this.addNewStock.emit();
   }
 
-  onTriggerAddOperation() {
-    this.triggerAdd.emit('add');
+  onEditTile(id:string): void {
+    this.editTile.emit(id);
   }
 
-  onTriggerEditOperation(tileId: string): void {
-
+  onDeleteTile(id:string): void {
+    this.deleteTile.emit(id);
   }
-  
+
+  // openFormDialogAdd(): void {
+
+  //   // Get last entered form data
+  //   this.triggerAdd.emit();
+
+  //   const dialogConfig = new MatDialogConfig();
+
+  //   dialogConfig.disableClose = false;
+  //   dialogConfig.id = "modal-component";
+  //   dialogConfig.data = this.formDataToEdit;
+
+  //   // Initializing dialog
+  //   const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+
+  //   // Receive data from dialog
+  //   modalDialog.afterClosed().subscribe(result => {
+
+  //     const dialogData = result;
+
+  //     if (dialogData !== undefined) {
+  //       this.dataFromForm.emit(dialogData);
+  //     }
+
+  //   });
+  // }  
+
+  // openFormDialogEdit(tileId: string): void {
+
+  //   this.triggerEdit.emit(tileId);
+
+  //   const dialogConfig = new MatDialogConfig();
+
+  //   dialogConfig.disableClose = false;
+  //   dialogConfig.id = "modal-component";
+  //   dialogConfig.data = this.formDataToEdit;
+
+  //   // Initializing dialog
+  //   const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+
+  //   // Receive data from dialog
+  //   modalDialog.afterClosed().subscribe(result => {
+
+  //     const dialogData = result;
+
+  //     if (dialogData !== undefined) {
+  //       this.dataFromForm.emit(dialogData);
+  //     }
+
+  //   });
+  // }  
 }

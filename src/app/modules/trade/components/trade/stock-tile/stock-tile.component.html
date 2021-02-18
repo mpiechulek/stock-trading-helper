@@ -2,7 +2,10 @@
 
     <!-- Stock data -->
 
-    <app-tile-header></app-tile-header>
+    <app-tile-header 
+        (editTile) = "onEditTile($event)"
+        (deleteTile) = "onDeleteTile($event)"
+     ></app-tile-header>
 
     <!-- Positive share price  -->
 

@@ -1,4 +1,6 @@
 <app-trade-ui 
     (dataFromForm)="saveStockToBoardArray($event)"
-    [formDataToEdit]="getDataToEdit"
+    (addNewStock)="openFormDialogAdd()"    
+    (editTile)="openFormDialogEdit($event)"    
+    (deleteTile)="openFormDialogDelete($event)"    
 ></app-trade-ui>

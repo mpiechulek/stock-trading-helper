@@ -13,8 +13,8 @@ import { TradeFormData } from './../../../../../../../src/app/data/models/form.m
 
 export class TradeDialogComponent implements OnInit {
 
-  formDataSubscription: Subscription;
-  entryStockForm: FormGroup;
+   public entryStockForm: FormGroup;
+   public dialogState: string;
 
   constructor(
     private formService: FormService,
@@ -36,6 +36,7 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
+        // Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
         Validators.min(0)
       ]],
       taxRate: ['0.0000', [
@@ -47,11 +48,12 @@ export class TradeDialogComponent implements OnInit {
       minCommission: ['0.0000', [
         Validators.min(0)
       ]]
-    });
+    });    
 
+    this.dialogState = this.data.operation
     // Overwriting the form value with received data
-    if (this.data) {
-      this.entryStockForm.patchValue(this.data);
+    if (this.data.formData) {      
+      this.entryStockForm.patchValue(this.data.formData);
     }
   }
 
@@ -97,8 +99,6 @@ export class TradeDialogComponent implements OnInit {
       commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
       minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
     });
-
-
 
     this.dialogRef.close(this.entryStockForm.value);
   }
