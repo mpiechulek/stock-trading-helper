@@ -2,8 +2,8 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { FormService } from 'src/app/core/services/form.service';
-import { TradeFormData } from 'src/app/data/models/form.model';
+import { FormService } from './../../../../../core/services/form.service';
+import { TradeFormData } from './../../../../../../../src/app/data/models/form.model';
 
 @Component({
   selector: 'app-trade-dialog',
@@ -25,23 +25,23 @@ export class TradeDialogComponent implements OnInit {
 
   ngOnInit(): void {    
 
-    this.formService.getEntreFormDataFromLocalStorage();
+    // this.formService.getEntreFormDataFromLocalStorage();
 
-    this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
-      this.formData = formData;
+    // this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
+    //   this.formData = formData;
         
-      if (this.formData) {
+    //   if (this.formData) {
 
-        this.entryStockForm.patchValue({
-          companyName: this.formData.companyName,
-          amountOfShares: this.formData.amountOfShares,
-          buyPrice: this.formData.buyPrice,
-          taxRate: this.formData.taxRate,
-          commission: this.formData.commission,
-          minCommission: this.formData.minCommission
-        });
-      }
-    });
+    //     this.entryStockForm.patchValue({
+    //       companyName: this.formData.companyName,
+    //       amountOfShares: this.formData.amountOfShares,
+    //       buyPrice: this.formData.buyPrice,
+    //       taxRate: this.formData.taxRate,
+    //       commission: this.formData.commission,
+    //       minCommission: this.formData.minCommission
+    //     });
+    //   }
+    // });
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -58,7 +58,6 @@ export class TradeDialogComponent implements OnInit {
       ]],
       taxRate: ['0.0000', [
         Validators.min(0)
-
       ]],
       commission: ['0.0000', [
         Validators.min(0)

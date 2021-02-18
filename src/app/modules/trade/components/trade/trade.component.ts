@@ -33,10 +33,13 @@ export class TradeComponent implements OnInit {
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
+
       const dialogData = result;
+
       if (dialogData !== undefined) {        
         this.dataFromForm.emit(dialogData);
       }
+      
     });
   }
 }

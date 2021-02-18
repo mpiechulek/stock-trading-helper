@@ -21,6 +21,7 @@ export class TradeContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.stockBoardArray = this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
+    console.log('from local storage',this.stockBoardArray);    
   }
 
   get getDataToEdit(): TradeFormData {
