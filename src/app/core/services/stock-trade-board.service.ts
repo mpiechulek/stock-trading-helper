@@ -30,7 +30,12 @@ export class StockTradeBoardService {
     return tradeBoardDataArray;
   }
 
-  addTradeBoardDataToLocalStorage(formData: TradeFormData): void {
+  /**
+   *  Creating a new object from the received form data, adding to it an id, also 
+   *  setting the selectedPrice to default value
+   * @param formData 
+   */
+  creatingNewPosition(formData: TradeFormData): void {
     let tradeBoardArr: StockTileModel[];
     let newStockTile: StockTileModel;
 
@@ -51,7 +56,10 @@ export class StockTradeBoardService {
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
   }
 
-  // Updating a position in the stock trade board array
+  /**
+   * Updating a position in the stock trade board array
+   * @param objectEdit 
+   */
   editTradeBoardData(objectEdit: StockTileModel) {
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
     let newArr: StockTileModel[];
