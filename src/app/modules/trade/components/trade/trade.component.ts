@@ -31,55 +31,5 @@ export class TradeComponent implements OnInit {
   onDeleteTile(id:string): void {
     this.deleteTile.emit(id);
   }
-
-  // openFormDialogAdd(): void {
-
-  //   // Get last entered form data
-  //   this.triggerAdd.emit();
-
-  //   const dialogConfig = new MatDialogConfig();
-
-  //   dialogConfig.disableClose = false;
-  //   dialogConfig.id = "modal-component";
-  //   dialogConfig.data = this.formDataToEdit;
-
-  //   // Initializing dialog
-  //   const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
-
-  //   // Receive data from dialog
-  //   modalDialog.afterClosed().subscribe(result => {
-
-  //     const dialogData = result;
-
-  //     if (dialogData !== undefined) {
-  //       this.dataFromForm.emit(dialogData);
-  //     }
-
-  //   });
-  // }  
-
-  // openFormDialogEdit(tileId: string): void {
-
-  //   this.triggerEdit.emit(tileId);
-
-  //   const dialogConfig = new MatDialogConfig();
-
-  //   dialogConfig.disableClose = false;
-  //   dialogConfig.id = "modal-component";
-  //   dialogConfig.data = this.formDataToEdit;
-
-  //   // Initializing dialog
-  //   const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
-
-  //   // Receive data from dialog
-  //   modalDialog.afterClosed().subscribe(result => {
-
-  //     const dialogData = result;
-
-  //     if (dialogData !== undefined) {
-  //       this.dataFromForm.emit(dialogData);
-  //     }
-
-  //   });
-  // }  
+  
 }

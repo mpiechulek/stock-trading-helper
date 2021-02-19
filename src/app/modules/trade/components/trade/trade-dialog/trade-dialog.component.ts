@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormService } from './../../../../../core/services/form.service';
 import { TradeFormData } from './../../../../../../../src/app/data/models/form.model';
+import { FormState } from '../../../../../data/enums/form-state.enum';
 
 @Component({
   selector: 'app-trade-dialog',
@@ -15,6 +16,7 @@ export class TradeDialogComponent implements OnInit {
 
    public entryStockForm: FormGroup;
    public dialogState: string;
+   public formState = FormState;
 
   constructor(
     private formService: FormService,
@@ -50,7 +52,9 @@ export class TradeDialogComponent implements OnInit {
       ]]
     });    
 
-    this.dialogState = this.data.operation
+    // The state of the dialog box
+    this.dialogState = this.data.state
+
     // Overwriting the form value with received data
     if (this.data.formData) {      
       this.entryStockForm.patchValue(this.data.formData);

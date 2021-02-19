@@ -32,6 +32,7 @@
 /* Overwrite the styles of the mat-dialog-container element globally, but only for those
 that have an id of `modal-component` */
 mat-dialog-container#modal-component {
+  position: relative;
   width: 50rem;
   height: auto;
   background-color: var(--color-page-background);

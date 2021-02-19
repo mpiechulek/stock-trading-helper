@@ -1,10 +1,14 @@
+
+<button class="btn trade-entry-form__close-btn" type="button" (click)="onCloseDialog()">
+    <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+</button>
+
+<h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Add">Add Stock</h1>   
+<h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Edit">Edit Stock</h1>   
+<h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Delete">Delete Stock</h1>  
+
 <form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()" >
 
-    <button class="btn trade-entry-form__close-btn" type="button" (click)="onCloseDialog()">
-        <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
-    </button>
-
-    <h1 class="trade-entry-form-header trade-entry-form__header">Add Stock</h1>   
 
     <div class="trade-entry-form__section-1">
 
@@ -83,7 +87,9 @@
             color="primary"           
             [disabled]="entryStockForm.invalid"
         >
-           Submit
+           <span  *ngIf="dialogState == formState.Add">ADD</span>
+           <span  *ngIf="dialogState == formState.Edit">SAVE</span>
+           <span  *ngIf="dialogState == formState.Delete">DELETE</span>
         </button>
 
         <!-- <p>{{'value: ' }}</p> -->

@@ -15,7 +15,7 @@ import { FormState } from '../../../../data/enums/form-state.enum';
 })
 export class TradeContainerComponent implements OnInit {
 
-  private formState: FormState;
+  private formState = FormState;
   private formDataToEdit: TradeFormData;
   private previousFormData: TradeFormData;
   private formDataSubscription: Subscription;
@@ -49,7 +49,7 @@ export class TradeContainerComponent implements OnInit {
   /**
    * Getting the last form entre
    */
-  getLastFormEntre(): void  {
+  getLastFormEntre(): void {
     this.formService.getEntreFormDataFromLocalStorage();
   }
 
@@ -57,7 +57,7 @@ export class TradeContainerComponent implements OnInit {
    * Saving the entered data to, local storage trade array
    * @param formData 
    */
-  saveStockToBoardArray(formData: TradeFormData): void  {
+  saveStockToBoardArray(formData: TradeFormData): void {
     this.stockTradeBoardService.creatingNewPosition(formData);
     this.saveEntreFormDataToLocalStorage(formData);
   }
@@ -88,11 +88,12 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.id = "modal-component";
     dialogConfig.data = {
       formData: this.previousFormData,
-      state: 'ADD'
+      state: this.formState.Add
     };
 
     // Initializing dialog
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+    const modalDialog = this.matDialog
+      .open(TradeDialogComponent, dialogConfig);
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
@@ -115,11 +116,12 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.id = "modal-component";
     dialogConfig.data = {
       formData: this.formDataToEdit,
-      state: 'EDIT'
+      state: this.formState.Edit
     };
 
     // Initializing dialog
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+    const modalDialog = this.matDialog
+      .open(TradeDialogComponent, dialogConfig);
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
@@ -140,11 +142,12 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.id = "modal-component";
     dialogConfig.data = {
       formData: this.formDataToEdit,
-      state: 'DELETE'
+      state: this.formState.Delete
     };
 
     // Initializing dialog
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
+    const modalDialog = this.matDialog
+      .open(TradeDialogComponent, dialogConfig);
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
@@ -155,7 +158,7 @@ export class TradeContainerComponent implements OnInit {
 
   }
 
-  deleteStockTileData(tileId: string):void{
+  deleteStockTileData(tileId: string): void {
 
   }
 
