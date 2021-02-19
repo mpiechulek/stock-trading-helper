@@ -18,7 +18,7 @@ export class TradeContainerComponent implements OnInit {
 
   // form state edit or add
   private formState = FormState;
-  
+
   // fetched date of a single stock do edit in the form
   private formDataToEditSubscription: Subscription;
   private formDataToEdit: TradeFormData;
@@ -46,10 +46,12 @@ export class TradeContainerComponent implements OnInit {
 
     this.getLastFormEntre();
 
-    this.stockBoardDataSubscription = this.formService.getEntreFormSubject()
-    .subscribe((data) => {
-      this.previousFormData = data;
-    });
+    this.stockBoardDataSubscription = this.stockTradeBoardService.getStockBoardArray
+      .subscribe((data) => {
+        this.stockBoardArray = data;
+        console.log(data);
+        
+      });
 
     this.fetchStockBoardArray();
   }
@@ -93,9 +95,9 @@ export class TradeContainerComponent implements OnInit {
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
-  fetchStockBoardArray(): void{
+  fetchStockBoardArray(): void {
     this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
-  }  
+  }
 
   // =============================================================================
   // ==================== Angular material form dialog triggering ================
