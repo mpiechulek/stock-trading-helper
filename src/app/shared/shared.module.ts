@@ -17,13 +17,15 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NumberDigitDirective } from './directives/number-digit.directive';
+import { GlobalDialogComponent } from './components/global-dialog/global-dialog.component';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     SideNavComponent,
     FooterComponent,
-    NumberDigitDirective
+    NumberDigitDirective,
+    GlobalDialogComponent
   ],
   imports: [
     CommonModule,

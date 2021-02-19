@@ -5,10 +5,8 @@
 
 <h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Add">Add Stock</h1>   
 <h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Edit">Edit Stock</h1>   
-<h1 class="trade-entry-form-header trade-entry-form__header" *ngIf="dialogState == formState.Delete">Delete Stock</h1>  
 
-<form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()" >
-
+<form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()">
 
     <div class="trade-entry-form__section-1">
 
@@ -88,8 +86,7 @@
             [disabled]="entryStockForm.invalid"
         >
            <span  *ngIf="dialogState == formState.Add">ADD</span>
-           <span  *ngIf="dialogState == formState.Edit">SAVE</span>
-           <span  *ngIf="dialogState == formState.Delete">DELETE</span>
+           <span  *ngIf="dialogState == formState.Edit">SAVE</span>         
         </button>
 
         <!-- <p>{{'value: ' }}</p> -->
