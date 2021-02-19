@@ -25,14 +25,14 @@ export class StockTradeBoardService {
    * 
    */
   checkIfTradeBoardDataInLocalStorage(): boolean {
-    return localStorage.getItem(this.storageTradeBoardKeyName) !== null;
+    return localStorage.getItem(this.storageTradeBoardKeyName) === null;
   }
 
   /**
    * 
    */
   getTradeBoardDataFromLocalStorage(): StockTileModel[] {
-    let tradeBoardDataArray: StockTileModel[];
+    let tradeBoardDataArray: StockTileModel[];    
 
     if (this.checkIfTradeBoardDataInLocalStorage()) {
 
