@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { OneOfferChangeComponent } from './components/trade/stock-tile/one-offer-change/one-offer-change.component';
 import { TileHeaderComponent } from './components/trade/stock-tile/tile-header/tile-header.component';
 

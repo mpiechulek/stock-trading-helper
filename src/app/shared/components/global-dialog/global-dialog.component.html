@@ -1,1 +1,31 @@
-<p>global-dialog works!</p>
+<div class="global-dialog">
+
+    <h1 class="global-dialog__header modal-dialog-header-text" >Delete Stock</h1>
+
+    <div class="global-dialog__text">
+        <p class="modal-dialog-text">Are you sure, you want to delete the stock?</p>
+    </div>
+
+
+    <div class="global-dialog__btn-container">
+
+        <button 
+            mat-raised-button
+            type="button"
+            color="warn"
+            (click)="onDelete()"
+        >
+            Yes
+        </button>
+    
+        <button 
+            mat-raised-button
+            type="button"
+            (click)="onCancel()"
+        >
+           No
+        </button>
+
+    </div>
+
+</div>

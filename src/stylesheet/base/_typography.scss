@@ -115,12 +115,6 @@
   }
 }
 
-// Trade dialog form header
-.trade-entry-form-header {
-  color: var(--color-text-form);
-  text-align: center;
-}
-
 // Trade tile 
 .trade-tile-stock-percentage-change-text {
   font-size: 1.8rem;
@@ -183,4 +177,16 @@
 .footer-text {
   color: var(--color-text-prime);
   font-size: 1.3rem;  
+}
+
+// Dialog
+
+.modal-dialog-header-text {
+  color: var(--color-text-form);
+  text-align: center;
+}
+
+.modal-dialog-text{
+  color: var(--color-text-form);
+  text-align: center;
 }

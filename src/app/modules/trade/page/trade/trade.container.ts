@@ -7,6 +7,7 @@ import { StockTileModel } from '../../../../data/models/stock-tile.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-dialog.component';
 import { FormState } from '../../../../data/enums/form-state.enum';
+import { GlobalDialogComponent } from '../../../../shared/components/global-dialog/global-dialog.component';
 
 @Component({
   selector: 'app-trade',
@@ -139,15 +140,17 @@ export class TradeContainerComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    dialogConfig.data = {
-      formData: this.formDataToEdit,
-      state: this.formState.Delete
-    };
+    dialogConfig.id = "modal-component";  
+
+    // How to translate this :/??   
+    // dialogConfig.data = {
+    //   header: "Delete Stock",     
+    //   description: "Are you sure, you want to delete the stock?"  
+    // }
 
     // Initializing dialog
     const modalDialog = this.matDialog
-      .open(TradeDialogComponent, dialogConfig);
+      .open(GlobalDialogComponent, dialogConfig);
 
     // Receive data from dialog
     modalDialog.afterClosed().subscribe(result => {
@@ -158,8 +161,12 @@ export class TradeContainerComponent implements OnInit {
 
   }
 
+  /**
+   * 
+   * @param tileId 
+   */
   deleteStockTileData(tileId: string): void {
-
+    console.log('delete item =');
   }
 
 }

@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { FormService } from './../../../../../core/services/form.service';
-import { TradeFormData } from './../../../../../../../src/app/data/models/form.model';
 import { FormState } from '../../../../../data/enums/form-state.enum';
 
 @Component({
