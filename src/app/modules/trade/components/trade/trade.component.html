@@ -10,7 +10,8 @@
             class="trade-tile-margin" 
             (editTile) = "onEditTile($event)"
             (deleteTile) = "onDeleteTile($event)"
-            *ngFor = "let stock of stockBoardArray"
+            *ngFor = "let stockElement of stockBoardArray"
+            [stockElement]="stockElement"
         >
         </app-stock-tile>     
 

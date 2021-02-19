@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
+import { StockTileModel } from '../../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-stock-tile',
@@ -11,6 +12,9 @@ export class StockTileComponent implements OnInit {
   array = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
   {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
   {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+
+  @Input()
+  stockElement: StockTileModel;
 
   @Output()
   deleteTile: EventEmitter<string> = new EventEmitter<string>();

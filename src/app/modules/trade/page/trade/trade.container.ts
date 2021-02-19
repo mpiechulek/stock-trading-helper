@@ -48,9 +48,7 @@ export class TradeContainerComponent implements OnInit {
 
     this.stockBoardDataSubscription = this.stockTradeBoardService.getStockBoardArray
       .subscribe((data) => {
-        this.stockBoardArray = data;
-        console.log(data);
-        
+        this.stockBoardArray = data;        
       });
 
     this.fetchStockBoardArray();
@@ -201,7 +199,9 @@ export class TradeContainerComponent implements OnInit {
    * @param tileId 
    */
   deleteStockTileData(tileId: string): void {
-    console.log('delete item =');
+    console.log('delete');
+    
+    this.stockTradeBoardService.deletePositionFromBoard(tileId);
   }
 
 }

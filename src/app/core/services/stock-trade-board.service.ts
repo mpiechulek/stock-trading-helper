@@ -108,6 +108,9 @@ export class StockTradeBoardService {
       return element.id !== stockId;
     });
 
+    // Updating ui
+    this.stockBoardArraySubject.next(newArr);
+
     this.saveTradeBoardDataToLocalStorage(newArr);
   }
 }

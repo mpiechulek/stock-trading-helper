@@ -1,10 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { StockTileModel } from '../../../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-tile-header',
   templateUrl: './tile-header.component.html'
 })
 export class TileHeaderComponent implements OnInit {
+
+  @Input()
+  stockElement: StockTileModel;
 
   @Output()
   deleteTile: EventEmitter<string> = new EventEmitter<string>();
@@ -17,12 +21,12 @@ export class TileHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onEditTile(id:string): void {
-    this.editTile.emit(id);
+  onEditTile(): void {
+    this.editTile.emit(this.stockElement.id);
   }
 
-  onDeleteTile(id:string): void {
-    this.deleteTile.emit(id);
+  onDeleteTile(): void {
+    this.deleteTile.emit(this.stockElement.id);
   }
 
 }
