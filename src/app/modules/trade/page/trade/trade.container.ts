@@ -16,10 +16,19 @@ import { GlobalDialogComponent } from '../../../../shared/components/global-dial
 })
 export class TradeContainerComponent implements OnInit {
 
+  // form state edit or add
   private formState = FormState;
+  
+  // fetched date of a single stock do edit in the form
+  private formDataToEditSubscription: Subscription;
   private formDataToEdit: TradeFormData;
+
+  // Last entered form data 
+  private previousFormDataSubscription: Subscription;
   private previousFormData: TradeFormData;
-  private formDataSubscription: Subscription;
+
+  //The array of all stock tiles to render on the trade board
+  private stockBoardDataSubscription: Subscription;
   private stockBoardArray: StockTileModel[] | [] = [];
 
   constructor(
@@ -30,16 +39,28 @@ export class TradeContainerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formDataSubscription = this.formService.getEntreFormSubject().subscribe((data) => {
+    this.previousFormDataSubscription = this.formService.getEntreFormSubject()
+      .subscribe((data) => {
+        this.previousFormData = data;
+      });
+
+    this.getLastFormEntre();
+
+    this.stockBoardDataSubscription = this.formService.getEntreFormSubject()
+    .subscribe((data) => {
       this.previousFormData = data;
     });
 
-    this.getLastFormEntre();
+    this.fetchStockBoardArray();
   }
 
   ngOnDestroy(): void {
-    if (this.formDataSubscription) {
-      this.formDataSubscription.unsubscribe();
+    if (this.previousFormDataSubscription) {
+      this.previousFormDataSubscription.unsubscribe();
+    }
+
+    if (this.stockBoardDataSubscription) {
+      this.stockBoardDataSubscription.unsubscribe();
     }
   }
 
@@ -71,6 +92,10 @@ export class TradeContainerComponent implements OnInit {
   saveEntreFormDataToLocalStorage(formData: TradeFormData): void {
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
+
+  fetchStockBoardArray(): void{
+    this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
+  }  
 
   // =============================================================================
   // ==================== Angular material form dialog triggering ================
@@ -132,15 +157,24 @@ export class TradeContainerComponent implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param result 
+   * @param tileId 
+   */
   editStockTileData(result, tileId) {
 
   }
 
+  /**
+   * 
+   * @param tileId 
+   */
   openFormDialogDelete(tileId: string): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";  
+    dialogConfig.id = "modal-component";
 
     // How to translate this :/??   
     // dialogConfig.data = {
@@ -158,7 +192,6 @@ export class TradeContainerComponent implements OnInit {
         this.deleteStockTileData(tileId);
       }
     });
-
   }
 
   /**

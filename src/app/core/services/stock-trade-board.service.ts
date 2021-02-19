@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TradeFormData } from '../../data/models/form.model';
 import { StockTileModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,39 @@ export class StockTradeBoardService {
 
   private storageTradeBoardKeyName: string = 'tradeBoardData';
 
+  private stockBoardArray: StockTileModel[];
+  private stockBoardArraySubject = new Subject<StockTileModel[]>();
+  private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
+
   constructor() { }
-  
-  checkIfTradeBoardDataInLocalStorage(): boolean {
-    return localStorage.getItem(this.storageTradeBoardKeyName) === null;
+
+  get getStockBoardArray() {
+    return this.stockBoardArray;
   }
 
+  /**
+   * 
+   */
+  checkIfTradeBoardDataInLocalStorage(): boolean {
+    return localStorage.getItem(this.storageTradeBoardKeyName) !== null;
+  }
+
+  /**
+   * 
+   */
   getTradeBoardDataFromLocalStorage(): StockTileModel[] {
-    let tradeBoardDataArray: [];
+    let tradeBoardDataArray: StockTileModel[];
+
     if (this.checkIfTradeBoardDataInLocalStorage()) {
+
       tradeBoardDataArray = [];
     } else {
+
       tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
     }
+
+    this.stockBoardArraySubject.next(tradeBoardDataArray);
+
     return tradeBoardDataArray;
   }
 
@@ -48,6 +69,10 @@ export class StockTradeBoardService {
     this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
   }
 
+  /**
+   * 
+   * @param data 
+   */
   saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
   }
@@ -71,9 +96,13 @@ export class StockTradeBoardService {
     this.saveTradeBoardDataToLocalStorage(newArr);
   }
 
-  deletePositionFromBoardData(stockId: string): void {
+  /**
+   * 
+   * @param stockId 
+   */
+  deletePositionFromBoard(stockId: string): void {
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
-    let newArr= [...tradeBoardArr];
+    let newArr = [...tradeBoardArr];
 
     newArr = newArr.filter((element) => {
       return element.id !== stockId;

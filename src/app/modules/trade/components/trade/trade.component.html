@@ -2,12 +2,15 @@
 
     <button class="trade-board__button-postion" mat-raised-button (click)="onAddNewStock()">ADD</button>
 
-    <section class="trade-board__container">    
+    <section class="trade-board__container">  
+        
+        
         
         <app-stock-tile 
             class="trade-tile-margin" 
             (editTile) = "onEditTile($event)"
             (deleteTile) = "onDeleteTile($event)"
+            *ngFor = "let stock of stockBoardArray"
         >
         </app-stock-tile>     
 
