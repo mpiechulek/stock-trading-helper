@@ -8,3 +8,27 @@ export interface StockTileModel {
     minCommission: string;
     selectedPrice: string;
 }
+
+export interface HeaderCalculationsModel {
+    buyValue: number;
+    currentPrice: number;
+    currentValue: number;
+    profitBeforeTax: number;
+    profitAfterTax: number;
+}
+
+export interface StockOfferModel {
+    percentageChange: number;
+    valueChange: number;
+    profit: number;
+    changeSymbol?: string; 
+}
+
+export interface StockTileNumericModel {
+    amountOfShares: number;
+    buyPrice: number;
+    taxRate: number;
+    commission: number;
+    minCommission: number;
+}
+
