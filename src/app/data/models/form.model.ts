@@ -1,5 +1,4 @@
-export interface TradeFormData {
-    [x: string]: any;  
+export interface TradeFormData {   
     companyName: string;
     amountOfShares: string;
     buyPrice: string;

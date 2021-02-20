@@ -19,10 +19,6 @@ export class TradeContainerComponent implements OnInit {
   // form state edit or add
   private formState = FormState;
 
-  // fetched date of a single stock do edit in the form
-  private formDataToEditSubscription: Subscription;
-  private formDataToEdit: TradeFormData;
-
   // Last entered form data 
   private previousFormDataSubscription: Subscription;
   private previousFormData: TradeFormData;
@@ -48,7 +44,7 @@ export class TradeContainerComponent implements OnInit {
 
     this.stockBoardDataSubscription = this.stockTradeBoardService.getStockBoardArray
       .subscribe((data) => {
-        this.stockBoardArray = data;        
+        this.stockBoardArray = data;
       });
 
     this.fetchStockBoardArray();
@@ -64,15 +60,10 @@ export class TradeContainerComponent implements OnInit {
     }
   }
 
+  // ==========================================================================
+
   get getStockBoardArray(): StockTileModel[] {
     return this.stockBoardArray;
-  }
-
-  /**
-   * Getting the last form entre
-   */
-  getLastFormEntre(): void {
-    this.formService.getEntreFormDataFromLocalStorage();
   }
 
   /**
@@ -93,6 +84,9 @@ export class TradeContainerComponent implements OnInit {
     this.formService.saveEntreFormDataToLocalStorage(formData);
   }
 
+  /**
+   * 
+   */
   fetchStockBoardArray(): void {
     this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
   }
@@ -130,18 +124,29 @@ export class TradeContainerComponent implements OnInit {
   }
 
   /**
+ * Getting the last form entre
+ */
+  getLastFormEntre(): void {
+    this.formService.getEntreFormDataFromLocalStorage();
+  }
+
+  // ==========================================================================
+
+  /**
    * Dialog trigger for editing stocks
    */
-  openFormDialogEdit(tileId: string): void {
+  openFormDialogEdit(stockId: string): Promise<void> {
 
-    // Get Stock data to update
+    const stockData: StockTileModel = this.fetchStockDataToEdit(stockId);
+
+    if (stockData === null) return;
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
     dialogConfig.data = {
-      formData: this.formDataToEdit,
+      formData: stockData,
       state: this.formState.Edit
     };
 
@@ -150,24 +155,37 @@ export class TradeContainerComponent implements OnInit {
       .open(TradeDialogComponent, dialogConfig);
 
     // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.editStockTileData(result, tileId);
-      }
-    });
+    modalDialog.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.updateStockBoardArray(result, stockId);
+        }
+      });
+  }
+
+  /**
+   * 
+   * @param stockToEdit 
+   */
+  fetchStockDataToEdit(stockId: string): StockTileModel {
+    return this.stockTradeBoardService.findStockInArray(stockId);
   }
 
   /**
    * 
    * @param result 
-   * @param tileId 
+   * @param stockId 
    */
-  editStockTileData(result, tileId) {
-
+  updateStockBoardArray(result: TradeFormData, stockId: string): void {
+    this.stockTradeBoardService.editTradeBoardArrayData(result, stockId);
   }
 
+  // ===========================================================================
+
   /**
-   * 
+   * Deleting a stock by id 
+   * Opening global dialog to confirm the deletion
+   * if true then call delete method
    * @param tileId 
    */
   openFormDialogDelete(tileId: string): void {
@@ -199,8 +217,6 @@ export class TradeContainerComponent implements OnInit {
    * @param tileId 
    */
   deleteStockTileData(tileId: string): void {
-    console.log('delete');
-    
     this.stockTradeBoardService.deletePositionFromBoard(tileId);
   }
 
