@@ -17,8 +17,10 @@ export class StockTileComponent implements OnInit {
 
   private profitQuotes: StockOfferModel[] = [];
   private loosQuotes: StockOfferModel[] = [];
-  private neutralQuote: StockOfferModel | {} = {};
+  private neutralQuote = {} as StockOfferModel;
+
   private headerCalculations = {} as HeaderCalculationsModel;
+
   private numericObject = {} as StockTileNumericModel;
 
   @Input()
@@ -34,9 +36,7 @@ export class StockTileComponent implements OnInit {
 
   ngOnInit(): void {
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
-
     this.calculateNeutralQuote(this.numericObject);
-
   }
 
   /**
@@ -50,7 +50,7 @@ export class StockTileComponent implements OnInit {
 
     for (let [key, value] of Object.entries(object)) {
 
-      if (!isNaN(value) && value !== null) {       
+      if (!isNaN(value) && value !== null) {
         newObject[key] = parseFloat(value);
       }
     }
@@ -58,14 +58,32 @@ export class StockTileComponent implements OnInit {
     return newObject;
   }
 
-  calculateNeutralQuote(numericObject: StockTileNumericModel) {
-    this.headerCalculations.buyValue = this.calculateBuyValue(numericObject);      
+  calculateNeutralQuote(numericObject: StockTileNumericModel): void {
+    const buyValue: number = this.calculateBuyValue(numericObject);
+    const commissionValue = numericObject.commission;
+    const commission = this.calculateCommissionValue(buyValue, commissionValue);
+
+    if (commissionValue > numericObject.minCommission) {
+      this.neutralQuote.profit = commissionValue;
+    }else {
+      this.neutralQuote.profit = numericObject.minCommission;
+    }
+
+    this.neutralQuote.percentageChange = 0;
+    this.neutralQuote.valueChange = 0;
+    this.neutralQuote.changeSymbol = null;    
   }
 
-  calculateBuyValue(numericObject: StockTileNumericModel): number {     
-    let result = parseFloat((numericObject.amountOfShares * numericObject.buyPrice).toFixed(4));  
-    return result;    
+  calculateBuyValue(numericObject: StockTileNumericModel): number {
+    let result = parseFloat((numericObject.amountOfShares * numericObject.buyPrice).toFixed(4));
+    return result;
   }
+
+  calculateCommissionValue(buyValue: number, commissionValue: number) {
+    return buyValue * commissionValue;
+  }
+
+
 
   calculateCurrentPrice(object: Object) {
 
