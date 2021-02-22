@@ -6,7 +6,7 @@ export interface StockTileModel {
     taxRate: string;
     commission: string;
     minCommission: string;
-    selectedPrice: string;
+    percentageChange?: string;
 }
 
 export interface HeaderCalculationsModel {
@@ -15,6 +15,7 @@ export interface HeaderCalculationsModel {
     currentValue: number;
     profitBeforeTax: number;
     profitAfterTax: number;
+    percentageChange: number;
 }
 
 export interface StockOfferModel {
@@ -30,5 +31,6 @@ export interface StockTileNumericModel {
     taxRate: number;
     commission: number;
     minCommission: number;
+    percentageChange?: number;
 }
 

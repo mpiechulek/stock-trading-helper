@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { StockTileModel } from '../../../../../../data/models/stock-tile.model';
+import { HeaderCalculationsModel, StockTileModel } from '../../../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-tile-header',
@@ -9,6 +9,9 @@ export class TileHeaderComponent implements OnInit {
 
   @Input()
   stockElement: StockTileModel;
+  
+  @Input()
+  headerCalculations: HeaderCalculationsModel;
 
   @Output()
   deleteTile: EventEmitter<string> = new EventEmitter<string>();

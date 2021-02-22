@@ -11,17 +11,21 @@ import { StockTilePresenterService } from './stock-tile.presenter';
 
 export class StockTileComponent implements OnInit {
 
-  array = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-  {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-  {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  array = [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ]
+
+  selectedPercentageChange: number = 0;
 
   private profitQuotes: StockOfferModel[] = [];
   private loosQuotes: StockOfferModel[] = [];
   private neutralQuote = {} as StockOfferModel;
 
   private headerCalculations = {} as HeaderCalculationsModel;
-
   private numericObject = {} as StockTileNumericModel;
+  private buyCommission: number = 0;
 
   @Input()
   private stockElement: StockTileModel;
@@ -36,7 +40,9 @@ export class StockTileComponent implements OnInit {
 
   ngOnInit(): void {
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
-    this.calculateNeutralQuote(this.numericObject);
+    this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
+    this.headerCalculations = this.calculateHeader(this.numericObject);
+
   }
 
   /**
@@ -50,70 +56,109 @@ export class StockTileComponent implements OnInit {
 
     for (let [key, value] of Object.entries(object)) {
 
-      if (!isNaN(value) && value !== null) {
+      if (!isNaN(value)) {        
         newObject[key] = parseFloat(value);
       }
     }
-
     return newObject;
   }
 
-  calculateNeutralQuote(numericObject: StockTileNumericModel): void {
-    const buyValue: number = this.calculateBuyValue(numericObject);
+  calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
+    let result = {} as StockOfferModel;
+
+    const buyValue: number = this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
+
     const commissionValue = numericObject.commission;
+
     const commission = this.calculateCommissionValue(buyValue, commissionValue);
 
-    if (commissionValue > numericObject.minCommission) {
-      this.neutralQuote.profit = commissionValue;
-    }else {
-      this.neutralQuote.profit = numericObject.minCommission;
+    if (commission > numericObject.minCommission) {
+      result.profit = commission;
+    } else {
+      result.profit = numericObject.minCommission;
     }
 
-    this.neutralQuote.percentageChange = 0;
-    this.neutralQuote.valueChange = 0;
-    this.neutralQuote.changeSymbol = null;    
-  }
+    this.buyCommission = result.profit
 
-  calculateBuyValue(numericObject: StockTileNumericModel): number {
-    let result = parseFloat((numericObject.amountOfShares * numericObject.buyPrice).toFixed(4));
+    result.percentageChange = 0;
+    result.valueChange = 0;    
+
     return result;
   }
 
-  calculateCommissionValue(buyValue: number, commissionValue: number) {
-    return buyValue * commissionValue;
+  setBuyCommission(commission: number, minCommission: number): number {
+
+    let resultCommission: number;
+
+    if (commission > minCommission) {
+      resultCommission = commission;
+    } else {
+      resultCommission = minCommission;
+    }
+
+    return resultCommission;
   }
 
+  calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
+    const result = {} as HeaderCalculationsModel;
 
+    result.buyValue =
+      this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
+    
+    console.log(numericObject);
 
-  calculateCurrentPrice(object: Object) {
+    result.currentPrice =
+      this.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
 
+    result.currentValue =
+      this.calculateCurrentValue(this.headerCalculations.currentPrice, numericObject.amountOfShares);
+
+    // Current Commission
+    const commission = this.calculateCommissionValue(this.headerCalculations.currentValue, numericObject.commission);
+
+    result.profitBeforeTax =
+      this.calculateProfitBeforeTax(this.headerCalculations.currentValue, commission);
+
+    result.profitAfterTax =
+      this.calculateProfitAfterTax(this.headerCalculations.profitBeforeTax, numericObject.taxRate);
+
+    result.percentageChange =
+      this.calculatePercentageChange(this.headerCalculations.currentPrice, numericObject.buyPrice);
+
+    return result;
   }
 
-  calculateCurrentValue(object: Object) {
-
+  calculateBuyValue(shareAmount: number, buyPrice: number): number {
+    return parseFloat((shareAmount * buyPrice).toFixed(4));
   }
 
-  calculateProfitBeforeTax(object: Object) {
-
+  calculateCommissionValue(buyValue: number, commissionValue: number): number {
+    return buyValue * (commissionValue / 100);
   }
 
-  calculateProfitAfterTax(object: Object) {
-
+  calculateCurrentPrice(buyPrice: number, percentageChange: number): number {
+    return buyPrice * percentageChange;
   }
 
-  calculatePercentageChange(object: Object) {
+  calculateCurrentValue(currentPrice: number, shareAmount: number): number {
+    return currentPrice * shareAmount;
+  }
 
+  calculateProfitBeforeTax(currentValue: number, commission: number) {
+    return currentValue - (commission + this.buyCommission);
+  }
+
+  calculateProfitAfterTax(profitBeforeTax: number, taxRate: number): number {
+    return profitBeforeTax - (profitBeforeTax * (taxRate / 100));
+  }
+
+  calculatePercentageChange(buyPrice, currentPrice) {
+    return (buyPrice * 100) / currentPrice;
   }
 
   addNewPositionToObject(object: Object, key: string, value: number) {
 
   }
-
-  // ===========================================================================
-
-
-
-  // ===========================================================================
 
   get getProfitQuotes() {
     return this.profitQuotes;
@@ -123,8 +168,12 @@ export class StockTileComponent implements OnInit {
     return this.loosQuotes;
   }
 
-  get getNeutralQuotes() {
+  get getNeutralQuote() {
     return this.neutralQuote;
+  }
+
+  get getHeaderCalculations() {
+    return this.headerCalculations;
   }
 
   get getStockElement() {

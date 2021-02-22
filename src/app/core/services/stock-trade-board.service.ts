@@ -57,7 +57,9 @@ export class StockTradeBoardService {
     let newStockTile: StockTileModel;
 
     // Creating a new stock trade tile object
-    newStockTile = { ...formData, id: uuid.v4(), selectedPrice: null };
+    newStockTile = {
+      ...formData, id: uuid.v4(), percentageChange: '0'
+    };
 
     // Getting the tile object list form local storage
     tradeBoardArr = this.getTradeBoardDataFromLocalStorage();
@@ -104,7 +106,7 @@ export class StockTradeBoardService {
 
     newArr = [...tradeBoardArr];
 
-    newArr[elementsIndex] = { ...objectEdit, id: stockId, selectedPrice: null };
+    newArr[elementsIndex] = { ...objectEdit, id: stockId, percentageChange: '0' };
 
     this.saveTradeBoardDataToLocalStorage(newArr);
 
