@@ -1,42 +1,39 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TradeFormData } from 'src/app/data/models/form.model';
-import { TradeDialogComponent } from './trade-dialog/trade-dialog.component';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { StockTileModel } from '../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-trade-ui',
   templateUrl: './trade.component.html'
 })
 export class TradeComponent implements OnInit {
-  
-  private lastTypedData:TradeFormData;
-  
-  @Output()
-  dataFromForm: EventEmitter<TradeFormData> = new EventEmitter<TradeFormData>();
- 
 
-  constructor(public matDialog: MatDialog) { }
+  @Input()  
+  stockBoardArray: StockTileModel[];
+
+  @Output()
+  addNewStock: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  deleteTile: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  editTile: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  openFormDialog(): void {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    dialogConfig.data = this.lastTypedData;
-
-    // Initializing dialog
-    const modalDialog = this.matDialog.open(TradeDialogComponent, dialogConfig);
-
-    // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
-      const dialogData = result;
-      if (dialogData !== undefined) {        
-        this.dataFromForm.emit(dialogData);
-      }
-    });
+  onAddNewStock():void {
+    this.addNewStock.emit();
   }
+
+  onEditTile(id:string): void {
+    this.editTile.emit(id);
+  }
+
+  onDeleteTile(id:string): void {
+    this.deleteTile.emit(id);
+  }
+  
 }

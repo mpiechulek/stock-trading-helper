@@ -7,8 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LanguageService {
 
-  private chosenLanguage: string;
-  private chosenLanguage$ = new Subject<string>();
+  private chosenLanguage: string; 
 
   constructor(public translate: TranslateService) {}
 

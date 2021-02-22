@@ -1,9 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { FormService } from 'src/app/core/services/form.service';
-import { TradeFormData } from 'src/app/data/models/form.model';
+import { FormService } from './../../../../../core/services/form.service';
+import { FormState } from '../../../../../data/enums/form-state.enum';
 
 @Component({
   selector: 'app-trade-dialog',
@@ -12,9 +11,9 @@ import { TradeFormData } from 'src/app/data/models/form.model';
 
 export class TradeDialogComponent implements OnInit {
 
-  formData: TradeFormData;
-  entryStockForm: FormGroup;
-  formDataSubscription: Subscription;
+   public entryStockForm: FormGroup;
+   public dialogState: string;
+   public formState = FormState;
 
   constructor(
     private formService: FormService,
@@ -23,25 +22,7 @@ export class TradeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {    
-
-    this.formService.getEntreFormDataFromLocalStorage();
-
-    this.formDataSubscription = this.formService.getEntreFormSubject.subscribe((formData) => {
-      this.formData = formData;
-        
-      if (this.formData) {
-
-        this.entryStockForm.patchValue({
-          companyName: this.formData.companyName,
-          amountOfShares: this.formData.amountOfShares,
-          buyPrice: this.formData.buyPrice,
-          taxRate: this.formData.taxRate,
-          commission: this.formData.commission,
-          minCommission: this.formData.minCommission
-        });
-      }
-    });
+  ngOnInit(): void {
 
     this.entryStockForm = this.formBuilder.group({
       companyName: ['', [
@@ -54,11 +35,11 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
+        // Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
         Validators.min(0)
       ]],
       taxRate: ['0.0000', [
         Validators.min(0)
-
       ]],
       commission: ['0.0000', [
         Validators.min(0)
@@ -66,13 +47,14 @@ export class TradeDialogComponent implements OnInit {
       minCommission: ['0.0000', [
         Validators.min(0)
       ]]
-    });
+    });    
 
-  }
+    // The state of the dialog box
+    this.dialogState = this.data.state
 
-  ngOnDestroy(): void {
-    if( this.formDataSubscription) {
-      this.formDataSubscription.unsubscribe();
+    // Overwriting the form value with received data
+    if (this.data.formData) {      
+      this.entryStockForm.patchValue(this.data.formData);
     }
   }
 
@@ -107,6 +89,8 @@ export class TradeDialogComponent implements OnInit {
     if (this.entryStockForm.invalid) {
       return;
     }
+
+    console.log(this.entryStockForm.value);
 
     this.entryStockForm.patchValue({
       companyName: this.entryStockForm.value.companyName,

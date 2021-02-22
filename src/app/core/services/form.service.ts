@@ -1,41 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { TradeFormData } from 'src/app/data/models/form.model';
+import { TradeFormData } from './../../data/models/form.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
 
+  private formData: TradeFormData = null;
+
   private storageFormKeyName: string = 'entreFormData';
+
   private entreFormSubject = new Subject<TradeFormData>();
-  // private entreFormSubject$: Observable<TradeFormData> = this.entreFormSubject.asObservable();
+  private entreFormSubject$ = this.entreFormSubject.asObservable();
 
   constructor(
   ) { }
 
   ngOnInit(): void {
-  }
 
-  get getEntreFormSubject(): Observable<TradeFormData> {
-    return this.entreFormSubject.asObservable();
   }
 
   // =============================================================================
-  // ==== Support for the registration form of the transaction, registering  =====
-  // ================================ the company  ===============================
-  // =============================================================================  
+  // ====== Saving to local storage the last state of the stock entry form =======
+  // =============================================================================
+
 
   checkIfEntreFormDataInLocalStorage(): boolean {
-    return localStorage.getItem(this.storageFormKeyName) === null;
+    return localStorage.getItem(this.storageFormKeyName) !== null;
   }
 
-  getEntreFormDataFromLocalStorage() {
-    let formData: TradeFormData;
+  getEntreFormDataFromLocalStorage(): void {   
     if (this.checkIfEntreFormDataInLocalStorage()) {
-      formData = JSON.parse(localStorage.getItem(this.storageFormKeyName));
-      this.entreFormSubject.next(formData);
+      this.formData = JSON.parse(localStorage.getItem(this.storageFormKeyName));          
+      this.entreFormSubject.next(this.formData);
     }
+  }
+
+  getEntreFormSubject() {
+    return this.entreFormSubject;
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
@@ -54,13 +57,8 @@ export class FormService {
 
     arr = value.split('.');
 
-    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, -2);
-    
+    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, 4);
+
     return value;
   }
-
-  // =============================================================================
-  // =================== Saving/Reading the trade board data  ====================
-  // =============================================================================
-
 }

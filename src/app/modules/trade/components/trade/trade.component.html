@@ -1,17 +1,19 @@
 <article class="trade-board">
 
-    <button class="trade-board__button-postion" mat-raised-button (click)="openFormDialog()">ADD</button>
+    <button class="trade-board__button-postion" mat-raised-button (click)="onAddNewStock()">ADD</button>
 
-    <section class="trade-board__container">    
+    <section class="trade-board__container">  
         
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-        <app-stock-tile class="trade-tile-margin"></app-stock-tile>
-
+        
+        
+        <app-stock-tile 
+            class="trade-tile-margin" 
+            (editTile) = "onEditTile($event)"
+            (deleteTile) = "onDeleteTile($event)"
+            *ngFor = "let stockElement of stockBoardArray"
+            [stockElement]="stockElement"
+        >
+        </app-stock-tile>     
 
     </section>
 
