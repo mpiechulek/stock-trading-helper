@@ -42,7 +42,6 @@ export class StockTileComponent implements OnInit {
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
     this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
     this.headerCalculations = this.calculateHeader(this.numericObject);
-
   }
 
   /**
@@ -56,7 +55,7 @@ export class StockTileComponent implements OnInit {
 
     for (let [key, value] of Object.entries(object)) {
 
-      if (!isNaN(value)) {        
+      if (!isNaN(value)) {
         newObject[key] = parseFloat(value);
       }
     }
@@ -72,16 +71,14 @@ export class StockTileComponent implements OnInit {
 
     const commission = this.calculateCommissionValue(buyValue, commissionValue);
 
-    if (commission > numericObject.minCommission) {
-      result.profit = commission;
-    } else {
-      result.profit = numericObject.minCommission;
-    }
+    this.buyCommission = commission;
 
-    this.buyCommission = result.profit
+    const selBuyCommission = commission * 2;
+
+    result.profit = this.setBuyCommission(selBuyCommission, numericObject.minCommission);
 
     result.percentageChange = 0;
-    result.valueChange = 0;    
+    result.valueChange = 0;
 
     return result;
   }
@@ -104,26 +101,31 @@ export class StockTileComponent implements OnInit {
 
     result.buyValue =
       this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
-    
-    console.log(numericObject);
 
     result.currentPrice =
       this.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
 
     result.currentValue =
-      this.calculateCurrentValue(this.headerCalculations.currentPrice, numericObject.amountOfShares);
-
-    // Current Commission
-    const commission = this.calculateCommissionValue(this.headerCalculations.currentValue, numericObject.commission);
+      this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
+   
+    const commission = this.calculateCommissionValue(result.currentValue, numericObject.commission);
 
     result.profitBeforeTax =
-      this.calculateProfitBeforeTax(this.headerCalculations.currentValue, commission);
+      this.calculateProfitBeforeTax(result.currentValue, commission);
 
-    result.profitAfterTax =
-      this.calculateProfitAfterTax(this.headerCalculations.profitBeforeTax, numericObject.taxRate);
+    // When the current stock price is less or equal the buy price you don't 
+    // pay tax from losses
+    if (result.currentPrice <= numericObject.buyPrice) { 
+      
+      result.profitAfterTax = result.profitBeforeTax;
+    } else {
+      
+      result.profitAfterTax =
+        this.calculateProfitAfterTax(result.profitBeforeTax, numericObject.taxRate);
+    } 
 
     result.percentageChange =
-      this.calculatePercentageChange(this.headerCalculations.currentPrice, numericObject.buyPrice);
+      this.calculatePercentageChange(result.currentPrice, numericObject.buyPrice);
 
     return result;
   }
@@ -137,6 +139,7 @@ export class StockTileComponent implements OnInit {
   }
 
   calculateCurrentPrice(buyPrice: number, percentageChange: number): number {
+    if (percentageChange === 0) return buyPrice;
     return buyPrice * percentageChange;
   }
 
@@ -153,6 +156,14 @@ export class StockTileComponent implements OnInit {
   }
 
   calculatePercentageChange(buyPrice, currentPrice) {
+    let percentage: number;
+
+    if (buyPrice === currentPrice) return 0;
+
+    percentage = (buyPrice * 100) / currentPrice;
+
+    if (buyPrice > currentPrice) return percentage * -1;
+
     return (buyPrice * 100) / currentPrice;
   }
 

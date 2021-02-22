@@ -8,12 +8,12 @@
 
             <p class="trade-tile-stock-percentage-change-text 
             trade-tile-stock-percentage-change-text--color-green">
-                {{headerCalculations.percentageChange}}
+                {{headerCalculations?.percentageChange}} %
             </p>
 
         </div>
 
-        <h2 class="trade-tile-stock-name-text trade-tile-header-margin-left">{{stockElement.companyName}}</h2>
+        <h2 class="trade-tile-stock-name-text trade-tile-header-margin-left">{{stockElement?.companyName}}</h2>
 
         <div class="trade-tile-stock-header-button-wrapper">
             <button class="btn trade-tile-header-margin-left" (click)="onEditTile()">
@@ -27,49 +27,42 @@
 
     </div>
 
-    <!-- buyValue: number;
-    currentPrice: number;
-    currentValue: number;
-    profitBeforeTax: number;
-    profitAfterTax: number;
-    percentageChange: number; -->
-
     <div class="trade-tile-stock-header-container">
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Buy price</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement.buyPrice}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.buyPrice}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Buy Value</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{1000}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.buyValue}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Quantity</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement.amountOfShares}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.amountOfShares}}</p>
         </div>
     </div>
 
     <div class="trade-tile-stock-header-container">
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Cur.Price</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{10}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.currentPrice}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Cur. Value</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{10}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.currentValue}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Bef.tax</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{9999}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.profitBeforeTax}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Aft.tax</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{400}}</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.profitAfterTax}}</p>
         </div>
     </div>
 
