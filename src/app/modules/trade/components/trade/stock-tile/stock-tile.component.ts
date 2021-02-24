@@ -223,25 +223,24 @@ export class StockTileComponent implements OnInit {
         numericObject.minCommission
       );
 
-    sellCommission
+    sellCommission = 
     this.calculateCommissionValue(
       result.currentValue,
       numericObject.commission,
       numericObject.minCommission
-    );
+    );    
 
     totalCommission =
       this.calculateTotalCommissionValue(
         sellCommission,
         buyCommission
-      );
-
+      );   
     result.profitBeforeTax =
       this.calculateProfitBeforeTax(
         result.currentValue,
         result.buyValue,
         totalCommission
-      );
+      );      
 
     // When the current stock price is less or equal the buy price you don't 
     // pay tax from losses
