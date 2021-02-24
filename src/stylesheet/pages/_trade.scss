@@ -67,14 +67,13 @@
   }
 
   &__positive-stock-change {
-    overflow-y: auto;
-    // scrollbar-width: 5px;   
-    display: flex;    
+    overflow-y: auto;   
+    display: flex;      
+    flex-direction: column;    
   }
 
   &__neutral-stock-change {
-    display: block;   
-    
+    display: block;       
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
     margin: 3px 0;

@@ -14,7 +14,7 @@ export class OneOfferChangeComponent implements OnInit, AfterViewInit  {
   constructor() { }
 
   ngOnInit(): void {
-   console.log(this.profitQuote);   
+   
   }
 
   ngAfterViewInit(): void  {

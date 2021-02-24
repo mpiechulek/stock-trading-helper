@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
 import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-stock-tile',
@@ -47,6 +48,20 @@ export class StockTileComponent implements OnInit {
   }
 
   /**
+   * This fixes the object sorting pipe bug 
+   */
+  unsorted() { }
+
+  /**
+   * Reverse object sorting of key value
+   * @param a 
+   * @param b 
+   */
+  orderbyValueDsc = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+    return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
+  }
+
+  /**
    * This method is converting an object with string values to a object wit only 
    * numeric values, and removing everything that is not a number
    * @param object 
@@ -88,7 +103,7 @@ export class StockTileComponent implements OnInit {
     const numberZero = 0;
 
     result.profit = selBuyCommission.toFixed(2);
-    result.percentageChange =numberZero.toFixed(2);
+    result.percentageChange = numberZero.toFixed(2);
     result.newPrice = numberZero.toFixed(2);
 
     return result;
@@ -155,13 +170,12 @@ export class StockTileComponent implements OnInit {
       result[i] = {
         percentageChange: percentageStep.toFixed(this.numberOfDecimalPlaces),
         newPrice: currentPrice.toFixed(this.numberOfDecimalPlaces),
-        profit: profit.toFixed(this.numberOfDecimalPlaces)       
-      }     
-      
+        profit: profit.toFixed(this.numberOfDecimalPlaces)
+      }
+
       percentageStep += percentageChange;
     }
-    
-    console.log(result);
+
     return result;
   }
 
