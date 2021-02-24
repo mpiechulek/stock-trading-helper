@@ -17,13 +17,11 @@ export class StockTileComponent implements OnInit {
     {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
   ]
 
-  private selectedPercentageChange: number = 0;
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
   private numberOfDecimalPlaces: number = 2;
 
   private profitQuotes: Object = {};
-  private loosQuotes: Object = {};
   private neutralQuote = {} as StockOfferModel;
 
   private headerCalculations = {} as HeaderCalculationsModel;
@@ -271,10 +269,6 @@ export class StockTileComponent implements OnInit {
 
   get getProfitQuotes() {
     return this.profitQuotes;
-  }
-
-  get getLoosQuotes() {
-    return this.loosQuotes;
   }
 
   get getNeutralQuote() {

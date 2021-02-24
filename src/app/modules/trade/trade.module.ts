@@ -7,6 +7,9 @@ import { StockTileComponent } from './components/trade/stock-tile/stock-tile.com
 import { TradeContainerComponent } from './page/trade/trade.container';
 import { TradeComponent } from './components/trade/trade.component';
 import { TradeDialogComponent } from './components/trade/trade-dialog/trade-dialog.component';
+import { OneOfferChangeComponent } from './components/trade/stock-tile/one-offer-change/one-offer-change.component';
+import { TileHeaderComponent } from './components/trade/stock-tile/tile-header/tile-header.component';
+import { NeutralOfferComponent } from './components/trade/stock-tile/neutral-offer/neutral-offer.component';
 
 // Angular materials
 
@@ -18,8 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { OneOfferChangeComponent } from './components/trade/stock-tile/one-offer-change/one-offer-change.component';
-import { TileHeaderComponent } from './components/trade/stock-tile/tile-header/tile-header.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { TileHeaderComponent } from './components/trade/stock-tile/tile-header/t
     TradeDialogComponent,
     StockTileComponent,
     OneOfferChangeComponent,
-    TileHeaderComponent
+    TileHeaderComponent,
+    NeutralOfferComponent
   ],
   imports: [
     CommonModule,
