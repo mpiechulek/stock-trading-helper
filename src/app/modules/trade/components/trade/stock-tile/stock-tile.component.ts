@@ -32,7 +32,7 @@ export class StockTileComponent implements OnInit {
   constructor(private stockTilePresenterService: StockTilePresenterService) { }
 
   // Angular material CDK virtual scrolling
-  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;  
+  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
 
   ngOnInit(): void {
 
@@ -68,13 +68,13 @@ export class StockTileComponent implements OnInit {
     return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
   }
 
-/**
- * Angular material scroll event handler
- * @param $event 
- */
+  /**
+   * Angular material scroll event handler
+   * @param $event 
+   */
   scrollHandler($event) {
     console.log($event);
-    
+
   }
 
   /**
@@ -223,24 +223,24 @@ export class StockTileComponent implements OnInit {
         numericObject.minCommission
       );
 
-    sellCommission = 
-    this.calculateCommissionValue(
-      result.currentValue,
-      numericObject.commission,
-      numericObject.minCommission
-    );    
+    sellCommission =
+      this.calculateCommissionValue(
+        result.currentValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
 
     totalCommission =
       this.calculateTotalCommissionValue(
         sellCommission,
         buyCommission
-      );   
+      );
     result.profitBeforeTax =
       this.calculateProfitBeforeTax(
         result.currentValue,
         result.buyValue,
         totalCommission
-      );      
+      );
 
     // When the current stock price is less or equal the buy price you don't 
     // pay tax from losses
