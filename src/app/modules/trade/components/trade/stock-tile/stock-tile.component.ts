@@ -18,8 +18,9 @@ export class StockTileComponent implements OnInit {
   ]
 
   private selectedPercentageChange: number = 0;
-  private numberOfRepeats: number = 100;
+  private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
+  private numberOfDecimalPlaces: number = 2;
 
   private profitQuotes: Object = {};
   private loosQuotes: Object = {};
@@ -27,7 +28,6 @@ export class StockTileComponent implements OnInit {
 
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
-  private buyCommission: number = 0;
 
   @Input()
   private stockElement: StockTileModel;
@@ -44,9 +44,9 @@ export class StockTileComponent implements OnInit {
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
     this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
     this.headerCalculations = this.calculateHeader(this.numericObject);
-    this.profitQuotes = this.generateObjectOfOffers('profit', this.numberOfRepeats);
-    this.loosQuotes = this.generateObjectOfOffers('loos', this.numberOfRepeats);
+    this.profitQuotes = this.generateObjectOfOffers(this.numberOfRepeats, this.percentageChange, this.numericObject);
   }
+
   /**
    * This method is converting an object with string values to a object wit only 
    * numeric values, and removing everything that is not a number
@@ -65,54 +65,100 @@ export class StockTileComponent implements OnInit {
     return newObject;
   }
 
+  /**
+   * 
+   * @param numericObject 
+   */
   calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
     let result = {} as StockOfferModel;
 
     const buyValue: number = this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
-
-    const commissionValue = numericObject.commission;
-
-    const commission = this.calculateCommissionValue(buyValue, commissionValue);
-
-    this.buyCommission = commission;
-
+    const commission = this.calculateCommissionValue(buyValue, numericObject.commission, numericObject.minCommission);
     const selBuyCommission = commission * 2;
-
-    result.profit = this.setBuyCommission(selBuyCommission, numericObject.minCommission);
-
+    result.profit = selBuyCommission
     result.percentageChange = 0;
     result.valueChange = 0;
 
     return result;
   }
 
-  setBuyCommission(commission: number, minCommission: number): number {
+  /**
+   * 
+   * @param repeats 
+   * @param percentageChange 
+   * @param numericObject 
+   */
+  generateObjectOfOffers(
+    repeats: number,
+    percentageChange: number,
+    numericObject: StockTileNumericModel
+  ): StockOfferModel {
 
-    let resultCommission: number;
+    let result = {} as StockOfferModel;
+    let percentageStep: number = 0.5;
+    let currentPrice: number;
+    let profit: number;
+    let sellValue: number;
+    let sellCommission: number;
+    let totalCommission: number;
 
-    if (commission > minCommission) {
-      resultCommission = commission;
-    } else {
-      resultCommission = minCommission;
+    let buyValue: number =
+      this.calculateBuyValue(
+        numericObject.amountOfShares,
+        numericObject.buyPrice
+      );
+
+    let buyCommission: number =
+      this.calculateCommissionValue(
+        buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
+
+    for (let i = 0; repeats > i; i++) {
+
+      currentPrice = this.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
+      sellValue = currentPrice * numericObject.amountOfShares;
+
+      sellCommission =
+        this.calculateCommissionValue(
+          sellValue,
+          numericObject.commission,
+          numericObject.minCommission
+        );
+
+      totalCommission =
+        this.calculateTotalCommissionValue(
+          buyCommission,
+          sellCommission
+        );
+
+      profit =
+        this.calculateProfitBeforeTax(
+          sellValue,
+          buyValue,
+          totalCommission
+        );
+
+      result[i] = {
+        percentageChange: percentageStep,
+        newPrice: currentPrice,
+        profit: profit
+      }
+
+      percentageStep += percentageChange;
     }
 
-    return resultCommission;
-  }
-
-  generateObjectOfOffers(condition: string, repeats: number): Object {
-    let result: Object = {};
-    // for (let i = 1; repeats > i ; i ++) {
-    //   result[i] = {
-    //     percentageChange: 1,
-    //     valueChange: 1,
-    //     profit: 1
-    //   }
-    // }
     console.log(result);
-    
     return result;
   }
 
+  // ===========================================================================
+
+  /**
+   * 
+   * @param numericObject 
+   */
   calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
     const result = {} as HeaderCalculationsModel;
 
@@ -125,54 +171,91 @@ export class StockTileComponent implements OnInit {
     result.currentValue =
       this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
 
-    const commission = this.calculateCommissionValue(result.currentValue, numericObject.commission);
+    const buyCommission =
+      this.calculateCommissionValue(
+        result.buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
+
+    const sellCommission =
+      this.calculateCommissionValue(
+        result.currentValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
+
+    const totalCommission =
+      this.calculateTotalCommissionValue(
+        sellCommission,
+        buyCommission
+      );
 
     result.profitBeforeTax =
-      this.calculateProfitBeforeTax(result.currentValue, commission);
+      this.calculateProfitBeforeTax(
+        result.currentValue,
+        result.buyValue,
+        totalCommission
+      );
 
     // When the current stock price is less or equal the buy price you don't 
     // pay tax from losses
     if (result.currentPrice <= numericObject.buyPrice) {
-
       result.profitAfterTax = result.profitBeforeTax;
     } else {
 
       result.profitAfterTax =
-        this.calculateProfitAfterTax(result.profitBeforeTax, numericObject.taxRate);
+        this.calculateProfitAfterTax(
+          result.profitBeforeTax,
+          numericObject.taxRate
+        );
     }
 
     result.percentageChange =
-      this.calculatePercentageChange(result.currentPrice, numericObject.buyPrice);
+      this.calculatePercentageChange(
+        result.currentPrice,
+        numericObject.buyPrice
+      );
 
     return result;
   }
 
+  // ===========================================================================
+
   calculateBuyValue(shareAmount: number, buyPrice: number): number {
-    return parseFloat((shareAmount * buyPrice).toFixed(4));
+    return parseFloat((shareAmount * buyPrice).toFixed(this.numberOfDecimalPlaces));
   }
 
-  calculateCommissionValue(buyValue: number, commissionValue: number): number {
-    return buyValue * (commissionValue / 100);
+  calculateCommissionValue(buyValue: number, commissionValue: number, minCommissionValue: number): number {
+    const calcCommission = parseFloat((buyValue * (commissionValue / 100)).toFixed(this.numberOfDecimalPlaces));
+
+    // The brokers commission can't by less than the min. commission
+    if (calcCommission < minCommissionValue) return minCommissionValue;
+    return calcCommission;
+  }
+
+  calculateTotalCommissionValue(sellCommission: number, buyCommission: number): number {
+    return sellCommission + buyCommission;
   }
 
   calculateCurrentPrice(buyPrice: number, percentageChange: number): number {
     if (percentageChange === 0) return buyPrice;
-    return buyPrice * percentageChange;
+    return parseFloat((buyPrice + (buyPrice * (percentageChange / 100))).toFixed(this.numberOfDecimalPlaces));
   }
 
   calculateCurrentValue(currentPrice: number, shareAmount: number): number {
-    return currentPrice * shareAmount;
+    return parseFloat((currentPrice * shareAmount).toFixed(this.numberOfDecimalPlaces));
   }
 
-  calculateProfitBeforeTax(currentValue: number, commission: number) {
-    return currentValue - (commission + this.buyCommission);
+  calculateProfitBeforeTax(currentValue: number, buyValue: number, totalCommission: number): number {
+    return parseFloat(((currentValue - buyValue) - totalCommission).toFixed(this.numberOfDecimalPlaces));
   }
 
   calculateProfitAfterTax(profitBeforeTax: number, taxRate: number): number {
-    return profitBeforeTax - (profitBeforeTax * (taxRate / 100));
+    return parseFloat((profitBeforeTax - (profitBeforeTax * (taxRate / 100))).toFixed(this.numberOfDecimalPlaces));
   }
 
-  calculatePercentageChange(buyPrice, currentPrice) {
+  calculatePercentageChange(buyPrice, currentPrice): number {
     let percentage: number;
 
     if (buyPrice === currentPrice) return 0;
@@ -184,9 +267,7 @@ export class StockTileComponent implements OnInit {
     return (buyPrice * 100) / currentPrice;
   }
 
-  // addNewPositionToObject(object: Object, key: string, value: number) {
-
-  // }
+  // ==========================================================================
 
   get getProfitQuotes() {
     return this.profitQuotes;
@@ -207,7 +288,6 @@ export class StockTileComponent implements OnInit {
   get getStockElement() {
     return this.stockElement;
   }
-
 
   onEditTile(id: string): void {
     this.editTile.emit(id);
