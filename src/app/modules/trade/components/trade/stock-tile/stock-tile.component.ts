@@ -17,10 +17,12 @@ export class StockTileComponent implements OnInit {
     {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
   ]
 
-  selectedPercentageChange: number = 0;
+  private selectedPercentageChange: number = 0;
+  private numberOfRepeats: number = 100;
+  private percentageChange: number = 0.5;
 
-  private profitQuotes: StockOfferModel[] = [];
-  private loosQuotes: StockOfferModel[] = [];
+  private profitQuotes: Object = {};
+  private loosQuotes: Object = {};
   private neutralQuote = {} as StockOfferModel;
 
   private headerCalculations = {} as HeaderCalculationsModel;
@@ -42,8 +44,9 @@ export class StockTileComponent implements OnInit {
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
     this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
     this.headerCalculations = this.calculateHeader(this.numericObject);
+    this.profitQuotes = this.generateObjectOfOffers('profit', this.numberOfRepeats);
+    this.loosQuotes = this.generateObjectOfOffers('loos', this.numberOfRepeats);
   }
-
   /**
    * This method is converting an object with string values to a object wit only 
    * numeric values, and removing everything that is not a number
@@ -96,6 +99,20 @@ export class StockTileComponent implements OnInit {
     return resultCommission;
   }
 
+  generateObjectOfOffers(condition: string, repeats: number): Object {
+    let result: Object = {};
+    // for (let i = 1; repeats > i ; i ++) {
+    //   result[i] = {
+    //     percentageChange: 1,
+    //     valueChange: 1,
+    //     profit: 1
+    //   }
+    // }
+    console.log(result);
+    
+    return result;
+  }
+
   calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
     const result = {} as HeaderCalculationsModel;
 
@@ -107,7 +124,7 @@ export class StockTileComponent implements OnInit {
 
     result.currentValue =
       this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
-   
+
     const commission = this.calculateCommissionValue(result.currentValue, numericObject.commission);
 
     result.profitBeforeTax =
@@ -115,14 +132,14 @@ export class StockTileComponent implements OnInit {
 
     // When the current stock price is less or equal the buy price you don't 
     // pay tax from losses
-    if (result.currentPrice <= numericObject.buyPrice) { 
-      
+    if (result.currentPrice <= numericObject.buyPrice) {
+
       result.profitAfterTax = result.profitBeforeTax;
     } else {
-      
+
       result.profitAfterTax =
         this.calculateProfitAfterTax(result.profitBeforeTax, numericObject.taxRate);
-    } 
+    }
 
     result.percentageChange =
       this.calculatePercentageChange(result.currentPrice, numericObject.buyPrice);
@@ -167,9 +184,9 @@ export class StockTileComponent implements OnInit {
     return (buyPrice * 100) / currentPrice;
   }
 
-  addNewPositionToObject(object: Object, key: string, value: number) {
+  // addNewPositionToObject(object: Object, key: string, value: number) {
 
-  }
+  // }
 
   get getProfitQuotes() {
     return this.profitQuotes;
