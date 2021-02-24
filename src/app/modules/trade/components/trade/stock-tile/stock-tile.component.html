@@ -2,8 +2,13 @@
 
     <!-- Stock data -->
 
-    <app-tile-header (editTile)="onEditTile($event)" (deleteTile)="onDeleteTile($event)"
-        [stockElement]="getStockElement" [headerCalculations]="getHeaderCalculations"></app-tile-header>
+    <app-tile-header 
+        (editTile)="onEditTile($event)"
+        (deleteTile)="onDeleteTile($event)"
+        [stockElement]="getStockElement"
+        [headerCalculations]="getHeaderCalculations"
+    >
+    </app-tile-header>
 
     <!-- Positive share price  -->
 
@@ -12,9 +17,9 @@
         <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
 
             <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes"
-                [profitQuote] ="profitQuote"
-            >
+                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue"
+                [profitQuote] ="profitQuote.value"
+            >           
             </app-one-offer-change>
 
         </cdk-virtual-scroll-viewport>
@@ -23,9 +28,9 @@
 
     <!-- Neutral share price  -->
 
-    <ul class="trade-tile__negative-stock-change">
+    <ul class="trade-tile__neutral-stock-change">
 
-        <app-one-offer-change [neutralQuote]="getNeutralQuote"></app-one-offer-change>
+        <app-neutral-offer [neutralQuote]="getNeutralQuote"></app-neutral-offer>
 
     </ul>
 
@@ -36,9 +41,9 @@
         <cdk-virtual-scroll-viewport itemSize="2" class="example-viewport">
 
             <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes"
-                [profitQuote] ="profitQuote"
-            >
+                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue"
+                [profitQuote] ="profitQuote.value"
+            >           
             </app-one-offer-change>
 
         </cdk-virtual-scroll-viewport>

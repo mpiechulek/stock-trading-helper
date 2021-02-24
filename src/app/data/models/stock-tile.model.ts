@@ -20,10 +20,14 @@ export interface HeaderCalculationsModel {
 
 export interface StockOfferModel {
     percentageChange: number;
-    valueChange: number;
-    profit: number;
-    changeSymbol?: string; 
+    newPrice: number;
+    profit: number;   
 }
+
+export interface StockOfferDictionaryModel {
+    [ index: string ]: StockOfferModel ; 
+}
+
 
 export interface StockTileNumericModel {
     amountOfShares: number;

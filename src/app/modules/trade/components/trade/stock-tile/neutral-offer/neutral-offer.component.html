@@ -1,1 +1,38 @@
-<p>neutral-offer works!</p>
+<li class="trade-tile-stock-change-container">
+
+    <div class="trade-shape trade-shape--green-small"></div>
+
+    <div class="stock-offer-change-width">
+        <p class="trade-tile-stock-text
+                trade-tile-stock-text--xld 
+                stock-offer-change-margin-left                         
+                "
+        >
+            {{getNeutralQuote?.percentageChange}}
+         
+        </p>
+    </div>
+
+    <div class="stock-offer-change-width">
+        <p class="trade-tile-stock-text
+                trade-tile-stock-text--xld
+                stock-offer-change-margin-left    
+                "
+        >
+            {{getNeutralQuote?.newPrice}}
+           
+        </p>
+    </div>
+
+    <div class="stock-offer-change-width">
+        <p class="trade-tile-stock-text
+                trade-tile-stock-text--xld
+                stock-offer-change-margin-left                       
+                "
+        >
+            - {{getNeutralQuote?.profit}}
+           
+        </p>
+    </div>
+
+</li>

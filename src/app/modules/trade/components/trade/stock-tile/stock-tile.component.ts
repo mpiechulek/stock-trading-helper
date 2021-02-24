@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
-import { HeaderCalculationsModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
+import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 
 @Component({
@@ -21,7 +21,7 @@ export class StockTileComponent implements OnInit {
   private percentageChange: number = 0.5;
   private numberOfDecimalPlaces: number = 2;
 
-  private profitQuotes: Object = {};
+  profitQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferModel;
 
   private headerCalculations = {} as HeaderCalculationsModel;
@@ -39,10 +39,22 @@ export class StockTileComponent implements OnInit {
   constructor(private stockTilePresenterService: StockTilePresenterService) { }
 
   ngOnInit(): void {
+
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
+
     this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
+
     this.headerCalculations = this.calculateHeader(this.numericObject);
-    this.profitQuotes = this.generateObjectOfOffers(this.numberOfRepeats, this.percentageChange, this.numericObject);
+
+    this.profitQuotes =
+      this.generateObjectOfOffers(
+        this.numberOfRepeats,
+        this.percentageChange,
+        this.numericObject
+      );
+
+    console.log(this.profitQuotes);
+
   }
 
   /**
@@ -70,12 +82,24 @@ export class StockTileComponent implements OnInit {
   calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
     let result = {} as StockOfferModel;
 
-    const buyValue: number = this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
-    const commission = this.calculateCommissionValue(buyValue, numericObject.commission, numericObject.minCommission);
+    const buyValue: number =
+      this.calculateBuyValue(
+        numericObject.amountOfShares,
+        numericObject.buyPrice
+      );
+
+    const commission: number =
+      this.calculateCommissionValue(
+        buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
+
     const selBuyCommission = commission * 2;
+
     result.profit = selBuyCommission
     result.percentageChange = 0;
-    result.valueChange = 0;
+    result.newPrice = 0;
 
     return result;
   }
@@ -90,9 +114,9 @@ export class StockTileComponent implements OnInit {
     repeats: number,
     percentageChange: number,
     numericObject: StockTileNumericModel
-  ): StockOfferModel {
+  ): StockOfferDictionaryModel {
 
-    let result = {} as StockOfferModel;
+    let result = {} as StockOfferDictionaryModel;
     let percentageStep: number = 0.5;
     let currentPrice: number;
     let profit: number;
@@ -147,7 +171,6 @@ export class StockTileComponent implements OnInit {
       percentageStep += percentageChange;
     }
 
-    console.log(result);
     return result;
   }
 
@@ -159,6 +182,9 @@ export class StockTileComponent implements OnInit {
    */
   calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
     const result = {} as HeaderCalculationsModel;
+    let buyCommission: number;
+    let sellCommission: number;
+    let totalCommission: number;
 
     result.buyValue =
       this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
@@ -169,21 +195,21 @@ export class StockTileComponent implements OnInit {
     result.currentValue =
       this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
 
-    const buyCommission =
+    buyCommission =
       this.calculateCommissionValue(
         result.buyValue,
         numericObject.commission,
         numericObject.minCommission
       );
 
-    const sellCommission =
-      this.calculateCommissionValue(
-        result.currentValue,
-        numericObject.commission,
-        numericObject.minCommission
-      );
+    sellCommission
+    this.calculateCommissionValue(
+      result.currentValue,
+      numericObject.commission,
+      numericObject.minCommission
+    );
 
-    const totalCommission =
+    totalCommission =
       this.calculateTotalCommissionValue(
         sellCommission,
         buyCommission
@@ -267,6 +293,9 @@ export class StockTileComponent implements OnInit {
 
   // ==========================================================================
 
+  /**
+   * Returning an object of objects { key1:{...}, key2:{...}}
+   */
   get getProfitQuotes() {
     return this.profitQuotes;
   }

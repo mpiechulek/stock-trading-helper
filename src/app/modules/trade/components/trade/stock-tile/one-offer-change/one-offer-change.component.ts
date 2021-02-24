@@ -9,23 +9,16 @@ import { StockOfferModel } from 'src/app/data/models/stock-tile.model';
 export class OneOfferChangeComponent implements OnInit, AfterViewInit  {
 
   @Input()
-  private neutralQuote: StockOfferModel;
-
-  @Input()
   private profitQuote: StockOfferModel;
 
   constructor() { }
 
   ngOnInit(): void {
-   
+   console.log(this.profitQuote);   
   }
 
   ngAfterViewInit(): void  {
-    console.log(this.profitQuote);  
-  }
-
-  get getNeutralQuote() {
-    return this.neutralQuote;
+    
   }
 
   get getProfitQuote() {
