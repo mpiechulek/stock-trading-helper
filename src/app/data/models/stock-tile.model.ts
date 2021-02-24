@@ -18,10 +18,10 @@ export interface HeaderCalculationsModel {
     percentageChange: number;
 }
 
-export interface StockOfferModel {
-    percentageChange: number;
-    newPrice: number;
-    profit: number;   
+export interface StockOfferModel {  
+    percentageChange: string;
+    newPrice: string;
+    profit: string;   
 }
 
 export interface StockOfferDictionaryModel {

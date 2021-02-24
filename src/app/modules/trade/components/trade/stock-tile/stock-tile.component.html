@@ -17,7 +17,7 @@
         <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
 
             <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue"
+                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: 0"
                 [profitQuote] ="profitQuote.value"
             >           
             </app-one-offer-change>
@@ -41,7 +41,7 @@
         <cdk-virtual-scroll-viewport itemSize="2" class="example-viewport">
 
             <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue"
+                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: 0"
                 [profitQuote] ="profitQuote.value"
             >           
             </app-one-offer-change>

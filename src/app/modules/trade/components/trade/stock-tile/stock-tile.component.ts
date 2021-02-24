@@ -11,19 +11,11 @@ import { StockTilePresenterService } from './stock-tile.presenter';
 
 export class StockTileComponent implements OnInit {
 
-  array = [
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
-  ]
-
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
   private numberOfDecimalPlaces: number = 2;
-
-  profitQuotes = {} as StockOfferDictionaryModel;
+  private profitQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferModel;
-
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
 
@@ -52,9 +44,6 @@ export class StockTileComponent implements OnInit {
         this.percentageChange,
         this.numericObject
       );
-
-    console.log(this.profitQuotes);
-
   }
 
   /**
@@ -96,10 +85,11 @@ export class StockTileComponent implements OnInit {
       );
 
     const selBuyCommission = commission * 2;
+    const numberZero = 0;
 
-    result.profit = selBuyCommission
-    result.percentageChange = 0;
-    result.newPrice = 0;
+    result.profit = selBuyCommission.toFixed(2);
+    result.percentageChange =numberZero.toFixed(2);
+    result.newPrice = numberZero.toFixed(2);
 
     return result;
   }
@@ -163,14 +153,15 @@ export class StockTileComponent implements OnInit {
         );
 
       result[i] = {
-        percentageChange: percentageStep,
-        newPrice: currentPrice,
-        profit: profit
-      }
-
+        percentageChange: percentageStep.toFixed(this.numberOfDecimalPlaces),
+        newPrice: currentPrice.toFixed(this.numberOfDecimalPlaces),
+        profit: profit.toFixed(this.numberOfDecimalPlaces)       
+      }     
+      
       percentageStep += percentageChange;
     }
-
+    
+    console.log(result);
     return result;
   }
 
