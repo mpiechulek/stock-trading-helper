@@ -43,11 +43,11 @@
 
         <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
 
-            <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: unsorted"
-                [profitQuote] ="profitQuote.value"
+            <app-one-offer-loose 
+                *cdkVirtualFor="let loseQuote of getLoseQuotes | keyvalue: unsorted"
+                [loseQuote] ="loseQuote.value"
             >           
-            </app-one-offer-change>
+            </app-one-offer-loose>
 
         </cdk-virtual-scroll-viewport>
 

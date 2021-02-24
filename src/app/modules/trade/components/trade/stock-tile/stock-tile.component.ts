@@ -33,7 +33,7 @@ export class StockTileComponent implements OnInit {
   private percentageChange: number = 0;
   private numberOfDecimalPlaces: number = 2;
   private profitQuotes = {} as StockOfferDictionaryModel;
-  private loosQuotes = {} as StockOfferDictionaryModel;
+  private loseQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferModel;
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
@@ -67,15 +67,14 @@ export class StockTileComponent implements OnInit {
         this.numericObject,
         'profit'
       );
-      
-    this.loosQuotes =
-    this.generateObjectOfOffers(
-      this.numberOfRepeats,
-      this.percentageChange,
-      this.numericObject,
-      'loos'
-    );
-    
+
+    this.loseQuotes =
+      this.generateObjectOfOffers(
+        this.numberOfRepeats,
+        this.percentageChange,
+        this.numericObject,
+        'loos'
+      );
   }
 
   ngAfterViewChecked() {
@@ -102,7 +101,6 @@ export class StockTileComponent implements OnInit {
    */
   scrollHandler($event) {
     console.log($event);
-
   }
 
   /**
@@ -167,16 +165,16 @@ export class StockTileComponent implements OnInit {
   ): StockOfferDictionaryModel {
 
     let result = {} as StockOfferDictionaryModel;
-    let percentageStep: number = 0;
+    let percentageStep: number = 0.5;
     let currentPrice: number;
     let profit: number;
     let sellValue: number;
     let sellCommission: number;
     let totalCommission: number;
 
-    if(profitLoos !== 'profit') {
-      percentageStep = percentageChange * -1;
-    } 
+    if (profitLoos !== 'profit') {
+      percentageChange = percentageChange * -1;
+    }
 
     let buyValue: number =
       this.calculateBuyValue(
@@ -191,9 +189,7 @@ export class StockTileComponent implements OnInit {
         numericObject.minCommission
       );
 
-    for (let i = 0; repeats > i; i++) {
-
-      percentageStep += percentageChange;
+    for (let i = 0; repeats > i; i++) {    
 
       currentPrice = this.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
       sellValue = currentPrice * numericObject.amountOfShares;
@@ -223,6 +219,8 @@ export class StockTileComponent implements OnInit {
         newPrice: currentPrice.toFixed(this.numberOfDecimalPlaces),
         profit: profit.toFixed(this.numberOfDecimalPlaces)
       }
+
+      percentageStep += percentageChange;
 
     }
 
@@ -352,6 +350,10 @@ export class StockTileComponent implements OnInit {
    */
   get getProfitQuotes() {
     return this.profitQuotes;
+  }
+
+  get getLoseQuotes() {
+    return this.loseQuotes;
   }
 
   get getNeutralQuote() {

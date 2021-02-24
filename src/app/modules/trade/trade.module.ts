@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { OneOfferLooseComponent } from './components/trade/stock-tile/one-offer-loose/one-offer-loose.component';
 
 
 
@@ -32,7 +33,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     StockTileComponent,
     OneOfferChangeComponent,
     TileHeaderComponent,
-    NeutralOfferComponent
+    NeutralOfferComponent,
+    OneOfferLooseComponent
   ],
   imports: [
     CommonModule,

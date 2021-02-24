@@ -1,15 +1,14 @@
 <li class="trade-tile-stock-change-container">
 
-    <div class="trade-shape trade-shape--gray-dot"></div>
+    <div class="trade-shape trade-shape--red-small"></div>
 
     <div class="stock-offer-change-width">
         <p class="trade-tile-stock-text
                 trade-tile-stock-text--xld 
                 stock-offer-change-margin-left                         
                 "
-        >
-            {{getNeutralQuote?.percentageChange}}%
-         
+        >          
+            {{getLoseQuote?.percentageChange}} %
         </p>
     </div>
 
@@ -18,9 +17,8 @@
                 trade-tile-stock-text--xld
                 stock-offer-change-margin-left    
                 "
-        >
-            {{getNeutralQuote?.newPrice}}
-           
+        >          
+            {{getLoseQuote?.newPrice}}
         </p>
     </div>
 
@@ -29,9 +27,8 @@
                 trade-tile-stock-text--xld
                 stock-offer-change-margin-left                       
                 "
-        >
-            - {{getNeutralQuote?.profit}}
-           
+        >         
+            {{getLoseQuote?.profit}}
         </p>
     </div>
 
