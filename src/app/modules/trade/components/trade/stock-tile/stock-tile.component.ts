@@ -1,6 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { CdkVirtualScrollViewport, FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
-import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {
+  CdkVirtualScrollViewport,
+  FixedSizeVirtualScrollStrategy,
+  VIRTUAL_SCROLL_STRATEGY
+} from '@angular/cdk/scrolling';
+import {
+  HeaderCalculationsModel,
+  StockOfferDictionaryModel,
+  StockOfferModel,
+  StockTileModel,
+  StockTileNumericModel
+} from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
 
@@ -13,9 +30,10 @@ import { KeyValue } from '@angular/common';
 export class StockTileComponent implements OnInit {
 
   private numberOfRepeats: number = 200;
-  private percentageChange: number = 0.5;
+  private percentageChange: number = 0;
   private numberOfDecimalPlaces: number = 2;
   private profitQuotes = {} as StockOfferDictionaryModel;
+  private loosQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferModel;
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
@@ -46,8 +64,18 @@ export class StockTileComponent implements OnInit {
       this.generateObjectOfOffers(
         this.numberOfRepeats,
         this.percentageChange,
-        this.numericObject
+        this.numericObject,
+        'profit'
       );
+      
+    this.loosQuotes =
+    this.generateObjectOfOffers(
+      this.numberOfRepeats,
+      this.percentageChange,
+      this.numericObject,
+      'loos'
+    );
+    
   }
 
   ngAfterViewChecked() {
@@ -134,16 +162,21 @@ export class StockTileComponent implements OnInit {
   generateObjectOfOffers(
     repeats: number,
     percentageChange: number,
-    numericObject: StockTileNumericModel
+    numericObject: StockTileNumericModel,
+    profitLoos?: string
   ): StockOfferDictionaryModel {
 
     let result = {} as StockOfferDictionaryModel;
-    let percentageStep: number = 0.5;
+    let percentageStep: number = 0;
     let currentPrice: number;
     let profit: number;
     let sellValue: number;
     let sellCommission: number;
     let totalCommission: number;
+
+    if(profitLoos !== 'profit') {
+      percentageStep = percentageChange * -1;
+    } 
 
     let buyValue: number =
       this.calculateBuyValue(
@@ -159,6 +192,8 @@ export class StockTileComponent implements OnInit {
       );
 
     for (let i = 0; repeats > i; i++) {
+
+      percentageStep += percentageChange;
 
       currentPrice = this.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
       sellValue = currentPrice * numericObject.amountOfShares;
@@ -189,7 +224,6 @@ export class StockTileComponent implements OnInit {
         profit: profit.toFixed(this.numberOfDecimalPlaces)
       }
 
-      percentageStep += percentageChange;
     }
 
     return result;
