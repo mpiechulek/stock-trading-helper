@@ -14,7 +14,10 @@
 
     <ul class="trade-tile__positive-stock-change">
 
-        <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
+        <cdk-virtual-scroll-viewport 
+        itemSize="28" 
+        class="example-viewport"
+        (scrolledIndexChange)="scrollHandler($event)">
 
             <app-one-offer-change 
                 *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: orderbyValueDsc"

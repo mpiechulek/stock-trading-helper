@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { CdkVirtualScrollViewport, FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
 import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
@@ -31,6 +31,9 @@ export class StockTileComponent implements OnInit {
 
   constructor(private stockTilePresenterService: StockTilePresenterService) { }
 
+  // Angular material CDK virtual scrolling
+  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;  
+
   ngOnInit(): void {
 
     this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
@@ -47,6 +50,10 @@ export class StockTileComponent implements OnInit {
       );
   }
 
+  ngAfterViewChecked() {
+    // this.cdkVirtualScrollViewport.scrollToIndex(2000);
+  }
+
   /**
    * This fixes the object sorting pipe bug 
    */
@@ -59,6 +66,15 @@ export class StockTileComponent implements OnInit {
    */
   orderbyValueDsc = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
+  }
+
+/**
+ * Angular material scroll event handler
+ * @param $event 
+ */
+  scrollHandler($event) {
+    console.log($event);
+    
   }
 
   /**
