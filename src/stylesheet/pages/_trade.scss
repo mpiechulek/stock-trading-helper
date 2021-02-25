@@ -49,14 +49,18 @@
       padding: 0.4rem;
     }
 
-    // .trade-tile-stock-header-container:not(:last-child) {
-    // }
+    .trade-tile-stock-header-wrapper-1 {
+      display: flex;      
+      justify-content: center;
+      align-items: center;
+    }
 
-    .trade-tile-stock-header-wrapper {
+    .trade-tile-stock-header-wrapper-2 {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin-right: 0.5rem;
     }
 
     .trade-tile-stock-header-button-wrapper {

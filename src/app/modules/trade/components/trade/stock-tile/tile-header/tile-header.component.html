@@ -1,14 +1,24 @@
 <div class="trade-tile__stock-data">
 
     <div class="trade-tile-stock-header-container">
+        <div class="trade-tile-stock-header-wrapper-1">
 
-        <div class="trade-tile-stock-header-wrapper">
+            <div class="trade-tile-stock-header-wrapper-2">
 
-            <div class="trade-shape trade-shape--green-big"></div>
+                <div class="trade-shape trade-shape--green-big"></div>
+
+                <p class="trade-tile-stock-percentage-change-text 
+                        trade-tile-stock-percentage-change-text--color-green">
+                    {{headerCalculations?.percentageChange}}
+                </p>
+
+            </div>
 
             <p class="trade-tile-stock-percentage-change-text 
-            trade-tile-stock-percentage-change-text--color-green">
-                {{headerCalculations?.percentageChange}} %
+                      trade-tile-stock-percentage-change-text--size-big
+                      trade-tile-stock-percentage-change-text--color-green"
+            >
+                %
             </p>
 
         </div>
@@ -37,7 +47,7 @@
             <p class="trade-tile-stock-text">Quantity</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.amountOfShares}}</p>
         </div>
-        
+
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Buy Value</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.buyValue}}</p>

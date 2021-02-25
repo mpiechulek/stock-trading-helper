@@ -127,6 +127,10 @@
   &--color-red {
     color: $color-red;    
   }
+
+  &--size-big{
+    font-size: 3rem;
+  }
 }
 
 .trade-tile-stock-name-text {
