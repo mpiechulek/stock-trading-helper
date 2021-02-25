@@ -21,7 +21,8 @@ export interface HeaderCalculationsModel {
 export interface StockOfferModel {  
     percentageChange: string;
     newPrice: string;
-    profit: string;   
+    profit: string;  
+    selected?: boolean;  
 }
 
 export interface StockOfferDictionaryModel {

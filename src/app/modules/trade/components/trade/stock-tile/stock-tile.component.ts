@@ -1,6 +1,8 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -20,6 +22,7 @@ import {
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
+import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 
 @Component({
   selector: 'app-stock-tile',
@@ -28,12 +31,19 @@ import { KeyValue } from '@angular/common';
 })
 
 export class StockTileComponent implements OnInit {
-  
+
   private profitQuotes = {} as StockOfferDictionaryModel;
   private loseQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferModel;
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
+  private selectedOfferMarker = {
+    "Profit": null,
+    "Lose": null,
+    "Neutral": null
+  }
+
+  public tradeTileOffers = TradeTileOffersState;
 
   @Input()
   private stockElement: StockTileModel;
@@ -44,7 +54,14 @@ export class StockTileComponent implements OnInit {
   @Output()
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private stockTilePresenterService: StockTilePresenterService) { }
+  constructor(
+    private stockTilePresenterService: StockTilePresenterService,
+    private elRef: ElementRef) { }
+
+  // @HostListener('click', ['$event']) onTileClick(event: MouseEvent){
+  //   // const parentEl = this.elRef.nativeElement;
+  //   console.log(event);
+  // }
 
   // Angular material CDK virtual scrolling
   @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
@@ -82,9 +99,9 @@ export class StockTileComponent implements OnInit {
     // this.cdkVirtualScrollViewport.scrollToIndex(2000);
   }
 
-   /**
-   * Returning an object of objects { key1:{...}, key2:{...}}
-   */
+  /**
+  * Returning an object of objects { key1:{...}, key2:{...}}
+  */
   get getProfitQuotes() {
     return this.profitQuotes;
   }
@@ -125,12 +142,69 @@ export class StockTileComponent implements OnInit {
    */
   scrollHandler($event) {
 
-  }  
- 
+  }
+  /**
+   * 
+   * @param event 
+   */
+  onClickedList(event, listMarker: string): void {
+
+    // Get li tag id 
+    let id = this.stockTilePresenterService.getChosenElementId(event, listMarker);
+
+    // Reset Marker and offer lists
+    // Check if the marker is selected
+    if (this.selectedOfferMarker.Profit !== null) { 
+      //Overwrite the element in the dictionary, by old marker id
+      this.profitQuotes[this.selectedOfferMarker.Profit].selected = false;
+      // Next reset the odl marker id
+      this.selectedOfferMarker.Profit = null;
+    }
+
+    if (this.selectedOfferMarker.Lose !== null) {    
+      this.loseQuotes[this.selectedOfferMarker.Lose].selected = false;
+      this.selectedOfferMarker.Lose = null;
+    }
+
+    if (this.selectedOfferMarker.Neutral !== null) {     
+      this.neutralQuote.selected = false;
+      this.selectedOfferMarker.Neutral = null;
+    }
+
+    // Set new marker
+    this.selectedOfferMarker[listMarker] = id;
+
+    // Set list component selector to true
+    if (listMarker === this.tradeTileOffers.Profit) {
+      this.profitQuotes[id].selected = true;      
+    }
+
+    if (listMarker === this.tradeTileOffers.Lose) {
+      this.loseQuotes[id].selected = true;
+    }
+
+    if (listMarker === this.tradeTileOffers.Neutral) {
+      this.neutralQuote.selected = true;
+    }
+
+  // Przenies do serweisu obliczenia 
+  // nasteonie obliczenie według pocentowej smiany hedera
+  // zmiana stylu zanaczonej oferty   
+
+  }
+
+  /**
+   * 
+   * @param id 
+   */
   onEditTile(id: string): void {
     this.editTile.emit(id);
   }
 
+  /**
+   * 
+   * @param id 
+   */
   onDeleteTile(id: string): void {
     this.deleteTile.emit(id);
   }

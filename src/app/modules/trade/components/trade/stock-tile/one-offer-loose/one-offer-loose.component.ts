@@ -11,10 +11,13 @@ export class OneOfferLooseComponent implements OnInit, AfterViewInit {
   @Input()
   private loseQuote: StockOfferModel;
 
+  @Input()
+  private keyId: string;
+
   constructor() { }
 
   ngOnInit(): void {   
-   
+
   }
 
   ngAfterViewInit(): void  {
@@ -23,6 +26,10 @@ export class OneOfferLooseComponent implements OnInit, AfterViewInit {
 
   get getLoseQuote() {
     return this.loseQuote;
+  }
+
+  get getKeyId() {
+    return this.keyId;
   }
 
 }

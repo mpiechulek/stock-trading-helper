@@ -1,4 +1,8 @@
-<li class="trade-tile-stock-change-container">
+<li 
+    [id]="getKeyId"
+    class="trade-tile-stock-change-container" 
+    [ngClass]="{'trade-tile-stock-change-container--background': getProfitQuote?.selected }"
+>
 
     <div class="trade-shape trade-shape--green-small"></div>
 

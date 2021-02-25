@@ -12,7 +12,7 @@
 
     <!-- Positive share price  -->
 
-    <ul class="trade-tile__positive-stock-change">
+    <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.Profit)" >
 
         <cdk-virtual-scroll-viewport 
         itemSize="28" 
@@ -22,6 +22,7 @@
             <app-one-offer-change 
                 *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: orderbyValueDsc"
                 [profitQuote] ="profitQuote.value"
+                [keyId] = "profitQuote.key"
             >           
             </app-one-offer-change>
 
@@ -31,7 +32,7 @@
 
     <!-- Neutral share price  -->
 
-    <ul class="trade-tile__neutral-stock-change">
+    <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.Neutral)">
 
         <app-neutral-offer [neutralQuote]="getNeutralQuote"></app-neutral-offer>
 
@@ -39,13 +40,14 @@
 
     <!-- Negative share price  -->
 
-    <ul class="trade-tile__negative-stock-change">
+    <ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.Lose)">
 
         <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
 
             <app-one-offer-loose 
                 *cdkVirtualFor="let loseQuote of getLoseQuotes | keyvalue: unsorted"
                 [loseQuote] ="loseQuote.value"
+                [keyId] = "loseQuote.key"
             >           
             </app-one-offer-loose>
 
@@ -56,7 +58,13 @@
     <!-- Btn container  -->
 
     <div class="trade-tile__button-container">
-        <button class="trade-board__button-postion" mat-raised-button>Sell</button>
+        <button 
+            class="trade-board__button-postion"
+            color="primary"
+            mat-raised-button
+        >
+           Sell
+        </button>
     </div>
 
 </div>

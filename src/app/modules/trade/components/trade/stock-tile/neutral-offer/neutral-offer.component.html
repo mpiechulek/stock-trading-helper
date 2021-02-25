@@ -1,4 +1,8 @@
-<li class="trade-tile-stock-change-container">
+<li 
+    [id]="0"
+    class="trade-tile-stock-change-container" 
+    [ngClass]="{'trade-tile-stock-change-container--background': getNeutralQuote?.selected }"
+>
 
     <div class="trade-shape trade-shape--gray-dot"></div>
 
@@ -8,8 +12,7 @@
                 stock-offer-change-margin-left                         
                 "
         >
-            {{getNeutralQuote?.percentageChange}}%
-         
+            {{getNeutralQuote?.percentageChange}}%         
         </p>
     </div>
 
@@ -19,8 +22,7 @@
                 stock-offer-change-margin-left    
                 "
         >
-            {{getNeutralQuote?.newPrice}}
-           
+            {{getNeutralQuote?.newPrice}}           
         </p>
     </div>
 
@@ -30,8 +32,7 @@
                 stock-offer-change-margin-left                       
                 "
         >
-            - {{getNeutralQuote?.profit}}
-           
+            - {{getNeutralQuote?.profit}}           
         </p>
     </div>
 

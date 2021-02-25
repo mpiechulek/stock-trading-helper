@@ -11,7 +11,6 @@ export class StockTilePresenterService {
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
-
   /**
    * This method is converting an object with string values to a object with only 
    * numeric values, and removing everything that is not a number
@@ -56,6 +55,7 @@ export class StockTilePresenterService {
     result.profit = selBuyCommission.toFixed(2);
     result.percentageChange = numberZero.toFixed(2);
     result.newPrice = numericObject.buyPrice.toString();
+    result.selected = false;
     
     return result;
   }
@@ -129,15 +129,13 @@ export class StockTilePresenterService {
       result[i] = {
         percentageChange: percentageStep.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
         newPrice: currentPrice.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
-        profit: profit.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces)
-      }    
-
+        profit: profit.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
+        selected: false
+      }  
     }
 
     return result;
   }
-
-  // ===========================================================================
 
   /**
    * 
@@ -204,5 +202,19 @@ export class StockTilePresenterService {
       );
 
     return result;
+  }
+
+  getChosenElementId(event, listMarker: string ) {
+    let id: string;
+
+    if (event.target.classList.contains('trade-tile-stock-change-container')) {
+      return id = event.target.id;
+    } else if (event.target.parentElement.classList.contains('trade-tile-stock-change-container')) {
+      return  id = event.target.parentElement.id;
+    } else if (event.target.parentElement.parentElement.classList.contains('trade-tile-stock-change-container')) {
+      return id = event.target.parentElement.parentElement.id;
+    }
+
+    return null;
   }
 }

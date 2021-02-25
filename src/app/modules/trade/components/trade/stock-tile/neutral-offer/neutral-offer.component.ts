@@ -11,6 +11,7 @@ export class NeutralOfferComponent implements OnInit {
   @Input()
   private neutralQuote: StockOfferModel;
 
+
   constructor() { }
 
   ngOnInit(): void {

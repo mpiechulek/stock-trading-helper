@@ -6,23 +6,30 @@ import { StockOfferModel } from 'src/app/data/models/stock-tile.model';
   templateUrl: './one-offer-change.component.html'
 
 })
-export class OneOfferChangeComponent implements OnInit, AfterViewInit  {
+export class OneOfferChangeComponent implements OnInit, AfterViewInit {
 
   @Input()
   private profitQuote: StockOfferModel;
 
+  @Input()
+  public keyId: string;
+
   constructor() { }
 
   ngOnInit(): void {
-   
+
   }
 
-  ngAfterViewInit(): void  {
-    
+  ngAfterViewInit(): void {
+
   }
 
-  get getProfitQuote() {
+  get getProfitQuote(): StockOfferModel {
     return this.profitQuote;
+  }
+
+  get getKeyId(): string {
+    return this.keyId;
   }
 
 }
