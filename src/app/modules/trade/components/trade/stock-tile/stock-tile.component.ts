@@ -30,7 +30,7 @@ import { KeyValue } from '@angular/common';
 export class StockTileComponent implements OnInit {
 
   private numberOfRepeats: number = 200;
-  private percentageChange: number = 0;
+  private percentageChange: number = 0.5;
   private numberOfDecimalPlaces: number = 2;
   private profitQuotes = {} as StockOfferDictionaryModel;
   private loseQuotes = {} as StockOfferDictionaryModel;
@@ -100,7 +100,7 @@ export class StockTileComponent implements OnInit {
    * @param $event 
    */
   scrollHandler($event) {
-    console.log($event);
+  
   }
 
   /**
@@ -165,16 +165,17 @@ export class StockTileComponent implements OnInit {
   ): StockOfferDictionaryModel {
 
     let result = {} as StockOfferDictionaryModel;
-    let percentageStep: number = 0.5;
+    let percentageStep: number = 0;
     let currentPrice: number;
     let profit: number;
     let sellValue: number;
     let sellCommission: number;
     let totalCommission: number;
 
+    // Different value of percentageChange for profit/lose
     if (profitLoos !== 'profit') {
       percentageChange = percentageChange * -1;
-    }
+    }  
 
     let buyValue: number =
       this.calculateBuyValue(
@@ -189,7 +190,9 @@ export class StockTileComponent implements OnInit {
         numericObject.minCommission
       );
 
-    for (let i = 0; repeats > i; i++) {    
+    for (let i = 0; repeats > i; i++) {  
+
+      percentageStep += percentageChange;     
 
       currentPrice = this.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
       sellValue = currentPrice * numericObject.amountOfShares;
@@ -218,9 +221,7 @@ export class StockTileComponent implements OnInit {
         percentageChange: percentageStep.toFixed(this.numberOfDecimalPlaces),
         newPrice: currentPrice.toFixed(this.numberOfDecimalPlaces),
         profit: profit.toFixed(this.numberOfDecimalPlaces)
-      }
-
-      percentageStep += percentageChange;
+      }    
 
     }
 

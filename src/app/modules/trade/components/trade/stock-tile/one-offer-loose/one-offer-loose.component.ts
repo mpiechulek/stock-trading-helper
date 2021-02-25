@@ -13,10 +13,7 @@ export class OneOfferLooseComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-
-    console.log(this.loseQuote);
-    
+  ngOnInit(): void {   
    
   }
 
