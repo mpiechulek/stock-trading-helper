@@ -1,195 +1,208 @@
 import { Injectable } from '@angular/core';
+import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
+import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from 'src/app/data/models/stock-tile.model';
 
 @Injectable()
 
 export class StockTilePresenterService {
 
-  constructor() { }
+  private numberOfRepeats: number = 200;
+  private percentageChange: number = 0.5;
 
-  //  /**
-  //  * This method is converting an object with string values to a object wit only 
-  //  * numeric values, and removing everything that is not a number
-  //  * @param object 
-  //  */
-  // convertStringObjectElementsToNumber(object: StockTileModel): StockTileNumericModel {
+  constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
-  //   let newObject = {} as StockTileNumericModel;
 
-  //   for (let [key, value] of Object.entries(object)) {
+  /**
+   * This method is converting an object with string values to a object with only 
+   * numeric values, and removing everything that is not a number
+   * @param object 
+   */
+  convertStringObjectElementsToNumber(object: StockTileModel): StockTileNumericModel {
 
-  //     if (!isNaN(value)) {
-  //       newObject[key] = parseFloat(value);
-  //     }
-  //   }
-  //   return newObject;
-  // }
+    let newObject = {} as StockTileNumericModel;
 
-  // /**
-  //  * 
-  //  * @param numericObject 
-  //  */
-  // calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
-  //   let result = {} as StockOfferModel;
+    for (let [key, value] of Object.entries(object)) {
 
-  //   const buyValue: number =
-  //     this.calculateBuyValue(
-  //       numericObject.amountOfShares,
-  //       numericObject.buyPrice
-  //     );
+      if (!isNaN(value)) {
+        newObject[key] = parseFloat(value);
+      }
+    }
+    return newObject;
+  }
 
-  //   const commission: number =
-  //     this.calculateCommissionValue(
-  //       buyValue,
-  //       numericObject.commission,
-  //       numericObject.minCommission
-  //     );
+  /**
+   * 
+   * @param numericObject 
+   */
+  calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
+    let result = {} as StockOfferModel;
 
-  //   const selBuyCommission = commission * 2;
-  //   const numberZero = 0;
+    const buyValue: number =
+      this.stockPriceCalculatorService.calculateBuyValue(
+        numericObject.amountOfShares,
+        numericObject.buyPrice
+      );
 
-  //   result.profit = selBuyCommission.toFixed(2);
-  //   result.percentageChange = numberZero.toFixed(2);
-  //   result.newPrice = numberZero.toFixed(2);
+    const commission: number =
+    this.stockPriceCalculatorService.calculateCommissionValue(
+        buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
 
-  //   return result;
-  // }
+    const selBuyCommission = commission * 2;
+    const numberZero = 0;
 
-  // /**
-  //  * 
-  //  * @param repeats 
-  //  * @param percentageChange 
-  //  * @param numericObject 
-  //  */
-  // generateObjectOfOffers(
-  //   repeats: number,
-  //   percentageChange: number,
-  //   numericObject: StockTileNumericModel
-  // ): StockOfferDictionaryModel {
+    result.profit = selBuyCommission.toFixed(2);
+    result.percentageChange = numberZero.toFixed(2);
+    result.newPrice = numericObject.buyPrice.toString();
+    
+    return result;
+  }
 
-  //   let result = {} as StockOfferDictionaryModel;
-  //   let percentageStep: number = 0.5;
-  //   let currentPrice: number;
-  //   let profit: number;
-  //   let sellValue: number;
-  //   let sellCommission: number;
-  //   let totalCommission: number;
+  /**
+   * 
+   * @param repeats 
+   * @param percentageChange 
+   * @param numericObject 
+   */
+  generateObjectOfOffers(
+    numericObject: StockTileNumericModel,
+    profitLoos?: string,
+    repeats: number = this.numberOfRepeats,
+    percentageChange: number = this.percentageChange
+  ): StockOfferDictionaryModel {
 
-  //   let buyValue: number =
-  //     this.calculateBuyValue(
-  //       numericObject.amountOfShares,
-  //       numericObject.buyPrice
-  //     );
+    let result = {} as StockOfferDictionaryModel;
+    let percentageStep: number = 0;
+    let currentPrice: number;
+    let profit: number;
+    let sellValue: number;
+    let sellCommission: number;
+    let totalCommission: number;
 
-  //   let buyCommission: number =
-  //     this.calculateCommissionValue(
-  //       buyValue,
-  //       numericObject.commission,
-  //       numericObject.minCommission
-  //     );
+    // Different value of percentageChange for profit/lose
+    if (profitLoos !== 'profit') {
+      percentageChange = percentageChange * -1;
+    }  
 
-  //   for (let i = 0; repeats > i; i++) {
+    let buyValue: number =
+    this.stockPriceCalculatorService.calculateBuyValue(
+        numericObject.amountOfShares,
+        numericObject.buyPrice
+      );
 
-  //     currentPrice = this.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
-  //     sellValue = currentPrice * numericObject.amountOfShares;
+    let buyCommission: number =
+    this.stockPriceCalculatorService.calculateCommissionValue(
+        buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
 
-  //     sellCommission =
-  //       this.calculateCommissionValue(
-  //         sellValue,
-  //         numericObject.commission,
-  //         numericObject.minCommission
-  //       );
+    for (let i = 0; repeats > i; i++) {  
 
-  //     totalCommission =
-  //       this.calculateTotalCommissionValue(
-  //         buyCommission,
-  //         sellCommission
-  //       );
+      percentageStep += percentageChange;     
 
-  //     profit =
-  //       this.calculateProfitBeforeTax(
-  //         sellValue,
-  //         buyValue,
-  //         totalCommission
-  //       );
+      currentPrice =  this.stockPriceCalculatorService.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
+      sellValue = currentPrice * numericObject.amountOfShares;
 
-  //     result[i] = {
-  //       percentageChange: percentageStep.toFixed(this.numberOfDecimalPlaces),
-  //       newPrice: currentPrice.toFixed(this.numberOfDecimalPlaces),
-  //       profit: profit.toFixed(this.numberOfDecimalPlaces)
-  //     }
+      sellCommission =
+      this.stockPriceCalculatorService.calculateCommissionValue(
+          sellValue,
+          numericObject.commission,
+          numericObject.minCommission
+        );
 
-  //     percentageStep += percentageChange;
-  //   }
+      totalCommission =
+      this.stockPriceCalculatorService.calculateTotalCommissionValue(
+          buyCommission,
+          sellCommission
+        );
 
-  //   return result;
-  // }
+      profit =
+      this.stockPriceCalculatorService.calculateProfitBeforeTax(
+          sellValue,
+          buyValue,
+          totalCommission
+        );
 
-  // // ===========================================================================
+      result[i] = {
+        percentageChange: percentageStep.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
+        newPrice: currentPrice.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
+        profit: profit.toFixed( this.stockPriceCalculatorService.getNumberOfDecimalPlaces)
+      }    
 
-  // /**
-  //  * 
-  //  * @param numericObject 
-  //  */
-  // calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
-  //   const result = {} as HeaderCalculationsModel;
-  //   let buyCommission: number;
-  //   let sellCommission: number;
-  //   let totalCommission: number;
+    }
 
-  //   result.buyValue =
-  //     this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
+    return result;
+  }
 
-  //   result.currentPrice =
-  //     this.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
+  // ===========================================================================
 
-  //   result.currentValue =
-  //     this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
+  /**
+   * 
+   * @param numericObject 
+   */
+  calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
+    const result = {} as HeaderCalculationsModel;
+    let buyCommission: number;
+    let sellCommission: number;
+    let totalCommission: number;
 
-  //   buyCommission =
-  //     this.calculateCommissionValue(
-  //       result.buyValue,
-  //       numericObject.commission,
-  //       numericObject.minCommission
-  //     );
+    result.buyValue =
+    this.stockPriceCalculatorService.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
 
-  //   sellCommission =
-  //     this.calculateCommissionValue(
-  //       result.currentValue,
-  //       numericObject.commission,
-  //       numericObject.minCommission
-  //     );
+    result.currentPrice =
+    this.stockPriceCalculatorService.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
 
-  //   totalCommission =
-  //     this.calculateTotalCommissionValue(
-  //       sellCommission,
-  //       buyCommission
-  //     );
-  //   result.profitBeforeTax =
-  //     this.calculateProfitBeforeTax(
-  //       result.currentValue,
-  //       result.buyValue,
-  //       totalCommission
-  //     );
+    result.currentValue =
+    this.stockPriceCalculatorService.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
 
-  //   // When the current stock price is less or equal the buy price you don't 
-  //   // pay tax from losses
-  //   if (result.currentPrice <= numericObject.buyPrice) {
-  //     result.profitAfterTax = result.profitBeforeTax;
-  //   } else {
+    buyCommission =
+    this.stockPriceCalculatorService.calculateCommissionValue(
+        result.buyValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
 
-  //     result.profitAfterTax =
-  //       this.calculateProfitAfterTax(
-  //         result.profitBeforeTax,
-  //         numericObject.taxRate
-  //       );
-  //   }
+    sellCommission =
+    this.stockPriceCalculatorService.calculateCommissionValue(
+        result.currentValue,
+        numericObject.commission,
+        numericObject.minCommission
+      );
 
-  //   result.percentageChange =
-  //     this.calculatePercentageChange(
-  //       result.currentPrice,
-  //       numericObject.buyPrice
-  //     );
+    totalCommission =
+    this.stockPriceCalculatorService.calculateTotalCommissionValue(
+        sellCommission,
+        buyCommission
+      );
+    result.profitBeforeTax =
+    this.stockPriceCalculatorService.calculateProfitBeforeTax(
+        result.currentValue,
+        result.buyValue,
+        totalCommission
+      );
 
-  //   return result;
-  // }
+    // When the current stock price is less or equal the buy price you don't 
+    // pay tax from losses
+    if (result.currentPrice <= numericObject.buyPrice) {
+      result.profitAfterTax = result.profitBeforeTax;
+    } else {
+
+      result.profitAfterTax =
+      this.stockPriceCalculatorService.calculateProfitAfterTax(
+          result.profitBeforeTax,
+          numericObject.taxRate
+        );
+    }
+
+    result.percentageChange =
+    this.stockPriceCalculatorService.calculatePercentageChange(
+        result.currentPrice,
+        numericObject.buyPrice
+      );
+
+    return result;
+  }
 }

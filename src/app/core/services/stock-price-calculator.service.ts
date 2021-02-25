@@ -9,6 +9,10 @@ export class StockPriceCalculatorService {
 
   constructor() { }
 
+  get getNumberOfDecimalPlaces(): number {
+    return this.numberOfDecimalPlaces;
+  }
+
   /**
    * 
    * @param shareAmount 
