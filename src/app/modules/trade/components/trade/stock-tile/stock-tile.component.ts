@@ -34,7 +34,7 @@ export class StockTileComponent implements OnInit {
 
   private profitQuotes = {} as StockOfferDictionaryModel;
   private loseQuotes = {} as StockOfferDictionaryModel;
-  private neutralQuote = {} as StockOfferModel;
+  private neutralQuote = {} as StockOfferDictionaryModel;
   private headerCalculations = {} as HeaderCalculationsModel;
   private numericObject = {} as StockTileNumericModel;
   private selectedOfferMarker = {
@@ -167,7 +167,7 @@ export class StockTileComponent implements OnInit {
     }
 
     if (this.selectedOfferMarker.Neutral !== null) {     
-      this.neutralQuote.selected = false;
+      this.neutralQuote[0].selected = false;
       this.selectedOfferMarker.Neutral = null;
     }
 
@@ -184,7 +184,7 @@ export class StockTileComponent implements OnInit {
     }
 
     if (listMarker === this.tradeTileOffers.Neutral) {
-      this.neutralQuote.selected = true;
+      this.neutralQuote[0].selected = true;
     }
 
   // Przenies do serweisu obliczenia 

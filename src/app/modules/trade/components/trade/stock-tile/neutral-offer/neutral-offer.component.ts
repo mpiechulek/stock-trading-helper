@@ -11,6 +11,8 @@ export class NeutralOfferComponent implements OnInit {
   @Input()
   private neutralQuote: StockOfferModel;
 
+  @Input()
+  private keyId: string;
 
   constructor() { }
 
@@ -20,6 +22,10 @@ export class NeutralOfferComponent implements OnInit {
 
   get getNeutralQuote() {
     return this.neutralQuote;
+  }
+
+  get getKeyId(): string {
+    return this.keyId;
   }
 
 }

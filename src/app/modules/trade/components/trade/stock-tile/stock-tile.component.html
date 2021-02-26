@@ -34,7 +34,12 @@
 
     <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.Neutral)">
 
-        <app-neutral-offer [neutralQuote]="getNeutralQuote"></app-neutral-offer>
+        <app-neutral-offer 
+            *ngFor="let neutralQuote of getNeutralQuote | keyvalue: unsorted"
+            [neutralQuote] ="neutralQuote.value"
+            [keyId] = "neutralQuote.key"          
+        >
+        </app-neutral-offer>
 
     </ul>
 
