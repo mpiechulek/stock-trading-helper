@@ -1,5 +1,5 @@
 export enum TradeTileOffersState {
-    Neutral = 'Neutral',
-    Lose = 'Lose',
-    Profit = 'Profit'
+    neutral = 'neutral',
+    lose = 'lose',
+    profit = 'profit'
 }

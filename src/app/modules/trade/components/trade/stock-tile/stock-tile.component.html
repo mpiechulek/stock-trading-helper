@@ -12,7 +12,7 @@
 
     <!-- Positive share price  -->
 
-    <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.Profit)" >
+    <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.profit)" >
 
         <cdk-virtual-scroll-viewport 
         itemSize="28" 
@@ -32,7 +32,7 @@
 
     <!-- Neutral share price  -->
 
-    <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.Neutral)">
+    <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.neutral)">
 
         <app-neutral-offer 
             *ngFor="let neutralQuote of getNeutralQuote | keyvalue: unsorted"
@@ -45,7 +45,7 @@
 
     <!-- Negative share price  -->
 
-    <ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.Lose)">
+    <ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.lose)">
 
         <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
+import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 import {
   HeaderCalculationsModel,
   SelectedOfferMarkerModel,
@@ -17,15 +18,17 @@ export class StockTilePresenterService {
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
 
-
   private loseQuotes = new Subject<StockOfferDictionaryModel>();
   private loseQuotes$ = this.loseQuotes.asObservable();
+  private loseQuotesHolder = {} as StockOfferDictionaryModel;
 
   private profitQuotes = new Subject<StockOfferDictionaryModel>();
   private profitQuotes$ = this.profitQuotes.asObservable();
+  private profitQuotesHolder = {} as StockOfferDictionaryModel;
 
   private neutralQuotes = new Subject<StockOfferDictionaryModel>();
   private neutralQuotes$ = this.neutralQuotes.asObservable();
+  private neutralQuotesHolder = {} as StockOfferDictionaryModel;
 
   private headerCalculations = new Subject<HeaderCalculationsModel>();
   private headerCalculations$ = this.headerCalculations.asObservable();
@@ -37,6 +40,8 @@ export class StockTilePresenterService {
     "lose": null,
     "neutral": null
   }
+
+  public tradeTileOffers = TradeTileOffersState;
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
@@ -113,6 +118,7 @@ export class StockTilePresenterService {
       selected: false
     }
 
+    this.neutralQuotesHolder = result;
     this.neutralQuotes.next(result);
   }
 
@@ -191,10 +197,12 @@ export class StockTilePresenterService {
     }
 
     if (profitLoos === 'profit') {
+      this.profitQuotesHolder = result;
       this.profitQuotes.next(result);
     }
 
     if (profitLoos === 'lose') {
+      this.loseQuotesHolder = result;
       this.loseQuotes.next(result);
     }
     return;
@@ -268,11 +276,64 @@ export class StockTilePresenterService {
     this.headerCalculations.next(result);
   }
 
-  /**
+  changeSelectedOfferElement(event, listMarker) {
+    let id = this.getChosenElementId(event);
+    console.log(event.target);
+
+    this.clearQuoteSelector(
+      this.profitQuotesHolder,
+      this.selectedOfferMarker.profit
+    );
+
+    this.clearQuoteSelector(
+      this.loseQuotesHolder,
+      this.selectedOfferMarker.lose
+    );
+
+    this.clearQuoteSelector(
+      this.neutralQuotesHolder,
+      this.selectedOfferMarker.neutral
+    );
+
+    // Reset the old marker id
+    this.selectedOfferMarker.profit = null;
+    this.selectedOfferMarker.lose = null;
+    this.selectedOfferMarker.neutral = null;
+
+    // Set new marker
+    this.selectedOfferMarker[listMarker] = id;
+
+    // Setting the specific offer selector to true
+    this.setSelectorInQuotes(
+      listMarker,
+      this.profitQuotes,
+      this.profitQuotesHolder,
+      this.tradeTileOffers.profit,
+      id
+    );
+
+    this.setSelectorInQuotes(
+      listMarker,
+      this.loseQuotes,
+      this.loseQuotesHolder,
+      this.tradeTileOffers.lose,
+      id
+    );
+
+    this.setSelectorInQuotes(
+      listMarker,
+      this.neutralQuotes,
+      this.neutralQuotesHolder,
+      this.tradeTileOffers.neutral,
+      id
+    );
+  }
+
+   /**
    * 
    * @param event  
    */
-  getChosenElementId(event): number {
+  getChosenElementId(event): string {
     let id: string;
 
     if (event.target.classList.contains('trade-tile-stock-change-container')) {
@@ -289,15 +350,40 @@ export class StockTilePresenterService {
   /**
    * 
    * @param quote 
-   * @param selectorMarker 
+   * @param overMarkerValue 
    */
-  clearQuoteSelector(quote: StockOfferDictionaryModel, selectorMarker: number): StockOfferDictionaryModel {
+  clearQuoteSelector(
+    quoteListHolder: StockOfferDictionaryModel,
+    overMarkerValue: number
+  ): StockOfferDictionaryModel {
     // Check if the marker is selected
-    if (selectorMarker !== null) {
+    if (overMarkerValue !== null) {
       //Overwrite the element in the dictionary, is set to false by old marker id
       //selectorMarker holds the previous id of the selected offer
-      quote[selectorMarker].selected = false;
+      quoteListHolder[overMarkerValue].selected = false;
     }
-    return quote;
+    return quoteListHolder;
   };
+
+  /**
+   * 
+   * @param listMarker 
+   * @param quoteListSubject 
+   * @param quoteListHolder 
+   * @param offerStatus 
+   */
+  setSelectorInQuotes(
+    listMarker: string,
+    quoteListSubject: any,
+    quoteListHolder: StockOfferDictionaryModel,
+    offerStatus: string,
+    selectedId: string
+  ) {
+    if (listMarker === offerStatus) {
+      quoteListHolder[selectedId].selected = true;
+      quoteListSubject.next(quoteListHolder);
+    }
+  }
+
+ 
 }
