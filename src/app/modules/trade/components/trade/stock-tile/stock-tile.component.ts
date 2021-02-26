@@ -24,6 +24,7 @@ import {
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stock-tile',
@@ -37,6 +38,11 @@ export class StockTileComponent implements OnInit {
   private loseQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferDictionaryModel;
   private headerCalculations = {} as HeaderCalculationsModel;
+
+  private profitQuotesSubscription: Subscription;
+  private loseQuotesSubscription: Subscription;
+  private neutralQuoteSubscription: Subscription;
+  private headerCalculationsSubscription: Subscription;
 
   private numericObject = {} as StockTileNumericModel;
   private selectedOfferMarker: SelectedOfferMarkerModel = {
@@ -65,31 +71,28 @@ export class StockTileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.numericObject =
-      this.stockTilePresenterService
-        .convertStringObjectElementsToNumber(this.stockElement);
+    this.profitQuotesSubscription = this.stockTilePresenterService.getProfitQuotes$.subscribe((data) => {
+      this.profitQuotes = data;
+      console.log('this.profitQuotes');      
+    });
 
-    this.headerCalculations =
-      this.stockTilePresenterService
-        .calculateHeader(this.numericObject);
+    this.loseQuotesSubscription = this.stockTilePresenterService.getLoseQuotes$.subscribe((data) => {
+      this.loseQuotes = data;
+      console.log('this.profitQuotes');      
+    });
 
-    this.neutralQuote =
-      this.stockTilePresenterService
-        .calculateNeutralQuote(this.numericObject);
+    this.neutralQuoteSubscription = this.stockTilePresenterService.getNeutralQuote$.subscribe((data) => {
+      this.neutralQuote = data;
+      console.log('this.profitQuotes');      
+    });
 
-    this.profitQuotes =
-      this.stockTilePresenterService
-        .generateObjectOfOffers(
-          this.numericObject,
-          'profit'
-        );
+    this.headerCalculationsSubscription = this.stockTilePresenterService.getHeaderCalculations$.subscribe((data) => {
+      this.headerCalculations = data;
+      console.log('this.profitQuotes');      
+    }); 
 
-    this.loseQuotes =
-      this.stockTilePresenterService
-        .generateObjectOfOffers(
-          this.numericObject,
-          'loos'
-        );
+    this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
+    this.stockTilePresenterService.generateQuotes();    
   }
 
   ngAfterViewChecked() {
@@ -147,7 +150,7 @@ export class StockTileComponent implements OnInit {
   onClickedList(event, listMarker: string): void {
 
     // Get li tag id 
-    let id = this.stockTilePresenterService.getChosenElementId(event, listMarker);
+    let id = this.stockTilePresenterService.getChosenElementId(event);
 
     this.stockTilePresenterService
       .clearQuoteSelector(

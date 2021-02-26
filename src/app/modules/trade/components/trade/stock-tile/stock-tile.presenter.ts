@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
-import { HeaderCalculationsModel, SelectedOfferMarkerModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from 'src/app/data/models/stock-tile.model';
+import {
+  HeaderCalculationsModel,
+  SelectedOfferMarkerModel,
+  StockOfferDictionaryModel,
+  StockOfferModel,
+  StockTileModel,
+  StockTileNumericModel
+} from 'src/app/data/models/stock-tile.model';
 
 @Injectable()
 
@@ -9,11 +17,21 @@ export class StockTilePresenterService {
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
 
-  private profitQuotes = {} as StockOfferDictionaryModel;
-  private loseQuotes = {} as StockOfferDictionaryModel;
-  private neutralQuote = {} as StockOfferDictionaryModel;
-  private headerCalculations = {} as HeaderCalculationsModel;
+
+  private loseQuotes = new Subject<StockOfferDictionaryModel>();
+  private loseQuotes$ = this.loseQuotes.asObservable();
+
+  private profitQuotes = new Subject<StockOfferDictionaryModel>();
+  private profitQuotes$ = this.profitQuotes.asObservable();
+
+  private neutralQuotes = new Subject<StockOfferDictionaryModel>();
+  private neutralQuotes$ = this.neutralQuotes.asObservable();
+
+  private headerCalculations = new Subject<HeaderCalculationsModel>();
+  private headerCalculations$ = this.headerCalculations.asObservable();
+
   private numericObject = {} as StockTileNumericModel;
+
   private selectedOfferMarker: SelectedOfferMarkerModel = {
     "profit": null,
     "lose": null,
@@ -22,12 +40,32 @@ export class StockTilePresenterService {
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
+  ngOnInit() {
+
+  }
+
+  get getProfitQuotes$() {
+    return this.profitQuotes$;
+  }
+
+  get getLoseQuotes$() {
+    return this.loseQuotes$;
+  }
+
+  get getNeutralQuote$() {
+    return this.neutralQuotes$;
+  }
+
+  get getHeaderCalculations$() {
+    return this.headerCalculations$;
+  }
+
   /**
    * This method is converting an object with string values to a object with only 
    * numeric values, and removing everything that is not a number
    * @param object 
    */
-  convertStringObjectElementsToNumber(object: StockTileModel): StockTileNumericModel {
+  convertStringObjectElementsToNumber(object: StockTileModel) {
 
     let newObject = {} as StockTileNumericModel;
 
@@ -37,14 +75,22 @@ export class StockTilePresenterService {
         newObject[key] = parseFloat(value);
       }
     }
-    return newObject;
+
+    this.numericObject = newObject;
+  }
+
+  generateQuotes() {
+    this.calculateNeutralQuote(this.numericObject);
+    this.generateObjectOfOffers(this.numericObject, 'profit', this.numberOfRepeats, this.percentageChange);
+    this.generateObjectOfOffers(this.numericObject, 'lose', this.numberOfRepeats, this.percentageChange);
+    this.calculateHeader(this.numericObject);
   }
 
   /**
    * 
    * @param numericObject 
    */
-  calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferDictionaryModel {
+  calculateNeutralQuote(numericObject: StockTileNumericModel): void {
     let result = {} as StockOfferDictionaryModel;
 
     const buyValue: number =
@@ -67,7 +113,7 @@ export class StockTilePresenterService {
       selected: false
     }
 
-    return result;
+    this.neutralQuotes.next(result);
   }
 
   /**
@@ -81,7 +127,7 @@ export class StockTilePresenterService {
     profitLoos?: string,
     repeats: number = this.numberOfRepeats,
     percentageChange: number = this.percentageChange
-  ): StockOfferDictionaryModel {
+  ): void {
 
     let result = {} as StockOfferDictionaryModel;
     let percentageStep: number = 0;
@@ -144,14 +190,22 @@ export class StockTilePresenterService {
       }
     }
 
-    return result;
+    if (profitLoos === 'profit') {
+      this.profitQuotes.next(result);
+    }
+
+    if (profitLoos === 'lose') {
+      this.loseQuotes.next(result);
+    }
+    return;
   }
 
   /**
    * 
    * @param numericObject 
    */
-  calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
+  calculateHeader(numericObject: StockTileNumericModel): void {
+
     const result = {} as HeaderCalculationsModel;
     let buyCommission: number;
     let sellCommission: number;
@@ -211,10 +265,14 @@ export class StockTilePresenterService {
         numericObject.buyPrice
       );
 
-    return result;
+    this.headerCalculations.next(result);
   }
 
-  getChosenElementId(event, listMarker: string) {
+  /**
+   * 
+   * @param event  
+   */
+  getChosenElementId(event): number {
     let id: string;
 
     if (event.target.classList.contains('trade-tile-stock-change-container')) {
