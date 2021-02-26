@@ -15,6 +15,7 @@ import {
 } from '@angular/cdk/scrolling';
 import {
   HeaderCalculationsModel,
+  SelectedOfferMarkerModel,
   StockOfferDictionaryModel,
   StockOfferModel,
   StockTileModel,
@@ -36,11 +37,12 @@ export class StockTileComponent implements OnInit {
   private loseQuotes = {} as StockOfferDictionaryModel;
   private neutralQuote = {} as StockOfferDictionaryModel;
   private headerCalculations = {} as HeaderCalculationsModel;
+
   private numericObject = {} as StockTileNumericModel;
-  private selectedOfferMarker = {
-    "Profit": null,
-    "Lose": null,
-    "Neutral": null
+  private selectedOfferMarker: SelectedOfferMarkerModel = {
+    "profit": null,
+    "lose": null,
+    "neutral": null
   }
 
   public tradeTileOffers = TradeTileOffersState;
@@ -55,13 +57,8 @@ export class StockTileComponent implements OnInit {
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
-    private stockTilePresenterService: StockTilePresenterService,
-    private elRef: ElementRef) { }
-
-  // @HostListener('click', ['$event']) onTileClick(event: MouseEvent){
-  //   // const parentEl = this.elRef.nativeElement;
-  //   console.log(event);
-  // }
+    private stockTilePresenterService: StockTilePresenterService
+  ) { }
 
   // Angular material CDK virtual scrolling
   @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
@@ -72,13 +69,13 @@ export class StockTileComponent implements OnInit {
       this.stockTilePresenterService
         .convertStringObjectElementsToNumber(this.stockElement);
 
-    this.neutralQuote =
-      this.stockTilePresenterService
-        .calculateNeutralQuote(this.numericObject);
-
     this.headerCalculations =
       this.stockTilePresenterService
         .calculateHeader(this.numericObject);
+
+    this.neutralQuote =
+      this.stockTilePresenterService
+        .calculateNeutralQuote(this.numericObject);
 
     this.profitQuotes =
       this.stockTilePresenterService
@@ -152,31 +149,35 @@ export class StockTileComponent implements OnInit {
     // Get li tag id 
     let id = this.stockTilePresenterService.getChosenElementId(event, listMarker);
 
-    // Reset Marker and offer lists
-    // Check if the marker is selected
-    if (this.selectedOfferMarker.Profit !== null) { 
-      //Overwrite the element in the dictionary, by old marker id
-      this.profitQuotes[this.selectedOfferMarker.Profit].selected = false;
-      // Next reset the odl marker id
-      this.selectedOfferMarker.Profit = null;
-    }
+    this.stockTilePresenterService
+      .clearQuoteSelector(
+        this.profitQuotes,
+        this.selectedOfferMarker.profit
+      );
 
-    if (this.selectedOfferMarker.Lose !== null) {    
-      this.loseQuotes[this.selectedOfferMarker.Lose].selected = false;
-      this.selectedOfferMarker.Lose = null;
-    }
+    this.stockTilePresenterService
+      .clearQuoteSelector(
+        this.loseQuotes,
+        this.selectedOfferMarker.lose
+      );
 
-    if (this.selectedOfferMarker.Neutral !== null) {     
-      this.neutralQuote[0].selected = false;
-      this.selectedOfferMarker.Neutral = null;
-    }
+    this.stockTilePresenterService
+      .clearQuoteSelector(
+        this.neutralQuote,
+        this.selectedOfferMarker.neutral
+      );
+
+    // Next reset the odl marker id
+    this.selectedOfferMarker.profit = null;
+    this.selectedOfferMarker.lose = null;
+    this.selectedOfferMarker.neutral = null;
 
     // Set new marker
     this.selectedOfferMarker[listMarker] = id;
 
     // Set list component selector to true
     if (listMarker === this.tradeTileOffers.Profit) {
-      this.profitQuotes[id].selected = true;      
+      this.profitQuotes[id].selected = true;
     }
 
     if (listMarker === this.tradeTileOffers.Lose) {
@@ -186,10 +187,6 @@ export class StockTileComponent implements OnInit {
     if (listMarker === this.tradeTileOffers.Neutral) {
       this.neutralQuote[0].selected = true;
     }
-
-  // Przenies do serweisu obliczenia 
-  // nasteonie obliczenie według pocentowej smiany hedera
-  // zmiana stylu zanaczonej oferty   
 
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
-import { HeaderCalculationsModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from 'src/app/data/models/stock-tile.model';
+import { HeaderCalculationsModel, SelectedOfferMarkerModel, StockOfferDictionaryModel, StockOfferModel, StockTileModel, StockTileNumericModel } from 'src/app/data/models/stock-tile.model';
 
 @Injectable()
 
@@ -8,6 +8,17 @@ export class StockTilePresenterService {
 
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
+
+  private profitQuotes = {} as StockOfferDictionaryModel;
+  private loseQuotes = {} as StockOfferDictionaryModel;
+  private neutralQuote = {} as StockOfferDictionaryModel;
+  private headerCalculations = {} as HeaderCalculationsModel;
+  private numericObject = {} as StockTileNumericModel;
+  private selectedOfferMarker: SelectedOfferMarkerModel = {
+    "profit": null,
+    "lose": null,
+    "neutral": null
+  }
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
@@ -216,4 +227,19 @@ export class StockTilePresenterService {
 
     return null;
   }
+
+  /**
+   * 
+   * @param quote 
+   * @param selectorMarker 
+   */
+  clearQuoteSelector(quote: StockOfferDictionaryModel, selectorMarker: number): StockOfferDictionaryModel {
+    // Check if the marker is selected
+    if (selectorMarker !== null) {
+      //Overwrite the element in the dictionary, is set to false by old marker id
+      //selectorMarker holds the previous id of the selected offer
+      quote[selectorMarker].selected = false;
+    }
+    return quote;
+  };
 }

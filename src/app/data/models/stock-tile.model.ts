@@ -29,7 +29,6 @@ export interface StockOfferDictionaryModel {
     [ index: string ]: StockOfferModel ; 
 }
 
-
 export interface StockTileNumericModel {
     amountOfShares: number;
     buyPrice: number;
@@ -38,4 +37,11 @@ export interface StockTileNumericModel {
     minCommission: number;
     percentageChange?: number;
 }
+
+export interface SelectedOfferMarkerModel {
+    profit: number;
+    lose: number;
+    neutral:number;
+}
+
 
