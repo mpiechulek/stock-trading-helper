@@ -145,15 +145,19 @@
     transition: all 0.2s ease;
 
     &--background {
-      background-color: $color-dodger-blue;
+      background-color: $color-dodger-blue; 
     }
 
+    &--background  .trade-tile-stock-text{
+      color: white; 
+    }
+    
     &:hover{
       background-color: $color-gray-light;
-    }
+    }   
 
     &:active{
-      background-color: $color-gray;
+      background-color: $color-dodger-blue;     
     }
 
     .stock-offer-change-width {
