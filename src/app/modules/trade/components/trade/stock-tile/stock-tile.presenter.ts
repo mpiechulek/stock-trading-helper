@@ -71,11 +71,9 @@ export class StockTilePresenterService {
    * @param object 
    */
   convertStringObjectElementsToNumber(object: StockTileModel) {
-
     let newObject = {} as StockTileNumericModel;
 
     for (let [key, value] of Object.entries(object)) {
-
       if (!isNaN(value)) {
         newObject[key] = parseFloat(value);
       }
@@ -85,9 +83,22 @@ export class StockTilePresenterService {
   }
 
   generateQuotes() {
+
     this.calculateNeutralQuote(this.numericObject);
-    this.generateObjectOfOffers(this.numericObject, 'profit', this.numberOfRepeats, this.percentageChange);
-    this.generateObjectOfOffers(this.numericObject, 'lose', this.numberOfRepeats, this.percentageChange);
+
+    this.generateObjectOfOffers(this.numericObject,
+      'profit',
+      this.numberOfRepeats,
+      this.percentageChange
+    );
+
+    this.generateObjectOfOffers(
+      this.numericObject,
+      'lose',
+      this.numberOfRepeats,
+      this.percentageChange
+    );
+
     this.calculateHeader(this.numericObject);
   }
 
@@ -149,37 +160,47 @@ export class StockTilePresenterService {
     }
 
     let buyValue: number =
-      this.stockPriceCalculatorService.calculateBuyValue(
-        numericObject.amountOfShares,
-        numericObject.buyPrice
-      );
+      this.stockPriceCalculatorService
+        .calculateBuyValue(
+          numericObject.amountOfShares,
+          numericObject.buyPrice
+        );
 
     let buyCommission: number =
-      this.stockPriceCalculatorService.calculateCommissionValue(
-        buyValue,
-        numericObject.commission,
-        numericObject.minCommission
-      );
+      this.stockPriceCalculatorService
+        .calculateCommissionValue(
+          buyValue,
+          numericObject.commission,
+          numericObject.minCommission
+        );
 
     for (let i = 0; repeats > i; i++) {
 
       percentageStep += percentageChange;
 
-      currentPrice = this.stockPriceCalculatorService.calculateCurrentPrice(numericObject.buyPrice, percentageStep);
-      sellValue = currentPrice * numericObject.amountOfShares;
+      currentPrice =
+        this.stockPriceCalculatorService
+          .calculateCurrentPrice(
+            numericObject.buyPrice,
+            percentageStep);
+
+      sellValue =
+        currentPrice * numericObject.amountOfShares;
 
       sellCommission =
-        this.stockPriceCalculatorService.calculateCommissionValue(
-          sellValue,
-          numericObject.commission,
-          numericObject.minCommission
-        );
+        this.stockPriceCalculatorService
+          .calculateCommissionValue(
+            sellValue,
+            numericObject.commission,
+            numericObject.minCommission
+          );
 
       totalCommission =
-        this.stockPriceCalculatorService.calculateTotalCommissionValue(
-          buyCommission,
-          sellCommission
-        );
+        this.stockPriceCalculatorService
+          .calculateTotalCommissionValue(
+            buyCommission,
+            sellCommission
+          );
 
       profit =
         this.stockPriceCalculatorService.calculateProfitBeforeTax(
@@ -189,9 +210,21 @@ export class StockTilePresenterService {
         );
 
       result[i] = {
-        percentageChange: percentageStep.toFixed(this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
-        newPrice: currentPrice.toFixed(this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
-        profit: profit.toFixed(this.stockPriceCalculatorService.getNumberOfDecimalPlaces),
+        percentageChange:
+          percentageStep
+            .toFixed(
+              this.stockPriceCalculatorService.getNumberOfDecimalPlaces
+            ),
+        newPrice:
+          currentPrice
+            .toFixed(
+              this.stockPriceCalculatorService.getNumberOfDecimalPlaces
+            ),
+        profit:
+          profit
+            .toFixed(
+              this.stockPriceCalculatorService.getNumberOfDecimalPlaces
+            ),
         selected: false
       }
     }
@@ -220,20 +253,33 @@ export class StockTilePresenterService {
     let totalCommission: number;
 
     result.buyValue =
-      this.stockPriceCalculatorService.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
+      this.stockPriceCalculatorService
+        .calculateBuyValue(
+          numericObject.amountOfShares,
+          numericObject.buyPrice
+        );
 
     result.currentPrice =
-      this.stockPriceCalculatorService.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
+      this.stockPriceCalculatorService
+        .calculateCurrentPrice(
+          numericObject.buyPrice,
+          numericObject.percentageChange
+        );
 
     result.currentValue =
-      this.stockPriceCalculatorService.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
+      this.stockPriceCalculatorService
+        .calculateCurrentValue(
+          result.currentPrice,
+          numericObject.amountOfShares
+        );
 
     buyCommission =
-      this.stockPriceCalculatorService.calculateCommissionValue(
-        result.buyValue,
-        numericObject.commission,
-        numericObject.minCommission
-      );
+      this.stockPriceCalculatorService
+        .calculateCommissionValue(
+          result.buyValue,
+          numericObject.commission,
+          numericObject.minCommission
+        );
 
     sellCommission =
       this.stockPriceCalculatorService.calculateCommissionValue(
@@ -247,6 +293,7 @@ export class StockTilePresenterService {
         sellCommission,
         buyCommission
       );
+      
     result.profitBeforeTax =
       this.stockPriceCalculatorService.calculateProfitBeforeTax(
         result.currentValue,
@@ -259,7 +306,6 @@ export class StockTilePresenterService {
     if (result.currentPrice <= numericObject.buyPrice) {
       result.profitAfterTax = result.profitBeforeTax;
     } else {
-
       result.profitAfterTax =
         this.stockPriceCalculatorService.calculateProfitAfterTax(
           result.profitBeforeTax,
@@ -273,12 +319,18 @@ export class StockTilePresenterService {
         numericObject.buyPrice
       );
 
+    console.log('ffff');      
+
     this.headerCalculations.next(result);
   }
 
-  changeSelectedOfferElement(event, listMarker) {
-    let id = this.getChosenElementId(event);
-    console.log(event.target);
+  /**
+   * 
+   * @param event 
+   * @param listMarker 
+   */
+  changeSelectedOfferElement(event, listMarker: string): void {
+    let id = this.getChosenElementId(event); 
 
     this.clearQuoteSelector(
       this.profitQuotesHolder,
@@ -303,36 +355,13 @@ export class StockTilePresenterService {
     // Set new marker
     this.selectedOfferMarker[listMarker] = id;
 
-    // Setting the specific offer selector to true
-    this.setSelectorInQuotes(
-      listMarker,
-      this.profitQuotes,
-      this.profitQuotesHolder,
-      this.tradeTileOffers.profit,
-      id
-    );
-
-    this.setSelectorInQuotes(
-      listMarker,
-      this.loseQuotes,
-      this.loseQuotesHolder,
-      this.tradeTileOffers.lose,
-      id
-    );
-
-    this.setSelectorInQuotes(
-      listMarker,
-      this.neutralQuotes,
-      this.neutralQuotesHolder,
-      this.tradeTileOffers.neutral,
-      id
-    );
+    this.checkWitchQuoteToUpdate(listMarker, id);
   }
 
-   /**
-   * 
-   * @param event  
-   */
+  /**
+  * 
+  * @param event  
+  */
   getChosenElementId(event): string {
     let id: string;
 
@@ -350,40 +379,74 @@ export class StockTilePresenterService {
   /**
    * 
    * @param quote 
-   * @param overMarkerValue 
+   * @param offerMarkerValue 
    */
   clearQuoteSelector(
     quoteListHolder: StockOfferDictionaryModel,
-    overMarkerValue: number
+    offerMarkerValue: number
   ): StockOfferDictionaryModel {
     // Check if the marker is selected
-    if (overMarkerValue !== null) {
+    if (offerMarkerValue !== null) {
       //Overwrite the element in the dictionary, is set to false by old marker id
       //selectorMarker holds the previous id of the selected offer
-      quoteListHolder[overMarkerValue].selected = false;
+      quoteListHolder[offerMarkerValue].selected = false;
     }
     return quoteListHolder;
   };
 
+  checkWitchQuoteToUpdate(
+    groupMarker: string,
+    selectedId: string
+  ): void {
+
+    if (groupMarker === this.tradeTileOffers.profit) {
+      this.setSelectorInQuotes(
+        this.profitQuotes,
+        this.profitQuotesHolder,
+        selectedId
+      );
+    }
+
+    if (groupMarker === this.tradeTileOffers.lose) {
+      this.setSelectorInQuotes(
+        this.loseQuotes,
+        this.loseQuotesHolder,
+        selectedId
+      );
+    }
+
+    if (groupMarker === this.tradeTileOffers.neutral) {
+      this.setSelectorInQuotes(
+        this.neutralQuotes,
+        this.neutralQuotesHolder,
+        selectedId
+      );
+    }
+  }
+
   /**
-   * 
-   * @param listMarker 
+   *  
    * @param quoteListSubject 
    * @param quoteListHolder 
    * @param offerStatus 
    */
   setSelectorInQuotes(
-    listMarker: string,
     quoteListSubject: any,
     quoteListHolder: StockOfferDictionaryModel,
-    offerStatus: string,
     selectedId: string
-  ) {
-    if (listMarker === offerStatus) {
-      quoteListHolder[selectedId].selected = true;
-      quoteListSubject.next(quoteListHolder);
-    }
+  ): void {        
+    quoteListHolder[selectedId].selected = true;
+    quoteListSubject.next(quoteListHolder);
+    this.setNewPercentageChange(quoteListHolder[selectedId].percentageChange);
   }
 
- 
+  /**
+   * 
+   * @param value 
+   */
+  setNewPercentageChange(value: string): void {
+    this.numericObject.percentageChange = parseFloat(value);
+    this.calculateHeader(this.numericObject);
+  }
+
 }

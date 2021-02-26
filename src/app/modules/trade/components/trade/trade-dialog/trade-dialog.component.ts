@@ -88,9 +88,7 @@ export class TradeDialogComponent implements OnInit {
   onSubmitDialog() {
     if (this.entryStockForm.invalid) {
       return;
-    }
-
-    console.log(this.entryStockForm.value);
+    }   
 
     this.entryStockForm.patchValue({
       companyName: this.entryStockForm.value.companyName,

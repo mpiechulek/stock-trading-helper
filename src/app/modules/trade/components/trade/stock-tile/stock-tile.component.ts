@@ -13,11 +13,9 @@ import {
   VIRTUAL_SCROLL_STRATEGY
 } from '@angular/cdk/scrolling';
 import {
-  HeaderCalculationsModel,
-  SelectedOfferMarkerModel,
+  HeaderCalculationsModel, 
   StockOfferDictionaryModel,
-  StockTileModel,
-  StockTileNumericModel
+  StockTileModel, 
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
@@ -148,11 +146,12 @@ export class StockTileComponent implements OnInit, OnDestroy {
   scrollHandler($event) {
 
   }
+
   /**
-   * 
+   * Changing the offer selection on the lists
    * @param event 
    */
-  onClickedList(event, listMarker): void {
+  onClickedList(event, listMarker: string): void {
     this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
   }
 
