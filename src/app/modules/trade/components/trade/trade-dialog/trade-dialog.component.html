@@ -75,6 +75,29 @@
 
     </div>
 
+    <div class="trade-entry-form__section-2">
+
+        <!-- Number of calculation steps -->
+        <mat-form-field id="trade-dialog-form">
+            <mat-label id="trade-dialog-form">Number of offers</mat-label>
+            <input matInput type="number" formControlName="calcStepCount">                  
+            <mat-error *ngIf="calcStepCount.hasError('pattern')">
+                Number of steps must be a positive integer.
+            </mat-error>                                       
+        </mat-form-field>
+
+        <!-- calculation percentage step -->
+
+        <mat-form-field id="trade-dialog-form">
+            <mat-label id="trade-dialog-form">Percentage step</mat-label>
+            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>   
+            <mat-error *ngIf="calcStepValue.hasError('pattern')">
+                Number of steps must be a positive float.
+            </mat-error>            
+        </mat-form-field>
+
+    </div>
+
     <div class="trade-entry-form__section-3">
 
         <!-- Submit -->

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { StockOfferModel } from 'src/app/data/models/stock-tile.model';
 
 @Component({
@@ -6,18 +6,30 @@ import { StockOfferModel } from 'src/app/data/models/stock-tile.model';
   templateUrl: './one-offer-change.component.html'
 
 })
-export class OneOfferChangeComponent implements OnInit {
+export class OneOfferChangeComponent implements OnInit, AfterViewInit {
 
   @Input()
-  private neutralQuote: StockOfferModel;
+  private profitQuote: StockOfferModel;
+
+  @Input()
+  public keyId: string;
 
   constructor() { }
 
   ngOnInit(): void {
- 
+
   }
-  get getNeutralQuote() {
-    return this.neutralQuote;
+
+  ngAfterViewInit(): void {
+
+  }
+
+  get getProfitQuote(): StockOfferModel {
+    return this.profitQuote;
+  }
+
+  get getKeyId(): string {
+    return this.keyId;
   }
 
 }

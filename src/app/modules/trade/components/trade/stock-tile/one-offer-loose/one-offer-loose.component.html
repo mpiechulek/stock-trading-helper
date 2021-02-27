@@ -1,10 +1,10 @@
 <li 
     [id]="getKeyId"
     class="trade-tile-stock-change-container" 
-    [ngClass]="{'trade-tile-stock-change-container--background': getProfitQuote?.selected }"
+    [ngClass]="{'trade-tile-stock-change-container--background': getLoseQuote?.selected }"
 >
 
-    <div class="trade-shape trade-shape--green-small"></div>
+    <div class="trade-shape trade-shape--red-small"></div>
 
     <div class="stock-offer-change-width">
         <p class="trade-tile-stock-text
@@ -12,7 +12,7 @@
                 stock-offer-change-margin-left                         
                 "
         >          
-            {{getProfitQuote?.percentageChange}} %
+            {{getLoseQuote?.percentageChange}} %
         </p>
     </div>
 
@@ -22,7 +22,7 @@
                 stock-offer-change-margin-left    
                 "
         >          
-            {{getProfitQuote?.newPrice}}
+            {{getLoseQuote?.newPrice}}
         </p>
     </div>
 
@@ -32,7 +32,7 @@
                 stock-offer-change-margin-left                       
                 "
         >         
-            {{getProfitQuote?.profit}}
+            {{getLoseQuote?.profit}}
         </p>
     </div>
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { StockTileModel } from '../../../../data/models/stock-tile.model';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-trade-ui',
@@ -7,7 +7,7 @@ import { StockTileModel } from '../../../../data/models/stock-tile.model';
 })
 export class TradeComponent implements OnInit {
 
-  @Input()  
+  @Input()
   stockBoardArray: StockTileModel[];
 
   @Output()
@@ -19,21 +19,27 @@ export class TradeComponent implements OnInit {
   @Output()
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  savePickedOffer: EventEmitter<Object> = new EventEmitter<Object>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onAddNewStock():void {
+  onAddNewStock(): void {
     this.addNewStock.emit();
   }
 
-  onEditTile(id:string): void {
+  onEditTile(id: string): void {
     this.editTile.emit(id);
   }
 
-  onDeleteTile(id:string): void {
+  onDeleteTile(id: string): void {
     this.deleteTile.emit(id);
   }
-  
+
+  onSavePickedOffer(value: StockMarkerSaveDataModel): void {
+    this.savePickedOffer.emit(value);
+  }
 }

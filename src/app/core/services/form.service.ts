@@ -38,7 +38,7 @@ export class FormService {
   }
 
   getEntreFormSubject() {
-    return this.entreFormSubject;
+    return this.entreFormSubject$;
   }
 
   saveEntreFormDataToLocalStorage(enteredObject: TradeFormData): void {
@@ -57,7 +57,7 @@ export class FormService {
 
     arr = value.split('.');
 
-    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, 4);
+    if (arr[1].length > 4) return arr[0] + '.' + arr[1].slice(0, 3);
 
     return value;
   }

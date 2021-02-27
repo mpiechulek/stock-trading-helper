@@ -46,6 +46,14 @@ export class TradeDialogComponent implements OnInit {
       ]],
       minCommission: ['0.0000', [
         Validators.min(0)
+      ]],
+      calcStepCount: ['200', [
+        Validators.min(0),
+        Validators.pattern('^[1-9][0-9]*$')
+      ]],
+      calcStepValue: ['0.5', [
+        Validators.min(0),
+         Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')    
       ]]
     });    
 
@@ -83,14 +91,20 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
+  get calcStepCount() {
+    return this.entryStockForm.get('calcStepCount');
+  }
+
+  get calcStepValue() {
+    return this.entryStockForm.get('calcStepValue');
+  }
+
   // =============================================================================
 
   onSubmitDialog() {
     if (this.entryStockForm.invalid) {
       return;
-    }
-
-    console.log(this.entryStockForm.value);
+    }   
 
     this.entryStockForm.patchValue({
       companyName: this.entryStockForm.value.companyName,
@@ -98,7 +112,10 @@ export class TradeDialogComponent implements OnInit {
       buyPrice: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.buyPrice),
       taxRate: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.taxRate),
       commission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.commission),
-      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission)
+      minCommission: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.minCommission),
+      calcStepCount: this.entryStockForm.value.calcStepCount,
+      calcStepValue: this.formService.fixeNumberDecimalPlaces(this.entryStockForm.value.calcStepValue),
+
     });
 
     this.dialogRef.close(this.entryStockForm.value);

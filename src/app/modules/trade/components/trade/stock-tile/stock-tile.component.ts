@@ -1,31 +1,58 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
-import { HeaderCalculationsModel, StockOfferModel, StockTileModel, StockTileNumericModel } from '../../../../../data/models/stock-tile.model';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {
+  CdkVirtualScrollViewport,
+  FixedSizeVirtualScrollStrategy,
+  VIRTUAL_SCROLL_STRATEGY
+} from '@angular/cdk/scrolling';
+import {
+  HeaderCalculationsModel,
+  StockMarkerSaveDataModel,
+  StockOfferDictionaryModel,
+  StockTileModel,
+} from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
+import { KeyValue } from '@angular/common';
+import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
+import { Subscription } from 'rxjs';
+
+
+export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
+  constructor() {
+    super(50, 250, 500);
+  }
+}
 
 @Component({
   selector: 'app-stock-tile',
   templateUrl: './stock-tile.component.html',
-  providers: [StockTilePresenterService]
+  providers: [StockTilePresenterService,
+    { provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
 })
 
-export class StockTileComponent implements OnInit {
+export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  array = [
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
-  ]
-
-  selectedPercentageChange: number = 0;
-
-  private profitQuotes: StockOfferModel[] = [];
-  private loosQuotes: StockOfferModel[] = [];
-  private neutralQuote = {} as StockOfferModel;
-
+  private profitQuotes = {} as StockOfferDictionaryModel;
+  private loseQuotes = {} as StockOfferDictionaryModel;
+  private neutralQuote = {} as StockOfferDictionaryModel;
   private headerCalculations = {} as HeaderCalculationsModel;
-  private numericObject = {} as StockTileNumericModel;
-  private buyCommission: number = 0;
+
+  private profitQuotesSubscription: Subscription;
+  private loseQuotesSubscription: Subscription;
+  private neutralQuoteSubscription: Subscription;
+  private headerCalculationsSubscription: Subscription;
+
+  public tradeTileOffers = TradeTileOffersState;
+  private offerId: string = null;
+  private offerMarker: string = null;
 
   @Input()
   private stockElement: StockTileModel;
@@ -36,147 +63,83 @@ export class StockTileComponent implements OnInit {
   @Output()
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private stockTilePresenterService: StockTilePresenterService) { }
+  @Output()
+  savePickedOffer: EventEmitter<StockMarkerSaveDataModel> = new EventEmitter<StockMarkerSaveDataModel>();
+
+  @Output()
+  sellStock: EventEmitter<HeaderCalculationsModel> = new EventEmitter<HeaderCalculationsModel>();
+
+  constructor(
+    private stockTilePresenterService: StockTilePresenterService
+  ) { }
+
+  // Angular material CDK virtual scrolling
+  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
 
   ngOnInit(): void {
-    this.numericObject = this.convertStringObjectElementsToNumber(this.stockElement);
-    this.neutralQuote = this.calculateNeutralQuote(this.numericObject);
-    this.headerCalculations = this.calculateHeader(this.numericObject);
+
+    this.profitQuotesSubscription =
+      this.stockTilePresenterService.getProfitQuotes$
+        .subscribe((data) => {
+          this.profitQuotes = data;
+        });
+
+    this.loseQuotesSubscription =
+      this.stockTilePresenterService.getLoseQuotes$
+        .subscribe((data) => {
+          this.loseQuotes = data;
+        });
+
+    this.neutralQuoteSubscription =
+      this.stockTilePresenterService.getNeutralQuote$
+        .subscribe((data) => {
+          this.neutralQuote = data;
+        });
+
+    this.headerCalculationsSubscription =
+      this.stockTilePresenterService.getHeaderCalculations$
+        .subscribe((data) => {
+          this.headerCalculations = data;
+        });
+
+    this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
+    this.stockTilePresenterService.generateQuotes();
+    console.log(this.stockElement);
+    
+  }
+
+  ngAfterViewInit() {
+    // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
+    // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+  }
+
+  ngOnDestroy() {
+    if (this.profitQuotesSubscription) {
+      this.profitQuotesSubscription.unsubscribe();
+    }
+
+    if (this.loseQuotesSubscription) {
+      this.loseQuotesSubscription.unsubscribe();
+    }
+
+    if (this.neutralQuoteSubscription) {
+      this.neutralQuoteSubscription.unsubscribe();
+    }
+
+    if (this.headerCalculationsSubscription) {
+      this.headerCalculationsSubscription.unsubscribe();
+    }
   }
 
   /**
-   * This method is converting an object with string values to a object wit only 
-   * numeric values, and removing everything that is not a number
-   * @param object 
-   */
-  convertStringObjectElementsToNumber(object: StockTileModel): StockTileNumericModel {
-
-    let newObject = {} as StockTileNumericModel;
-
-    for (let [key, value] of Object.entries(object)) {
-
-      if (!isNaN(value)) {
-        newObject[key] = parseFloat(value);
-      }
-    }
-    return newObject;
-  }
-
-  calculateNeutralQuote(numericObject: StockTileNumericModel): StockOfferModel {
-    let result = {} as StockOfferModel;
-
-    const buyValue: number = this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
-
-    const commissionValue = numericObject.commission;
-
-    const commission = this.calculateCommissionValue(buyValue, commissionValue);
-
-    this.buyCommission = commission;
-
-    const selBuyCommission = commission * 2;
-
-    result.profit = this.setBuyCommission(selBuyCommission, numericObject.minCommission);
-
-    result.percentageChange = 0;
-    result.valueChange = 0;
-
-    return result;
-  }
-
-  setBuyCommission(commission: number, minCommission: number): number {
-
-    let resultCommission: number;
-
-    if (commission > minCommission) {
-      resultCommission = commission;
-    } else {
-      resultCommission = minCommission;
-    }
-
-    return resultCommission;
-  }
-
-  calculateHeader(numericObject: StockTileNumericModel): HeaderCalculationsModel {
-    const result = {} as HeaderCalculationsModel;
-
-    result.buyValue =
-      this.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
-
-    result.currentPrice =
-      this.calculateCurrentPrice(numericObject.buyPrice, numericObject.percentageChange);
-
-    result.currentValue =
-      this.calculateCurrentValue(result.currentPrice, numericObject.amountOfShares);
-   
-    const commission = this.calculateCommissionValue(result.currentValue, numericObject.commission);
-
-    result.profitBeforeTax =
-      this.calculateProfitBeforeTax(result.currentValue, commission);
-
-    // When the current stock price is less or equal the buy price you don't 
-    // pay tax from losses
-    if (result.currentPrice <= numericObject.buyPrice) { 
-      
-      result.profitAfterTax = result.profitBeforeTax;
-    } else {
-      
-      result.profitAfterTax =
-        this.calculateProfitAfterTax(result.profitBeforeTax, numericObject.taxRate);
-    } 
-
-    result.percentageChange =
-      this.calculatePercentageChange(result.currentPrice, numericObject.buyPrice);
-
-    return result;
-  }
-
-  calculateBuyValue(shareAmount: number, buyPrice: number): number {
-    return parseFloat((shareAmount * buyPrice).toFixed(4));
-  }
-
-  calculateCommissionValue(buyValue: number, commissionValue: number): number {
-    return buyValue * (commissionValue / 100);
-  }
-
-  calculateCurrentPrice(buyPrice: number, percentageChange: number): number {
-    if (percentageChange === 0) return buyPrice;
-    return buyPrice * percentageChange;
-  }
-
-  calculateCurrentValue(currentPrice: number, shareAmount: number): number {
-    return currentPrice * shareAmount;
-  }
-
-  calculateProfitBeforeTax(currentValue: number, commission: number) {
-    return currentValue - (commission + this.buyCommission);
-  }
-
-  calculateProfitAfterTax(profitBeforeTax: number, taxRate: number): number {
-    return profitBeforeTax - (profitBeforeTax * (taxRate / 100));
-  }
-
-  calculatePercentageChange(buyPrice, currentPrice) {
-    let percentage: number;
-
-    if (buyPrice === currentPrice) return 0;
-
-    percentage = (buyPrice * 100) / currentPrice;
-
-    if (buyPrice > currentPrice) return percentage * -1;
-
-    return (buyPrice * 100) / currentPrice;
-  }
-
-  addNewPositionToObject(object: Object, key: string, value: number) {
-
-  }
-
+  * Returning an object of objects { key1:{...}, key2:{...}}
+  */
   get getProfitQuotes() {
     return this.profitQuotes;
   }
 
-  get getLoosQuotes() {
-    return this.loosQuotes;
+  get getLoseQuotes() {
+    return this.loseQuotes;
   }
 
   get getNeutralQuote() {
@@ -191,13 +154,84 @@ export class StockTileComponent implements OnInit {
     return this.stockElement;
   }
 
+  get getOfferId() {
+    return this.offerId;
+  }
 
+  get getOfferMarker() {
+    return this.offerMarker;
+  }
+
+  /**
+   * This fixes the object sorting pipe bug 
+   */
+  unsorted() { }
+
+  /**
+   * Reverse object sorting of key value
+   * @param a 
+   * @param b 
+   */
+  orderbyValueDsc(a: KeyValue<number, string>, b: KeyValue<number, string>): number {
+    return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
+  } 
+
+  /**
+   * Changing the offer selection on the lists
+   * @param event 
+   */
+  onClickedList(event, listMarker: string): void {
+    this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
+    this.offerId = this.stockTilePresenterService.getChosenElementId(event);
+    this.offerMarker = listMarker;
+  }
+
+  onSavePickedOfferData(): void {
+    let markerData: StockMarkerSaveDataModel;
+
+    markerData = {
+      id: this.stockElement.id,
+      markerOfferValue: this.offerId,
+      markerOfferType: this.offerMarker
+    }
+
+    this.savePickedOffer.emit(markerData)
+  }
+
+  /**
+   * 
+   * @param id 
+   */
   onEditTile(id: string): void {
     this.editTile.emit(id);
   }
 
+  /**
+   * 
+   * @param id 
+   */
   onDeleteTile(id: string): void {
     this.deleteTile.emit(id);
   }
 
+  /**
+   * 
+   */
+  onSellStock(): void {
+    this.sellStock.emit(this.headerCalculations);    
+  }
+
+  /**
+   * 
+   */
+  onFindSelectedOffer(){
+
+    if(this.offerMarker === 'profit') {
+      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+    }
+
+    if(this.offerMarker === 'lose') {
+      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+    }
+  }
 }

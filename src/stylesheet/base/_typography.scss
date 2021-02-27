@@ -127,6 +127,10 @@
   &--color-red {
     color: $color-red;    
   }
+
+  &--size-big{
+    font-size: 3rem;
+  }
 }
 
 .trade-tile-stock-name-text {
@@ -141,9 +145,10 @@
 .trade-tile-stock-text{
   color: var(--color-text-prime);
   font-size: 1.2rem;
+  text-align: center;
 
   &--ld{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 500;
     max-width: 8ch;
     overflow:hidden; 
@@ -162,14 +167,13 @@
   }
 
   &--red{
-    color: $color-red;    
-    font-size: 1.3rem;
+  
+    color: $color-red; 
     font-weight: 500;    
   }
 
-  &--green{
+  &--green{ 
     color: $color-green;    
-    font-size: 1.3rem;
     font-weight: 500;    
   }
 }
