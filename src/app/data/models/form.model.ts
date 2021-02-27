@@ -5,4 +5,6 @@ export interface TradeFormData {
     taxRate: string;
     commission: string;
     minCommission: string;
+    calcStepCount?: number;
+    calcStepValue?: number;
 }

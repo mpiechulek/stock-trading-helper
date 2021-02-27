@@ -317,9 +317,7 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculatePercentageChange(
         result.currentPrice,
         numericObject.buyPrice
-      );
-
-    console.log('ffff');      
+      );    
 
     this.headerCalculations.next(result);
   }

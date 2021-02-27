@@ -5,8 +5,7 @@ export interface StockTileModel {
     buyPrice: string;
     taxRate: string;
     commission: string;
-    minCommission: string;
-    percentageChange?: string;
+    minCommission: string;    
     markerOfferType?: string;
     markerOfferValue?: number;
     calcStepCount?: number;
