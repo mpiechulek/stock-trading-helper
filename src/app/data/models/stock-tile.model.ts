@@ -7,6 +7,10 @@ export interface StockTileModel {
     commission: string;
     minCommission: string;
     percentageChange?: string;
+    markerOfferType?: string;
+    markerOfferValue?: number;
+    calcStepCount?: number;
+    calcStepValue?: number;
 }
 
 export interface HeaderCalculationsModel {
