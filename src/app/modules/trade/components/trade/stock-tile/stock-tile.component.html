@@ -15,12 +15,13 @@
     <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.profit)" >
 
         <cdk-virtual-scroll-viewport 
-        itemSize="28" 
-        class="example-viewport"
-        (scrolledIndexChange)="scrollHandler($event)">
+            itemSize="28" 
+            orientation="bottom"
+            class="example-viewport"            
+        >
 
             <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: orderbyValueDsc"
+                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: unsorted"
                 [profitQuote] ="profitQuote.value"
                 [keyId] = "profitQuote.key"
             >           
@@ -63,12 +64,32 @@
     <!-- Btn container  -->
 
     <div class="trade-tile__button-container">
+
+        <button 
+            class="trade-board__button-postion"            
+            mat-raised-button
+            (click)="onSavePickedOfferData()"
+            [disabled]="!getOfferMarker && !getOfferId"
+        >
+           Save
+        </button>
+
         <button 
             class="trade-board__button-postion"
             color="primary"
             mat-raised-button
+            (click)="onSellStock()"
         >
            Sell
+        </button>
+
+        <button 
+            class="trade-board__button-postion"           
+            mat-raised-button
+            (click)="onFindSelectedOffer()"
+            [disabled]="!getOfferMarker && !getOfferId"
+        >
+            Find
         </button>
     </div>
 

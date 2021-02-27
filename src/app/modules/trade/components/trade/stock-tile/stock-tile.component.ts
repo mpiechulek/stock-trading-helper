@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -13,23 +14,31 @@ import {
   VIRTUAL_SCROLL_STRATEGY
 } from '@angular/cdk/scrolling';
 import {
-  HeaderCalculationsModel, 
-  StockMarkerSaveDataModel, 
+  HeaderCalculationsModel,
+  StockMarkerSaveDataModel,
   StockOfferDictionaryModel,
-  StockTileModel, 
+  StockTileModel,
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 import { Subscription } from 'rxjs';
 
+
+export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
+  constructor() {
+    super(50, 250, 500);
+  }
+}
+
 @Component({
   selector: 'app-stock-tile',
   templateUrl: './stock-tile.component.html',
-  providers: [StockTilePresenterService]
+  providers: [StockTilePresenterService,
+    { provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
 })
 
-export class StockTileComponent implements OnInit, OnDestroy {
+export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private profitQuotes = {} as StockOfferDictionaryModel;
   private loseQuotes = {} as StockOfferDictionaryModel;
@@ -39,9 +48,11 @@ export class StockTileComponent implements OnInit, OnDestroy {
   private profitQuotesSubscription: Subscription;
   private loseQuotesSubscription: Subscription;
   private neutralQuoteSubscription: Subscription;
-  private headerCalculationsSubscription: Subscription;  
+  private headerCalculationsSubscription: Subscription;
 
   public tradeTileOffers = TradeTileOffersState;
+  private offerId: string = null;
+  private offerMarker: string = null;
 
   @Input()
   private stockElement: StockTileModel;
@@ -53,7 +64,10 @@ export class StockTileComponent implements OnInit, OnDestroy {
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  savePickedOffer: EventEmitter<Object> = new EventEmitter<Object>();
+  savePickedOffer: EventEmitter<StockMarkerSaveDataModel> = new EventEmitter<StockMarkerSaveDataModel>();
+
+  @Output()
+  sellStock: EventEmitter<HeaderCalculationsModel> = new EventEmitter<HeaderCalculationsModel>();
 
   constructor(
     private stockTilePresenterService: StockTilePresenterService
@@ -64,28 +78,39 @@ export class StockTileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.profitQuotesSubscription = this.stockTilePresenterService.getProfitQuotes$.subscribe((data) => {
-      this.profitQuotes = data;     
-    });
+    this.profitQuotesSubscription =
+      this.stockTilePresenterService.getProfitQuotes$
+        .subscribe((data) => {
+          this.profitQuotes = data;
+        });
 
-    this.loseQuotesSubscription = this.stockTilePresenterService.getLoseQuotes$.subscribe((data) => {
-      this.loseQuotes = data;      
-    });
+    this.loseQuotesSubscription =
+      this.stockTilePresenterService.getLoseQuotes$
+        .subscribe((data) => {
+          this.loseQuotes = data;
+        });
 
-    this.neutralQuoteSubscription = this.stockTilePresenterService.getNeutralQuote$.subscribe((data) => {
-      this.neutralQuote = data;    
-    });
+    this.neutralQuoteSubscription =
+      this.stockTilePresenterService.getNeutralQuote$
+        .subscribe((data) => {
+          this.neutralQuote = data;
+        });
 
-    this.headerCalculationsSubscription = this.stockTilePresenterService.getHeaderCalculations$.subscribe((data) => {
-      this.headerCalculations = data;    
-    });
+    this.headerCalculationsSubscription =
+      this.stockTilePresenterService.getHeaderCalculations$
+        .subscribe((data) => {
+          this.headerCalculations = data;
+        });
 
     this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
     this.stockTilePresenterService.generateQuotes();
+    console.log(this.stockElement);
+    
   }
 
-  ngAfterViewChecked() {
-    // this.cdkVirtualScrollViewport.scrollToIndex(2000);
+  ngAfterViewInit() {
+    // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
+    // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
   }
 
   ngOnDestroy() {
@@ -129,6 +154,14 @@ export class StockTileComponent implements OnInit, OnDestroy {
     return this.stockElement;
   }
 
+  get getOfferId() {
+    return this.offerId;
+  }
+
+  get getOfferMarker() {
+    return this.offerMarker;
+  }
+
   /**
    * This fixes the object sorting pipe bug 
    */
@@ -139,17 +172,9 @@ export class StockTileComponent implements OnInit, OnDestroy {
    * @param a 
    * @param b 
    */
-  orderbyValueDsc = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+  orderbyValueDsc(a: KeyValue<number, string>, b: KeyValue<number, string>): number {
     return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
-  }
-
-  /**
-   * Angular material scroll event handler
-   * @param $event 
-   */
-  scrollHandler($event) {
-
-  }
+  } 
 
   /**
    * Changing the offer selection on the lists
@@ -157,18 +182,18 @@ export class StockTileComponent implements OnInit, OnDestroy {
    */
   onClickedList(event, listMarker: string): void {
     this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
-    this.onSavePickedOfferData(event, listMarker);
+    this.offerId = this.stockTilePresenterService.getChosenElementId(event);
+    this.offerMarker = listMarker;
   }
 
-  onSavePickedOfferData(event, listMarker: string): void {
+  onSavePickedOfferData(): void {
     let markerData: StockMarkerSaveDataModel;
-    const offerId  = this.stockTilePresenterService.getChosenElementId(event);
 
-    markerData =  {
+    markerData = {
       id: this.stockElement.id,
-      markerOfferValue : offerId,
-      markerOfferType : listMarker
-    }    
+      markerOfferValue: this.offerId,
+      markerOfferType: this.offerMarker
+    }
 
     this.savePickedOffer.emit(markerData)
   }
@@ -189,4 +214,24 @@ export class StockTileComponent implements OnInit, OnDestroy {
     this.deleteTile.emit(id);
   }
 
+  /**
+   * 
+   */
+  onSellStock(): void {
+    this.sellStock.emit(this.headerCalculations);    
+  }
+
+  /**
+   * 
+   */
+  onFindSelectedOffer(){
+
+    if(this.offerMarker === 'profit') {
+      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+    }
+
+    if(this.offerMarker === 'lose') {
+      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+    }
+  }
 }

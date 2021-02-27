@@ -148,7 +148,7 @@
   text-align: center;
 
   &--ld{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 500;
     max-width: 8ch;
     overflow:hidden; 
@@ -167,14 +167,13 @@
   }
 
   &--red{
-    color: $color-red;    
-    font-size: 1.3rem;
+  
+    color: $color-red; 
     font-weight: 500;    
   }
 
-  &--green{
+  &--green{ 
     color: $color-green;    
-    font-size: 1.3rem;
     font-weight: 500;    
   }
 }
