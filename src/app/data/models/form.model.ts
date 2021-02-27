@@ -6,5 +6,5 @@ export interface TradeFormData {
     commission: string;
     minCommission: string;
     calcStepCount?: number;
-    calcStepValue?: number;
+    calcStepValue?: string;
 }

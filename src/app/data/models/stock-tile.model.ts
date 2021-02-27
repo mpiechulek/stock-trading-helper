@@ -9,7 +9,7 @@ export interface StockTileModel {
     markerOfferType?: string;
     markerOfferValue?: number;
     calcStepCount?: number;
-    calcStepValue?: number;
+    calcStepValue?: string;
 }
 
 export interface HeaderCalculationsModel {
@@ -39,6 +39,10 @@ export interface StockTileNumericModel {
     commission: number;
     minCommission: number;
     percentageChange?: number;
+    markerOfferType?: number;
+    markerOfferValue?: number;
+    calcStepCount?: number;
+    calcStepValue?: number;
 }
 
 export interface SelectedOfferMarkerModel {

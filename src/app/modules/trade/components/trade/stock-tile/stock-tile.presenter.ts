@@ -74,14 +74,41 @@ export class StockTilePresenterService {
     let newObject = {} as StockTileNumericModel;
 
     for (let [key, value] of Object.entries(object)) {
-      if (!isNaN(value)) {
+
+      if (value === null) {
+        newObject[key] = value;
+      } else if (!isNaN(value)) {
         newObject[key] = parseFloat(value);
       }
     }
 
+    // when first loaded the change is zero
+    newObject.percentageChange = 0;
+
     this.numericObject = newObject;
+
+    this.setOfferListGenerationProperties(this.numericObject);
   }
 
+  /**
+   * 
+   * @param newObject 
+   */
+  setOfferListGenerationProperties(newObject: StockTileNumericModel) {
+
+    if (newObject.calcStepCount !== null && newObject.calcStepValue !== null) {
+      this.numberOfRepeats = newObject.calcStepCount;
+      this.percentageChange = newObject.calcStepValue;
+    }
+
+    if (newObject.markerOfferType !== null && newObject.markerOfferValue !== null) {
+      this.selectedOfferMarker[newObject.markerOfferType] = newObject.markerOfferValue
+    }
+  }
+
+  /**
+   * 
+   */
   generateQuotes() {
 
     this.calculateNeutralQuote(this.numericObject);
@@ -113,7 +140,7 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculateBuyValue(
         numericObject.amountOfShares,
         numericObject.buyPrice
-      );
+      );      
 
     const commission: number =
       this.stockPriceCalculatorService.calculateCommissionValue(
@@ -257,7 +284,7 @@ export class StockTilePresenterService {
         .calculateBuyValue(
           numericObject.amountOfShares,
           numericObject.buyPrice
-        );
+        );        
 
     result.currentPrice =
       this.stockPriceCalculatorService
@@ -293,7 +320,7 @@ export class StockTilePresenterService {
         sellCommission,
         buyCommission
       );
-      
+
     result.profitBeforeTax =
       this.stockPriceCalculatorService.calculateProfitBeforeTax(
         result.currentValue,
@@ -317,7 +344,10 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculatePercentageChange(
         result.currentPrice,
         numericObject.buyPrice
-      );    
+      );
+
+      console.log(result);
+      
 
     this.headerCalculations.next(result);
   }
@@ -328,7 +358,7 @@ export class StockTilePresenterService {
    * @param listMarker 
    */
   changeSelectedOfferElement(event, listMarker: string): void {
-    let id = this.getChosenElementId(event); 
+    let id = this.getChosenElementId(event);
 
     this.clearQuoteSelector(
       this.profitQuotesHolder,
@@ -432,7 +462,7 @@ export class StockTilePresenterService {
     quoteListSubject: any,
     quoteListHolder: StockOfferDictionaryModel,
     selectedId: string
-  ): void {        
+  ): void {
     quoteListHolder[selectedId].selected = true;
     quoteListSubject.next(quoteListHolder);
     this.setNewPercentageChange(quoteListHolder[selectedId].percentageChange);

@@ -51,6 +51,9 @@ export class StockTileComponent implements OnInit, OnDestroy {
   @Output()
   editTile: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  savePickedOffer: EventEmitter<Object> = new EventEmitter<Object>();
+
   constructor(
     private stockTilePresenterService: StockTilePresenterService
   ) { }
@@ -153,6 +156,19 @@ export class StockTileComponent implements OnInit, OnDestroy {
    */
   onClickedList(event, listMarker: string): void {
     this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
+    this.onSavePickedOfferData(event, listMarker);
+  }
+
+  onSavePickedOfferData(event, listMarker: string): void {
+    let markerData = {};
+
+    const offerId  = this.stockTilePresenterService.getChosenElementId(event);
+
+    markerData =  {
+      [listMarker] : offerId
+    }    
+
+    this.savePickedOffer.emit(markerData)
   }
 
   /**

@@ -23,8 +23,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { OneOfferLooseComponent } from './components/trade/stock-tile/one-offer-loose/one-offer-loose.component';
 
-
-
 @NgModule({
   declarations: [
     TradeContainerComponent,

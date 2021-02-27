@@ -54,7 +54,7 @@ export class StockTradeBoardService {
    */
   creatingNewPosition(formData: TradeFormData): void {
     let tradeBoardArr: StockTileModel[];
-    let newStockTile: StockTileModel;
+    let newStockTile: StockTileModel;    
 
     // Creating a new stock trade tile object
     newStockTile = {

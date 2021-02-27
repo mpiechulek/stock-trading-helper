@@ -118,8 +118,6 @@ export class StockPriceCalculatorService {
 
     percentage = (currentPrice * 100) / buyPrice;
 
-    console.log((currentPrice * 100) / buyPrice);
-
     return this.roundingNumberFloorTwoDecimalPlaces(percentage);
   }
 
