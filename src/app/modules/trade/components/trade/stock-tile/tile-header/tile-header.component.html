@@ -1,29 +1,8 @@
 <div class="trade-tile__stock-data">
 
-    <div class="trade-tile-stock-header-container">
-        <div class="trade-tile-stock-header-wrapper-1">
+    <div class="trade-tile-stock-header-container"> 
 
-            <div class="trade-tile-stock-header-wrapper-2">
-
-                <div class="trade-shape trade-shape--green-big"></div>
-
-                <p class="trade-tile-stock-percentage-change-text 
-                        trade-tile-stock-percentage-change-text--color-green">
-                    {{headerCalculations?.percentageChange}}
-                </p>
-
-            </div>
-
-            <p class="trade-tile-stock-percentage-change-text 
-                      trade-tile-stock-percentage-change-text--size-big
-                      trade-tile-stock-percentage-change-text--color-green"
-            >
-                %
-            </p>
-
-        </div>
-
-        <h2 class="trade-tile-stock-name-text trade-tile-header-margin-left">{{stockElement?.companyName}}</h2>
+        <h2 class="trade-tile-stock-name-text ">{{stockElement?.companyName}}</h2>
 
         <div class="trade-tile-stock-header-button-wrapper">
             <button class="btn trade-tile-header-margin-left" (click)="onEditTile()">
@@ -68,12 +47,33 @@
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Bef.tax</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.profitBeforeTax}}</p>
+
+            <p 
+               class="trade-tile-stock-text trade-tile-stock-text--ld"
+               [ngClass]="{
+                   'trade-tile-stock-text--green': headerCalculations?.profitBeforeTax > 1,
+                   'trade-tile-stock-text--red': headerCalculations?.profitBeforeTax < 1
+                }"
+
+            >
+                {{headerCalculations?.profitBeforeTax}}
+            </p>
+
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Aft.tax</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.profitAfterTax}}</p>
+
+            <p 
+                class="trade-tile-stock-text trade-tile-stock-text--ld"
+                [ngClass]="{
+                    'trade-tile-stock-text--green': headerCalculations?.profitAfterTax > 1,
+                    'trade-tile-stock-text--red': headerCalculations?.profitAfterTax < 1
+                }"
+            >
+                {{headerCalculations?.profitAfterTax}}
+            </p>
+            
         </div>
     </div>
 
