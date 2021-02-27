@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
-import { StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-dialog.component';
 import { FormState } from '../../../../data/enums/form-state.enum';
@@ -90,6 +90,15 @@ export class TradeContainerComponent implements OnInit {
   fetchStockBoardArray(): void {
     this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
   }
+
+  /**
+   * 
+   * @param value 
+   */
+  savePickedOffer(value: StockMarkerSaveDataModel):void {
+    this.stockTradeBoardService.savePickedOfferToStockData(value);
+  }
+
 
   // =============================================================================
   // ==================== Angular material form dialog triggering ================

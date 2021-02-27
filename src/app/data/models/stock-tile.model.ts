@@ -5,9 +5,9 @@ export interface StockTileModel {
     buyPrice: string;
     taxRate: string;
     commission: string;
-    minCommission: string;    
+    minCommission: string;
     markerOfferType?: string;
-    markerOfferValue?: number;
+    markerOfferValue?: string;
     calcStepCount?: number;
     calcStepValue?: string;
 }
@@ -21,15 +21,15 @@ export interface HeaderCalculationsModel {
     percentageChange: number;
 }
 
-export interface StockOfferModel {  
+export interface StockOfferModel {
     percentageChange: string;
     newPrice: string;
-    profit: string;  
-    selected?: boolean;  
+    profit: string;
+    selected?: boolean;
 }
 
 export interface StockOfferDictionaryModel {
-    [ index: string ]: StockOfferModel ; 
+    [index: string]: StockOfferModel;
 }
 
 export interface StockTileNumericModel {
@@ -39,8 +39,8 @@ export interface StockTileNumericModel {
     commission: number;
     minCommission: number;
     percentageChange?: number;
-    markerOfferType?: number;
-    markerOfferValue?: number;
+    markerOfferType?: string;
+    markerOfferValue?: string;
     calcStepCount?: number;
     calcStepValue?: number;
 }
@@ -48,7 +48,16 @@ export interface StockTileNumericModel {
 export interface SelectedOfferMarkerModel {
     profit: number;
     lose: number;
-    neutral:number;
+    neutral: number;
 }
+
+export interface StockMarkerSaveDataModel {
+    id: string;
+    markerOfferValue: string;
+    markerOfferType: string;
+}
+
+
+
 
 

@@ -41,6 +41,9 @@ export class StockTilePresenterService {
     "neutral": null
   }
 
+  private chosenOfferMarkerHolder: string = 'neutral';
+  private chosenOfferIdHolder: string = '0';
+
   public tradeTileOffers = TradeTileOffersState;
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
@@ -70,10 +73,10 @@ export class StockTilePresenterService {
    * numeric values, and removing everything that is not a number
    * @param object 
    */
-  convertStringObjectElementsToNumber(object: StockTileModel) {
+  convertStringObjectElementsToNumber(stockTileData: StockTileModel) {
     let newObject = {} as StockTileNumericModel;
 
-    for (let [key, value] of Object.entries(object)) {
+    for (let [key, value] of Object.entries(stockTileData)) {
 
       if (value === null) {
         newObject[key] = value;
@@ -87,22 +90,24 @@ export class StockTilePresenterService {
 
     this.numericObject = newObject;
 
-    this.setOfferListGenerationProperties(this.numericObject);
+    this.setOfferListGenerationProperties(this.numericObject, stockTileData);
   }
 
   /**
    * 
    * @param newObject 
    */
-  setOfferListGenerationProperties(newObject: StockTileNumericModel) {
+  setOfferListGenerationProperties(newObject: StockTileNumericModel, stockTileData: StockTileModel) {
 
     if (newObject.calcStepCount !== null && newObject.calcStepValue !== null) {
       this.numberOfRepeats = newObject.calcStepCount;
       this.percentageChange = newObject.calcStepValue;
     }
 
-    if (newObject.markerOfferType !== null && newObject.markerOfferValue !== null) {
-      this.selectedOfferMarker[newObject.markerOfferType] = newObject.markerOfferValue
+    if (stockTileData.markerOfferType !== null && newObject.markerOfferValue !== null) {
+      this.selectedOfferMarker[stockTileData.markerOfferType] = newObject.markerOfferValue
+      this.chosenOfferMarkerHolder = stockTileData.markerOfferType;
+      this.chosenOfferIdHolder = newObject.markerOfferValue;
     }
   }
 
@@ -126,6 +131,9 @@ export class StockTilePresenterService {
       this.percentageChange
     );
 
+    // Setting the chosen quote offer
+    this.checkWitchQuoteToUpdate( this.chosenOfferMarkerHolder,   this.chosenOfferIdHolder);
+
     this.calculateHeader(this.numericObject);
   }
 
@@ -140,7 +148,7 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculateBuyValue(
         numericObject.amountOfShares,
         numericObject.buyPrice
-      );      
+      );
 
     const commission: number =
       this.stockPriceCalculatorService.calculateCommissionValue(
@@ -284,7 +292,7 @@ export class StockTilePresenterService {
         .calculateBuyValue(
           numericObject.amountOfShares,
           numericObject.buyPrice
-        );        
+        );
 
     result.currentPrice =
       this.stockPriceCalculatorService
@@ -345,9 +353,6 @@ export class StockTilePresenterService {
         result.currentPrice,
         numericObject.buyPrice
       );
-
-      console.log(result);
-      
 
     this.headerCalculations.next(result);
   }

@@ -7,7 +7,8 @@
         <app-stock-tile 
             class="trade-tile-margin" 
             (editTile) = "onEditTile($event)"
-            (deleteTile) = "onDeleteTile($event)"
+            (deleteTile) = "onDeleteTile($event)"   
+            (savePickedOffer) ="onSavePickedOffer($event)"
             *ngFor = "let stockElement of stockBoardArray"
             [stockElement]="stockElement"
         >

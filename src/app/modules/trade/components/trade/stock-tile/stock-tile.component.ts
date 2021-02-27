@@ -14,6 +14,7 @@ import {
 } from '@angular/cdk/scrolling';
 import {
   HeaderCalculationsModel, 
+  StockMarkerSaveDataModel, 
   StockOfferDictionaryModel,
   StockTileModel, 
 } from '../../../../../data/models/stock-tile.model';
@@ -160,12 +161,13 @@ export class StockTileComponent implements OnInit, OnDestroy {
   }
 
   onSavePickedOfferData(event, listMarker: string): void {
-    let markerData = {};
-
+    let markerData: StockMarkerSaveDataModel;
     const offerId  = this.stockTilePresenterService.getChosenElementId(event);
 
     markerData =  {
-      [listMarker] : offerId
+      id: this.stockElement.id,
+      markerOfferValue : offerId,
+      markerOfferType : listMarker
     }    
 
     this.savePickedOffer.emit(markerData)

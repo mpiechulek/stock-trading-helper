@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TradeFormData } from '../../data/models/form.model';
-import { StockTileModel } from '../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
 import { Subject } from 'rxjs';
 
@@ -10,8 +10,6 @@ import { Subject } from 'rxjs';
 export class StockTradeBoardService {
 
   private storageTradeBoardKeyName: string = 'tradeBoardData';
-
-  private stockBoardArray: StockTileModel[];
   private stockBoardArraySubject = new Subject<StockTileModel[]>();
   private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
 
@@ -44,7 +42,7 @@ export class StockTradeBoardService {
 
     this.stockBoardArraySubject.next(tradeBoardDataArray);
 
-    return tradeBoardDataArray;
+    return [...tradeBoardDataArray];
   }
 
   /**
@@ -54,7 +52,7 @@ export class StockTradeBoardService {
    */
   creatingNewPosition(formData: TradeFormData): void {
     let tradeBoardArr: StockTileModel[];
-    let newStockTile: StockTileModel;    
+    let newStockTile: StockTileModel;
 
     // Creating a new stock trade tile object
     newStockTile = {
@@ -82,6 +80,10 @@ export class StockTradeBoardService {
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
   }
 
+  /**
+   * 
+   * @param stockId 
+   */
   findStockInArray(stockId: string): StockTileModel {
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
     let elementsIndex: number = null;
@@ -96,29 +98,56 @@ export class StockTradeBoardService {
   }
 
   /**
+   * 
+   * @param stockId 
+   */
+  findStockArrayIndex(stockId: string): number {
+    let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+
+    const elementIndex = tradeBoardArr.findIndex((element) => {
+      return element.id === stockId;
+    });
+
+    return elementIndex;
+  }
+
+  /**
    * Updating a position in the stock trade board array
    * @param objectEdit 
    */
   editTradeBoardArrayData(objectEdit: TradeFormData, stockId: string): void {
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
-    let newArr: StockTileModel[];
 
-    const elementsIndex = tradeBoardArr.findIndex((element) => {
-      return element.id === stockId;
-    });
+    const elementsIndex = this.findStockArrayIndex(stockId);
 
-    newArr = [...tradeBoardArr];
-
-    newArr[elementsIndex] = {
+    tradeBoardArr[elementsIndex] = {
       ...objectEdit,
       id: stockId,
       markerOfferType: null,
       markerOfferValue: null
     };
 
-    this.saveTradeBoardDataToLocalStorage(newArr);
+    this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
 
-    this.stockBoardArraySubject.next(newArr);
+    this.stockBoardArraySubject.next(tradeBoardArr);
+  }
+
+  /**
+   *  @param value
+   */
+  savePickedOfferToStockData(value:StockMarkerSaveDataModel): void {
+    let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    const stockToEdit: StockTileModel = this.findStockInArray(value.id);
+    const elementsIndex = this.findStockArrayIndex(value.id);
+
+    tradeBoardArr[elementsIndex] = {
+      ...stockToEdit,
+      markerOfferType: value.markerOfferType,
+      markerOfferValue: value.markerOfferValue
+    };  
+
+    this.stockBoardArraySubject.next(tradeBoardArr);
+    this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
   }
 
   /**
