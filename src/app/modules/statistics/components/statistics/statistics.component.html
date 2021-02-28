@@ -1,1 +1,32 @@
-<p>statistics works!</p>
+<mat-tab-group>
+
+    <mat-tab label="Trade Chart">
+
+        <ng-template matTabContent>
+
+            <app-linear-chart></app-linear-chart>
+
+        </ng-template>
+
+    </mat-tab>
+
+    <mat-tab label="Trade table">
+
+        <ng-template matTabContent>
+
+            <app-table></app-table>
+
+        </ng-template>
+
+    </mat-tab>
+
+    <mat-tab label="Statistics">
+
+        <ng-template matTabContent>
+          
+            <app-stat-chart></app-stat-chart>
+        </ng-template>
+
+    </mat-tab>
+
+</mat-tab-group>

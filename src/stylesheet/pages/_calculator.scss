@@ -177,15 +177,21 @@
   }
 
   &__result {
+
     .stock-advanced-calculator-result-wrapper {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 0.7rem;
       padding-top: 0.7rem;
-      border-bottom: 1px solid black;
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid black;
+        padding-bottom: 0.7rem;
+      }
     }
+
+    
   }
 
   &__button-wrapper {
