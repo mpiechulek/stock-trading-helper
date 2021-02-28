@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { FormComponent } from './components/calculator/calc-form/form/form.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FormComponent } from './components/calculator/calc-form/form/form.compo
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    SharedModule
+    SharedModule,
+    MatExpansionModule
   ]
 })
 export class CalculatorModule { }

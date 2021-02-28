@@ -1,3 +1,13 @@
+.calculator-result-board-text {
+  font-size:  1.6rem;
+  color: $color-white;
+
+  &--bold {
+    font-weight: 700;
+  }
+}
+
+
 .nav-bar-link,
 .sidenav-link {
   color: var(--color-text-nav);
