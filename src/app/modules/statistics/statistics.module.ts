@@ -15,13 +15,20 @@ import {MatSortModule} from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AdvancedPipeChartComponent } from './components/statistics/stat-chart/advanced-pipe-chart/advanced-pipe-chart.component';
+import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-grid-chart/pipe-grid-chart.component';
+
+
 @NgModule({
   declarations: [
     StatisticsContainerComponent,
     StatisticsComponent,
     TableComponent,
     LinearChartComponent,
-    StatChartComponent
+    StatChartComponent,
+    AdvancedPipeChartComponent,
+    PipeGridChartComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +38,9 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxChartsModule
+    
   ]
 })
 export class StatisticsModule { }

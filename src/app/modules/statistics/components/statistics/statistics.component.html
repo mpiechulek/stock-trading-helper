@@ -1,32 +1,37 @@
-<mat-tab-group>
+<div class="statistics">
 
-    <mat-tab label="Trade Chart">
+    <mat-tab-group>
+    
+        <mat-tab label="Trade Chart">
+    
+            <ng-template matTabContent>
+    
+                <app-linear-chart></app-linear-chart>
+    
+            </ng-template>
+    
+        </mat-tab>
+    
+        <mat-tab label="Trade table">
+    
+            <ng-template matTabContent>
+    
+                <app-table></app-table>
+    
+            </ng-template>
+    
+        </mat-tab>
+    
+        <mat-tab label="Statistics" id="chart-container">
+    
+            <ng-template matTabContent>
+              
+                <app-stat-chart></app-stat-chart>
+                
+            </ng-template>
+    
+        </mat-tab>
+    
+    </mat-tab-group>
 
-        <ng-template matTabContent>
-
-            <app-linear-chart></app-linear-chart>
-
-        </ng-template>
-
-    </mat-tab>
-
-    <mat-tab label="Trade table">
-
-        <ng-template matTabContent>
-
-            <app-table></app-table>
-
-        </ng-template>
-
-    </mat-tab>
-
-    <mat-tab label="Statistics">
-
-        <ng-template matTabContent>
-          
-            <app-stat-chart></app-stat-chart>
-        </ng-template>
-
-    </mat-tab>
-
-</mat-tab-group>
+</div>
