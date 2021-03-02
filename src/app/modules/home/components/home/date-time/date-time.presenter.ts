@@ -61,6 +61,11 @@ export class DateTimePresenterService {
 
   getDayOfWeek(): string {
     const dateData = new Date();
+
+    if (dateData.getDay() === 0) {
+      return this.dayNames[6];
+    }
+    
     return this.dayNames[dateData.getDay() - 1];
   }
 
