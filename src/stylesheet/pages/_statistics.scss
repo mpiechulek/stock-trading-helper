@@ -1,0 +1,19 @@
+.statistics-charts {
+
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }   
+
+}
+
+app-statistics-ui {
+    height: 100%;
+}
