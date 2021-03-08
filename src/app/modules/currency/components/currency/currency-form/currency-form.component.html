@@ -1,69 +1,61 @@
-<form>
+<h1 class="currency__header currency-header">Currency exchange calculator</h1>
 
-    <div>
-        
-        <mat-form-field>
+<div class="currency-select-wrapper">
 
-            <mat-label>Currency 1</mat-label>
+    <mat-form-field id="currency-select">
 
-            <mat-select>
+        <mat-label>Currency 1</mat-label>
 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+        <mat-select>
 
-                    <div class="currency-select-option-wrapper">
+            <mat-option *ngFor="let cur of currency" [value]="cur.value">
 
-                        <img src="./../../assets/svg flags/united-kingdom.svg"
-                            class="currency-flag-img currency-flag-img--us">
+                <div class="currency-select-option-wrapper">
 
-                        <p>{{cur.viewValue}}</p>
+                    <img src="./../../assets/svg flags/united-kingdom.svg"
+                        class="currency-flag-img currency-flag-img--us">
 
-                    </div>
+                    <p>{{cur.viewValue}}</p>
 
-                </mat-option>
+                </div>
 
-            </mat-select>
+            </mat-option>
 
-        </mat-form-field>
+        </mat-select>
 
-        <p class="">{{1}}</p>
+    </mat-form-field>
 
-    </div>
+    <p class="currency-calc-result-text">{{1}}</p>
 
-    <div class="">
+</div>
 
-        <button mat-mini-fab color="primary">Switch</button>
+<button mat-mini-fab color="primary"><mat-icon>swap_vert</mat-icon></button>
 
-        <p class="">=</p>
+<div class="currency-select-wrapper">
 
-    </div>
+    <mat-form-field id="currency-select">
 
-    <div>
+        <mat-label>Currency 2</mat-label>
 
-        <mat-form-field>
+        <mat-select>
 
-            <mat-label>Currency 2</mat-label>
+            <mat-option *ngFor="let cur of currency" [value]="cur.value">
 
-            <mat-select>
+                <div class="currency-select-option-wrapper">
 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+                    <img src="./../../assets/svg flags/united-kingdom.svg"
+                        class="currency-flag-img currency-flag-img--us">
 
-                    <div class="currency-select-option-wrapper">
+                    <p>{{cur.viewValue}}</p>
 
-                        <img src="./../../assets/svg flags/united-kingdom.svg"
-                            class="currency-flag-img currency-flag-img--us">
+                </div>
 
-                        <p>{{cur.viewValue}}</p>
+            </mat-option>
 
-                    </div>
+        </mat-select>
 
-                </mat-option>
+    </mat-form-field>
 
-            </mat-select>
+    <p class="currency-calc-result-text">{{1}}</p>
 
-        </mat-form-field>
-
-        <p class="">{{1}}</p>
-
-    </div>
-
-</form>
+</div>
