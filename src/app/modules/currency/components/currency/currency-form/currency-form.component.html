@@ -1,0 +1,69 @@
+<form>
+
+    <div>
+        
+        <mat-form-field>
+
+            <mat-label>Currency 1</mat-label>
+
+            <mat-select>
+
+                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+
+                    <div class="currency-select-option-wrapper">
+
+                        <img src="./../../assets/svg flags/united-kingdom.svg"
+                            class="currency-flag-img currency-flag-img--us">
+
+                        <p>{{cur.viewValue}}</p>
+
+                    </div>
+
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <p class="">{{1}}</p>
+
+    </div>
+
+    <div class="">
+
+        <button mat-mini-fab color="primary">Switch</button>
+
+        <p class="">=</p>
+
+    </div>
+
+    <div>
+
+        <mat-form-field>
+
+            <mat-label>Currency 2</mat-label>
+
+            <mat-select>
+
+                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+
+                    <div class="currency-select-option-wrapper">
+
+                        <img src="./../../assets/svg flags/united-kingdom.svg"
+                            class="currency-flag-img currency-flag-img--us">
+
+                        <p>{{cur.viewValue}}</p>
+
+                    </div>
+
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <p class="">{{1}}</p>
+
+    </div>
+
+</form>
