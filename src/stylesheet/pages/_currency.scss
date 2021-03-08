@@ -18,28 +18,41 @@
 
   &__container {
     height: 100%;
-    width: 50%;
+    width: 40rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;   
-    padding: 1rem;
-    background-color: red;
+    margin-top: 2rem;
+    
+
+    &--margin-right {
+      margin-right: 2rem;
+    }
 
     .currency-wrapper {
-      background: pink;
+      height: 100%;
       width: 100%;
     }
   }
 
   .currency-wrapper-wrap {
 
-    .currency-wrapper-offer {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
   }
+
+  .currency-wrapper-offer {
+      width: 17rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+  }
+}
+
+.currency-select-option-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
 }
