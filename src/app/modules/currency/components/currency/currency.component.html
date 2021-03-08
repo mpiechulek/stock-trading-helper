@@ -2,83 +2,19 @@
 
     <div class="currency__container currency__container--margin-right">
 
-        <div class="currency-wrapper">
+        <app-currency-crypto>
 
-            <h1 class="currency__header currency-header">Live CryptoCurrency quotes </h1>
+        </app-currency-crypto>
 
-            <div class="currency-wrapper-wrap">
+        <app-currency-foreign-exchange>
 
-                <div class="currency-offer-wrapper">
-
-                    <img 
-                        src="./../../assets/icon/Icon awesome-btc.svg"
-                        class="currency-flag-img" 
-                        alt="bitcoin"
-                    >
-
-                    <p>1 BTC = {{40000}} USD</p>
-
-                </div>
-
-                <div class="currency-offer-wrapper">
-                    
-                    <img 
-                        src="./../../assets/icon/Icon simple-ethereum.svg"
-                        class="currency-flag-img" 
-                        alt="ethereum"
-                    >
-
-                    <p>1 ETH = {{1500}} USD</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="currency-wrapper">
-
-            <h1 class="currency__header currency-header">Currency quotes </h1>
-
-            <div class="currency-wrapper-wrap">
-
-                <div class="currency-offer-wrapper">
-
-                    <img src="./../../assets/svg flags/united-states.svg"
-                        class="currency-flag-img" alt="">
-                    <p>1 USD = {{3.56}} {{'PLN'}} </p>
-
-                </div>
-
-                <div class="currency-offer-wrapper">
-
-                    <img src="./../../assets/svg flags/european-union.svg"
-                        class="currency-flag-img" alt="">
-                    <p>1 USD = {{3.56}} {{'PLN'}} </p>
-
-                </div>
-
-                <div class="currency-offer-wrapper">
-
-                    <img src="./../../assets/svg flags/united-kingdom.svg"
-                        class="currency-flag-img" alt="">
-                    <p>1 USD = {{3.56}} {{'PLN'}} </p>
-
-                </div>
-
-            </div>
-
-        </div>
+        </app-currency-foreign-exchange>
 
     </div>
 
     <div class="currency__container">
 
-        <div class="currency-wrapper">
-
-            <app-currency-form></app-currency-form>
-
-        </div>
+        <app-currency-form></app-currency-form>
 
     </div>
 
