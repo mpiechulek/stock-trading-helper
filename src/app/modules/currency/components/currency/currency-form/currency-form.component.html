@@ -4,7 +4,7 @@
 
     <mat-form-field id="currency-select">
 
-        <mat-label>Currency 1</mat-label>
+        <mat-label id="currency-label">Currency 1</mat-label>
 
         <mat-select>
 
@@ -25,17 +25,31 @@
 
     </mat-form-field>
 
-    <p class="currency-calc-result-text">{{1}}</p>
+    <mat-form-field id="currency-input">
+
+        <mat-label id="currency-label">Value 1</mat-label>
+
+        <input type="number" matInput value="1">
+
+    </mat-form-field>
 
 </div>
 
-<button mat-mini-fab color="primary"><mat-icon>swap_vert</mat-icon></button>
+<div class="currency-btn-margin">
+
+    <button mat-mini-fab color="primary">
+
+        <mat-icon>swap_vert</mat-icon>
+
+    </button>
+
+</div>
 
 <div class="currency-select-wrapper">
 
     <mat-form-field id="currency-select">
 
-        <mat-label>Currency 2</mat-label>
+        <mat-label id="currency-label">Currency 2</mat-label>
 
         <mat-select>
 
@@ -56,6 +70,12 @@
 
     </mat-form-field>
 
-    <p class="currency-calc-result-text">{{1}}</p>
+    <mat-form-field id="currency-input">
+
+        <mat-label id="currency-label">Value 2</mat-label>
+
+        <input type="number" matInput value="1">
+
+    </mat-form-field>
 
 </div>
