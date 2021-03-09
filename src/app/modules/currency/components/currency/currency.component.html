@@ -1,18 +1,32 @@
 <div class="currency">
 
-    <div class="currency__container currency__container--margin-right currency__container--flex-order-one">
+    <div 
+        class="
+            currency__container 
+            currency__container--margin-right
+            currency__container--flex-order-one
+            "
+    >
 
         <app-currency-crypto>
         </app-currency-crypto>
 
-        <app-currency-foreign-exchange>
+        <app-currency-foreign-exchange
+            [currencyData]="currencyData"
+            (chosenCurrency)="onChoseCurrency($event)"
+        >
         </app-currency-foreign-exchange>
 
     </div>
 
-    <div class="currency__container currency__container--flex-order-two">
-
-        <app-currency-form></app-currency-form>
+    <div 
+        class="
+        currency__container
+        currency__container--flex-order-two
+        "
+    >
+    
+        <app-currency-form [currencyData]="currencyData"></app-currency-form>
 
     </div>
 

@@ -1,2 +1,5 @@
 <app-currency-ui
-[currencyData]="currencyData$ | async"></app-currency-ui>
+    [currencyData]="currencyData | async"
+    (chosenCurrency)="fetchCurrencyData($event)"
+>
+</app-currency-ui>

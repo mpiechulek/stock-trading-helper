@@ -14,6 +14,11 @@ export class CurrencyContainerComponent implements OnInit {
   constructor(private currencyFacadeService: CurrencyFacadeService) { }
 
   ngOnInit(): void {
+    this.fetchCurrencyData('USD'); 
+  }
+
+  get currencyData(): any {
+    return this.currencyData$;
   }
 
   /**
@@ -21,6 +26,8 @@ export class CurrencyContainerComponent implements OnInit {
    * @param currencyName 
    */
   fetchCurrencyData(currencyName: string): void {
+    console.log('fsfdfdfsdfdfsdfsd');
+    
     this.currencyData$ = this.currencyFacadeService.getCurrencyData(currencyName);
   }
 

@@ -47,9 +47,14 @@
 
 .currency-calc-text {
   color: var(--color-text-prime); 
+  // font-family: monospace;
 
   &--bold {
-    font-weight: 500;
+    font-weight: 500;   
+  }
+
+  &--small {
+    font-size: 1.2rem;
   }
 }
 
