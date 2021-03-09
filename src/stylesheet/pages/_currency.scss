@@ -5,7 +5,7 @@
 
 .currency {
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 
   display: flex;
   flex-direction: row;
@@ -17,36 +17,40 @@
   }
 
   &__container {
+    position: relative;
     height: 100%;
     width: 40rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;   
-    margin-top: 2rem;
-    
-
+    align-items: flex-start;   
+    margin-top: 4rem;  
+   
     &--margin-right {
       margin-right: 2rem;
-    }
+    } 
 
-    .currency-wrapper {
+    .currency-offer-overflow-wrapper {
       height: 100%;
-      width: 100%;
+      overflow-y: auto;     
     }
   }
 
-  .currency-wrapper-wrap {
-
+  .currency-select-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;   
+    width: 18rem;     
   }
-
-  .currency-wrapper-offer {
-      width: 17rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
+  
+  .currency-offer-wrapper {
+    width: 17rem;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
 }
 
@@ -55,4 +59,9 @@
   flex-direction: row;
   justify-content:space-between;
   align-items:center;
+}
+
+.currency-btn-margin {
+ margin-bottom: 2rem;
+ margin-top: 2rem;
 }

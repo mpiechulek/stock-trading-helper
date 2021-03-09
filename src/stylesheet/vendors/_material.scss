@@ -63,5 +63,29 @@ mat-form-field#stock-advanced-calculator-form-field{
   height: 100%;
 }
 
+// Currency-Module
+
+mat-form-field#currency-select{
+  width: 10rem;
+  margin-right: 2rem;
+  color: var( --color-text-form);
+}
+
+mat-form-field#currency-input{
+  width: 10rem;
+  text-align: right;  
+  color: var( --color-text-form);
+}
+mat-label#currency-label{
+  color: var( --color-text-form);
+}  
+
+mat-select-arrow {   
+
+    border-left: 5px solid white;
+    border-right: 5px solid white; 
+}
+
+
 
 
