@@ -9,7 +9,7 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) { }
 
-  getCurrencyData(): Observable<any> {
-   return  this.http.get<any>('');    
+  getCurrencyData(currencyName: string): Observable<any> {
+   return  this.http.get<any>(`https://api.exchangerate-api.com/v4/latest/${currencyName}`);    
   }
 }
