@@ -10,8 +10,7 @@
 
             <mat-select>
 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value" (change)="onGetCurrencyData($event)">
-
+                <mat-option *ngFor="let cur of currency" [value]="cur.value">
                     <p>{{cur.viewValue}}</p>
 
                 </mat-option>
@@ -37,6 +36,8 @@
             <mat-icon>swap_vert</mat-icon>
 
         </button>
+
+        <p>1 {{'PLN'}} = 0.36 {{'USD'}}</p>
 
     </div>
 
