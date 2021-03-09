@@ -1,0 +1,85 @@
+<form class="currency-calculator-form">
+
+    <h1 class="currency__header currency-header">Currency exchange calculator</h1>
+
+    <div class="currency-select-wrapper">
+
+        <mat-form-field id="currency-select">
+
+            <mat-label id="currency-label">Currency 1</mat-label>
+
+            <mat-select>
+
+                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+
+                    <div class="currency-select-option-wrapper">
+
+                        <img src="./../../assets/svg flags/united-kingdom.svg"
+                            class="currency-flag-img currency-flag-img--us">
+
+                        <p>{{cur.viewValue}}</p>
+
+                    </div>
+
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field id="currency-input">
+
+            <mat-label id="currency-label">Value 1</mat-label>
+
+            <input type="number" matInput value="1">
+
+        </mat-form-field>
+
+    </div>
+
+    <div class="currency-btn-margin">
+
+        <button mat-mini-fab color="primary">
+
+            <mat-icon>swap_vert</mat-icon>
+
+        </button>
+
+    </div>
+
+    <div class="currency-select-wrapper">
+
+        <mat-form-field id="currency-select">
+
+            <mat-label id="currency-label">Currency 2</mat-label>
+
+            <mat-select>
+
+                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+
+                    <div class="currency-select-option-wrapper">
+
+                        <img src="./../../assets/svg flags/united-kingdom.svg"
+                            class="currency-flag-img currency-flag-img--us">
+
+                        <p>{{cur.viewValue}}</p>
+
+                    </div>
+
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field id="currency-input">
+
+            <mat-label id="currency-label">Value 2</mat-label>
+
+            <input type="number" matInput value="1">
+
+        </mat-form-field>
+
+    </div>
+
+</form>
