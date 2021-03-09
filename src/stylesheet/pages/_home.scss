@@ -16,10 +16,6 @@
     background-size: 60%;
   }
 
-  @include respond(ld) {
-    background-size: 70%;
-  }
-
   @include respond(sm) {  
     background-image: none;
   }
