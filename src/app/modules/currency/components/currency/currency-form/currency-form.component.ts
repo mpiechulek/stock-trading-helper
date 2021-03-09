@@ -59,9 +59,11 @@ export class CurrencyFormComponent implements OnInit {
     { id: 49, viewValue: 'USD', value: 'USD' },
     { id: 50, viewValue: 'UYU', value: 'UYU' },
     { id: 51, viewValue: 'VND', value: 'VND' },
-    { id: 52, viewValue: 'ZAR', value: 'ZAR' }
-   
+    { id: 52, viewValue: 'ZAR', value: 'ZAR' }   
   ]
+
+  defaultCurrencyOne = 'USD';
+  defaultCurrencyTwo = 'EUR';
 
   constructor() { }
 

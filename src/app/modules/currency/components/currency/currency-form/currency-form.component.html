@@ -8,8 +8,8 @@
 
             <mat-label id="currency-label">Currency 1</mat-label>
 
-            <mat-select>
-
+            <mat-select [(value)]="defaultCurrencyOne">
+                <mat-option></mat-option>
                 <mat-option *ngFor="let cur of currency" [value]="cur.value">
                     <p>{{cur.viewValue}}</p>
 
@@ -29,15 +29,15 @@
 
     </div>
 
-    <div class="currency-btn-margin">
+    <div class="currency-btn-wrapper">
 
-        <button mat-mini-fab color="primary">
+        <button mat-mini-fab color="primary" class="btn-margin-right">
 
             <mat-icon>swap_vert</mat-icon>
 
         </button>
 
-        <p>1 {{'PLN'}} = 0.36 {{'USD'}}</p>
+        <p class="currency-calc-text">1 {{'PLN'}} = 0.36 {{'USD'}}</p>
 
     </div>
 
@@ -47,7 +47,9 @@
 
             <mat-label id="currency-label">Currency 2</mat-label>
 
-            <mat-select>
+            <mat-select [(value)]="defaultCurrencyTwo">
+
+                <mat-option></mat-option>
 
                 <mat-option *ngFor="let cur of currency" [value]="cur.value">
 
