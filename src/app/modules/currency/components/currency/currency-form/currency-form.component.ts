@@ -17,4 +17,11 @@ export class CurrencyFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onGetCurrencyData(event) {
+
+    console.log(event);
+    
+
+  }
+
 }

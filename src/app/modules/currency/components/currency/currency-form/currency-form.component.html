@@ -10,16 +10,9 @@
 
             <mat-select>
 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+                <mat-option *ngFor="let cur of currency" [value]="cur.value" (change)="onGetCurrencyData($event)">
 
-                    <div class="currency-select-option-wrapper">
-
-                        <img src="./../../assets/svg flags/united-kingdom.svg"
-                            class="currency-flag-img currency-flag-img--us">
-
-                        <p>{{cur.viewValue}}</p>
-
-                    </div>
+                    <p>{{cur.viewValue}}</p>
 
                 </mat-option>
 
@@ -57,14 +50,7 @@
 
                 <mat-option *ngFor="let cur of currency" [value]="cur.value">
 
-                    <div class="currency-select-option-wrapper">
-
-                        <img src="./../../assets/svg flags/united-kingdom.svg"
-                            class="currency-flag-img currency-flag-img--us">
-
-                        <p>{{cur.viewValue}}</p>
-
-                    </div>
+                    <p>{{cur.viewValue}}</p>
 
                 </mat-option>
 
