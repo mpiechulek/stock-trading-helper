@@ -8,7 +8,7 @@ import { CurrencyApiDataModel } from '../../../../../data/models/currency.model'
 export class CurrencyForeignExchangeComponent implements OnInit {
 
   @Input()
-  currencyData: CurrencyApiDataModel;
+  readonly currencyData: CurrencyApiDataModel;
 
   constructor() { }
 

@@ -9,7 +9,7 @@
             <mat-label id="currency-label">Currency 1</mat-label>
 
             <mat-select 
-                [(value)]="currencyOne"
+                formControlName="currencyOneName"
                 (selectionChange)="onSelectCurrencyOne($event.value)" 
             >
                 <mat-option></mat-option>
@@ -28,7 +28,12 @@
 
             <mat-label id="currency-label">Quantity</mat-label>
 
-            <input type="number" matInput formControlName="currencyOneQuantity">
+            <input 
+                type="number"
+                matInput
+                formControlName="currencyOneQuantity"
+                (input)="onCalculateResult()"
+            >
 
         </mat-form-field>
 
@@ -36,15 +41,27 @@
 
     <div class="currency-btn-wrapper">
 
-        <button mat-mini-fab color="primary" class="btn-margin-right">
+        <button 
+            mat-mini-fab
+            color="primary"
+            class="btn-margin-right"
+            (click)="onSwapCurrencies()"
+        >
 
             <mat-icon>swap_vert</mat-icon>
 
         </button>
 
-        <p class="currency-calc-text">1 {{'PLN'}} = 0.36 {{'USD'}}</p>
+        <p class="currency-calc-text">
+              1 
+              {{currencyForm.value.currencyOneName}}
+               = 
+              {{currencyData?.rates[currencyForm.value.currencyTwoName] | number:'1.3-3'}}
+              {{currencyForm.value.currencyTwoName}}
+            </p>
 
     </div>
+
 
     <div class="currency-select-wrapper">
 
@@ -53,8 +70,8 @@
             <mat-label id="currency-label">Currency 2</mat-label>
 
             <mat-select 
-                [(value)]="currencyTwo"
-                (selectionChange)="onSelectCurrencyOne($event.value)" 
+                formControlName="currencyTwoName"  
+                (selectionChange) = "onCalculateResult()"             
             >
 
                 <mat-option></mat-option>
@@ -73,7 +90,7 @@
 
             <mat-label id="currency-label">Result</mat-label>
 
-            <input type="number" matInput formControlName="currencyOneQuantity" readonly>
+            <input type="number" matInput formControlName="currencyTwoResult" readonly>
 
         </mat-form-field>
 

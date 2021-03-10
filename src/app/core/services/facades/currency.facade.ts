@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CurrencyService } from '../../../data/api/currency.service';
-import { tap } from 'rxjs/operators';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { CurrencyApiDataModel } from '../../../data/models/currency.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,14 @@ export class CurrencyFacadeService {
    * @param currencyName 
    * @returns 
    */
-  getCurrencyData(currencyName: string): Observable<CurrencyApiDataModel>{
-    return this.currencyService.getCurrencyData(currencyName);    
+  getCurrencyData(currencyName: string): Observable<CurrencyApiDataModel> {
+    return this.currencyService.getCurrencyData(currencyName)
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        }),
+        shareReplay()
+      );
   }
 
 }

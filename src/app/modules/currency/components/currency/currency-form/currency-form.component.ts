@@ -1,20 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
-import { CurrencyFormPresenterService } from './currency-form.presenter';
+import { CurrencyFormService } from '../../../../../core/services/currency-form.service';
 
 @Component({
   selector: 'app-currency-form',
-  templateUrl: './currency-form.component.html',
-  providers: [CurrencyFormPresenterService]
-
+  templateUrl: './currency-form.component.html'
 })
+
 export class CurrencyFormComponent implements OnInit {
 
-  private currencyOneContainer: string;
-  private currencyTwoContainer: string;
   private currencySelectListContainer: Object[];
-
   private currencyFormData: FormGroup;
 
   @Output()
@@ -25,22 +22,29 @@ export class CurrencyFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private currencyFormPresenterService: CurrencyFormPresenterService
+    private currencyFormService: CurrencyFormService
   ) { }
 
   ngOnInit(): void {
-    this.currencyOneContainer = this.currencyFormPresenterService.currencyOne;
-    this.currencyTwoContainer = this.currencyFormPresenterService.currencyTwo;
-    this.currencySelectListContainer = this.currencyFormPresenterService.currencyArr;
+
+    this.currencySelectListContainer = this.currencyFormService.currencyArr;
 
     this.currencyFormData = this.formBuilder.group({
-      currencyOneQuantity: ['1', [
+      currencyOneQuantity: [1, [
         Validators.required
       ]],
-      currencyTwoResult: ['1', [
+      currencyTwoResult: [1, [
         Validators.required
       ]],
-    })
+      currencyOneName: [this.currencyFormService.currencyOne, [
+        Validators.required
+      ]],
+      currencyTwoName: [this.currencyFormService.currencyTwo, [
+        Validators.required
+      ]]
+    });
+
+    this.onCalculateResult();
   }
 
   get currencyForm(): FormGroup {
@@ -55,24 +59,8 @@ export class CurrencyFormComponent implements OnInit {
     return this.currencySelectListContainer;
   }
 
-  get currencyTwo(): string {
-    return this.currencyOneContainer;
-  }
-
-  set currencyTwo(value: string) {
-    this.currencyOneContainer = value;
-  }
-
-  get currencyOne(): string {
-    return this.currencyOneContainer;
-  }
-
-  set currencyOne(value: string) {
-    this.currencyOneContainer = value;
-  }
-
   /**
-   * 
+   * Fetching currency data from backend
    * @param currencyName 
    */
   onSelectCurrencyOne(currencyName: string) {
@@ -81,17 +69,36 @@ export class CurrencyFormComponent implements OnInit {
 
   /**
    * 
-   * @param currencyName 
    */
-  onSelectCurrencyTwo(currencyName: string) {
-    this.currencyTwo = currencyName;
+  onCalculateResult() {
+
+    if (this.currencyFormData.value.currencyOneQuantity === '') return;
+
+    if (this.currencyFormData.value.currencyTwoResult === '') return;
+
+    const result =
+      this.currencyFormData.value.currencyOneQuantity *
+      this.currencyData.rates[this.currencyFormData.value.currencyTwoName]
+
+    this.currencyFormData.patchValue({ currencyTwoResult: result });
   }
 
-  calculateResult() {
-
-  }
-
+  /**
+   * 
+   */
   onSwapCurrencies() {
 
+    const currencyOne = this.currencyFormData.value.currencyOneName;
+    const currencyTwo = this.currencyFormData.value.currencyTwoName;
+
+    this.currencyFormData.patchValue({
+      currencyOneName: currencyTwo,
+      currencyTwoName: currencyOne
+    });
+
+    this.onSelectCurrencyOne(this.currencyFormData.value.currencyOneName);
+
+    // this.onCalculateResult();
   }
+
 }

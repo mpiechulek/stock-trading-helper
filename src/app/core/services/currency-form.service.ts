@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
-export class CurrencyFormPresenterService {
+export class CurrencyFormService {
 
   private defaultCurrencyOne = 'USD';
   private defaultCurrencyTwo = 'EUR';
