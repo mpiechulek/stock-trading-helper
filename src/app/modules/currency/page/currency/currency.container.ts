@@ -25,9 +25,7 @@ export class CurrencyContainerComponent implements OnInit {
    * 
    * @param currencyName 
    */
-  fetchCurrencyData(currencyName: string): void {
-    console.log('fsfdfdfsdfdfsdfsd');
-    
+  fetchCurrencyData(currencyName: string): void {    
     this.currencyData$ = this.currencyFacadeService.getCurrencyData(currencyName);
   }
 

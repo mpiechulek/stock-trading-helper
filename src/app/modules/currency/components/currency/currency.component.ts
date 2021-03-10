@@ -23,8 +23,7 @@ export class CurrencyComponent implements OnInit {
    * 
    * @param currencyName 
    */
-  onChoseCurrency(currencyName: string): void {
-    console.log('fdfdsfsdfsdfsdfdbnv ff');    
+  onChoseCurrency(currencyName: string): void {    
     this.chosenCurrency.emit(currencyName);
   }
 

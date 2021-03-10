@@ -9,12 +9,12 @@
             <mat-label id="currency-label">Currency 1</mat-label>
 
             <mat-select 
-                [(value)]="defaultCurrencyOne"
+                [(value)]="currencyOne"
                 (selectionChange)="onSelectCurrencyOne($event.value)" 
             >
                 <mat-option></mat-option>
                 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value" >
+                <mat-option *ngFor="let cur of currencySelectList" [value]="cur.value" >
                     
                     <p>{{cur.value}}</p>
 
@@ -53,13 +53,13 @@
             <mat-label id="currency-label">Currency 2</mat-label>
 
             <mat-select 
-                [(value)]="defaultCurrencyTwo"
+                [(value)]="currencyTwo"
                 (selectionChange)="onSelectCurrencyOne($event.value)" 
             >
 
                 <mat-option></mat-option>
 
-                <mat-option *ngFor="let cur of currency" [value]="cur.value">
+                <mat-option *ngFor="let cur of currencySelectList" [value]="cur.value">
 
                     <p>{{cur.viewValue}}</p>
 
