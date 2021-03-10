@@ -19,9 +19,12 @@ export class CurrencyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * 
+   * @param currencyName 
+   */
   onChoseCurrency(currencyName: string): void {
-    console.log('fdfdsfsdfsdfsdfdbnv ff');
-    
+    console.log('fdfdsfsdfsdfsdfdbnv ff');    
     this.chosenCurrency.emit(currencyName);
   }
 

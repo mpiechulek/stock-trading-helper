@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
 
 @Component({
@@ -8,9 +7,7 @@ import { CurrencyApiDataModel } from '../../../../../data/models/currency.model'
   templateUrl: './currency-form.component.html'
 
 })
-export class CurrencyFormComponent implements OnInit {
-
- 
+export class CurrencyFormComponent implements OnInit { 
 
   currency = [
     { id: 1, viewValue: 'AED', value: 'AED' },
@@ -72,7 +69,7 @@ export class CurrencyFormComponent implements OnInit {
 
   public currencyDataForm: FormGroup;
 
-  @Output()
+  @Output() 
   chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
 
   @Input()
@@ -84,14 +81,18 @@ export class CurrencyFormComponent implements OnInit {
 
   }
 
-  onSelectCurrencyOne(currencyName: string) {  
-    console.log(currencyName);
-
-    // niechce emitowac
-      
+  /**
+   * 
+   * @param currencyName 
+   */
+   onSelectCurrencyOne(currencyName: string) {         
     this.chosenCurrency.emit(currencyName);    
   }
   
+  /**
+   * 
+   * @param currencyName 
+   */
   onSelectCurrencyTwo(currencyName: string) {    
       
   }
