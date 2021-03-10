@@ -108,4 +108,16 @@ export class CurrencyContainerComponent implements OnInit {
     this.currencyResultSubject.next(result);
   }
 
+/**
+ * 
+ * @param currencyName 
+ */
+  choseSecondCurrency(currencyName: string): void {
+    console.log(currencyName);
+    
+    this.secondCurrencyName = currencyName;    
+    this.secondCurrencyNameSubject.next(this.secondCurrencyName);    
+    this.calculateResult();
+  }
+
 }

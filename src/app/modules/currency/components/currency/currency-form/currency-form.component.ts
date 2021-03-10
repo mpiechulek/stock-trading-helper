@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
 import { CurrencyFormService } from '../../../../../core/services/currency-form.service';
-import { ifError } from 'assert';
 
 @Component({
   selector: 'app-currency-form',
@@ -29,7 +28,7 @@ export class CurrencyFormComponent implements OnInit {
   currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  chosenCurrencyLocal: EventEmitter<string> = new EventEmitter<string>();
+  choseCurrencyTwo: EventEmitter<string> = new EventEmitter<string>();
 
 
   @Input()
@@ -127,9 +126,9 @@ export class CurrencyFormComponent implements OnInit {
 
   /**
    * 
+   * @param event 
    */
   onTypeCurrencyQuantity(event) {
-    // if (event.target.value === null || event.target.value === '') return;
     this.currencyQuantity.emit(event.target.value);
   }
 
@@ -141,10 +140,11 @@ export class CurrencyFormComponent implements OnInit {
   }
 
   /**
- * 
- */
+   * 
+   * @param currencyName 
+   */
   onSelectCurrencyTwo(currencyName: string) {
-    this.chosenCurrencyLocal.emit();
+    this.choseCurrencyTwo.emit(currencyName);
   }
 
 }

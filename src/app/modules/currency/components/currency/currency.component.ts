@@ -31,6 +31,9 @@ export class CurrencyComponent implements OnInit {
   @Output()
   currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  choseCurrencyTwo: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -44,12 +47,27 @@ export class CurrencyComponent implements OnInit {
     this.chosenCurrency.emit(currencyName);
   }
 
+  /**
+   * 
+   */
   onSwapCurrencies() {
     this.swapCurrencies.emit();
   }
 
-  onTypeCurrencyQuantity(quantity: number): void { 
+  /**
+   * 
+   * @param quantity 
+   */
+  onTypeCurrencyQuantity(quantity: number): void {
     this.currencyQuantity.emit(quantity);
-   }
+  }
+
+/**
+ * 
+ * @param currencyName 
+ */
+  onSelectCurrencyTwo(currencyName: string): void {
+    this.choseCurrencyTwo.emit(currencyName);
+  }
 
 }
