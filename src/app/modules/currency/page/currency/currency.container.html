@@ -1,6 +1,9 @@
 <app-currency-ui
     [currencyData]="currencyData"
     [currencyCalculationResult$]="getCurrencyResult"
+    [firstCurrencyName$]="getFirstCurrencyName"
+    [secondCurrencyName$]="getSecondCurrencyName"
+    
     (chosenCurrency)="fetchCurrencyData($event)"
     (swapCurrencies)="swapCurrencies()"
     (currencyQuantity)="enterCurrencyQuantity($event)"

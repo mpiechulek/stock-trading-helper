@@ -15,6 +15,13 @@ export class CurrencyComponent implements OnInit {
   @Input()
   readonly currencyCalculationResult$: Observable<number>;
 
+  @Input()
+  readonly firstCurrencyName$: Observable<string>;
+
+  @Input()
+  readonly secondCurrencyName$: Observable<string>;
+
+
   @Output()
   chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
 

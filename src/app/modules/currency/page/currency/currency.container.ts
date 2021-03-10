@@ -13,11 +13,17 @@ export class CurrencyContainerComponent implements OnInit {
 
   private currencyDataContainer: CurrencyApiDataModel;
   private currencyQuantity: number = 1;
-  private firstCurrencyName: string;
-  private secondCurrencyName: string;
-
+  
   private currencyResultSubject = new Subject<number>();
   private currencyResult$ = this.currencyResultSubject.asObservable();
+  
+  private firstCurrencyName: string;
+  private firstCurrencyNameSubject = new Subject<string>();
+  private firstCurrencyName$ = this.firstCurrencyNameSubject.asObservable();
+  
+  private secondCurrencyName: string;
+  private secondCurrencyNameSubject = new Subject<string>();
+  private secondCurrencyName$ = this.secondCurrencyNameSubject.asObservable();
 
   constructor(
     private currencyFacadeService: CurrencyFacadeService,
@@ -30,12 +36,20 @@ export class CurrencyContainerComponent implements OnInit {
     this.fetchCurrencyData(this.firstCurrencyName);
   }
 
-  get currencyData(): any {
+  get currencyData(): CurrencyApiDataModel {
     return this.currencyDataContainer;
   }
 
-  get getCurrencyResult(): any {
+  get getCurrencyResult(): Observable<number> {
     return this.currencyResult$;
+  }
+
+  get getFirstCurrencyName():  Observable<string> {
+    return this.firstCurrencyName$;
+  }
+
+  get getSecondCurrencyName():  Observable<string> {
+    return this.secondCurrencyName$;
   }
 
   /**
@@ -65,12 +79,15 @@ export class CurrencyContainerComponent implements OnInit {
    */
   swapCurrencies() {
     const firstCurr: string = this.firstCurrencyName;
-    const secondCurr: string = this.firstCurrencyName;
+    const secondCurr: string = this.secondCurrencyName;
 
     this.firstCurrencyName = secondCurr;
-    this.secondCurrencyName = firstCurr;
+    this.secondCurrencyName = firstCurr;    
 
-    this.fetchCurrencyData(this.firstCurrencyName);  
+    this.firstCurrencyNameSubject.next(this.firstCurrencyName);
+    this.secondCurrencyNameSubject.next(this.secondCurrencyName);
+
+    this.fetchCurrencyData(this.firstCurrencyName);     
   }
 
   /**

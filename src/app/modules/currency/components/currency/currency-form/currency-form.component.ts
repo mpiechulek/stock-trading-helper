@@ -16,6 +16,8 @@ export class CurrencyFormComponent implements OnInit {
   private currencyFormData: FormGroup;
 
   private currencyCalculationResultSubscription: Subscription;
+  private firstCurrencyNameSubscription: Subscription;
+  private secondCurrencyNameSubscription: Subscription;
 
   @Output()
   fetchCurrencyData: EventEmitter<string> = new EventEmitter<string>();
@@ -34,13 +36,14 @@ export class CurrencyFormComponent implements OnInit {
   readonly currencyData: CurrencyApiDataModel;
 
   @Input()
-  readonly currencyCalculationResult$: Observable<number>;
+  private currencyCalculationResult$: Observable<number>;
 
   @Input()
-  readonly firstCurrencyName: string;
+  private secondCurrencyName$: Observable<number>;
 
   @Input()
-  readonly secondCurrencyName: string;
+  private firstCurrencyName$: Observable<number>;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,6 +56,20 @@ export class CurrencyFormComponent implements OnInit {
       this.currencyCalculationResult$
         .subscribe((res) => {
           this.currencyFormData.patchValue({ currencyTwoResult: res })
+        });
+
+
+    this.firstCurrencyNameSubscription =
+      this.firstCurrencyName$
+        .subscribe((res) => {
+          this.currencyFormData.patchValue({ currencyOneName: res })
+        });
+
+
+    this.secondCurrencyNameSubscription =
+      this.secondCurrencyName$
+        .subscribe((res) => {
+          this.currencyFormData.patchValue({ currencyTwoName: res })
         });
 
     this.currencySelectListContainer = this.currencyFormService.currencyArr;
@@ -78,6 +95,12 @@ export class CurrencyFormComponent implements OnInit {
 
     if (this.currencyCalculationResultSubscription) {
       this.currencyCalculationResultSubscription.unsubscribe();
+    }
+    if (this.firstCurrencyNameSubscription) {
+      this.firstCurrencyNameSubscription.unsubscribe();
+    }
+    if (this.secondCurrencyNameSubscription) {
+      this.secondCurrencyNameSubscription.unsubscribe();
     }
 
   }
