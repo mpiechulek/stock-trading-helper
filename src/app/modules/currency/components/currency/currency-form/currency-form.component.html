@@ -1,4 +1,4 @@
-<form class="currency-calculator-form">
+<form class="currency-calculator-form" [formGroup]="currencyForm" >
 
     <h1 class="currency__header currency-header">Currency exchange calculator</h1>
 
@@ -28,7 +28,7 @@
 
             <mat-label id="currency-label">Quantity</mat-label>
 
-            <input type="number" matInput value="1">
+            <input type="number" matInput formControlName="currencyOneQuantity">
 
         </mat-form-field>
 
@@ -73,7 +73,7 @@
 
             <mat-label id="currency-label">Result</mat-label>
 
-            <input type="number" matInput value="1" readonly>
+            <input type="number" matInput formControlName="currencyOneQuantity" readonly>
 
         </mat-form-field>
 

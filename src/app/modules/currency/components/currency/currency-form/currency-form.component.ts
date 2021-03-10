@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
 import { CurrencyFormPresenterService } from './currency-form.presenter';
 
@@ -14,6 +14,8 @@ export class CurrencyFormComponent implements OnInit {
   private currencyOneContainer: string;
   private currencyTwoContainer: string;
   private currencySelectListContainer: Object[];
+
+  private currencyFormData: FormGroup;
 
   @Output()
   chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
@@ -30,6 +32,23 @@ export class CurrencyFormComponent implements OnInit {
     this.currencyOneContainer = this.currencyFormPresenterService.currencyOne;
     this.currencyTwoContainer = this.currencyFormPresenterService.currencyTwo;
     this.currencySelectListContainer = this.currencyFormPresenterService.currencyArr;
+
+    this.currencyFormData = this.formBuilder.group({
+      currencyOneQuantity: ['1', [
+        Validators.required
+      ]],
+      currencyTwoResult: ['1', [
+        Validators.required
+      ]],
+    })
+  }
+
+  get currencyForm(): FormGroup {
+    return this.currencyFormData;
+  }
+
+  set currencyForm(value: FormGroup) {
+    this.currencyFormData = value;
   }
 
   get currencySelectList(): Object[] {
@@ -65,8 +84,10 @@ export class CurrencyFormComponent implements OnInit {
    * @param currencyName 
    */
   onSelectCurrencyTwo(currencyName: string) {
-
     this.currencyTwo = currencyName;
+  }
+
+  calculateResult() {
 
   }
 
