@@ -15,10 +15,23 @@ export class CurrencyFormComponent implements OnInit {
   private currencyFormData: FormGroup;
 
   @Output()
-  chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
+  fetchCurrencyData: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  swapCuriencies = new EventEmitter();
+
+  @Output()
+  typeValue: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  chosenCurrencyLocal: EventEmitter<string> = new EventEmitter<string>();
+
 
   @Input()
   readonly currencyData: CurrencyApiDataModel;
+
+  @Input()
+  readonly currencyCalcultionResult: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,7 +77,7 @@ export class CurrencyFormComponent implements OnInit {
    * @param currencyName 
    */
   onSelectCurrencyOne(currencyName: string) {
-    this.chosenCurrency.emit(currencyName);
+    this.fetchCurrencyData.emit(currencyName);
   }
 
   /**

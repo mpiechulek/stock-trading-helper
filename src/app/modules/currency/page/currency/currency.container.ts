@@ -34,4 +34,39 @@ export class CurrencyContainerComponent implements OnInit {
     this.currencyData$ = this.currencyFacadeService.getCurrencyData(currencyName);
   }
 
+  /**
+   * 
+   */
+   onCalculateResult() {
+
+    // if (this.currencyFormData.value.currencyOneQuantity === '') return;
+
+    // if (this.currencyFormData.value.currencyTwoResult === '') return;
+
+    // const result =
+    //   this.currencyFormData.value.currencyOneQuantity *
+    //   this.currencyData.rates[this.currencyFormData.value.currencyTwoName]
+
+    // this.currencyFormData.patchValue({ currencyTwoResult: result });
+  }
+
+  /**
+   * 
+   */
+  onSwapCurrencies() {
+
+    // const currencyOne = this.currencyFormData.value.currencyOneName;
+    // const currencyTwo = this.currencyFormData.value.currencyTwoName;
+
+    // this.currencyFormData.patchValue({
+    //   currencyOneName: currencyTwo,
+    //   currencyTwoName: currencyOne
+    // });
+
+    // this.onSelectCurrencyOne(this.currencyFormData.value.currencyOneName);
+
+    // // this.onCalculateResult();
+  }
+
+
 }
