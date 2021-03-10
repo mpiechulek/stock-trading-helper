@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CurrencyFormService } from '../../../../core/services/currency-form.service';
 import { CurrencyFacadeService } from '../../../../core/services/facades/currency.facade';
 import { CurrencyApiDataModel } from '../../../../data/models/currency.model';
@@ -11,7 +11,13 @@ import { CurrencyApiDataModel } from '../../../../data/models/currency.model';
 })
 export class CurrencyContainerComponent implements OnInit {
 
-  currencyData$: Observable<CurrencyApiDataModel>;
+  private currencyDataContainer: CurrencyApiDataModel;
+  private currencyQuantity: number = 1;
+  private firstCurrencyName: string;
+  private secondCurrencyName: string;
+
+  private currencyResultSubject = new Subject<number>();
+  private currencyResult$ = this.currencyResultSubject.asObservable();
 
   constructor(
     private currencyFacadeService: CurrencyFacadeService,
@@ -19,11 +25,17 @@ export class CurrencyContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchCurrencyData(this.currencyFormService.currencyOne);
+    this.firstCurrencyName  = this.currencyFormService.currencyOne
+    this.secondCurrencyName = this.currencyFormService.currencyTwo;
+    this.fetchCurrencyData(this.firstCurrencyName);
   }
 
   get currencyData(): any {
-    return this.currencyData$;
+    return this.currencyDataContainer;
+  }
+
+  get getCurrencyResult(): any {
+    return this.currencyResult$;
   }
 
   /**
@@ -31,42 +43,52 @@ export class CurrencyContainerComponent implements OnInit {
    * @param currencyName 
    */
   fetchCurrencyData(currencyName: string): void {
-    this.currencyData$ = this.currencyFacadeService.getCurrencyData(currencyName);
+    this.currencyFacadeService.getCurrencyData(currencyName).subscribe((res) => {
+      if (!!res) {
+        this.currencyDataContainer = res;
+        this.calculateResult();
+      }
+    });
+  }
+
+  /**
+   * 
+   * @param quantity 
+   */
+  enterCurrencyQuantity(quantity: number): void {
+    this.currencyQuantity = quantity;
+    this.calculateResult();
   }
 
   /**
    * 
    */
-   onCalculateResult() {
+  swapCurrencies() {
+    const firstCurr: string = this.firstCurrencyName;
+    const secondCurr: string = this.firstCurrencyName;
 
-    // if (this.currencyFormData.value.currencyOneQuantity === '') return;
+    this.firstCurrencyName = secondCurr;
+    this.secondCurrencyName = firstCurr;
 
-    // if (this.currencyFormData.value.currencyTwoResult === '') return;
-
-    // const result =
-    //   this.currencyFormData.value.currencyOneQuantity *
-    //   this.currencyData.rates[this.currencyFormData.value.currencyTwoName]
-
-    // this.currencyFormData.patchValue({ currencyTwoResult: result });
+    this.fetchCurrencyData(this.firstCurrencyName);  
   }
 
   /**
    * 
    */
-  onSwapCurrencies() {
+  calculateResult(): void {
 
-    // const currencyOne = this.currencyFormData.value.currencyOneName;
-    // const currencyTwo = this.currencyFormData.value.currencyTwoName;
+    let name: string;
 
-    // this.currencyFormData.patchValue({
-    //   currencyOneName: currencyTwo,
-    //   currencyTwoName: currencyOne
-    // });
+    if (this.firstCurrencyName === null) {
+      name = this.currencyFormService.currencyOne;
+    }
 
-    // this.onSelectCurrencyOne(this.currencyFormData.value.currencyOneName);
+    const result =
+      this.currencyQuantity *
+      this.currencyData.rates[this.secondCurrencyName]
 
-    // // this.onCalculateResult();
+    this.currencyResultSubject.next(result);
   }
-
 
 }

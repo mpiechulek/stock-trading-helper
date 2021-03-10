@@ -1,5 +1,8 @@
 <app-currency-ui
-    [currencyData]="currencyData | async"
+    [currencyData]="currencyData"
+    [currencyCalculationResult$]="getCurrencyResult"
     (chosenCurrency)="fetchCurrencyData($event)"
+    (swapCurrencies)="swapCurrencies()"
+    (currencyQuantity)="enterCurrencyQuantity($event)"
 >
 </app-currency-ui>

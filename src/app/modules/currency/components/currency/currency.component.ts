@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CurrencyApiDataModel } from '../../../../data/models/currency.model';
 
 @Component({
@@ -11,8 +12,17 @@ export class CurrencyComponent implements OnInit {
   @Input()
   readonly currencyData: CurrencyApiDataModel;
 
+  @Input()
+  readonly currencyCalculationResult$: Observable<number>;
+
   @Output()
   chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  swapCurrencies = new EventEmitter();
+
+  @Output()
+  currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -23,9 +33,16 @@ export class CurrencyComponent implements OnInit {
    * 
    * @param currencyName 
    */
-  onChoseCurrency(currencyName: string): void {    
+  onChoseCurrency(currencyName: string): void {
     this.chosenCurrency.emit(currencyName);
   }
 
+  onSwapCurrencies() {
+    this.swapCurrencies.emit();
+  }
+
+  onTypeCurrencyQuantity(quantity: number): void { 
+    this.currencyQuantity.emit(quantity);
+   }
 
 }

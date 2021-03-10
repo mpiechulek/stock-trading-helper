@@ -32,7 +32,7 @@
                 type="number"
                 matInput
                 formControlName="currencyOneQuantity"
-                (input)="onCalculateResult()"
+                (input)="onTypeCurrencyQuantity($event)"
             >
 
         </mat-form-field>
@@ -71,7 +71,7 @@
 
             <mat-select 
                 formControlName="currencyTwoName"  
-                (selectionChange) = "onCalculateResult()"             
+                (selectionChange) = "onSelectCurrencyTwo($event.value)"             
             >
 
                 <mat-option></mat-option>

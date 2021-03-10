@@ -27,7 +27,10 @@
     
         <app-currency-form 
             [currencyData]="currencyData"
+            [currencyCalculationResult$]="currencyCalculationResult$"
             (fetchCurrencyData)="onChoseCurrency($event)"
+            (swapCurrencies)="onSwapCurrencies()"
+            (currencyQuantity)="onTypeCurrencyQuantity($event)"
         >
         </app-currency-form>
 
