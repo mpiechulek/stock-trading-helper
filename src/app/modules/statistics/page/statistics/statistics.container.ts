@@ -13,8 +13,8 @@ export class StatisticsContainerComponent implements OnInit {
   }
 
   /**
-   * !wyswitlenie wykresu na cała stone
-   * !wysiwtlanie tablei na cała stone z paginacja i filtracja
+   * ! wyswitlenie wykresu na cała stone
+   * ! wysiwtlanie tablei na cała stone z paginacja i filtracja
    * ! zimina stylu wykresów i kolorystyki
    * ! zmian kolorystyki w dark theam
    * ! wczytywanie danych ionwestycyjnych z bazy 

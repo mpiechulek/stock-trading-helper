@@ -90,10 +90,13 @@
 
             <mat-label id="currency-label">Result</mat-label>
 
+            
+
             <input 
-                type="number"
+                type="text"
                 matInput
-                formControlName="currencyTwoResult"               
+                formControlName="currencyTwoResult"    
+                [value]="currencyForm.get('currencyTwoResult').value | number:'1.3-3'"           
                 readonly                         
             >
 
