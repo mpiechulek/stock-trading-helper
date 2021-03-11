@@ -24,7 +24,7 @@ export class CurrencyService {
    * @param currencyName 
    * @returns 
    */
-  getCBitCoinData(currencyName: string): Observable<CryptoCurrencyApiModel> {
+  getBitCoinData(): Observable<CryptoCurrencyApiModel> {
     return this.http.get<CryptoCurrencyApiModel>(`https://api.cryptonator.com/api/full/btc-usd`);
   }
 
@@ -33,7 +33,7 @@ export class CurrencyService {
    * @param currencyName 
    * @returns 
    */
-  getEthereumData(currencyName: string): Observable<CryptoCurrencyApiModel> {
+  getEthereumData(): Observable<CryptoCurrencyApiModel> {
     return this.http.get<CryptoCurrencyApiModel>(`https://api.cryptonator.com/api/full/eth-usd`);
   }
 }
