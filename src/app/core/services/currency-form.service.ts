@@ -64,6 +64,24 @@ export class CurrencyFormService {
     { id: 52, viewValue: 'ZAR', value: 'ZAR' }
   ]
 
+  private currenciesList = [
+    { value: 'USD', imgUrl: './../../assets/svg flags/united-states.svg' },
+    { value: 'EUR', imgUrl: './../../assets/svg flags/european-union.svg' },
+    { value: 'GBP', imgUrl: './../../assets/svg flags/united-kingdom.svg' },
+    { value: 'CHF', imgUrl: './../../assets/svg flags/switzerland.svg' },
+    { value: 'JPY', imgUrl: './../../assets/svg flags/japan.svg' },
+    { value: 'RUB', imgUrl: './../../assets/svg flags/russia.svg' },
+    { value: 'PLN', imgUrl: './../../assets/svg flags/poland.svg' },
+    { value: 'CZK', imgUrl: './../../assets/svg flags/czech-republic.svg' },
+    { value: 'UAH', imgUrl: './../../assets/svg flags/ukraine.svg' },
+    { value: 'INR', imgUrl: './../../assets/svg flags/india.svg' },
+    { value: 'KRW', imgUrl: './../../assets/svg flags/south-korea.svg' },
+    { value: 'SEK', imgUrl: './../../assets/svg flags/sweden.svg' },
+    { value: 'CAD', imgUrl: './../../assets/svg flags/canada.svg' },
+    { value: 'CNY', imgUrl: './../../assets/svg flags/china.svg' },
+    { value: 'DKK', imgUrl: './../../assets/svg flags/denmark.svg' }
+  ]
+
   constructor() { }
 
   get currencyOne(): string {
@@ -76,5 +94,9 @@ export class CurrencyFormService {
 
   get currencyArr(): Object[] {
     return this.currencies;
+  }
+
+  get currencyListArr(): Object[] {
+    return this.currenciesList;
   }
 }
