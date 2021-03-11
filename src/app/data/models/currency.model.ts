@@ -6,5 +6,21 @@ export interface CurrencyApiDataModel {
 }
 
 export interface CurrencyList {
-    [key: string]: number;  
+    [key: string]: number;
+}
+
+export interface CryptoCurrencyApiModel {
+    ticker: CryptoCurrencyApiTickerModel;
+}
+
+export interface CryptoCurrencyApiTickerModel {
+    base: string;
+    target: string;
+    price: string;
+    volume: string;
+    change: string;
+    markets: Object[];
+    timestamp: number
+    success: boolean;
+    error: string
 }
