@@ -6,18 +6,18 @@
 
         <ng-container *ngIf="themeState; else darkImage">
             <img             
-                src="./../../assets/icon/Icon awesome-btc-black.svg"
+                src="./../../assets/icon/Icon awesome-btc-white.svg"
                 class="currency-flag-img"
                 alt="bitcoin"
             >
         </ng-container>
         
         <ng-template #darkImage>
-            <!-- <img             
-            src="./../../assets/icon/Icon awesome-btc-white.svg"
+            <img             
+            src="./../../assets/icon/Icon awesome-btc-black.svg"
             class="currency-flag-img"
             alt="bitcoin"
-            > -->
+            >
         </ng-template>
 
 
@@ -27,7 +27,21 @@
 
     <div class="currency-offer-wrapper">
 
-        <img src="./../../assets/icon/Icon simple-ethereum.svg" class="currency-flag-img" alt="ethereum">
+        <ng-container *ngIf="themeState; else darkImage">
+            <img             
+                src="./../../assets/icon/Icon simple-ethereum-white.svg"
+                class="currency-flag-img"
+                alt="ether"
+            >
+        </ng-container>
+        
+        <ng-template #darkImage>
+            <img             
+            src="./../../assets/icon/Icon simple-ethereum-black.svg"
+            class="currency-flag-img"
+            alt="ether"
+            >
+        </ng-template>
 
         <p class="currency-calc-text">1 ETH = {{1500}} USD</p>
 
