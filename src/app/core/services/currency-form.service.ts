@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CurrencyFormService {
+export class CurrencyFormService implements OnInit {
 
   private defaultCurrencyOne = 'USD';
   private defaultCurrencyTwo = 'EUR';
@@ -84,6 +84,14 @@ export class CurrencyFormService {
 
   constructor() { }
 
+  ngOnInit(): void {
+
+    if (this.checkIfCurrencyInLocalStorage()) {
+      this.getCurrencyNameFromLocalStorage();
+    }
+
+  }
+
   get currencyOne(): string {
     return this.defaultCurrencyOne;
   }
@@ -98,5 +106,39 @@ export class CurrencyFormService {
 
   get currencyListArr(): Object[] {
     return this.currenciesList;
+  }
+
+  /**
+   * 
+   * @param firstCurrency 
+   * @param secondCurrency 
+   */
+  saveDefaultCurrencyNameToLocalStorage(firstCurrency: string, secondCurrency: string,): void {
+    let currencyData = {
+      firstCurrencyName: firstCurrency,
+      secondCurrencyName: secondCurrency
+    }
+
+    localStorage.setItem('currency', JSON.stringify(currencyData));
+    // snack bar service message confirming save
+
+  }
+
+  /**
+   * 
+   * @returns 
+   */
+  checkIfCurrencyInLocalStorage(): boolean {
+    if (localStorage.getItem('currency') !== null) return true;
+    return false;
+  }
+
+  /**
+   * 
+   */
+  getCurrencyNameFromLocalStorage(): void {
+    const localData = JSON.parse(localStorage.getItem('currency'));
+    this.defaultCurrencyOne = localData.firstCurrencyName;
+    this.defaultCurrencyTwo = localData.firstCurrencyName;
   }
 }
