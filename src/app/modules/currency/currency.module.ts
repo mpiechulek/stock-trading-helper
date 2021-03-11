@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CurrencyCryptoComponent } from './components/currency/currency-crypto/currency-crypto.component';
 import { CurrencyForeignExchangeComponent } from './components/currency/currency-foreign-exchange/currency-foreign-exchange.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     CurrencyRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,

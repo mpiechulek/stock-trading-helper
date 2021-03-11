@@ -8,7 +8,11 @@
 
             <img src="./../../assets/svg flags/united-states.svg" class="currency-flag-img" alt="">
             <p class="currency-calc-text">
-                1 <span class="currency-calc-text currency-calc-text--bold">USD</span> = {{3.56}} {{'PLN'}}
+                1
+                <span class="currency-calc-text currency-calc-text--bold">USD</span>
+                =
+                {{1 / currencyData?.rates.USD | number:'1.3-3'}}
+                {{currencyData?.base}}
             </p>
 
         </div>
@@ -17,108 +21,194 @@
 
             <img src="./../../assets/svg flags/european-union.svg" class="currency-flag-img" alt="">
             <p class="currency-calc-text">
-                1 <span class="currency-calc-text currency-calc-text--bold">EUR</span> = {{3.56}} {{'PLN'}} </p>
+                1
+                <span class="currency-calc-text currency-calc-text--bold">EUR</span>
+                =
+                {{1/currencyData?.rates.EUR | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/united-kingdom.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 GBP = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">GBP</span>
+                =
+                {{1/currencyData?.rates.GBP | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/india.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 RUP = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">INR</span>
+                =
+                {{1/currencyData?.rates.INR | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
-
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/japan.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 JPY = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">JPY</span>
+                =
+                {{1/currencyData?.rates.JPY | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
-
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/poland.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 PLN = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">PLN</span>
+                =
+                {{1/currencyData?.rates.PLN | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
-
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/russia.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 RUB = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">RUB</span>
+                =
+                {{1/currencyData?.rates.RUB | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
-
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/south-korea.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 USD = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">KRW</span>
+                =
+                {{1/currencyData?.rates.KRW | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/sweden.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 SEK = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">SEK</span>
+                =
+                {{1/currencyData?.rates.SEK | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/canada.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 CAD = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">CAD</span>
+                =
+                {{1/currencyData?.rates.CAD | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/china.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 CNY = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">CNY</span>
+                =
+                {{1/currencyData?.rates.CNY | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
-
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/denmark.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 DDK = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">DKK</span>
+                =
+                {{1/currencyData?.rates.DKK | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/switzerland.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 CHF = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">CHF</span>
+                =
+                {{1/currencyData?.rates.CHF | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/ukraine.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 UKC = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">UAH</span>
+                =
+                {{1/currencyData?.rates.UAH | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
         <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/czech-republic.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">1 CZK = {{3.56}} {{'PLN'}} </p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">CZK</span>
+                =
+                {{1/currencyData?.rates.CZK | number:'1.3-3'}}
+                {{currencyData?.base}}
+            </p>
 
         </div>
 
-        <div class="currency-calc-text">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-            <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <div class="currency-calc-text currency-calc-text--small">
+            Icons made by
+            <a href="https://www.freepik.com" title="Freepik">
+                Freepik
+            </a>
+            from
+            <a href="https://www.flaticon.com/" title="Flaticon">
+                www.flaticon.com
+            </a>
+        </div>
 
     </div>
 

@@ -93,9 +93,17 @@
   }
 }
 
-.currency-btn-margin {
+.currency-btn-wrapper {
+  width: 100%;
+  display: flex;  
+  align-items:center;
+  justify-content: center;
   margin-bottom: 2rem;
   margin-top: 2rem;
+
+  .btn-margin-right {
+    margin-right: 2rem;
+  }
 }
 
 .currency-flag-img {
