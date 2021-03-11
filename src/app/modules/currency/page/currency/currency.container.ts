@@ -41,6 +41,11 @@ export class CurrencyContainerComponent implements OnInit {
     this.getCryptoCurrencyData();
   }
 
+  /**
+   * !zapisaywanie wybranych walut jako default 
+   * !zaokraglanie inputu 
+   */
+
   get currencyData(): CurrencyApiDataModel {
     return this.currencyDataContainer;
   }

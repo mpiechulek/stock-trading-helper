@@ -12,4 +12,13 @@ export class CalculatorContainerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * !Zmiana kolorów formy w dark mode
+   * !Obliczanie formy 
+   * ! expand box zamkniety , po obliczaniu sie otwiera
+   * ! tablica wyników na cała wysokosc, click event na wartos wyniku
+   * ! poprawic kalkulator by liczył dobrze
+   * ! poprawic wyswietlnie wersji mobilnej kolumny 
+   */
+
 }
