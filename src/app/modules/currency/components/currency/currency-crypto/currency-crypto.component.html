@@ -4,7 +4,22 @@
 
     <div class="currency-offer-wrapper">
 
-        <img src="./../../assets/icon/Icon awesome-btc.svg" class="currency-flag-img" alt="bitcoin">
+        <ng-container *ngIf="themeState; else darkImage">
+            <img             
+                src="./../../assets/icon/Icon awesome-btc-black.svg"
+                class="currency-flag-img"
+                alt="bitcoin"
+            >
+        </ng-container>
+        
+        <ng-template #darkImage>
+            <!-- <img             
+            src="./../../assets/icon/Icon awesome-btc-white.svg"
+            class="currency-flag-img"
+            alt="bitcoin"
+            > -->
+        </ng-template>
+
 
         <p class="currency-calc-text">1 BTC = {{40000}} USD</p>
 
