@@ -33,6 +33,7 @@ export class CurrencyFacadeService {
   getBitCoinData(): Observable<string> {
     return this.currencyService.getBitCoinData()
       .pipe(
+        tap((res) => console.log(res)),
         map((res) =>
           res.ticker.price
         ),

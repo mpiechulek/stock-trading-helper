@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '../../../../../core/services/theme.service';
 
@@ -12,6 +12,12 @@ export class CurrencyCryptoComponent implements OnInit {
   private themeStateSubscription: Subscription;
 
   constructor(private themeService: ThemeService) { }
+
+  @Input()
+  readonly bitCoinPriceData: string;
+  
+  @Input()
+  readonly ethereumPriceData: string;
 
   ngOnInit(): void {   
 
