@@ -75,6 +75,12 @@ mat-tab-group#statistics {
   height: 100%;
 }
 
+mat-table#statistics-table {
+  width: 99%;
+  overflow: auto;
+  max-height: 100%;
+}
+
 // Currency-Module
 
 mat-form-field#currency-select {
