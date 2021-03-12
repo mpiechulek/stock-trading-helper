@@ -163,9 +163,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     date: '2021-03-28'
   }
 
-
 ];
-
 
 @Component({
   selector: 'app-table',

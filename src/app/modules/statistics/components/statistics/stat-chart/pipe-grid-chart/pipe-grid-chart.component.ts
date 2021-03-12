@@ -3,12 +3,11 @@ import { single } from './data';
 
 @Component({
   selector: 'app-pipe-grid-chart',
-  templateUrl: './pipe-grid-chart.component.html' 
+  templateUrl: './pipe-grid-chart.component.html'
 })
 export class PipeGridChartComponent implements OnInit {
 
   single: any[];
-  view: any[] = [700, 400];
 
   // options
   gradient: boolean = true;
@@ -18,14 +17,17 @@ export class PipeGridChartComponent implements OnInit {
   legendPosition: string = 'below';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: [
+      '#2196F3',
+      '#D80925'  
+    ]
   };
 
   constructor() {
     Object.assign(this, { single });
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
 
   }
 

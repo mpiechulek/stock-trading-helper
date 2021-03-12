@@ -8,7 +8,6 @@ import { multi } from './data';
 export class LinearChartComponent implements OnInit {
 
   multi: any[];
-  view: any[] = [700, 300];
 
   // options
   legend: boolean = false;

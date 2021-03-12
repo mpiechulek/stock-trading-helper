@@ -7,8 +7,7 @@ import { single } from './data';
 })
 export class AdvancedPipeChartComponent implements OnInit {
 
-  single: any[];
-  view: any[] = [700, 400];
+  single: any[];  
 
   // options
   gradient: boolean = true;
@@ -18,9 +17,18 @@ export class AdvancedPipeChartComponent implements OnInit {
   animations: boolean = true;
    
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: [
+      '#2196F3',
+      '#D80925',
+      '#404040',
+      '#858585',
+      '#d1d1d1',
+      '#00A8FF',
+      '#00D3FF',
+      '#18BCD6'
+    ]
   };
-
+  
   constructor() {
     Object.assign(this, { single });
   }
