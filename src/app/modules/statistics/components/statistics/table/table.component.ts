@@ -41,126 +41,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
     lose: '600',
     total: '861',
     date: '2021-03-28'
-  },
-  {
-    position: 3,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 4,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 5,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 6,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 7,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 8,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 9,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 10,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 11,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  },
-  {
-    position: 12,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
   }
 
 ];
@@ -187,21 +67,26 @@ export class TableComponent implements OnInit {
 
   // For sorting the data source
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  
-  @ViewChild(MatSort) sort: MatSort;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
-   
+
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;   
-    this.dataSource.sort = this.sort;
+    // the time out is used because normally it didn't work
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() =>  this.dataSource.sort = this.sort);  
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
