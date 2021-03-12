@@ -4,28 +4,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
-export interface PeriodicElement {
+export interface TradeTableDataModel {
   position: number;
   stockName: string;
   quantity: string;
   buyPrice: string;
   sellPrice: string;
   profitBeforeTax: string;
-  profitAfterTax: string;
   lose: string;
   total: string;
   date: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: TradeTableDataModel[] = [
   {
     position: 1,
     stockName: 'JSW',
     quantity: '120',
     buyPrice: '15.56',
     sellPrice: '18.34',
-    profitBeforeTax: '134.45',
-    profitAfterTax: '123.34',
+    profitBeforeTax: '134.45',   
     lose: '',
     total: '1234',
     date: '2021-03-19'
@@ -36,8 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     quantity: '100',
     buyPrice: '460',
     sellPrice: '306',
-    profitBeforeTax: '',
-    profitAfterTax: '',
+    profitBeforeTax: '',   
     lose: '600',
     total: '861',
     date: '2021-03-28'
@@ -58,15 +55,14 @@ export class TableComponent implements OnInit {
       'quantity',
       'buyPrice',
       'sellPrice',
-      'profitBeforeTax',
-      'profitAfterTax',
+      'profitBeforeTax',   
       'lose',
       'total',
       'date'
     ];
 
   // For sorting the data source
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<TradeTableDataModel>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -89,6 +85,13 @@ export class TableComponent implements OnInit {
     }
   }
 
+  onDeletePosition() : void{
+
+  }
+
+  onEditPosition() : void{
+
+  }
 
 }
 
