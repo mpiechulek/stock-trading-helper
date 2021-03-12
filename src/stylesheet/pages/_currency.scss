@@ -1,12 +1,13 @@
 .currency {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
   @include respond(sm) {
+    overflow: auto;
     flex-direction: column;
     justify-content: flex-start;
   }
@@ -59,15 +60,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .currency-crypto-wrapper {
     margin-bottom: 2rem;
+    align-items: center;
   }
 
   .currency-offer-overflow-wrapper {
-    height: 100%;
+    height: calc(100vh - 30rem); 
+    overflow:auto;   
+
+    @include respond(sm) {
+      overflow:none;   
+      height: 100%;   
+    }
   }
 
   .currency-select-wrapper {
@@ -89,14 +97,22 @@
 
   .currency-offer-wrapper {
     margin-bottom: 1rem;
-    width: 20rem;
+    width: 25rem;
+  }
+
+  .offer-margin-right {
+    margin-right: 1rem;
+  }
+
+  .offer-currency-width {
+    width: 6ch;
   }
 }
 
 .currency-btn-wrapper {
   width: 100%;
-  display: flex;  
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
   margin-top: 2rem;

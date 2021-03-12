@@ -20,6 +20,12 @@ export class CurrencyComponent implements OnInit {
 
   @Input()
   readonly secondCurrencyName$: Observable<string>;
+  
+  @Input()
+  readonly bitCoinPriceData: string;
+  
+  @Input()
+  readonly ethereumPriceData: string;
 
 
   @Output()

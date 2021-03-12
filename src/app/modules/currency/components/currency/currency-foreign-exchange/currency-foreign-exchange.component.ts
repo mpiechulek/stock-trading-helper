@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CurrencyFormService } from '../../../../../core/services/currency-form.service';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
 
 @Component({
@@ -10,9 +11,13 @@ export class CurrencyForeignExchangeComponent implements OnInit {
   @Input()
   readonly currencyData: CurrencyApiDataModel;
 
-  constructor() { }
+  public currenciesList: Object[];
+
+  constructor(private currencyFormService: CurrencyFormService) { }
 
   ngOnInit(): void {
+
+    this.currenciesList = this.currencyFormService.currencyListArr;
   }
 
 }

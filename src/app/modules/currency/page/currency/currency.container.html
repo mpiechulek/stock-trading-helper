@@ -3,6 +3,9 @@
     [currencyCalculationResult$]="getCurrencyResult"
     [firstCurrencyName$]="getFirstCurrencyName"
     [secondCurrencyName$]="getSecondCurrencyName"
+
+    [bitCoinPriceData]="bitCoinPriceData | async"
+    [ethereumPriceData]="ethereumPriceData | async"
     
     (chosenCurrency)="fetchCurrencyData($event)"
     (swapCurrencies)="swapCurrencies()"

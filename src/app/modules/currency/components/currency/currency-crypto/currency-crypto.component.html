@@ -1,9 +1,9 @@
 <div class="currency-crypto-wrapper">
 
-    <h1 class="currency__header currency-header">Live CryptoCurrency quotes </h1>
+    <h1 class="currency__header currency-header">Live 30s. crypto currency quotes </h1>
 
     <div class="currency-offer-wrapper">
-
+        
         <ng-container *ngIf="themeState; else darkImage">
             <img             
                 src="./../../assets/icon/Icon awesome-btc-white.svg"
@@ -18,10 +18,25 @@
             class="currency-flag-img"
             alt="bitcoin"
             >
-        </ng-template>
+        </ng-template>      
 
+        <div class="offer-currency-width">
 
-        <p class="currency-calc-text">1 BTC = {{40000}} USD</p>
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">BTC</span>                      
+            </p>
+
+        </div>
+
+        <p class="currency-calc-text offer-margin-right">
+           =             
+        </p>
+
+        <p class="currency-calc-text">
+            {{bitCoinPriceData | number:'1.3-3'}} USD
+         
+        </p>      
 
     </div>
 
@@ -43,7 +58,22 @@
             >
         </ng-template>
 
-        <p class="currency-calc-text">1 ETH = {{1500}} USD</p>
+        <div class="offer-currency-width">
+
+            <p class="currency-calc-text">
+                1
+                <span class="currency-calc-text currency-calc-text--bold">ETH</span>                      
+            </p>
+
+        </div>
+
+        <p class="currency-calc-text offer-margin-right">
+           =             
+        </p>
+
+        <p class="currency-calc-text">
+            {{ethereumPriceData | number:'1.3-3'}} USD         
+        </p>      
 
     </div>
 

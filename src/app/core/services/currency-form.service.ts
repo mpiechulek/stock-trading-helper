@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CurrencyFormService {
+export class CurrencyFormService implements OnInit {
 
   private defaultCurrencyOne = 'USD';
   private defaultCurrencyTwo = 'EUR';
@@ -64,7 +64,33 @@ export class CurrencyFormService {
     { id: 52, viewValue: 'ZAR', value: 'ZAR' }
   ]
 
+  private currenciesList = [
+    { value: 'USD', imgUrl: './../../assets/svg flags/united-states.svg' },
+    { value: 'EUR', imgUrl: './../../assets/svg flags/european-union.svg' },
+    { value: 'GBP', imgUrl: './../../assets/svg flags/united-kingdom.svg' },
+    { value: 'CHF', imgUrl: './../../assets/svg flags/switzerland.svg' },
+    { value: 'JPY', imgUrl: './../../assets/svg flags/japan.svg' },
+    { value: 'RUB', imgUrl: './../../assets/svg flags/russia.svg' },
+    { value: 'PLN', imgUrl: './../../assets/svg flags/poland.svg' },
+    { value: 'CZK', imgUrl: './../../assets/svg flags/czech-republic.svg' },
+    { value: 'UAH', imgUrl: './../../assets/svg flags/ukraine.svg' },
+    { value: 'INR', imgUrl: './../../assets/svg flags/india.svg' },
+    { value: 'KRW', imgUrl: './../../assets/svg flags/south-korea.svg' },
+    { value: 'SEK', imgUrl: './../../assets/svg flags/sweden.svg' },
+    { value: 'CAD', imgUrl: './../../assets/svg flags/canada.svg' },
+    { value: 'CNY', imgUrl: './../../assets/svg flags/china.svg' },
+    { value: 'DKK', imgUrl: './../../assets/svg flags/denmark.svg' }
+  ]
+
   constructor() { }
+
+  ngOnInit(): void {
+
+    if (this.checkIfCurrencyInLocalStorage()) {
+      this.getCurrencyNameFromLocalStorage();
+    }
+
+  }
 
   get currencyOne(): string {
     return this.defaultCurrencyOne;
@@ -76,5 +102,43 @@ export class CurrencyFormService {
 
   get currencyArr(): Object[] {
     return this.currencies;
+  }
+
+  get currencyListArr(): Object[] {
+    return this.currenciesList;
+  }
+
+  /**
+   * 
+   * @param firstCurrency 
+   * @param secondCurrency 
+   */
+  saveDefaultCurrencyNameToLocalStorage(firstCurrency: string, secondCurrency: string,): void {
+    let currencyData = {
+      firstCurrencyName: firstCurrency,
+      secondCurrencyName: secondCurrency
+    }
+
+    localStorage.setItem('currency', JSON.stringify(currencyData));
+    // snack bar service message confirming save
+
+  }
+
+  /**
+   * 
+   * @returns 
+   */
+  checkIfCurrencyInLocalStorage(): boolean {
+    if (localStorage.getItem('currency') !== null) return true;
+    return false;
+  }
+
+  /**
+   * 
+   */
+  getCurrencyNameFromLocalStorage(): void {
+    const localData = JSON.parse(localStorage.getItem('currency'));
+    this.defaultCurrencyOne = localData.firstCurrencyName;
+    this.defaultCurrencyTwo = localData.firstCurrencyName;
   }
 }

@@ -4,20 +4,35 @@
 
     <div class="currency-offer-overflow-wrapper">
 
-        <div class="currency-offer-wrapper">
+        <div class="currency-offer-wrapper" *ngFor="let currency Of currenciesList">
 
-            <img src="./../../assets/svg flags/united-states.svg" class="currency-flag-img" alt="">
-            <p class="currency-calc-text">
-                1
-                <span class="currency-calc-text currency-calc-text--bold">USD</span>
-                =
-                {{1 / currencyData?.rates.USD | number:'1.3-3'}}
-                {{currencyData?.base}}
-            </p>
+            <div class="currency-offer-wrapper">
+
+                <img src={{currency.imgUrl}} class="currency-flag-img" alt="">
+
+                <div class="offer-currency-width">
+
+                    <p class="currency-calc-text">
+                        1
+                        <span class="currency-calc-text currency-calc-text--bold">{{currency.value}}</span>                      
+                    </p>
+
+                </div>
+
+                <p class="currency-calc-text offer-margin-right">
+                   =             
+                </p>
+
+                <p class="currency-calc-text">
+                    {{1 / currencyData?.rates[currency.value] | number:'1.3-3'}}
+                    {{currencyData?.base}}
+                </p>
+
+            </div>
 
         </div>
 
-        <div class="currency-offer-wrapper">
+        <!-- <div class="currency-offer-wrapper">
 
             <img src="./../../assets/svg flags/european-union.svg" class="currency-flag-img" alt="">
             <p class="currency-calc-text">
@@ -58,7 +73,7 @@
 
         <div class="currency-offer-wrapper">
 
-            <img src="./../../assets/svg flags/japan.svg" class="currency-flag-img" alt="">
+            <img src="./../../assets/svg flags/jappan.svg" class="currency-flag-img" alt="">
             <p class="currency-calc-text">
                 1
                 <span class="currency-calc-text currency-calc-text--bold">JPY</span>
@@ -197,7 +212,7 @@
                 {{currencyData?.base}}
             </p>
 
-        </div>
+        </div> -->
 
         <div class="currency-calc-text currency-calc-text--small">
             Icons made by

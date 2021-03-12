@@ -13,17 +13,20 @@ export class CurrencyContainerComponent implements OnInit {
 
   private currencyDataContainer: CurrencyApiDataModel;
   private currencyQuantity: number = 1;
-  
+
   private currencyResultSubject = new Subject<number>();
   private currencyResult$ = this.currencyResultSubject.asObservable();
-  
+
   private firstCurrencyName: string;
   private firstCurrencyNameSubject = new Subject<string>();
   private firstCurrencyName$ = this.firstCurrencyNameSubject.asObservable();
-  
+
   private secondCurrencyName: string;
   private secondCurrencyNameSubject = new Subject<string>();
   private secondCurrencyName$ = this.secondCurrencyNameSubject.asObservable();
+
+  private bitCoinPriceData$: Observable<string>;
+  private ethereumPriceData$: Observable<string>;
 
   constructor(
     private currencyFacadeService: CurrencyFacadeService,
@@ -31,10 +34,17 @@ export class CurrencyContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.firstCurrencyName  = this.currencyFormService.currencyOne
+    this.firstCurrencyName = this.currencyFormService.currencyOne
     this.secondCurrencyName = this.currencyFormService.currencyTwo;
+    
     this.fetchCurrencyData(this.firstCurrencyName);
+    this.getCryptoCurrencyData();
   }
+
+  /**
+   * !zapisaywanie wybranych walut jako default 
+   * !zaokraglanie inputu 
+   */
 
   get currencyData(): CurrencyApiDataModel {
     return this.currencyDataContainer;
@@ -44,12 +54,20 @@ export class CurrencyContainerComponent implements OnInit {
     return this.currencyResult$;
   }
 
-  get getFirstCurrencyName():  Observable<string> {
+  get getSecondCurrencyName(): Observable<string> {
     return this.firstCurrencyName$;
   }
 
-  get getSecondCurrencyName():  Observable<string> {
+  get getFirstCurrencyName(): Observable<string> {
     return this.secondCurrencyName$;
+  }
+
+  get bitCoinPriceData(): Observable<string> {
+    return this.bitCoinPriceData$;
+  }
+
+  get ethereumPriceData(): Observable<string> {
+    return this.ethereumPriceData$;
   }
 
   /**
@@ -63,6 +81,35 @@ export class CurrencyContainerComponent implements OnInit {
         this.calculateResult();
       }
     });
+  }
+
+  /**
+   * fettjing the crypto currency data every 30seconds
+   */
+  getCryptoCurrencyData() {
+
+    this.bitCoinPriceData$ = this.fetchBitCoinData();
+    this.ethereumPriceData$ = this.fetchEthereumData();
+
+    setInterval(()=> {
+      this.bitCoinPriceData$ = this.fetchBitCoinData();
+      this.ethereumPriceData$ = this.fetchEthereumData();
+    },30000);
+
+  }
+
+  /**
+   * 
+   */
+  fetchBitCoinData(): Observable<string> {
+    return this.currencyFacadeService.getBitCoinData();
+  }
+
+  /**
+   * 
+   */
+  fetchEthereumData(): Observable<string> {
+    return this.currencyFacadeService.getEthereumData();
   }
 
   /**
@@ -82,12 +129,12 @@ export class CurrencyContainerComponent implements OnInit {
     const secondCurr: string = this.secondCurrencyName;
 
     this.firstCurrencyName = secondCurr;
-    this.secondCurrencyName = firstCurr;    
+    this.secondCurrencyName = firstCurr;
 
     this.firstCurrencyNameSubject.next(this.firstCurrencyName);
     this.secondCurrencyNameSubject.next(this.secondCurrencyName);
 
-    this.fetchCurrencyData(this.firstCurrencyName);     
+    this.fetchCurrencyData(this.firstCurrencyName);
   }
 
   /**
@@ -108,15 +155,15 @@ export class CurrencyContainerComponent implements OnInit {
     this.currencyResultSubject.next(result);
   }
 
-/**
- * 
- * @param currencyName 
- */
+  /**
+   * 
+   * @param currencyName 
+   */
   choseSecondCurrency(currencyName: string): void {
     console.log(currencyName);
-    
-    this.secondCurrencyName = currencyName;    
-    this.secondCurrencyNameSubject.next(this.secondCurrencyName);    
+
+    this.secondCurrencyName = currencyName;
+    this.secondCurrencyNameSubject.next(this.secondCurrencyName);
     this.calculateResult();
   }
 
