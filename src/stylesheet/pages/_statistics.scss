@@ -3,9 +3,10 @@
 }
 
 .linear-chart-container {
-  margin-top: 2rem;
+  margin-top: 3rem;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -25,10 +26,8 @@
   }
 }
 
-// app-statistics-ui {
-//     height: 100%;
-// }
 
-// .tick > text {
-//     color: var(--color-text-form);
-//   }
+// Changing the text colorof the linear chart
+.ngx-charts text {
+  fill: var(--color-text-form);
+}

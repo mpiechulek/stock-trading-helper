@@ -1,5 +1,7 @@
 <div class="linear-chart-container "> 
 
+  <h1>Linear chart of profit/lose changes</h1>
+
     <ngx-charts-line-chart    
       [scheme]="colorScheme"
       [legend]="legend"
@@ -12,9 +14,12 @@
       [timeline]="timeline"
       [results]="multi"
       [autoScale]="autoScale"
+
       (select)="onSelect($event)"
       (activate)="onActivate($event)"
       (deactivate)="onDeactivate($event)"
+
+      [showRefLabels] ="false"
       
       >
     </ngx-charts-line-chart>

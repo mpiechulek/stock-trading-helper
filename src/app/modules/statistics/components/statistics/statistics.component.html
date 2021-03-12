@@ -1,37 +1,43 @@
 <div class="statistics">
 
     <mat-tab-group id="statistics">
-    
+
+        <!-- Linear chart -->
+
         <mat-tab label="Trade Chart">
-    
+
             <ng-template matTabContent>
-    
+
                 <app-linear-chart></app-linear-chart>
-    
+
             </ng-template>
-    
+
         </mat-tab>
-    
+
+        <!-- Table-->
+
         <mat-tab label="Trade table">
-    
+
             <ng-template matTabContent>
-    
+
                 <app-table></app-table>
-    
+
             </ng-template>
-    
+
         </mat-tab>
-    
+
+        <!-- Circle charts-->
+
         <mat-tab label="Statistics" id="chart-container">
-    
+
             <ng-template matTabContent>
-              
+
                 <app-stat-chart></app-stat-chart>
-                
+
             </ng-template>
-    
+
         </mat-tab>
-    
+
     </mat-tab-group>
 
 </div>
