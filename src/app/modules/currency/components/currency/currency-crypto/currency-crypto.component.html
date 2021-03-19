@@ -4,7 +4,7 @@
 
     <div class="currency-offer-wrapper">
         
-        <ng-container *ngIf="themeState; else darkImage">
+        <ng-container *ngIf="themeState; else darkBitImage">
             <img             
                 src="./../../assets/icon/Icon awesome-btc-white.svg"
                 class="currency-flag-img"
@@ -12,7 +12,7 @@
             >
         </ng-container>
         
-        <ng-template #darkImage>
+        <ng-template #darkBitImage>
             <img             
             src="./../../assets/icon/Icon awesome-btc-black.svg"
             class="currency-flag-img"
@@ -42,7 +42,7 @@
 
     <div class="currency-offer-wrapper">
 
-        <ng-container *ngIf="themeState; else darkImage">
+        <ng-container *ngIf="themeState; else darkEthImage">
             <img             
                 src="./../../assets/icon/Icon simple-ethereum-white.svg"
                 class="currency-flag-img"
@@ -50,7 +50,7 @@
             >
         </ng-container>
         
-        <ng-template #darkImage>
+        <ng-template #darkEthImage>
             <img             
             src="./../../assets/icon/Icon simple-ethereum-black.svg"
             class="currency-flag-img"
