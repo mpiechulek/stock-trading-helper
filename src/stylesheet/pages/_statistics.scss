@@ -57,10 +57,14 @@
   align-items: flex-start;
   justify-content: space-evenly;
 
+  @include respond(sm) {
+    flex-direction: column;
+  }
+
   &__container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
     flex-grow: 1;
 

@@ -9,6 +9,8 @@ export class PipeGridChartComponent implements OnInit {
 
   single: any[];
 
+  view = [600, 600];
+
   // options
   gradient: boolean = true;
   showLegend: boolean = false;
@@ -18,17 +20,34 @@ export class PipeGridChartComponent implements OnInit {
 
   colorScheme = {
     domain: [
-      '#D80925',  
+      '#D80925',
       '#07D100'
     ]
   };
 
   constructor() {
     Object.assign(this, { single });
+    this.onChangeChartSize(innerWidth);
   }
 
   ngOnInit(): void {
 
+  }
+
+  onResize(event) {
+    this.onChangeChartSize(event.target.innerWidth);
+  }
+
+  onChangeChartSize(width: number): void {
+    if (width < 1440) {
+      this.view = [450, 350];
+    } else if (width < 1000) {
+      this.view = [400, 300];
+    } else if (width < 700) {
+      this.view = [350, 300];
+    } else if (width < 400) {
+      this.view = [300, 250];
+    }
   }
 
   onSelect(data): void {

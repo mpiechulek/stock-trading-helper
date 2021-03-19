@@ -1,5 +1,7 @@
 <ngx-charts-pie-grid  
+  (window:resize)="onResize($event)"
   [scheme]="colorScheme"
+  [view]="view"
   [results]="single"
   (select)="onSelect($event)">
 </ngx-charts-pie-grid>
