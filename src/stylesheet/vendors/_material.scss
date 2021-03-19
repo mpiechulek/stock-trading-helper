@@ -80,12 +80,27 @@ mat-table#statistics-table {
   width: 99%;
   overflow: auto;
   max-height: 100%;
+  background-color: var(--color-page-background);
 
   mat-row,
   mat-footer-row {
     min-height: 4rem;
   }
-  
+
+  .mat-header-cell,
+  .mat-cell {
+    color: var(--color-text-form);
+  }
+
+  mat-row,
+  mat-header-row,
+  mat-footer-row,
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    border-bottom-color: var(--color-text-form);
+  }
+
 }
 
 
