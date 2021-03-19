@@ -1,6 +1,6 @@
 <mat-accordion>
 
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+    <mat-expansion-panel [expanded]="formExpand === 0" (opened)="setStep()">
 
         <mat-expansion-panel-header>
 
@@ -24,73 +24,52 @@
                 <!-- 2. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Net sell Value</p>
+                    <p class="">{{2150}}</p>
                 </div>
 
                 <!-- 3. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Buy commission</p>
+                    <p class="">{{6.58}}</p>
                 </div>
 
                 <!-- 4. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Sell commission</p>
+                    <p class="">{{7.25}}</p>
                 </div>
 
                 <!-- 5. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Gross buy Value</p>
+                    <p class="">{{2006.58}}</p>
                 </div>
 
                 <!-- 6. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Gross sell Value</p>
+                    <p class="">{{2142.25}}</p>
                 </div>
 
                 <!-- 7. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Profit before tax.</p>
+                    <p class="">{{142.25}}</p>
                 </div>
 
                 <!-- 8. Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
+                    <p class="">Profit after tax.</p>
+                    <p class="">{{132.87}}</p>
                 </div>
-
-                <!-- 9. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
-                </div>
-
-                <!-- 10. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
-                </div>
-
-                <!-- 11. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
-                    <p class="">{{2000}}</p>
-                </div>
-
+           
             </div>
 
         </ng-template>

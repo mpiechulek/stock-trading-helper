@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalcFormComponent implements OnInit {
 
+  private formExpand: number;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  get getFormExpand(): number {
+    return this.formExpand;
+  }
+
+  onCalculate() { 
+    
   }
 
 }

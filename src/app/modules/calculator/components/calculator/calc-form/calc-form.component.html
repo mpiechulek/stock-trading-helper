@@ -4,13 +4,14 @@
   
     <app-form></app-form>
 
-    <app-result></app-result>
+    <app-result [formExpand]="getFormExpand"></app-result>
     
     <div class="stock-advanced-calculator__button-wrapper">
 
         <button        
             color="primary"
-            mat-raised-button           
+            mat-raised-button 
+            (click)="onCalculate()"          
         >
            Calculate
         </button>

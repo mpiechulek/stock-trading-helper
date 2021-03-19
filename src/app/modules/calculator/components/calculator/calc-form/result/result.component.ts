@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-result',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 export class ResultComponent implements OnInit {
 
   // When 0 the expansion panel is default opened, 1 closed
-  step = 0;
+  @Input()
+  formExpand: number = 1;
 
   constructor() { }
 
@@ -15,8 +16,10 @@ export class ResultComponent implements OnInit {
   }
 
   // Toggle expansion pane 
-  setStep(index: number) {
-    this.step = index;
+  setStep() {
+ 
   }
+
+
 
 }
