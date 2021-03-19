@@ -9,7 +9,7 @@ export class PipeGridChartComponent implements OnInit {
 
   single: any[];
 
-  view = [600, 600];
+  view = [500, 400];
 
   // options
   gradient: boolean = true;
@@ -21,13 +21,13 @@ export class PipeGridChartComponent implements OnInit {
   colorScheme = {
     domain: [
       '#D80925',
-      '#07D100'
+      '#2196F3'
     ]
   };
 
   constructor() {
     Object.assign(this, { single });
-    this.onChangeChartSize(innerWidth);
+    this.onChangeChartSize(window.innerWidth);
   }
 
   ngOnInit(): void {
@@ -39,14 +39,14 @@ export class PipeGridChartComponent implements OnInit {
   }
 
   onChangeChartSize(width: number): void {
-    if (width < 1440) {
-      this.view = [450, 350];
-    } else if (width < 1000) {
-      this.view = [400, 300];
-    } else if (width < 700) {
-      this.view = [350, 300];
-    } else if (width < 400) {
-      this.view = [300, 250];
+    if (width <= 1440 && width > 960) {
+      this.view = [450, 400];
+    } else if (width <= 960 && width > 800) {
+      this.view = [450, 400];
+    } else if (width <= 800 && width > 400) {
+      this.view = [350, 200];
+    }else if (width <= 400 ) {
+      this.view = [300, 200];
     }
   }
 
