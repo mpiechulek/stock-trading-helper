@@ -11,15 +11,15 @@ export class PipeGridChartComponent implements OnInit {
 
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
 
   colorScheme = {
     domain: [
-      '#2196F3',
-      '#D80925'  
+      '#D80925',  
+      '#07D100'
     ]
   };
 

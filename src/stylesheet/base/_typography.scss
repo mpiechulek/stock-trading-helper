@@ -1,5 +1,5 @@
 .calculator-result-board-text {
-  font-size:  1.6rem;
+  font-size: 1.6rem;
   color: $color-white;
 
   &--bold {
@@ -19,7 +19,7 @@
 .nav-bar-text {
   color: var(--color-text-nav);
   font-weight: 500;
-  font-size:  1.6rem;
+  font-size: 1.6rem;
   letter-spacing: 2px;
 
   @include respond(xld) {
@@ -28,7 +28,8 @@
   }
 
   @include respond(md) {
-    font-size: 12px; ;
+    font-size: 12px;
+    ;
   }
 }
 
@@ -47,41 +48,51 @@
   font-size: 2.3rem;
 }
 
+.statistics-header {
+  &--color-red {
+    color: $color-red;
+  }
+
+  &--color-green {
+    color: $color-green;
+  }
+}
+
 .currency-calc-text {
-  color: var(--color-text-prime); 
+  color: var(--color-text-prime);
   // font-family: monospace;
 
   &--bold {
-    font-weight: 500;   
+    font-weight: 500;
   }
 
   &--small {
-    font-size: 1.2rem;   
+    font-size: 1.2rem;
   }
 }
 
 .main-header-h1 {
   color: $color-java;
-  font-size: 4.5rem; 
+  font-size: 4.5rem;
 
   @include respond(xld) {
-    font-size:  3.3rem; 
+    font-size: 3.3rem;
   }
 
   @include respond(ld) {
-    font-size: 2.8rem; 
+    font-size: 2.8rem;
   }
 
   span {
     color: var(--color-text-prime);
-    font-size: 4.5rem; 
+    font-size: 4.5rem;
 
     @include respond(xld) {
-      font-size:  3.3rem; 
+      font-size: 3.3rem;
     }
 
     @include respond(ld) {
-      font-size: 2.8rem; 
+      font-size: 2.8rem;
     }
   }
 }
@@ -150,70 +161,70 @@
 // Trade tile 
 .trade-tile-stock-percentage-change-text {
   font-size: 1.8rem;
-  font-weight: 500;  
-  
+  font-weight: 500;
+
   &--color-green {
-    color: $color-green;    
+    color: $color-green;
   }
 
   &--color-red {
-    color: $color-red;    
+    color: $color-red;
   }
 
-  &--size-big{
+  &--size-big {
     font-size: 3rem;
   }
 }
 
 .trade-tile-stock-name-text {
-   color: var(--color-text-prime);
-   max-width: 13ch;
-   overflow:hidden; 
-   font-weight: 500;
-   white-space:nowrap; 
-   text-overflow: ellipsis;
-   font-size: 2.3rem;
+  color: var(--color-text-prime);
+  max-width: 13ch;
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 2.3rem;
 }
 
-.trade-tile-stock-text{
+.trade-tile-stock-text {
   color: var(--color-text-prime);
   font-size: 1.2rem;
   text-align: center;
 
-  &--ld{
+  &--ld {
     font-size: 1.5rem;
     font-weight: 500;
     max-width: 8ch;
-    overflow:hidden; 
-    white-space:nowrap; 
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  &--xld{
+  &--xld {
     font-size: 1.5rem;
     font-weight: 500;
     max-width: 10ch;
-    overflow:hidden; 
-    white-space:nowrap; 
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     text-align: right;
   }
 
-  &--red{
-  
-    color: $color-red; 
-    font-weight: 500;    
+  &--red {
+
+    color: $color-red;
+    font-weight: 500;
   }
 
-  &--green{ 
-    color: $color-green;    
-    font-weight: 500;    
+  &--green {
+    color: $color-green;
+    font-weight: 500;
   }
 }
 
 .footer-text {
   color: var(--color-text-prime);
-  font-size: 1.3rem;  
+  font-size: 1.3rem;
 }
 
 // Dialog
@@ -224,8 +235,7 @@
   text-align: center;
 }
 
-.modal-dialog-text{
+.modal-dialog-text {
   color: var(--color-text-form);
   text-align: center;
 }
-
