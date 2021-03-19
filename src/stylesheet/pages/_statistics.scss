@@ -5,8 +5,11 @@
   overflow: hidden;
 
   .statistics-header {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+   margin: 1.5rem 0;
+    
+    @include respond(sm) {  
+      margin: 1rem 0;
+    }
   }
 }
 
@@ -27,6 +30,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }
 
   .statistics-table-tools-wrapper {
     margin-top: 1rem;

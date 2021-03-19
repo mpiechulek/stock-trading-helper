@@ -67,7 +67,8 @@ mat-form-field#stock-advanced-calculator-form-field {
   color: var(--color-text-form);
 }
 
-.mat-tab-nav-bar, .mat-tab-header {
+.mat-tab-nav-bar,
+.mat-tab-header {
   // border-bottom: .4px solid var(--color-text-form);
 }
 
@@ -80,11 +81,14 @@ mat-table#statistics-table {
   overflow: auto;
   max-height: 100%;
 
-  mat-row, mat-footer-row {
+  mat-row,
+  mat-footer-row {
     min-height: 4rem;
-  } 
-
+  }
+  
 }
+
+
 
 // Currency-Module
 
@@ -111,5 +115,3 @@ mat-label#currency-label {
 .mat-select-arrow {
   color: var(--color-text-form);
 }
-
-
