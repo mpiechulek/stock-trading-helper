@@ -5,9 +5,9 @@
   overflow: hidden;
 
   .statistics-header {
-   margin: 1.5rem 0;
-    
-    @include respond(sm) {  
+    margin: 1.5rem 0;
+
+    @include respond(sm) {
       margin: 1rem 0;
     }
   }
@@ -43,7 +43,7 @@
     justify-content: space-evenly;
     align-items: center;
 
-    @include respond(sm) {  
+    @include respond(sm) {
       flex-direction: column;
     }
   }
@@ -63,7 +63,16 @@
     align-items: center;
     flex-direction: column;
     flex-grow: 1;
+
+    .statistics-container-chart-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      background: red;
+    }
   }
+
 }
 
 // Changing the text color the linear chart
