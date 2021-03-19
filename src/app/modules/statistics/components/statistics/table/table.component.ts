@@ -1,50 +1,80 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DataSource } from '@angular/cdk/collections';
+// import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
+export interface TradeTableDataModel {
+  position: number;
+  stockName: string;
+  quantity: string;
+  buyPrice: string;
+  sellPrice: string;
+  profitBeforeTax: string;
+  lose: string;
+  total: string;
+  date: string;
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+const ELEMENT_DATA: TradeTableDataModel[] = [
+  {
+    position: 1,
+    stockName: 'JSW',
+    quantity: '120',
+    buyPrice: '15.56',
+    sellPrice: '18.34',
+    profitBeforeTax: '134.45',   
+    lose: '',
+    total: '1234',
+    date: '2021-03-19'
+  },
+  {
+    position: 2,
+    stockName: 'CDProject',
+    quantity: '100',
+    buyPrice: '460',
+    sellPrice: '306',
+    profitBeforeTax: '',   
+    lose: '600',
+    total: '861',
+    date: '2021-03-28'
+  }
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
+];
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html'
 })
 export class TableComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] =
+    [
+      'position',
+      'stockName',
+      'quantity',
+      'buyPrice',
+      'sellPrice',
+      'profitBeforeTax',   
+      'lose',
+      'total',
+      'date'
+    ];
+
+  // For sorting the data source
+  dataSource = new MatTableDataSource<TradeTableDataModel>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // the time out is used because normally it didn't work
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() =>  this.dataSource.sort = this.sort);  
   }
 
   applyFilter(filterValue: string) {
@@ -54,19 +84,16 @@ export class TableComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+  onDeletePosition() : void{
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
+  }
+
+  onEditPosition() : void{
+
+  }
 
 }
+
+
+

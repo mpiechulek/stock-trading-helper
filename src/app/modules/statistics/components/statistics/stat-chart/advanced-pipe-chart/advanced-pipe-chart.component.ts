@@ -8,38 +8,45 @@ import { single } from './data';
 export class AdvancedPipeChartComponent implements OnInit {
 
   single: any[];
-  view: any[] = [700, 400];
+
+  view = [500, 800];
 
   // options
-  gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  animations: boolean = true;
-   
+
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: [
+      '#00A8FF'
+    ]
   };
 
   constructor() {
     Object.assign(this, { single });
+    this.onChangeChartSize(window.innerWidth);
   }
-
 
   ngOnInit(): void {
+
   }
 
-
-  onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  onResize(event) {
+    this.onChangeChartSize(event.target.innerWidth);
   }
 
-  onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  onChangeChartSize(width: number): void {
+    if (width <= 1440 && width > 960) {
+      this.view = [500, 800];
+    } else if (width <= 960 && width > 800) {
+      this.view = [400, 800];
+    } else if (width <= 800 && width > 400) {
+      this.view = [450, 800];
+    }else if (width <= 400 ) {
+      this.view = [300, 2000];
+    }
   }
 
-  onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  onSelect(event) {
+    console.log(event);
   }
-
 }

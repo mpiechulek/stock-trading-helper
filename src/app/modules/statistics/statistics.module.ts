@@ -8,10 +8,10 @@ import { TableComponent } from './components/statistics/table/table.component';
 import { LinearChartComponent } from './components/statistics/linear-chart/linear-chart.component';
 import { StatChartComponent } from './components/statistics/stat-chart/stat-chart.component';
 
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -40,7 +40,7 @@ import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-
     MatFormFieldModule,
     MatInputModule,
     NgxChartsModule
-    
+
   ]
 })
 export class StatisticsModule { }

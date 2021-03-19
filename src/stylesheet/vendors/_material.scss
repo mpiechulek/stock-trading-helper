@@ -56,11 +56,79 @@ mat-form-field#stock-advanced-calculator-form-field {
   width: 12rem;
 }
 
-
 // Statistics-Module
 
 .statistics .mat-tab-body-wrapper {
   height: 100%;
+}
+
+.mat-tab-label-content {
+  color: var(--color-text-form);
+}
+
+.mat-tab-nav-bar,
+.mat-tab-header {
+  // border-bottom: .4px solid var(--color-text-form);
+}
+
+mat-tab-group#statistics {
+  height: 100%;
+}
+
+mat-table#statistics-table {
+  width: 99%;
+  overflow: auto;
+  max-height: 100%;
+  background-color: var(--color-page-background);
+
+  mat-row,
+  mat-footer-row {
+    min-height: 4rem;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    color: var(--color-text-form);
+  }
+
+  mat-row,
+  mat-header-row,
+  mat-footer-row,
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    border-bottom-color: var(--color-text-form);
+  }
+
+}
+
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+  color: var(--color-text-form);
+  background-color: var(--color-page-background);
+}
+
+.mat-button.mat-primary.mat-button-disabled,
+.mat-button.mat-accent.mat-button-disabled,
+.mat-button.mat-warn.mat-button-disabled,
+.mat-button.mat-button-disabled.mat-button-disabled,
+.mat-icon-button.mat-primary.mat-button-disabled,
+.mat-icon-button.mat-accent.mat-button-disabled,
+.mat-icon-button.mat-warn.mat-button-disabled,
+.mat-icon-button.mat-button-disabled.mat-button-disabled,
+.mat-stroked-button.mat-primary.mat-button-disabled,
+.mat-stroked-button.mat-accent.mat-button-disabled,
+.mat-stroked-button.mat-warn.mat-button-disabled,
+.mat-stroked-button.mat-button-disabled.mat-button-disabled {
+  color: var(--color-text-form);
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: var(--color-text-form);
+}
+
+input#table-search-field {
+  color: var(--color-text-form);
 }
 
 // Currency-Module

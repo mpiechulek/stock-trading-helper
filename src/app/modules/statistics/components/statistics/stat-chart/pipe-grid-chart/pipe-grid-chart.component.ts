@@ -3,30 +3,51 @@ import { single } from './data';
 
 @Component({
   selector: 'app-pipe-grid-chart',
-  templateUrl: './pipe-grid-chart.component.html' 
+  templateUrl: './pipe-grid-chart.component.html'
 })
 export class PipeGridChartComponent implements OnInit {
 
   single: any[];
-  view: any[] = [700, 400];
+
+  view = [500, 350];
 
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: [
+      '#D80925',
+      '#2196F3'
+    ]
   };
 
   constructor() {
     Object.assign(this, { single });
+    this.onChangeChartSize(window.innerWidth);
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
 
+  }
+
+  onResize(event) {
+    this.onChangeChartSize(event.target.innerWidth);
+  }
+
+  onChangeChartSize(width: number): void {
+    if (width <= 1440 && width > 960) {
+      this.view = [500, 400];
+    } else if (width <= 960 && width > 800) {
+      this.view = [450, 350];
+    } else if (width <= 800 && width > 400) {
+      this.view = [350, 200];
+    } else if (width <= 400) {
+      this.view = [300, 200];
+    }
   }
 
   onSelect(data): void {

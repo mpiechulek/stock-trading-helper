@@ -1,4 +1,5 @@
-<ngx-charts-pie-chart
+<ngx-charts-pie-chart 
+  (window:resize)="onResize($event)"
   [view]="view"
   [scheme]="colorScheme"
   [results]="single"

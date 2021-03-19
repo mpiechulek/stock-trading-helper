@@ -1,16 +1,29 @@
 <div class="statistics-charts">
 
-    <div class="statistics-characters__container">
+    <div class="statistics-characters__container">     
+
+        <h2 class="statistics-header statistics-header-align-center">Investment wallet: {{12345}} </h2>
 
         <app-advanced-pipe-chart></app-advanced-pipe-chart>
 
     </div>
 
-
     <div class="statistics-characters__container">
 
+        <div class="statistics-container-stats-wrapper">
+
+            <h1 class="statistics-header statistics-header--color-blue statistics-header-align-center">
+                Profit: {{89}}% ({{158.89}})
+            </h1>
+
+            <h1 class="statistics-header statistics-header--color-red statistics-header-align-center">
+                Lose: {{11}}% ({{12.89}})
+            </h1>
+
+        </div>
+      
         <app-pipe-grid-chart></app-pipe-grid-chart>
 
     </div>
-    
+
 </div>
