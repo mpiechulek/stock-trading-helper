@@ -56,7 +56,6 @@ mat-form-field#stock-advanced-calculator-form-field {
   width: 12rem;
 }
 
-
 // Statistics-Module
 
 .statistics .mat-tab-body-wrapper {
@@ -103,7 +102,34 @@ mat-table#statistics-table {
 
 }
 
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+  color: var(--color-text-form);
+  background-color: var(--color-page-background);
+}
 
+.mat-button.mat-primary.mat-button-disabled,
+.mat-button.mat-accent.mat-button-disabled,
+.mat-button.mat-warn.mat-button-disabled,
+.mat-button.mat-button-disabled.mat-button-disabled,
+.mat-icon-button.mat-primary.mat-button-disabled,
+.mat-icon-button.mat-accent.mat-button-disabled,
+.mat-icon-button.mat-warn.mat-button-disabled,
+.mat-icon-button.mat-button-disabled.mat-button-disabled,
+.mat-stroked-button.mat-primary.mat-button-disabled,
+.mat-stroked-button.mat-accent.mat-button-disabled,
+.mat-stroked-button.mat-warn.mat-button-disabled,
+.mat-stroked-button.mat-button-disabled.mat-button-disabled {
+  color: var(--color-text-form);
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: var(--color-text-form);
+}
+
+input#table-search-field {
+  color: var(--color-text-form);
+}
 
 // Currency-Module
 
