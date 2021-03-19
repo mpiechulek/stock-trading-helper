@@ -79,6 +79,11 @@ mat-table#statistics-table {
   width: 99%;
   overflow: auto;
   max-height: 100%;
+
+  mat-row, mat-footer-row {
+    min-height: 4rem;
+  } 
+
 }
 
 // Currency-Module
