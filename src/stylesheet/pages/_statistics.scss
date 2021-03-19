@@ -54,18 +54,17 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
 
   &__container {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     flex-grow: 1;
   }
 }
-
 
 // Changing the text color the linear chart
 .ngx-charts text {
