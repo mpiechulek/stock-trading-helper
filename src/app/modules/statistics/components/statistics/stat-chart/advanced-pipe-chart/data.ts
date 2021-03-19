@@ -1,18 +1,18 @@
 export var single = [
-    {
-      "name": "Germany",
-      "value": 8940000
-    },
-    {
-      "name": "USA",
-      "value": 5000000
-    },
-    {
-      "name": "France",
-      "value": 7200000
-    },
-      {
-      "name": "UK",
-      "value": 6200000
-    }
-  ];
+  {
+    "name": "JSW",
+    "value": 1356.58
+  },
+  {
+    "name": "Biomedlub",
+    "value": 2500
+  },
+  {
+    "name": "OZE Capital",
+    "value": 1568
+  },
+  {
+    "name": "Seolarinov",
+    "value": 1456
+  }
+];
