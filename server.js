@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.static(__dirname + '/dist/my-comic'));
+app.use(express.static(__dirname + '/dist/stock-helper'));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/dist/my-comic/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/stock-helper/index.html'));
 });
 
 app.listen(process.env.PORT || 8080);
