@@ -7,7 +7,7 @@
     [bitCoinPriceData]="bitCoinPriceData | async"
     [ethereumPriceData]="ethereumPriceData | async"
     
-    (chosenCurrency)="fetchCurrencyData($event)"
+    (chosenCurrencyOne)="choseFirstCurrency($event)"
     (swapCurrencies)="swapCurrencies()"
     (currencyQuantity)="enterCurrencyQuantity($event)"
     (choseCurrencyTwo)="choseSecondCurrency($event)"
