@@ -157,8 +157,7 @@ export class CalcDeviceComponent implements OnInit {
     return this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
   }
 
-  multiplication() {
-    console.log(this.stringToNumber(this.result));
+  multiplication() {  
 
     return this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
   }
@@ -185,8 +184,7 @@ export class CalcDeviceComponent implements OnInit {
       result: this.result
     }
 
-    this.calculationsArray.push(calculation);
-    console.log(this.calculationsArray);
+    this.calculationsArray.push(calculation);  
 
   }
 

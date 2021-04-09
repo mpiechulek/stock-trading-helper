@@ -103,8 +103,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         });
 
     this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
-    this.stockTilePresenterService.generateQuotes();
-    console.log(this.stockElement);
+    this.stockTilePresenterService.generateQuotes();  
     
   }
 

@@ -177,9 +177,7 @@ export class CurrencyContainerComponent implements OnInit {
     this.currencyFromService.getCurrencyNameFromLocalStorage();
 
     this.firstCurrencyName = this.currencyFromService.currencyOne
-    this.secondCurrencyName = this.currencyFromService.currencyTwo;
-
-    console.log(this.firstCurrencyName, this.secondCurrencyName);
+    this.secondCurrencyName = this.currencyFromService.currencyTwo;  
 
     this.firstCurrencyNameSubject.next(this.firstCurrencyName);
     this.secondCurrencyNameSubject.next(this.secondCurrencyName);

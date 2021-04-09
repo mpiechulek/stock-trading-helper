@@ -31,8 +31,6 @@ export class LinearChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log(new Date());
     
     
   }
