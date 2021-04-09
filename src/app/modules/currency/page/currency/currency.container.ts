@@ -142,9 +142,7 @@ export class CurrencyContainerComponent implements OnInit {
  * 
  * @param currencyName 
  */
-  choseSecondCurrency(currencyName: string): void {
-
-    console.log(currencyName);
+  choseSecondCurrency(currencyName: string): void {   
 
     this.currencyFromService.saveDefaultCurrencyNameToLocalStorage(this.firstCurrencyName, currencyName)
 
