@@ -52,7 +52,7 @@ const routes: Routes = [
         path: '',
         loadChildren: () => 
           import('./modules/calendar/calendar.module').then(
-            m => m.CalendarModule
+            m => m.CalendarDateModule
           )
       },
       { path: '**', redirectTo: '/', pathMatch: 'full' } 
