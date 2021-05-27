@@ -2,108 +2,158 @@
 
     <div class="sidenav-container">
 
-        <div class="sidenav-btn-wrapper">
-            <button class="btn" (click)="onToggleSideNav()">
-                <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
-            </button>
-        </div>
-
-        <h1 class="sidenav-header">{{'home.sideNavHeaderSettings' | translate }}</h1>
-
-        <div class="sidenav-container__settings">
-
-            <div class="theme-wrapper">
-
-                <mat-slide-toggle [checked]="sliderChecked" (change)="changeTheme($event)">
-                </mat-slide-toggle>
-
-                <svg class="icon icon--moon theme-icon-margin-left" *ngIf="sliderChecked"></svg>
-                <svg class="icon icon--sun theme-icon-margin-left" *ngIf="!sliderChecked"></svg>
-
-            </div>
-
-            <div class="language-wrapper">
-
-                <mat-form-field>
-                    <mat-select [(value)]="selectedLanguage" (selectionChange)="switchLang($event.value)">
-                        <mat-option *ngFor="let language of languages" value="{{language}}">
-                            {{ language }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-            </div>
-
-        </div>
-
-        <h1 class="sidenav-header">{{'home.sideNavHeaderMenu' | translate }}</h1>
-
         <div class="sidenav-container__menu">
+
+            <div class="sidenav-btn-wrapper">
+
+                <button class="btn" (click)="onToggleSideNav()">
+
+                    <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+
+                </button>
+
+            </div>
+
+            <h1 class="sidenav-header">{{'home.sideNavHeaderSettings' | translate }}</h1>
+
+            <div class="sidenav-container__settings">
+
+                <div class="theme-wrapper">
+
+                    <mat-slide-toggle [checked]="sliderChecked" (change)="changeTheme($event)">
+
+                    </mat-slide-toggle>
+
+                    <svg class="icon icon--moon theme-icon-margin-left" *ngIf="sliderChecked"></svg>
+
+                    <svg class="icon icon--sun theme-icon-margin-left" *ngIf="!sliderChecked"></svg>
+
+                </div>
+
+                <div class="language-wrapper">
+
+                    <mat-form-field>
+
+                        <mat-select [(value)]="selectedLanguage" (selectionChange)="switchLang($event.value)">
+
+                            <mat-option *ngFor="let language of languages" value="{{language}}">
+
+                                {{ language }}
+
+                            </mat-option>
+
+                        </mat-select>
+
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+
+            <h1 class="sidenav-header">{{'home.sideNavHeaderMenu' | translate }}</h1>
+
+
             <ul class="sidenav-list">
 
                 <!-- Home -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('home')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--home"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarHome' | translate }}</p>
+
                     </a>
                 </li>
 
                 <!-- Trades -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('trade')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--plan"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarTrade' | translate }}</p>
+
                     </a>
                 </li>
 
                 <!-- Calculator -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('calculator')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--calculator"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarCalculator' | translate }}</p>
+
                     </a>
                 </li>
 
                 <!-- Currency -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('currency')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--money"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left">{{'home.navBarCurrency' | translate }}</p>
+
                     </a>
                 </li>
 
                 <!-- Statistics -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('statistics')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--chart"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left"> {{'home.navBarStatistics' | translate }}</p>
+
                     </a>
                 </li>
 
                 <!-- Calendar -->
 
                 <li class="sidenav-list-item">
+
                     <a class="sidenav-link" (click)="onRedirectTo('calendar')">
+
                         <div class="side-nav-icon-wrapper">
+
                             <svg class="icon icon--calendar"></svg>
+
                         </div>
+
                         <p class="nav-bar-text side-bar-text-margin-left"> {{'home.navBarCalendar' | translate }}</p>
+                        
                     </a>
                 </li>
 
