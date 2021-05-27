@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { CurrencyFormService } from '../../../../core/services/currency-form.service';
+import { CurrencyFromService } from '../../../../core/services/currency-form.service';
 import { CurrencyFacadeService } from '../../../../core/services/facades/currency.facade';
 import { CurrencyApiDataModel } from '../../../../data/models/currency.model';
 
 @Component({
   selector: 'app-currency',
-  templateUrl: './currency.container.html',
-
+  templateUrl: './currency.container.html'
 })
+
 export class CurrencyContainerComponent implements OnInit {
 
   private currencyDataContainer: CurrencyApiDataModel;
@@ -30,13 +30,18 @@ export class CurrencyContainerComponent implements OnInit {
 
   constructor(
     private currencyFacadeService: CurrencyFacadeService,
-    private currencyFormService: CurrencyFormService
+    private currencyFromService: CurrencyFromService
   ) { }
 
   ngOnInit(): void {
-    this.firstCurrencyName = this.currencyFormService.currencyOne
-    this.secondCurrencyName = this.currencyFormService.currencyTwo;
-    
+
+    if (this.currencyFromService.checkIfCurrencyInLocalStorage()) {
+      this.currencyFromService.getCurrencyNameFromLocalStorage();
+    }
+
+    this.firstCurrencyName = this.currencyFromService.currencyOne
+    this.secondCurrencyName = this.currencyFromService.currencyTwo;
+
     this.fetchCurrencyData(this.firstCurrencyName);
     this.getCryptoCurrencyData();
   }
@@ -55,11 +60,11 @@ export class CurrencyContainerComponent implements OnInit {
   }
 
   get getSecondCurrencyName(): Observable<string> {
-    return this.firstCurrencyName$;
+    return this.secondCurrencyName$;
   }
 
   get getFirstCurrencyName(): Observable<string> {
-    return this.secondCurrencyName$;
+    return this.firstCurrencyName$;
   }
 
   get bitCoinPriceData(): Observable<string> {
@@ -70,31 +75,20 @@ export class CurrencyContainerComponent implements OnInit {
     return this.ethereumPriceData$;
   }
 
-  /**
-   * 
-   * @param currencyName 
-   */
-  fetchCurrencyData(currencyName: string): void {
-    this.currencyFacadeService.getCurrencyData(currencyName).subscribe((res) => {
-      if (!!res) {
-        this.currencyDataContainer = res;
-        this.calculateResult();
-      }
-    });
-  }
+  // ===========================================================================
 
   /**
-   * fettjing the crypto currency data every 30seconds
+   * Fetching the crypto currency data every 30seconds
    */
   getCryptoCurrencyData() {
 
     this.bitCoinPriceData$ = this.fetchBitCoinData();
     this.ethereumPriceData$ = this.fetchEthereumData();
 
-    setInterval(()=> {
+    setInterval(() => {
       this.bitCoinPriceData$ = this.fetchBitCoinData();
       this.ethereumPriceData$ = this.fetchEthereumData();
-    },30000);
+    }, 30000);
 
   }
 
@@ -112,6 +106,56 @@ export class CurrencyContainerComponent implements OnInit {
     return this.currencyFacadeService.getEthereumData();
   }
 
+  // ===========================================================================
+
+  /**
+  * 
+  * @param currencyName 
+  */
+  fetchCurrencyData(currencyName: string): void {
+    this.currencyFacadeService.getCurrencyData(currencyName).subscribe((res) => {
+      if (!!res) {
+        this.currencyDataContainer = res;
+        this.calculateResult();
+      }
+    });
+  }
+
+  /**
+  * 
+  * @param currencyName 
+  */
+  choseFirstCurrency(currencyName: string): void {      
+
+    this.currencyFromService.saveDefaultCurrencyNameToLocalStorage(currencyName, this.secondCurrencyName)
+
+    this.currencyFromService.getCurrencyNameFromLocalStorage();
+
+    this.firstCurrencyName = this.currencyFromService.currencyOne
+
+    this.firstCurrencyNameSubject.next(this.firstCurrencyName);
+
+    this.fetchCurrencyData(currencyName);
+  }
+
+  /**
+ * 
+ * @param currencyName 
+ */
+  choseSecondCurrency(currencyName: string): void {   
+
+    this.currencyFromService.saveDefaultCurrencyNameToLocalStorage(this.firstCurrencyName, currencyName)
+
+    this.currencyFromService.getCurrencyNameFromLocalStorage();
+
+    this.secondCurrencyName = this.currencyFromService.currencyTwo;
+
+    this.secondCurrencyNameSubject.next(this.secondCurrencyName);
+
+    this.calculateResult();
+  }
+
+
   /**
    * 
    * @param quantity 
@@ -125,11 +169,15 @@ export class CurrencyContainerComponent implements OnInit {
    * 
    */
   swapCurrencies() {
-    const firstCurr: string = this.firstCurrencyName;
-    const secondCurr: string = this.secondCurrencyName;
 
-    this.firstCurrencyName = secondCurr;
-    this.secondCurrencyName = firstCurr;
+    const firstCurr: string = this.secondCurrencyName;
+    const secondCurr: string = this.firstCurrencyName;
+
+    this.currencyFromService.saveDefaultCurrencyNameToLocalStorage(firstCurr, secondCurr);
+    this.currencyFromService.getCurrencyNameFromLocalStorage();
+
+    this.firstCurrencyName = this.currencyFromService.currencyOne
+    this.secondCurrencyName = this.currencyFromService.currencyTwo;  
 
     this.firstCurrencyNameSubject.next(this.firstCurrencyName);
     this.secondCurrencyNameSubject.next(this.secondCurrencyName);
@@ -142,29 +190,11 @@ export class CurrencyContainerComponent implements OnInit {
    */
   calculateResult(): void {
 
-    let name: string;
-
-    if (this.firstCurrencyName === null) {
-      name = this.currencyFormService.currencyOne;
-    }
-
     const result =
       this.currencyQuantity *
       this.currencyData.rates[this.secondCurrencyName]
 
     this.currencyResultSubject.next(result);
-  }
-
-  /**
-   * 
-   * @param currencyName 
-   */
-  choseSecondCurrency(currencyName: string): void {
-    console.log(currencyName);
-
-    this.secondCurrencyName = currencyName;
-    this.secondCurrencyNameSubject.next(this.secondCurrencyName);
-    this.calculateResult();
   }
 
 }

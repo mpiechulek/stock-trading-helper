@@ -25,6 +25,7 @@
         class="
         currency__container
         currency__container--flex-order-two
+        currency__container--margin-bottom
         "
     >
     
@@ -34,9 +35,9 @@
             [firstCurrencyName$]="firstCurrencyName$"
             [secondCurrencyName$]="secondCurrencyName$"
 
-            (fetchCurrencyData)="onChoseCurrency($event)"
             (swapCurrencies)="onSwapCurrencies()"
             (currencyQuantity)="onTypeCurrencyQuantity($event)"
+            (choseCurrencyOne)="onSelectCurrencyOne($event)"
             (choseCurrencyTwo)="onSelectCurrencyTwo($event)"
         >
         </app-currency-form>

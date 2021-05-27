@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
-import { CurrencyFormService } from '../../../../../core/services/currency-form.service';
+import { CurrencyFromService } from '../../../../../core/services/currency-form.service';
 
 @Component({
   selector: 'app-currency-form',
@@ -17,15 +17,15 @@ export class CurrencyFormComponent implements OnInit {
   private currencyCalculationResultSubscription: Subscription;
   private firstCurrencyNameSubscription: Subscription;
   private secondCurrencyNameSubscription: Subscription;
-
-  @Output()
-  fetchCurrencyData: EventEmitter<string> = new EventEmitter<string>();
-
+  
   @Output()
   swapCurrencies = new EventEmitter();
-
+  
   @Output()
   currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
+  
+  @Output()
+  choseCurrencyOne: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
   choseCurrencyTwo: EventEmitter<string> = new EventEmitter<string>();
@@ -46,7 +46,7 @@ export class CurrencyFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private currencyFormService: CurrencyFormService
+    private currencyFromService: CurrencyFromService
   ) { }
 
   ngOnInit(): void {
@@ -71,7 +71,7 @@ export class CurrencyFormComponent implements OnInit {
           this.currencyFormData.patchValue({ currencyTwoName: res })
         });
 
-    this.currencySelectListContainer = this.currencyFormService.currencyArr;
+    this.currencySelectListContainer = this.currencyFromService.currencyArr;
 
     this.currencyFormData = this.formBuilder.group({
       currencyOneQuantity: [1, [
@@ -80,10 +80,10 @@ export class CurrencyFormComponent implements OnInit {
       currencyTwoResult: ['', [
         Validators.required
       ]],
-      currencyOneName: [this.currencyFormService.currencyOne, [
+      currencyOneName: [this.currencyFromService.currencyOne, [
         Validators.required
       ]],
-      currencyTwoName: [this.currencyFormService.currencyTwo, [
+      currencyTwoName: [this.currencyFromService.currencyTwo, [
         Validators.required
       ]]
     });
@@ -117,14 +117,6 @@ export class CurrencyFormComponent implements OnInit {
   }
 
   /**
-   * Fetching currency data from backend
-   * @param currencyName 
-   */
-  onSelectCurrencyOne(currencyName: string) {
-    this.fetchCurrencyData.emit(currencyName);
-  }
-
-  /**
    * 
    * @param event 
    */
@@ -137,6 +129,16 @@ export class CurrencyFormComponent implements OnInit {
    */
   onSwapCurrencies() {
     this.swapCurrencies.emit();
+  }
+
+  
+  /**
+   * Fetching currency data from backend
+   * @param currencyName 
+   */
+   onSelectCurrencyOne(currencyName: string) {
+    
+    this.choseCurrencyOne.emit(currencyName);
   }
 
   /**

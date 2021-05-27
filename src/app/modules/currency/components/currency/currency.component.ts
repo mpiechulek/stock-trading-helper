@@ -20,16 +20,13 @@ export class CurrencyComponent implements OnInit {
 
   @Input()
   readonly secondCurrencyName$: Observable<string>;
-  
+
   @Input()
   readonly bitCoinPriceData: string;
-  
+
   @Input()
   readonly ethereumPriceData: string;
 
-
-  @Output()
-  chosenCurrency: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
   swapCurrencies = new EventEmitter();
@@ -38,19 +35,14 @@ export class CurrencyComponent implements OnInit {
   currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
+  chosenCurrencyOne: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
   choseCurrencyTwo: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  /**
-   * 
-   * @param currencyName 
-   */
-  onChoseCurrency(currencyName: string): void {
-    this.chosenCurrency.emit(currencyName);
   }
 
   /**
@@ -68,10 +60,18 @@ export class CurrencyComponent implements OnInit {
     this.currencyQuantity.emit(quantity);
   }
 
-/**
+  /**
  * 
  * @param currencyName 
  */
+  onSelectCurrencyOne(currencyName: string): void {
+    this.chosenCurrencyOne.emit(currencyName);
+  }
+
+  /**
+   * 
+   * @param currencyName 
+   */
   onSelectCurrencyTwo(currencyName: string): void {
     this.choseCurrencyTwo.emit(currencyName);
   }

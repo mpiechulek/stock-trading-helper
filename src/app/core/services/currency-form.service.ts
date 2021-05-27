@@ -4,7 +4,7 @@ import { Injectable, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 
-export class CurrencyFormService implements OnInit {
+export class CurrencyFromService implements OnInit {
 
   private defaultCurrencyOne = 'USD';
   private defaultCurrencyTwo = 'EUR';
@@ -82,13 +82,11 @@ export class CurrencyFormService implements OnInit {
     { value: 'DKK', imgUrl: './../../assets/svg flags/denmark.svg' }
   ]
 
-  constructor() { }
+  constructor() {   
 
-  ngOnInit(): void {
+   }
 
-    if (this.checkIfCurrencyInLocalStorage()) {
-      this.getCurrencyNameFromLocalStorage();
-    }
+  ngOnInit(): void {   
 
   }
 
@@ -114,10 +112,11 @@ export class CurrencyFormService implements OnInit {
    * @param secondCurrency 
    */
   saveDefaultCurrencyNameToLocalStorage(firstCurrency: string, secondCurrency: string,): void {
+
     let currencyData = {
       firstCurrencyName: firstCurrency,
       secondCurrencyName: secondCurrency
-    }
+    } 
 
     localStorage.setItem('currency', JSON.stringify(currencyData));
     // snack bar service message confirming save
@@ -139,6 +138,6 @@ export class CurrencyFormService implements OnInit {
   getCurrencyNameFromLocalStorage(): void {
     const localData = JSON.parse(localStorage.getItem('currency'));
     this.defaultCurrencyOne = localData.firstCurrencyName;
-    this.defaultCurrencyTwo = localData.firstCurrencyName;
+    this.defaultCurrencyTwo = localData.secondCurrencyName;
   }
 }
