@@ -1,25 +1,32 @@
 .header {
+
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 20;
 
   .header-main {
+
     display: flex;
     align-items: center;
     justify-content: center;
-
     // margin-right: 10rem;
 
     @include respond(xld) {
+
       margin-right: 1rem;
+
     }
 
     .header-icon-margin-right {
+
       margin-right: 2rem;
 
       @include respond(xld) {
+
         margin-right: 1rem;
+
       }
     }
   }
