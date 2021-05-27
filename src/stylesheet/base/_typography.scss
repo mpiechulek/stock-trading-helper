@@ -19,26 +19,33 @@
 .nav-bar-text {
   color: var(--color-text-nav);
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 16px;
   letter-spacing: 2px;
 
-  @include respond(xld) {
-    font-size: 1.4rem;
+  @include respond(xld) { 
     font-weight: 400;
   }
 
-  @include respond(md) {
-    font-size: 12px;
-    ;
+  @include respond(sm) {
+    font-size: 3rem;
+    
   }
 }
 
 .sidenav-header {
+
   color: var(--color-text-nav);
   font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 4px;
+
+  @include respond(sm) {
+    
+    font-size: 3.5rem;
+    
+  }
 }
+
 .calculator-header,
 .statistics-header,
 .currency-header {

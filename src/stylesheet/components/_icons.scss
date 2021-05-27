@@ -19,13 +19,23 @@
   &--moon {
     background-image: url('./../../assets/icon/Icon awesome-moon.svg');
     width: 2rem;
-    height: 2rem;
+    height: 2.3rem;
+
+    @include respond(sm) {
+      width: 3rem;
+      height: 3.3rem;
+    }
   }
 
   &--sun {
     background-image: url('./../../assets/icon/Icon awesome-sun.svg');
-    width: 2rem;
-    height: 2rem;
+    width: 2.3rem;
+    height: 2.3rem;
+
+    @include respond(sm) {
+      width: 3.3rem;
+      height: 3.3rem;
+    }
   }
 
   &--close {
@@ -56,6 +66,7 @@
     background-image: url('./../../assets/icon/Icon awesome-pencil-alt.svg');
     width: 2rem;
     height: 2rem;
+ 
   }
 
   // Navbar
@@ -64,36 +75,67 @@
     background-image: url('./../../assets/icon/Icon awesome-home.svg');
     width: 1.6rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 2.6rem;
+      height: 2.4rem;
+    }
   }
 
   &--plan {
     background-image: url('./../../assets/icon/Icon ionic-ios-list-box.svg');
     width: 1.4rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
   }
 
   &--calculator {
     background-image: url('./../../assets/icon/Icon awesome-calculator.svg');
     width: 1.2rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 2.2rem;
+      height: 2.4rem;
+    }
   }
 
   &--money {
     background-image: url('./../../assets/icon/Icon awesome-money-bill-alt.svg');
     width: 2.4rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 4.2rem;
+      height: 2.4rem;
+    }
   }
 
   &--chart {
     background-image: url('./../../assets/icon/Icon metro-chart-dots.svg');
     width: 1.5rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 2.5rem;
+      height: 2.4rem;
+    }
   }
 
   &--calendar {
     background-image: url('./../../assets/icon/Icon awesome-calendar-alt.svg');
     width: 1.2rem;
     height: 1.4rem;
+
+    @include respond(sm) {
+      width: 2.2rem;
+      height: 2.4rem;
+    }
+
   }
 
   // &--bitcoin {

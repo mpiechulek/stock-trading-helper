@@ -1,4 +1,5 @@
 .sidenav {
+
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -6,6 +7,7 @@
   flex-direction: row;
 
   .sidenav-container {
+
     position: relative;
     width: 30rem;
     height: 100%;
@@ -25,10 +27,13 @@
     animation-duration: 0.7s;
 
     @include respond(sm) {
-      width: 100%;     
+      width: 100%;
+      justify-content: center;
+      align-items: center;
     }
 
     .sidenav-btn-wrapper {
+
       padding: 1px;
       position: absolute;
       top: 13px;
@@ -40,11 +45,15 @@
     }
 
     .sidenav-header {
-      width: 100%;
+
+      width: auto;
       margin-bottom: 2rem;
+      display: inline-block;
+
     }
 
     &__settings {
+
       display: flex;
       width: 16rem;
       flex-direction: row;
@@ -52,21 +61,27 @@
       align-items: center;
 
       .theme-wrapper {
+
         display: flex;
         justify-content: center;
         align-items: center;
+
       }
 
       .theme-icon-margin-left {
+
         margin-left: 1.9rem;
+
       }
 
       .language-wrapper {}
 
       .icon-theme {
+
         margin-left: 1rem;
         width: 2rem;
         height: 2rem;
+
       }
     }
 
@@ -75,6 +90,13 @@
       display: flex;
       width: 100%;
       flex-direction: column;
+
+      @include respond(sm) {
+
+        align-items: flex-start;
+        width: 160px;
+
+      }
 
       .sidenav-liste {}
 
@@ -129,7 +151,7 @@
     animation-duration: 1s;
 
     @include respond(sm) {
-      display: none;    
+      display: none;
     }
   }
 
