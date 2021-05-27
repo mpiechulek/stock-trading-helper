@@ -55,22 +55,37 @@ export class SideNavComponent implements OnInit, OnDestroy {
   }
 
   //============================================================================
+  /**
+   * 
+   * @param lang 
+   */
+  switchLang(lang: string): void {
 
-  switchLang(lang: string) {
     this.languageService.switchLang(lang);
+
     this.languageService.addToLocalStorage(lang);
+
   }
 
+  /**
+   * 
+   * @param event 
+   */
   changeTheme(event): void {
+
     this.themeService.changeThemes(event.checked);
+
     this.sliderChecked = this.themeService.checkLocaleStorage();
+
   }
 
-  onToggleSideNav() {
+  /**
+   * 
+   */
+  onToggleSideNav(): void {
+
     this.sideNavService.toggleSideNav();
+
   }
 
-  onRedirectTo(value: string): void {
-    this.routerLinkService.goToItem(value);
-  }
 }

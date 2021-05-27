@@ -24,8 +24,4 @@ export class NavBarComponent implements OnInit {
     this.sideNavService.toggleSideNav();
   }
 
-  onRedirectTo(value: string): void {
-    this.routerLinkService.goToItem(value);
-  }
-
 }
