@@ -93,8 +93,8 @@
 
       @include respond(sm) {
 
-        align-items: center;
-        width: 50%;
+        align-items: flex-start;
+        width: 160px;
 
       }
 
