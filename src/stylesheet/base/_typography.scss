@@ -83,6 +83,10 @@
     font-size: 2.8rem;
   }
 
+  @include respond(ms) {
+    font-size: 4rem;
+  }
+
   span {
     color: var(--color-text-prime);
     font-size: 4.5rem;
@@ -93,6 +97,10 @@
 
     @include respond(ld) {
       font-size: 2.8rem;
+    }
+
+    @include respond(ms) {
+      font-size: 4rem;
     }
   }
 }
