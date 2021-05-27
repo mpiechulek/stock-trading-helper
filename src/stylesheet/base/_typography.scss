@@ -33,16 +33,19 @@
 }
 
 .sidenav-header {
+
   color: var(--color-text-nav);
   font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 4px;
 
   @include respond(sm) {
+    
     font-size: 3.5rem;
     
   }
 }
+
 .calculator-header,
 .statistics-header,
 .currency-header {
