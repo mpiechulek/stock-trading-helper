@@ -144,7 +144,7 @@ export class StockTradeBoardService {
    * Editing the stock offer
    *  @param value
    */
-  saveEditPickedOfferToStockData(value:StockMarkerSaveDataModel): void {
+  savePickedOfferToStockData(value:StockMarkerSaveDataModel): void {
 
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
