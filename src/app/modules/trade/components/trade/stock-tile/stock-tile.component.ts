@@ -186,6 +186,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSavePickedOfferData(): void {
+    
     let markerData: StockMarkerSaveDataModel;
 
     markerData = {

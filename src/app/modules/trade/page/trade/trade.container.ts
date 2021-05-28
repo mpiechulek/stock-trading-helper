@@ -61,8 +61,7 @@ export class TradeContainerComponent implements OnInit {
   }
 
   /*******************************
-   * ! Zapis bez przeładowania strony 
-   * ! przy dodawanie  nowego elementu nie odswierza,
+   * ! Zapis bez przeładowania strony    
    * ! naierzanie wybranej oferty FIND!
    * ! drag drop elementów ?
    * ! sprzedawanie i zapis po przez seriws wyników transakcji
@@ -104,7 +103,7 @@ export class TradeContainerComponent implements OnInit {
    * @param value 
    */
   savePickedOffer(value: StockMarkerSaveDataModel):void {
-    this.stockTradeBoardService.savePickedOfferToStockData(value);
+    this.stockTradeBoardService.saveEditPickedOfferToStockData(value);
   }
 
 

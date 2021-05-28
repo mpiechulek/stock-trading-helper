@@ -12,6 +12,7 @@ export class StockTradeBoardService {
   private storageTradeBoardKeyName: string = 'tradeBoardData';
 
   private stockBoardArraySubject = new Subject<StockTileModel[]>();
+
   private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
 
   constructor() { }
@@ -140,11 +141,15 @@ export class StockTradeBoardService {
   }
 
   /**
+   * Editing the stock offer
    *  @param value
    */
-  savePickedOfferToStockData(value:StockMarkerSaveDataModel): void {
+  saveEditPickedOfferToStockData(value:StockMarkerSaveDataModel): void {
+
     let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+
     const stockToEdit: StockTileModel = this.findStockInArray(value.id);
+
     const elementsIndex = this.findStockArrayIndex(value.id);
 
     tradeBoardArr[elementsIndex] = {
@@ -154,6 +159,7 @@ export class StockTradeBoardService {
     };  
 
     this.stockBoardArraySubject.next(tradeBoardArr);
+
     this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
   }
 
