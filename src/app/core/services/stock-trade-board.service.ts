@@ -15,6 +15,9 @@ export class StockTradeBoardService {
 
   constructor() { }
 
+  /**
+   * 
+   */
   get getStockBoardArray() {
     return this.stockBoardArray$;
   }
