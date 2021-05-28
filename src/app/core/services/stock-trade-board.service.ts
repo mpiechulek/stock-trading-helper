@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 export class StockTradeBoardService {
 
   private storageTradeBoardKeyName: string = 'tradeBoardData';
+
   private stockBoardArraySubject = new Subject<StockTileModel[]>();
   private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
 
@@ -73,6 +74,9 @@ export class StockTradeBoardService {
 
     // Save to storage 
     this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
+
+    // Informing subscribers
+    this.stockBoardArraySubject.next(tradeBoardArr);
   }
 
   /**
