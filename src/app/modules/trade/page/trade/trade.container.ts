@@ -202,7 +202,7 @@ export class TradeContainerComponent implements OnInit {
   /**
    * Deleting a stock by id 
    * Opening global dialog to confirm the deletion
-   * if true then call delete method
+   * if true then call the delete method
    * @param tileId 
    */
   openFormDialogDelete(tileId: string): void {

@@ -27,18 +27,33 @@ export class TradeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * 
+   */
   onAddNewStock(): void {
     this.addNewStock.emit();
   }
 
+  /**
+   * 
+   * @param id 
+   */
   onEditTile(id: string): void {
     this.editTile.emit(id);
   }
 
+  /**
+   * 
+   * @param id 
+   */
   onDeleteTile(id: string): void {
     this.deleteTile.emit(id);
   }
 
+  /**
+   * 
+   * @param value 
+   */
   onSavePickedOffer(value: StockMarkerSaveDataModel): void {
     this.savePickedOffer.emit(value);
   }
