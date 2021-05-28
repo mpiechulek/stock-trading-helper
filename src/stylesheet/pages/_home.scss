@@ -10,7 +10,7 @@
   background-size: 50%;
   background-position: left;
   animation-name: show;
-  animation-duration: 1s;
+  animation-duration: 3s;
 
   @include respond(ld) {
 
@@ -47,7 +47,7 @@
     display: block;
     position: relative;
     animation-name: slide-from-right;
-    animation-duration: 1.2s;
+    animation-duration: 2s;
     transition: ease-in;
 
     @include respond(md) {
