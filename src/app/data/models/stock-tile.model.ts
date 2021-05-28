@@ -14,6 +14,8 @@ export interface StockTileModel {
 
 export interface HeaderCalculationsModel {
     id?: string;
+    amountOfShares: number;
+    buyPrice: number;
     buyValue: number;
     currentPrice: number;
     currentValue: number;
