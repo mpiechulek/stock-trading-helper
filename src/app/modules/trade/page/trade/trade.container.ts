@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
-import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-dialog.component';
 import { FormState } from '../../../../data/enums/form-state.enum';
@@ -60,15 +60,6 @@ export class TradeContainerComponent implements OnInit {
     }
   }
 
-  /*******************************
- 
-   * ! naierzanie wybranej oferty FIND!
-   * ! drag drop elementów ?
-   * ! sprzedawanie i zapis po przez seriws wyników transakcji
-   */
-
-  // ==========================================================================
-
   get getStockBoardArray(): StockTileModel[] {
     return this.stockBoardArray;
   }
@@ -104,6 +95,14 @@ export class TradeContainerComponent implements OnInit {
    */
   savePickedOffer(value: StockMarkerSaveDataModel):void {
     this.stockTradeBoardService.savePickedOfferToStockData(value);
+  }
+
+  /**
+   * 
+   */
+  sellStock(stockSellData: StockSellModel):void {   
+    this.stockTradeBoardService.sellStock(stockSellData);
+
   }
 
 

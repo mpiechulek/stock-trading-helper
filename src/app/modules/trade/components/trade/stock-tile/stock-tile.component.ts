@@ -68,7 +68,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   savePickedOffer: EventEmitter<StockMarkerSaveDataModel> = new EventEmitter<StockMarkerSaveDataModel>();
 
   @Output()
-  sellStock: EventEmitter<HeaderCalculationsModel> = new EventEmitter<HeaderCalculationsModel>();
+  sellStock: EventEmitter<StockSellModel> = new EventEmitter<StockSellModel>();
 
   constructor(
     private stockTilePresenterService: StockTilePresenterService

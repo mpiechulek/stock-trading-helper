@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-trade-ui',
@@ -21,6 +21,9 @@ export class TradeComponent implements OnInit {
 
   @Output()
   savePickedOffer: EventEmitter<Object> = new EventEmitter<Object>();
+
+  @Output()
+  sellStock: EventEmitter<StockSellModel> = new EventEmitter<StockSellModel>();
 
   constructor() { }
 
@@ -56,5 +59,13 @@ export class TradeComponent implements OnInit {
    */
   onSavePickedOffer(value: StockMarkerSaveDataModel): void {
     this.savePickedOffer.emit(value);
+  }
+
+  /**
+   * 
+   * @param stockSellData 
+   */
+  onSellStock(stockSellData: StockSellModel): void {
+    this.sellStock.emit(stockSellData);
   }
 }
