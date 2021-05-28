@@ -352,7 +352,7 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculatePercentageChange(
         result.currentPrice,
         numericObject.buyPrice
-      );
+      );   
 
     this.headerCalculations.next(result);
   }

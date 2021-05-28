@@ -13,12 +13,18 @@ export interface StockTileModel {
 }
 
 export interface HeaderCalculationsModel {
+    id?: string;
     buyValue: number;
     currentPrice: number;
     currentValue: number;
     profitBeforeTax: number;
     profitAfterTax: number;
     percentageChange: number;
+}
+
+export interface StockSellModel extends HeaderCalculationsModel{
+    id: string;
+    companyName: string;   
 }
 
 export interface StockOfferModel {

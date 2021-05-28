@@ -17,6 +17,7 @@ import {
   HeaderCalculationsModel,
   StockMarkerSaveDataModel,
   StockOfferDictionaryModel,
+  StockSellModel,
   StockTileModel,
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
@@ -103,8 +104,8 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         });
 
     this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
-    this.stockTilePresenterService.generateQuotes();  
-    
+    this.stockTilePresenterService.generateQuotes();
+
   }
 
   ngAfterViewInit() {
@@ -173,7 +174,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   orderbyValueDsc(a: KeyValue<number, string>, b: KeyValue<number, string>): number {
     return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
-  } 
+  }
 
   /**
    * Changing the offer selection on the lists
@@ -186,7 +187,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSavePickedOfferData(): void {
-    
+
     let markerData: StockMarkerSaveDataModel;
 
     markerData = {
@@ -218,19 +219,29 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
    * 
    */
   onSellStock(): void {
-    this.sellStock.emit(this.headerCalculations);    
+   
+    const stockToSell:StockSellModel = {
+
+      id: this.stockElement.id,
+      companyName: this.stockElement.companyName,     
+      ...this.headerCalculations
+
+    }
+
+    this.sellStock.emit(stockToSell);
+
   }
 
   /**
    * 
    */
-  onFindSelectedOffer(){
+  onFindSelectedOffer() {
 
-    if(this.offerMarker === 'profit') {
+    if (this.offerMarker === 'profit') {
       this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
     }
 
-    if(this.offerMarker === 'lose') {
+    if (this.offerMarker === 'lose') {
       this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
     }
   }
