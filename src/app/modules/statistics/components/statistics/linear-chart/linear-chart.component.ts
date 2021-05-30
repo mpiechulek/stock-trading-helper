@@ -27,12 +27,12 @@ export class LinearChartComponent implements OnInit {
   };
 
   constructor() {
-    Object.assign(this, { multi });
+   
   }
 
   ngOnInit(): void {
     
-    
+    Object.assign(this, { multi });
   }
 
   onSelect(data): void {
