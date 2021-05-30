@@ -15,7 +15,7 @@ export class StockTradeBoardService {
   private stockBoardArraySubject = new Subject<StockTileModel[]>();
   private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
 
-  private transactionsArraySubject = new Subject<StockTileModel[]>();
+  private transactionsArraySubject = new Subject<StockSellModel[]>();
   private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
   constructor() { }
@@ -202,12 +202,8 @@ export class StockTradeBoardService {
   /**
    * Selling the chosen stock, and deleting it form the board list
    */
-  sellStock(stockSellData: StockSellModel): void {   
-    let newTransaction: StockSellModel;
-
-    console.log(stockSellData);
+  sellStock(stockSellData: StockSellModel): void {        
     
-    // make transaction model, width date !!
     this.createNewSellTransaction(stockSellData);
 
     this.deletePositionFromBoard(stockSellData.id);
@@ -232,9 +228,9 @@ checkIfTransactionsInLocalStorage() {
  * 
  * @returns 
  */
-getTransactionsFromLocalStorage(): StockTileModel[] | [] {
+getTransactionsFromLocalStorage(): StockSellModel[] {
 
-  let transactions: StockTileModel[];
+  let transactions: StockSellModel[];
 
     if (this.checkIfTransactionsInLocalStorage()) {
 
@@ -246,6 +242,7 @@ getTransactionsFromLocalStorage(): StockTileModel[] | [] {
 
     }
 
+    // Informing all subscribers
     this.transactionsArraySubject.next(transactions);
 
     return [...transactions];
@@ -256,52 +253,28 @@ getTransactionsFromLocalStorage(): StockTileModel[] | [] {
  * 
  * @param data 
  */
-saveTransactionToLocalStorage( data: StockTileModel[]):void {
+saveTransactionToLocalStorage( data: StockSellModel[]):void {
 
   localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
 
 }
 
+/**
+ * 
+ * @param stockSellData 
+ */
 createNewSellTransaction(stockSellData: StockSellModel) {
 
-  let newTransaction: StockSellModel;
+  let transactions : StockSellModel[] = this.getTransactionsFromLocalStorage();
+
+  transactions.push(stockSellData);
+
+  this.saveTransactionToLocalStorage(transactions);
+
+  this.transactionsArraySubject.next(transactions);
 
 }
 
-//  findTransactionInArray(transactionId: string): StockTileModel {
-
-//   let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
-
-//   let elementsIndex: number = null;
-
-//   elementsIndex = tradeBoardArr.findIndex((element) => {
-
-//     return element.id === transactionId;
-
-//   });
-
-//   if (elementsIndex === null) return null;
-
-//   return tradeBoardArr[elementsIndex];
-
-// }
-
-// findTransactionArrayIndex(transactionId: string): number {
-
-//   let tradeBoardArr: StockTileModel[] = this.getTransactionsFromLocalStorage();
-
-//   const elementIndex = tradeBoardArr.findIndex((element) => {
-
-//     return element.id === transactionId;
-
-//   });
-
-//   return elementIndex;
-// }
-
-saveTransaction() {
-
-}
 
 deleteTransaction() {
 
