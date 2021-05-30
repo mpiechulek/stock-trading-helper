@@ -68,11 +68,11 @@ export class StockTradeBoardService {
    * 
    * @param data 
    */
-   saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
+  saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
   }
 
-   // ===========================================================================
+  // ===========================================================================
 
   /**
    *  Creating a new object from the received form data, adding to it an id, also 
@@ -103,7 +103,7 @@ export class StockTradeBoardService {
 
     // Informing subscribers
     this.stockBoardArraySubject.next(tradeBoardArr);
-  }  
+  }
 
   /**
    * 
@@ -197,40 +197,40 @@ export class StockTradeBoardService {
 
     this.saveTradeBoardDataToLocalStorage(newArr);
   }
-  
+
 
   /**
    * Selling the chosen stock, and deleting it form the board list
    */
-  sellStock(stockSellData: StockSellModel): void {        
-    
+  sellStock(stockSellData: StockSellModel): void {
+
     this.createNewSellTransaction(stockSellData);
 
     this.deletePositionFromBoard(stockSellData.id);
   }
 
-  
-// =============================================================================
-// ============================== Sold stock data ==============================
-// =============================================================================
 
-/**
- * 
- * @returns 
- */
-checkIfTransactionsInLocalStorage() {
+  // =============================================================================
+  // ============================== Sold stock data ==============================
+  // =============================================================================
 
-  return localStorage.getItem(this.storageTradeTransactionKeyName) === null;
+  /**
+   * 
+   * @returns 
+   */
+  checkIfTransactionsInLocalStorage() {
 
-}
+    return localStorage.getItem(this.storageTradeTransactionKeyName) === null;
 
-/**
- * 
- * @returns 
- */
-getTransactionsFromLocalStorage(): StockSellModel[] {
+  }
 
-  let transactions: StockSellModel[];
+  /**
+   * 
+   * @returns 
+   */
+  getTransactionsFromLocalStorage(): StockSellModel[] {
+
+    let transactions: StockSellModel[];
 
     if (this.checkIfTransactionsInLocalStorage()) {
 
@@ -247,42 +247,51 @@ getTransactionsFromLocalStorage(): StockSellModel[] {
 
     return [...transactions];
 
-}
+  }
 
-/**
- * 
- * @param data 
- */
-saveTransactionToLocalStorage( data: StockSellModel[]):void {
+  /**
+   * 
+   * @param data 
+   */
+  saveTransactionToLocalStorage(data: StockSellModel[]): void {
 
-  localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
+    localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
 
-}
+  }
 
-/**
- * 
- * @param stockSellData 
- */
-createNewSellTransaction(stockSellData: StockSellModel) {
+  /**
+   * 
+   * @param stockSellData 
+   */
+  createNewSellTransaction(stockSellData: StockSellModel) {
 
-  let transactions : StockSellModel[] = this.getTransactionsFromLocalStorage();
+    const currentDate = new Date();
 
-  transactions.push(stockSellData);
+    const transactions: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
-  this.saveTransactionToLocalStorage(transactions);
+    const newTransaction: StockSellModel = {
 
-  this.transactionsArraySubject.next(transactions);
+      sellDate: currentDate,
+      ...stockSellData
 
-}
+    }
+
+    transactions.push(newTransaction);
+
+    this.saveTransactionToLocalStorage(transactions);
+
+    this.transactionsArraySubject.next(transactions);
+
+  }
 
 
-deleteTransaction() {
+  deleteTransaction() {
 
-}
+  }
 
-editTransaction() {
+  editTransaction() {
 
-}
+  }
 
 
 }
