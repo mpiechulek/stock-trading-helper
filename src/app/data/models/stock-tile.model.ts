@@ -31,7 +31,6 @@ export interface StockOfferModel {
     selected?: boolean;
 }
 
-
 export interface StockOfferDictionaryModel {
     [index: string]: StockOfferModel;
 }

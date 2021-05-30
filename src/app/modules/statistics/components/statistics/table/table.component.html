@@ -1,24 +1,20 @@
+
 <section class="statistics-table">
 
     <h1 class="statistics-header">Trade data table</h1>
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-        </ng-container>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">         
 
         <!-- Name Column -->
         <ng-container matColumnDef="stockName">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.stockName}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.companyName}} </mat-cell>
         </ng-container>
 
         <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.amountOfShares}} </mat-cell>
         </ng-container>
 
         <!-- Buy price Column -->
@@ -30,7 +26,7 @@
         <!-- Sell Price Column -->
         <ng-container matColumnDef="sellPrice">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.sellPrice}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.currentPrice}} </mat-cell>
         </ng-container>
 
         <!-- profitBeforeTax Column -->
@@ -46,9 +42,9 @@
         </ng-container>
        
         <!-- Symbol Column -->
-        <ng-container matColumnDef="date">
+        <ng-container matColumnDef="sellDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.sellDate}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
@@ -61,9 +57,8 @@
             <input matInput id="table-search-field"(keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
 
-        <mat-paginator [pageSizeOptions]="[1, 2, 5]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons></mat-paginator>
 
     </div>
 
-
-</section>
+</section> 

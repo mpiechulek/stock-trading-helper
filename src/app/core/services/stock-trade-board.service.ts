@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TradeFormData } from '../../data/models/form.model';
 import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { StockSellModel, TransactionProfitModel } from 'src/app/data/models/statistics-section.model';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class StockTradeBoardService {
   private transactionsArraySubject = new Subject<StockSellModel[]>();
   private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
-  private transactionsProfitArray = new Subject<TransactionProfitModel[]>();
+  private transactionsProfitArray = new Subject<StockSellModel[]>();
   private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
 
   constructor() { }
@@ -34,15 +34,8 @@ export class StockTradeBoardService {
   /**
    * 
    */
-  get getTransactionsArray() {
+  get getTransactionsArray():Observable<StockSellModel[]>{
     return this.transactionsArraySubject$;
-  }
-
-  /**
-   * 
-   */
-  get getTransactionsProfitArray() {
-    return this.transactionsProfitArray$;
   }
 
   // ===========================================================================
@@ -251,8 +244,8 @@ export class StockTradeBoardService {
 
       transactions = JSON.parse(localStorage.getItem(this.storageTradeTransactionKeyName));
 
-    }
-
+    }  
+    
     // Informing all subscribers
     this.transactionsArraySubject.next(transactions);
 
@@ -278,7 +271,7 @@ export class StockTradeBoardService {
 
     const currentDate = new Date();
 
-    const transactions: StockSellModel[] = this.getTransactionsFromLocalStorage();
+    const transactions: StockSellModel[] = this.getTransactionsFromLocalStorage();     
 
     const newTransaction: StockSellModel = {
 

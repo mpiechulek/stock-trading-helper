@@ -61,6 +61,9 @@ export class TradeContainerComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   */
   get getStockBoardArray(): StockTileModel[] {
     return this.stockBoardArray;
   }

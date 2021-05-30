@@ -20,7 +20,10 @@
 
             <ng-template matTabContent>
 
-                <app-table></app-table>
+                <app-table 
+                    [transactions]="getTransactionsData"             
+                >
+                </app-table>
 
             </ng-template>
 

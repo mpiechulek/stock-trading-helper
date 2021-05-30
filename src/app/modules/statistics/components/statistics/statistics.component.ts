@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
   selector: 'app-statistics-ui',
@@ -8,12 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class StatisticsComponent implements OnInit {
 
   tabLoadTimes: Date[] = [];
-  
+
+  @Input() transactionsData: StockSellModel[];
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  /**
+   * 
+   */
+  get getTransactionsData(): StockSellModel[] {
+    return this.transactionsData;
+  }
 
   getTimeLoaded(index: number) {
     if (!this.tabLoadTimes[index]) {
