@@ -37,6 +37,11 @@ export interface StockOfferModel {
     selected?: boolean;
 }
 
+export interface TransactionProfitModel {
+    value: number;
+    sellDate: string;
+}
+
 export interface StockOfferDictionaryModel {
     [index: string]: StockOfferModel;
 }

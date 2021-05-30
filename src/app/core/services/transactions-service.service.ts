@@ -9,30 +9,6 @@ export class TransactionsServiceService {
 
 	constructor() { }
 
-	/**
-	 * 
-	 * @param data 
-	 * @returns 
-	 */
-	generateTransactionsProfitArray(data: StockSellModel[]): any[] {
-
-		let profitArray = [];
-
-		data.forEach((trans) => {
-
-			profitArray.push(
-
-				{
-					profitBeforeTax: trans.profitBeforeTax,
-					sellDate: trans.sellDate
-				}
-
-			);
-
-		});
-
-		return profitArray;
-	}
 
 	/**
 	 * 

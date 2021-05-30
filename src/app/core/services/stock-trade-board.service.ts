@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TradeFormData } from '../../data/models/form.model';
-import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockSellModel, StockTileModel, TransactionProfitModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
 import { Subject } from 'rxjs';
 
@@ -18,6 +18,9 @@ export class StockTradeBoardService {
   private transactionsArraySubject = new Subject<StockSellModel[]>();
   private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
+  private transactionsProfitArray = new Subject<TransactionProfitModel[]>();
+  private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
+
   constructor() { }
 
   /**
@@ -32,6 +35,13 @@ export class StockTradeBoardService {
    */
   get getTransactionsArray() {
     return this.transactionsArraySubject$;
+  }
+
+  /**
+   * 
+   */
+  get getTransactionsProfitArray() {
+    return this.transactionsProfitArray$;
   }
 
   // ===========================================================================
@@ -282,7 +292,36 @@ export class StockTradeBoardService {
 
     this.transactionsArraySubject.next(transactions);
 
+    this.generateTransactionsProfitArray(transactions)
+
   }
+
+  	/**
+	 * 
+	 * @param data 
+	 * @returns 
+	 */
+	generateTransactionsProfitArray(data: StockSellModel[]) {
+
+		let profitArray = [];
+
+		data.forEach((trans) => {
+
+			profitArray.push(
+
+				{
+					profitBeforeTax: trans.profitBeforeTax,
+					sellDate: trans.sellDate
+				}
+
+			);
+
+		});
+
+    this.transactionsProfitArray.next();
+	
+	}
+
 
 
   deleteTransaction() {
