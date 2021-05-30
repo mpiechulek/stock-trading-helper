@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 
 @Component({
   selector: 'app-trade-ui',

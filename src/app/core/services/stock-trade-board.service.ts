@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TradeFormData } from '../../data/models/form.model';
-import { StockMarkerSaveDataModel, StockSellModel, StockTileModel, TransactionProfitModel } from '../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
 import { Subject } from 'rxjs';
+import { StockSellModel, TransactionProfitModel } from 'src/app/data/models/statistics-section.model';
 
 @Injectable({
   providedIn: 'root'
@@ -297,7 +298,8 @@ export class StockTradeBoardService {
   }
 
   	/**
-	 * 
+	 * Creating an array of objects [{profitBeforeTax: 223, sellDate:"2021-05-30T09:26:32.081Z" }]
+   * This will not be saved in localStorage, it wil by generated form transaction sell data array
 	 * @param data 
 	 * @returns 
 	 */

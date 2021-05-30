@@ -24,12 +24,6 @@ export interface HeaderCalculationsModel {
     percentageChange: number;
 }
 
-export interface StockSellModel extends HeaderCalculationsModel{
-    id: string;
-    companyName: string;   
-    sellDate?: Date;
-}
-
 export interface StockOfferModel {
     percentageChange: string;
     newPrice: string;
@@ -37,10 +31,6 @@ export interface StockOfferModel {
     selected?: boolean;
 }
 
-export interface TransactionProfitModel {
-    value: number;
-    sellDate: string;
-}
 
 export interface StockOfferDictionaryModel {
     [index: string]: StockOfferModel;

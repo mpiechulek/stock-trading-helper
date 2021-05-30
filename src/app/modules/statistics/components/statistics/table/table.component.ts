@@ -3,18 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 // import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-
-export interface TradeTableDataModel {
-  position: number;
-  stockName: string;
-  quantity: string;
-  buyPrice: string;
-  sellPrice: string;
-  profitBeforeTax: string;
-  lose: string;
-  total: string;
-  date: string;
-}
+import { TradeTableDataModel } from 'src/app/data/models/statistics-section.model';
 
 const ELEMENT_DATA: TradeTableDataModel[] = [
   {
@@ -23,21 +12,9 @@ const ELEMENT_DATA: TradeTableDataModel[] = [
     quantity: '120',
     buyPrice: '15.56',
     sellPrice: '18.34',
-    profitBeforeTax: '134.45',   
-    lose: '',
-    total: '1234',
+    profitBeforeTax: '134.45',
+    profitAfterTax: '1325',
     date: '2021-03-19'
-  },
-  {
-    position: 2,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',   
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
   }
 
 ];
@@ -55,9 +32,8 @@ export class TableComponent implements OnInit {
       'quantity',
       'buyPrice',
       'sellPrice',
-      'profitBeforeTax',   
-      'lose',
-      'total',
+      'profitBeforeTax',
+      'profitAfterTax',
       'date'
     ];
 
@@ -74,7 +50,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     // the time out is used because normally it didn't work
     setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() =>  this.dataSource.sort = this.sort);  
+    setTimeout(() => this.dataSource.sort = this.sort);
   }
 
   applyFilter(filterValue: string) {
@@ -85,11 +61,11 @@ export class TableComponent implements OnInit {
     }
   }
 
-  onDeletePosition() : void{
+  onDeletePosition(): void {
 
   }
 
-  onEditPosition() : void{
+  onEditPosition(): void {
 
   }
 

@@ -17,13 +17,13 @@ import {
   HeaderCalculationsModel,
   StockMarkerSaveDataModel,
   StockOfferDictionaryModel,
-  StockSellModel,
   StockTileModel,
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 import { Subscription } from 'rxjs';
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 
 
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
