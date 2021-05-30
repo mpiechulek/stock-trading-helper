@@ -1,35 +1,44 @@
 import { Injectable } from '@angular/core';
 import { StockSellModel } from 'src/app/data/models/stock-tile.model';
-import { forEachChild } from 'typescript';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 
 export class TransactionsServiceService {
 
-  constructor() { }
+	constructor() { }
 
-  generateTransactionsProfitArray(data: StockSellModel[]) {
+	/**
+	 * 
+	 * @param data 
+	 * @returns 
+	 */
+	generateTransactionsProfitArray(data: StockSellModel[]): any[] {
 
-    let profitArray = [];
+		let profitArray = [];
 
-    data.forEach((trans) => {
+		data.forEach((trans) => {
 
-      profitArray.push(
-        {
-          profitBeforeTax: trans.profitBeforeTax,
-          sellDate: trans.sellDate
-        }
-      );
+			profitArray.push(
 
-    })
+				{
+					profitBeforeTax: trans.profitBeforeTax,
+					sellDate: trans.sellDate
+				}
 
+			);
 
-  }
+		});
 
-  generateProfitLossInfo() {
+		return profitArray;
+	}
 
-  }
+	/**
+	 * 
+	 */
+	generateProfitLossInfo() {
+
+	}
 
 }
