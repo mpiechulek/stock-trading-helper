@@ -1,9 +1,12 @@
 
 <button class="btn trade-entry-form__close-btn" type="button" (click)="onCloseDialog()">
+
     <svg class="icon icon--close" src="./assets/icon/Icon awesome-sun.svg"></svg>
+
 </button>
 
-<h1 class="modal-dialog-header-text  trade-entry-form__header" *ngIf="dialogState == formState.Add">Add Stock</h1>   
+<h1 class="modal-dialog-header-text  trade-entry-form__header" *ngIf="dialogState == formState.Add">Add Stock</h1>  
+
 <h1 class="modal-dialog-header-text  trade-entry-form__header" *ngIf="dialogState == formState.Edit">Edit Stock</h1>   
 
 <form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()">
@@ -13,24 +16,39 @@
         <!-- Company name -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">* Enter company name</mat-label>
-            <input matInput type="text" formControlName="companyName">       
+
+            <input matInput type="text" formControlName="companyName"> 
+
             <mat-error *ngIf="companyName.dirty || companyName.touched">
+
                 A company name is required.
+
             </mat-error>     
+
         </mat-form-field>
 
         <!-- Number of shares -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">* Number of shares </mat-label>
-            <input matInput type="number" formControlName="amountOfShares">                  
+
+            <input matInput type="number" formControlName="amountOfShares">  
+
             <mat-error *ngIf="amountOfShares.hasError('pattern')">
+
                 Number of shares must be a positive integer.
+
             </mat-error>  
+
             <mat-error *ngIf="amountOfShares.touched && !amountOfShares.hasError('pattern')">
+
                 Number of shares is required.
-            </mat-error>                              
+
+            </mat-error>      
+
         </mat-form-field>
 
     </div>
@@ -40,19 +58,27 @@
         <!-- Buy price -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">* Buy price</mat-label>
+            
             <input matInput type="text" formControlName="buyPrice" appNumberDigit>            
            
             <mat-error *ngIf="buyPrice.invalid">
+            
                 Buy price mus by a positive number
+            
             </mat-error>        
+        
         </mat-form-field>
 
         <!-- Tax rate -->
 
         <mat-form-field id="trade-dialog-form">
+        
             <mat-label id="trade-dialog-form">Tax rate %</mat-label>
-            <input matInput type="text" formControlName="taxRate" appNumberDigit>            
+
+            <input matInput type="text" formControlName="taxRate" appNumberDigit>  
+
         </mat-form-field>
 
     </div>
@@ -62,15 +88,21 @@
         <!-- Brokers commission -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">Brokers commission %</mat-label>
-            <input matInput type="text" formControlName="commission" appNumberDigit>           
+
+            <input matInput type="text" formControlName="commission" appNumberDigit>  
+
         </mat-form-field>
 
         <!-- Min. Brokers commission -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">Min. brokers commission</mat-label>
-            <input matInput type="text" formControlName="minCommission" appNumberDigit>           
+
+            <input matInput type="text" formControlName="minCommission" appNumberDigit>    
+
         </mat-form-field>
 
     </div>
@@ -79,21 +111,33 @@
 
         <!-- Number of calculation steps -->
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">Number of offers</mat-label>
-            <input matInput type="number" formControlName="calcStepCount">                  
+
+            <input matInput type="number" formControlName="calcStepCount">   
+
             <mat-error *ngIf="calcStepCount.hasError('pattern')">
+
                 Number of steps must be a positive integer.
-            </mat-error>                                       
+
+            </mat-error>     
+                                              
         </mat-form-field>
 
         <!-- calculation percentage step -->
 
         <mat-form-field id="trade-dialog-form">
+
             <mat-label id="trade-dialog-form">Percentage step</mat-label>
-            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>   
+
+            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>  
+
             <mat-error *ngIf="calcStepValue.hasError('pattern')">
+
                 Number of steps must be a positive float.
-            </mat-error>            
+
+            </mat-error>     
+
         </mat-form-field>
 
     </div>
@@ -109,7 +153,9 @@
             [disabled]="entryStockForm.invalid"
         >
            <span  *ngIf="dialogState == formState.Add">ADD</span>
-           <span  *ngIf="dialogState == formState.Edit">SAVE</span>         
+
+           <span  *ngIf="dialogState == formState.Edit">SAVE</span>   
+
         </button>
 
         <!-- <p>{{'value: ' }}</p> -->

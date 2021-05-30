@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
-import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-dialog.component';
 import { FormState } from '../../../../data/enums/form-state.enum';
@@ -60,16 +60,6 @@ export class TradeContainerComponent implements OnInit {
     }
   }
 
-  /*******************************
-   * ! Zapis bez przeładowania strony 
-   * ! przy dodawanie  nowego elementu nie odswierza,
-   * ! naierzanie wybranej oferty FIND!
-   * ! drag drop elementów ?
-   * ! sprzedawanie i zapis po przez seriws wyników transakcji
-   */
-
-  // ==========================================================================
-
   get getStockBoardArray(): StockTileModel[] {
     return this.stockBoardArray;
   }
@@ -107,11 +97,18 @@ export class TradeContainerComponent implements OnInit {
     this.stockTradeBoardService.savePickedOfferToStockData(value);
   }
 
+  /**
+   * 
+   */
+  sellStock(stockSellData: StockSellModel):void {   
+    this.stockTradeBoardService.sellStock(stockSellData);
 
-  // =============================================================================
-  // ==================== Angular material form dialog triggering ================
-  // =============================================================================
+  }
 
+
+  // ===========================================================================
+  // ==================== Angular material form dialog triggering ==============
+  // ===========================================================================
   /**
    * Dialog trigger for adding new stocks
    */
@@ -202,7 +199,7 @@ export class TradeContainerComponent implements OnInit {
   /**
    * Deleting a stock by id 
    * Opening global dialog to confirm the deletion
-   * if true then call delete method
+   * if true then call the delete method
    * @param tileId 
    */
   openFormDialogDelete(tileId: string): void {

@@ -276,6 +276,10 @@ export class StockTilePresenterService {
     return;
   }
 
+// =============================================================================
+// ===================== Generating header calculations ========================
+// =============================================================================
+
   /**
    * 
    * @param numericObject 
@@ -286,6 +290,10 @@ export class StockTilePresenterService {
     let buyCommission: number;
     let sellCommission: number;
     let totalCommission: number;
+
+    result.amountOfShares = numericObject.amountOfShares;
+
+    result.buyPrice =  numericObject.buyPrice;
 
     result.buyValue =
       this.stockPriceCalculatorService
@@ -336,7 +344,7 @@ export class StockTilePresenterService {
         totalCommission
       );
 
-    // When the current stock price is less or equal the buy price you don't 
+    // When the current stock price is less or equal the buy price, you don't 
     // pay tax from losses
     if (result.currentPrice <= numericObject.buyPrice) {
       result.profitAfterTax = result.profitBeforeTax;
@@ -352,10 +360,14 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculatePercentageChange(
         result.currentPrice,
         numericObject.buyPrice
-      );
+      );   
 
     this.headerCalculations.next(result);
   }
+
+// =============================================================================
+// ====================== Price selection functionality ========================
+// =============================================================================
 
   /**
    * 
