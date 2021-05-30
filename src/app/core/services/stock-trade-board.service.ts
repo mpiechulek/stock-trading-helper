@@ -291,40 +291,9 @@ export class StockTradeBoardService {
 
     this.saveTransactionToLocalStorage(transactions);
 
-    this.transactionsArraySubject.next(transactions);
-
-    this.generateTransactionsProfitArray(transactions)
+    this.transactionsArraySubject.next(transactions);   
 
   }
-
-  	/**
-	 * Creating an array of objects [{profitBeforeTax: 223, sellDate:"2021-05-30T09:26:32.081Z" }]
-   * This will not be saved in localStorage, it wil by generated form transaction sell data array
-	 * @param data 
-	 * @returns 
-	 */
-	generateTransactionsProfitArray(data: StockSellModel[]) {
-
-		let profitArray = [];
-
-		data.forEach((trans) => {
-
-			profitArray.push(
-
-				{
-					profitBeforeTax: trans.profitBeforeTax,
-					sellDate: trans.sellDate
-				}
-
-			);
-
-		});
-
-    this.transactionsProfitArray.next();
-	
-	}
-
-
 
   deleteTransaction() {
 
@@ -333,6 +302,5 @@ export class StockTradeBoardService {
   editTransaction() {
 
   }
-
 
 }
