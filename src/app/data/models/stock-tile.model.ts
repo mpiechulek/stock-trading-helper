@@ -27,6 +27,7 @@ export interface HeaderCalculationsModel {
 export interface StockSellModel extends HeaderCalculationsModel{
     id: string;
     companyName: string;   
+    sellDate: Date;
 }
 
 export interface StockOfferModel {

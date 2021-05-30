@@ -14,9 +14,14 @@ export class TransactionsServiceService {
 
     let profitArray = [];
 
-    data.forEach((transaction)=> {
+    data.forEach((trans) => {
 
-      profitArray.push({});
+      profitArray.push(
+        {
+          profitBeforeTax: trans.profitBeforeTax,
+          sellDate: trans.sellDate
+        }
+      );
 
     })
 
