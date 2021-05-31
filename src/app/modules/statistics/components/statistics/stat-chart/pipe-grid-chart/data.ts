@@ -1,10 +1,10 @@
 export var single = [
     {
       "name": "Lose",
-      "value": 135.65
+      "value": 1
     },
     {
       "name": "Profit",
-      "value": 245.32
+      "value": 1
     }
   ];

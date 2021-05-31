@@ -8,7 +8,7 @@
 
             <ng-template matTabContent>
 
-                <app-linear-chart></app-linear-chart>
+                <app-linear-chart [linearChartData]="linearChartData"></app-linear-chart>
 
             </ng-template>
 
@@ -21,6 +21,7 @@
             <ng-template matTabContent>
 
                 <app-table 
+                
                     [transactions]="getTransactionsData"             
                 >
                 </app-table>
@@ -35,7 +36,7 @@
 
             <ng-template matTabContent>
 
-                <app-stat-chart></app-stat-chart>
+                <app-stat-chart [profitLossesData]="profitLossesData"></app-stat-chart>
                 
             </ng-template>          
 

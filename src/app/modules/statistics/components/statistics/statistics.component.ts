@@ -12,6 +12,8 @@ export class StatisticsComponent implements OnInit {
   tabLoadTimes: Date[] = [];
 
   @Input() transactionsData: StockSellModel[];
+  @Input() linearChartData;
+  @Input() profitLossesData;
 
   constructor() { }
 

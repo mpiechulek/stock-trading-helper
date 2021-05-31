@@ -12,13 +12,15 @@ export class StatisticsContainerComponent implements OnInit {
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
-    private linearChartData;
 
     private transactionsDataSubject = new Subject<StockSellModel[]>();
     private transactionsDataSubject$ = this.transactionsDataSubject.asObservable();
 
     private transactionsDataSubject2 = new Subject<StockSellModel[]>();
     private transactionsDataSubject2$ = this.transactionsDataSubject2.asObservable();
+
+    private profitLossesData;
+    private linearChartData;
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
 
@@ -31,7 +33,8 @@ export class StatisticsContainerComponent implements OnInit {
 
                 this.transactionsData = data;
 
-                this.linearChartData = this.calculateLinearChartObject(data);
+                // Calculating chart display data
+                [this.profitLossesData, this.linearChartData] = this.calculateLinearChartObject(data);
 
             });
 
@@ -49,6 +52,24 @@ export class StatisticsContainerComponent implements OnInit {
     /**
      * 
      */
+    get getProfitLossesData() {
+
+        return this.profitLossesData;
+
+    }
+
+    /**
+   * 
+   */
+    get getLinearChartData() {
+
+        return this.linearChartData;
+
+    }
+
+    /**
+   * 
+   */
     get getTransactionsData(): StockSellModel[] {
 
         return this.transactionsData;
@@ -63,37 +84,19 @@ export class StatisticsContainerComponent implements OnInit {
     calculateLinearChartObject(tradeData) {
 
         let dataArray = [
+
             {
                 name: "Profit/Lose",
                 "series": []
             }
+
         ];
-
-        let profitLossesData = [
-            {
-              "name": "Lose",
-              "value": 135.65
-            },
-            {
-              "name": "Profit",
-              "value": 245.32
-            }
-
-          ];
-
-        let walletValue = [
-            
-            {
-              "name": "JSW",
-              "value": 1356.58
-            }
-        ]
 
         let profitTotalValue: number = 0;
         let profitValue: number = 0;
         let lossValue: number = 0;
 
-        tradeData.forEach((trade) => {
+        tradeData.forEach((trade) => {                     
 
             if (trade.profitBeforeTax > 0) {
 
@@ -101,11 +104,13 @@ export class StatisticsContainerComponent implements OnInit {
 
             } else {
 
-                lossValue = profitValue - trade.profitBeforeTax;
+                lossValue = lossValue - trade.profitBeforeTax;
 
             }
 
-            profitTotalValue = profitValue + trade.profitBeforeTax;
+            profitTotalValue = profitTotalValue + trade.profitBeforeTax;           
+            
+            console.log(profitTotalValue);                    
 
             dataArray[0].series.push({
 
@@ -114,13 +119,24 @@ export class StatisticsContainerComponent implements OnInit {
 
             })
 
-        });
+        });           
 
-        console.log(dataArray);
-        console.log(lossValue);
-        console.log(profitValue);
+        let profitLossesData = [
 
-        return dataArray;
+            {
+                "name": "Lose",
+                "percentage": (((lossValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "value": lossValue.toFixed(2)
+            },
+            {
+                "name": "Profit",
+                "percentage": (((profitValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "value": profitValue.toFixed(2)
+            }
+
+        ];
+
+        return [profitLossesData, dataArray];
 
     }
 

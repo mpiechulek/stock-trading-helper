@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { single } from './data';
 
 @Component({
@@ -8,6 +8,8 @@ import { single } from './data';
 export class PipeGridChartComponent implements OnInit {
 
   single: any[];
+
+  @Input() profitLossesData;
 
   view = [500, 350];
 
