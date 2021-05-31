@@ -3,11 +3,12 @@ import { Subscription } from 'rxjs';
 import { FormService } from 'src/app/core/services/form.service';
 import { TradeFormData } from 'src/app/data/models/form.model';
 import { StockTradeBoardService } from '../../../../core/services/stock-trade-board.service';
-import { StockMarkerSaveDataModel, StockSellModel, StockTileModel } from '../../../../data/models/stock-tile.model';
+import { StockMarkerSaveDataModel, StockTileModel } from '../../../../data/models/stock-tile.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-dialog.component';
 import { FormState } from '../../../../data/enums/form-state.enum';
 import { GlobalDialogComponent } from '../../../../shared/components/global-dialog/global-dialog.component';
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
   selector: 'app-trade',
@@ -60,6 +61,9 @@ export class TradeContainerComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   */
   get getStockBoardArray(): StockTileModel[] {
     return this.stockBoardArray;
   }

@@ -1,97 +1,85 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-// import { DataSource } from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-
-export interface TradeTableDataModel {
-  position: number;
-  stockName: string;
-  quantity: string;
-  buyPrice: string;
-  sellPrice: string;
-  profitBeforeTax: string;
-  lose: string;
-  total: string;
-  date: string;
-}
-
-const ELEMENT_DATA: TradeTableDataModel[] = [
-  {
-    position: 1,
-    stockName: 'JSW',
-    quantity: '120',
-    buyPrice: '15.56',
-    sellPrice: '18.34',
-    profitBeforeTax: '134.45',   
-    lose: '',
-    total: '1234',
-    date: '2021-03-19'
-  },
-  {
-    position: 2,
-    stockName: 'CDProject',
-    quantity: '100',
-    buyPrice: '460',
-    sellPrice: '306',
-    profitBeforeTax: '',   
-    lose: '600',
-    total: '861',
-    date: '2021-03-28'
-  }
-
-];
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html'
+    selector: 'app-table',
+    templateUrl: './table.component.html'
 })
+
 export class TableComponent implements OnInit {
 
-  displayedColumns: string[] =
-    [
-      'position',
-      'stockName',
-      'quantity',
-      'buyPrice',
-      'sellPrice',
-      'profitBeforeTax',   
-      'lose',
-      'total',
-      'date'
-    ];
+    public dataSource;
 
-  // For sorting the data source
-  dataSource = new MatTableDataSource<TradeTableDataModel>(ELEMENT_DATA);
+    data: StockSellModel[] = [
+        {
+            id: '23131312321',
+            companyName: 'AAAAAAa',
+            sellDate: new Date(),
+            amountOfShares: 455,
+            buyPrice: 5453,
+            buyValue: 54353,
+            currentPrice: 534,
+            currentValue: 5,
+            profitBeforeTax: 53453,
+            profitAfterTax: 3453,
+            percentageChange: 534
+        }
+    ]
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+    public displayedColumns: string[] =
+        [
+            'stockName',
+            'quantity',
+            'buyPrice',
+            'sellPrice',
+            'profitBeforeTax',
+            'profitAfterTax',
+            'sellDate'
+        ];
 
-  constructor() {
+    @Input() transactions: StockSellModel[];  
 
-  }
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
-    // the time out is used because normally it didn't work
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() =>  this.dataSource.sort = this.sort);  
-  }
+    constructor() {
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
     }
-  }
 
-  onDeletePosition() : void{
+    ngOnInit() {     
 
-  }
+        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactions);
 
-  onEditPosition() : void{
+        // the time out is used because normally it didn't work
+        setTimeout(() => this.dataSource.paginator = this.paginator);
 
-  }
+        setTimeout(() => this.dataSource.sort = this.sort);
+
+    }
+
+    applyFilter(filterValue: string) {
+
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+
+            this.dataSource.paginator.firstPage();
+
+        }
+    }
+
+    onDeletePosition(): void {
+
+    }
+
+    onEditPosition(): void {
+
+    }
 
 }
 

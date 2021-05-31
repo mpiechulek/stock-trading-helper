@@ -3,7 +3,7 @@ export var multi = [
     "name": "Profit/Lose",
     "series": [
       {
-        "name": "2021-03-02",
+        "name": "2021-03-03",
         "value": 25.36
       },
       {
