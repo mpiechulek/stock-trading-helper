@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stat-chart',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class StatChartComponent implements OnInit {
+
+  @Input() profitLossesData;
 
   ngOnInit(): void { }
 
