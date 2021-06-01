@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { single } from './data';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-advanced-pipe-chart',
@@ -21,8 +20,9 @@ export class AdvancedPipeChartComponent implements OnInit {
     ]
   };
 
-  constructor() {
-    Object.assign(this, { single });
+  @Input() transactionsData;
+
+  constructor() {   
     this.onChangeChartSize(window.innerWidth);
   }
 

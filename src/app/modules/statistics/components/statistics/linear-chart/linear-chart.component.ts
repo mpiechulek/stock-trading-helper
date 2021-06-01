@@ -36,8 +36,8 @@ export class LinearChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    Object.assign(this, { multi });
+   console.log(this.linearChartData);
+   
 
   }
 

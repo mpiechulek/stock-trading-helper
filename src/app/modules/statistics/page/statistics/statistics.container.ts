@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionProfitModel } from 'src/app/data/models/statistics-section.model';
+import { StockTileModel } from 'src/app/data/models/stock-tile.model';
 
 @Component({
     selector: 'app-statistics',
@@ -13,14 +14,9 @@ export class StatisticsContainerComponent implements OnInit {
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
 
-    private transactionsDataSubject = new Subject<StockSellModel[]>();
-    private transactionsDataSubject$ = this.transactionsDataSubject.asObservable();
-
-    private transactionsDataSubject2 = new Subject<StockSellModel[]>();
-    private transactionsDataSubject2$ = this.transactionsDataSubject2.asObservable();
-
     private profitLossesData;
     private linearChartData;
+    private transactionWallet;
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
 
@@ -29,22 +25,30 @@ export class StatisticsContainerComponent implements OnInit {
 
         this.transactionsSubscription =
 
-            this.stockTradeBoardService.getTransactionsArray.subscribe((data) => {
+            this.stockTradeBoardService.getTransactionsArray
 
-                this.transactionsData = data;
+                .subscribe((data) => {
 
-                // Calculating chart display data
-                [this.profitLossesData, this.linearChartData] = this.calculateLinearChartObject(data);
+                    this.transactionsData = data;
 
-            });
+                    this.profitLossesData = this.calculateProfitLosses(data);
+
+                    this.linearChartData = this.calculateLinearChart(data);
+
+                    // this.transactionWallet = this.generateTransactionsWallet(data);
+
+                });
 
         this.stockTradeBoardService.getTransactionsFromLocalStorage();
+
     }
 
     ngOnDestroy(): void {
 
         if (this.transactionsSubscription) {
+
             this.transactionsSubscription.unsubscribe();
+
         }
 
     }
@@ -68,8 +72,17 @@ export class StatisticsContainerComponent implements OnInit {
     }
 
     /**
-   * 
-   */
+    * 
+    */
+    get getTransactionWallet(): StockSellModel[] {
+
+        return this.transactionWallet;
+
+    }
+
+    /**
+     * 
+     */
     get getTransactionsData(): StockSellModel[] {
 
         return this.transactionsData;
@@ -81,24 +94,49 @@ export class StatisticsContainerComponent implements OnInit {
      * @param tradeData 
      * @returns 
      */
-    calculateLinearChartObject(tradeData) {
+    calculateLinearChart(tradeData: StockSellModel[]) {
 
         let dataArray = [
-
-            {
-                name: "Profit/Lose",
-                "series": []
+            { 
+               name: 'Profit/Lose' ,
+               series: []
             }
-
         ];
 
         let profitTotalValue: number = 0;
+
+        tradeData.forEach((trade) => {
+
+            profitTotalValue = profitTotalValue + trade.profitBeforeTax;
+
+            dataArray[0].series.push(
+
+                {
+
+                    name: trade.sellDate,
+                    value: profitTotalValue.toFixed(2)
+
+                }
+
+            )
+
+        });          
+
+        return dataArray;
+
+    }
+
+    /**
+     * Calculating total profits value, total loses value and total trade balance
+     * @param tradeData 
+     * @returns 
+     */
+    calculateProfitLosses(tradeData: StockSellModel[]) {
+
         let profitValue: number = 0;
         let lossValue: number = 0;
 
-        //==========================
-
-        tradeData.forEach((trade) => {                     
+        tradeData.forEach((trade) => {
 
             if (trade.profitBeforeTax > 0) {
 
@@ -110,18 +148,7 @@ export class StatisticsContainerComponent implements OnInit {
 
             }
 
-            profitTotalValue = profitTotalValue + trade.profitBeforeTax;           
-            
-            console.log(profitTotalValue);                    
-
-            dataArray[0].series.push({
-
-                name: trade.sellDate,
-                value: profitTotalValue.toFixed(2)
-
-            })
-
-        });           
+        });
 
         let profitLossesData = [
 
@@ -138,7 +165,31 @@ export class StatisticsContainerComponent implements OnInit {
 
         ];
 
-        return [profitLossesData, dataArray];
+        return profitLossesData;
+
+    }
+
+    /**
+     * 
+     * @param tradeData 
+     * @returns 
+     */
+    generateTransactionsWallet(tradeData: StockSellModel[]): any {
+
+        let dataArray: { name: string, value: number }[];
+
+        tradeData.forEach((trade) => {
+
+            dataArray.push({
+
+                name: trade.companyName,
+                value: trade.profitBeforeTax
+
+            });
+
+        });
+
+        return dataArray;
 
     }
 
