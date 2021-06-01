@@ -14,3 +14,8 @@ export interface TransactionProfitModel {
     name: string;
     series: any[];
 }
+
+export interface TransactionWalletModel {
+    name: string;
+    value: number;
+}

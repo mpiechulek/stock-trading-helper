@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel, TransactionProfitModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionProfitModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 import { StockTileModel } from 'src/app/data/models/stock-tile.model';
 
 @Component({
@@ -16,7 +16,7 @@ export class StatisticsContainerComponent implements OnInit {
 
     private profitLossesData;
     private linearChartData;
-    private transactionWallet;
+    private transactionWallet:TransactionWalletModel[];
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
 
@@ -35,8 +35,8 @@ export class StatisticsContainerComponent implements OnInit {
 
                     this.linearChartData = this.calculateLinearChart(data);
 
-                    // this.transactionWallet = this.generateTransactionsWallet(data);
-
+                    this.transactionWallet = this.generateTransactionsWallet(data);
+                    
                 });
 
         this.stockTradeBoardService.getTransactionsFromLocalStorage();
@@ -52,6 +52,8 @@ export class StatisticsContainerComponent implements OnInit {
         }
 
     }
+
+    //==========================================================================
 
     /**
      * 
@@ -74,7 +76,7 @@ export class StatisticsContainerComponent implements OnInit {
     /**
     * 
     */
-    get getTransactionWallet(): StockSellModel[] {
+    get getTransactionWallet(): TransactionWalletModel[] {
 
         return this.transactionWallet;
 
@@ -88,6 +90,8 @@ export class StatisticsContainerComponent implements OnInit {
         return this.transactionsData;
 
     }
+
+     //==========================================================================
 
     /**
      * Calculating total profits value, total loses value and total trade balance
@@ -176,7 +180,7 @@ export class StatisticsContainerComponent implements OnInit {
      */
     generateTransactionsWallet(tradeData: StockSellModel[]): any {
 
-        let dataArray: { name: string, value: number }[];
+        let dataArray: TransactionWalletModel[] = [];
 
         tradeData.forEach((trade) => {
 
