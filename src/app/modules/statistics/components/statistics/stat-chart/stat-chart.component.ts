@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
   selector: 'app-stat-chart',
@@ -9,23 +9,25 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 export class StatChartComponent implements OnInit {
 
   @Input() profitLossesData;
-  @Input() transactionsData;
+  @Input() transactionWallet: TransactionWalletModel[];
 
   ngOnInit(): void { }
 
-  
+
   /**
    * 
    */
-   get getTransactionsData(): StockSellModel[] {
-    return this.transactionsData;
-  }
-  
-  /**
-   * 
-   */
-   get getProfitLossesData() {
+  get getProfitLossesData(): StockSellModel[] {
     return this.profitLossesData;
+  }
+
+  /**
+  * 
+  */
+  get getTransactionWallet(): TransactionWalletModel[] {
+
+    return this.transactionWallet;
+
   }
 
 

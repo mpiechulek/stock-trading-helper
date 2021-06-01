@@ -26,7 +26,9 @@ export class PipeGridChartComponent implements OnInit {
   @Input() profitLossesData;
   
   constructor() {  
+
     this.onChangeChartSize(window.innerWidth);
+    
   }
 
   ngOnInit(): void {

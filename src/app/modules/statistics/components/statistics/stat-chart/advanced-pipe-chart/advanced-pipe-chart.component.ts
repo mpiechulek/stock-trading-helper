@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
   selector: 'app-advanced-pipe-chart',
@@ -16,24 +17,35 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   colorScheme = {
     domain: [
-      '#00A8FF'
+      '#00A8FF',
+      '#fff'
     ]
   };
 
-  @Input() transactionsData;
+  @Input() transactionWallet: TransactionWalletModel[];
 
   constructor() {   
+
     this.onChangeChartSize(window.innerWidth);
+
   }
 
   ngOnInit(): void {
 
   }
 
+/**
+ * 
+ * @param event 
+ */
   onResize(event) {
     this.onChangeChartSize(event.target.innerWidth);
   }
 
+  /**
+   * 
+   * @param width 
+   */
   onChangeChartSize(width: number): void {
     if (width <= 1440 && width > 960) {
       this.view = [500, 800];
@@ -47,6 +59,6 @@ export class AdvancedPipeChartComponent implements OnInit {
   }
 
   onSelect(event) {
-    console.log(event);
+   
   }
 }
