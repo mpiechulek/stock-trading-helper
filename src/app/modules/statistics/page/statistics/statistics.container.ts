@@ -183,12 +183,15 @@ export class StatisticsContainerComponent implements OnInit {
 
         tradeData.forEach((trade) => {
 
-            dataArray.push({
+            if(trade.profitBeforeTax > 0) {
 
-                name: trade.companyName,
-                value: trade.profitBeforeTax
-
-            });
+                dataArray.push({
+    
+                    name: trade.companyName,
+                    value: trade.profitBeforeTax
+    
+                });
+            }
 
         });
 
