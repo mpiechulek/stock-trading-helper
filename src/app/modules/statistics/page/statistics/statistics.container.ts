@@ -96,6 +96,8 @@ export class StatisticsContainerComponent implements OnInit {
         let profitValue: number = 0;
         let lossValue: number = 0;
 
+        //==========================
+
         tradeData.forEach((trade) => {                     
 
             if (trade.profitBeforeTax > 0) {
