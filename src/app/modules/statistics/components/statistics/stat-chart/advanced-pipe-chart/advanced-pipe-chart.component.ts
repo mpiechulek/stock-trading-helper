@@ -9,7 +9,7 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   single: any[];
 
-  view = [500, 800];
+  view = [500, 500];
 
   // options
   showLegend: boolean = true;
