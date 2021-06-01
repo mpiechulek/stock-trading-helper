@@ -2,7 +2,7 @@ import { HeaderCalculationsModel } from "./stock-tile.model";
 
 export interface StockSellModel extends HeaderCalculationsModel { 
     companyName: string;
-    sellDate?: Date;
+    sellDate?: Date | string;
 }
 
 export interface TransactionProfitArrayModel {

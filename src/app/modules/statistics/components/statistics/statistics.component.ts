@@ -32,9 +32,7 @@ export class StatisticsComponent implements OnInit {
   /**
    * 
    */
-  get getTransactionWallet(): TransactionWalletModel[] {
-    
-    console.log(this.transactionWallet);
+  get getTransactionWallet(): TransactionWalletModel[] {  
 
     return this.transactionWallet;
 

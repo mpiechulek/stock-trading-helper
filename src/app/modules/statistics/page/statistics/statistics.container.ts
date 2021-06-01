@@ -16,12 +16,11 @@ export class StatisticsContainerComponent implements OnInit {
 
     private profitLossesData;
     private linearChartData;
-    private transactionWallet:TransactionWalletModel[];
+    private transactionWallet: TransactionWalletModel[];
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
 
     ngOnInit(): void {
-
 
         this.transactionsSubscription =
 
@@ -29,14 +28,14 @@ export class StatisticsContainerComponent implements OnInit {
 
                 .subscribe((data) => {
 
-                    this.transactionsData = data;
+                    this.transactionsData = this.fixDateInArrayOfObjects(data);
 
-                    this.profitLossesData = this.calculateProfitLosses(data);
+                    this.profitLossesData = this.calculateProfitLosses(this.transactionsData);
 
-                    this.linearChartData = this.calculateLinearChart(data);
+                    this.linearChartData = this.calculateLinearChart(this.transactionsData);
 
-                    this.transactionWallet = this.generateTransactionsWallet(data);
-                    
+                    this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
+
                 });
 
         this.stockTradeBoardService.getTransactionsFromLocalStorage();
@@ -91,7 +90,7 @@ export class StatisticsContainerComponent implements OnInit {
 
     }
 
-     //==========================================================================
+    //==========================================================================
 
     /**
      * Calculating total profits value, total loses value and total trade balance
@@ -101,9 +100,9 @@ export class StatisticsContainerComponent implements OnInit {
     calculateLinearChart(tradeData: StockSellModel[]) {
 
         let dataArray = [
-            { 
-               name: 'Profit/Lose' ,
-               series: []
+            {
+                name: 'Profit/Lose',
+                series: []
             }
         ];
 
@@ -124,7 +123,7 @@ export class StatisticsContainerComponent implements OnInit {
 
             )
 
-        });          
+        });
 
         return dataArray;
 
@@ -135,7 +134,7 @@ export class StatisticsContainerComponent implements OnInit {
      * @param tradeData 
      * @returns 
      */
-    calculateProfitLosses(tradeData: StockSellModel[]) {
+ calculateProfitLosses(tradeData: StockSellModel[]) {
 
         let profitValue: number = 0;
         let lossValue: number = 0;
@@ -169,7 +168,7 @@ export class StatisticsContainerComponent implements OnInit {
 
         ];
 
-        return profitLossesData;
+        return   profitLossesData;
 
     }
 
@@ -178,7 +177,7 @@ export class StatisticsContainerComponent implements OnInit {
      * @param tradeData 
      * @returns 
      */
-    generateTransactionsWallet(tradeData: StockSellModel[]): any {
+    generateTransactionsWallet(tradeData: StockSellModel[]) {
 
         let dataArray: TransactionWalletModel[] = [];
 
@@ -194,6 +193,64 @@ export class StatisticsContainerComponent implements OnInit {
         });
 
         return dataArray;
+
+    }
+
+    /**
+     * 
+     * @param data 
+     * @returns 
+     */
+    fixDateInArrayOfObjects(data: StockSellModel[]): StockSellModel[] {
+
+        const newData = data;
+
+        newData.forEach((trade) => {
+
+            trade.sellDate = this.generateDateAndTimeForDisplay(trade.sellDate);
+
+        });
+
+        return newData;
+
+    }
+
+    /**
+     * 
+     * @param data 
+     */
+    generateDateAndTimeForDisplay(data: Date | string): string {
+
+        if (typeof data === 'string') {
+
+            data = new Date(data);
+
+        }
+
+        let day: string | number = data.getDate();
+
+        // Be careful! January is 0, not 1
+        let month: string | number = data.getMonth() + 1;
+
+        const year: number = data.getFullYear();
+
+        const time: string = data.toLocaleTimeString();
+
+        if (month.toString().length < 2) {
+
+            month = '0' + month;
+
+        }
+
+        if (day.toString().length < 2) {
+
+            day = '0' + day;
+
+        }
+
+        const dateTime = `${year}-${month}-${day} ${time}`;
+
+        return dateTime;
 
     }
 
