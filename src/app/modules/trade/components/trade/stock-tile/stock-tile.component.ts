@@ -138,26 +138,44 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.profitQuotes;
   }
 
+  /**
+   * 
+   */
   get getLoseQuotes() {
     return this.loseQuotes;
   }
 
+  /**
+   * 
+   */
   get getNeutralQuote() {
     return this.neutralQuote;
   }
 
+  /**
+   * 
+   */
   get getHeaderCalculations() {
     return this.headerCalculations;
   }
 
+  /**
+   * 
+   */
   get getStockElement() {
     return this.stockElement;
   }
 
+  /**
+   * 
+   */
   get getOfferId() {
     return this.offerId;
   }
 
+  /**
+   * 
+   */
   get getOfferMarker() {
     return this.offerMarker;
   }
@@ -193,7 +211,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
       id: this.stockElement.id,
       markerOfferValue: this.offerId,
       markerOfferType: this.offerMarker
-      
+
     }
 
     this.savePickedOffer.emit(markerData)
