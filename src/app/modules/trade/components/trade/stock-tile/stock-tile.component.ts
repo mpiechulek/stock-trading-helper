@@ -9,11 +9,6 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  CdkVirtualScrollViewport,
-  FixedSizeVirtualScrollStrategy,
-  VIRTUAL_SCROLL_STRATEGY
-} from '@angular/cdk/scrolling';
-import {
   HeaderCalculationsModel,
   StockMarkerSaveDataModel,
   StockOfferDictionaryModel,
@@ -26,17 +21,10 @@ import { Subscription } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 
 
-export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
-  constructor() {
-    super(50, 250, 500);
-  }
-}
-
 @Component({
   selector: 'app-stock-tile',
   templateUrl: './stock-tile.component.html',
-  providers: [StockTilePresenterService,
-    { provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
+  providers: [StockTilePresenterService]
 })
 
 export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -55,7 +43,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   private offerId: string = null;
-  
+
   @Input()
   private offerMarker: string = null;
 
@@ -77,9 +65,6 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private stockTilePresenterService: StockTilePresenterService
   ) { }
-
-  // Angular material CDK virtual scrolling
-  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
 
   ngOnInit(): void {
 
@@ -114,7 +99,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
-    this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+    // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
   }
 
   ngOnDestroy() {
@@ -260,11 +245,11 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   onFindSelectedOffer() {
 
     if (this.offerMarker === 'profit') {
-      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+     
     }
 
     if (this.offerMarker === 'lose') {
-      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+     
     }
   }
 }

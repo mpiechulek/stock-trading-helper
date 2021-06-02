@@ -1,1 +1,18 @@
-<p>profit-list works!</p>
+<ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.profit)" >
+
+    <cdk-virtual-scroll-viewport 
+        itemSize="28" 
+        orientation="bottom"
+        class="example-viewport"            
+    >
+
+        <app-one-offer-change 
+            *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: unsorted"
+            [profitQuote] ="profitQuote.value"
+            [keyId] = "profitQuote.key"
+        >           
+        </app-one-offer-change>
+
+    </cdk-virtual-scroll-viewport> 
+
+</ul>

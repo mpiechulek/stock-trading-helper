@@ -12,26 +12,9 @@
 
     <!-- Positive share price  -->
 
-    <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.profit)" >
+    <app-profit-list [profitQuotes]="getProfitQuotes">
 
-        <cdk-virtual-scroll-viewport 
-            itemSize="28" 
-            orientation="bottom"
-            class="example-viewport"            
-        >
-
-            <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: unsorted"
-                [profitQuote] ="profitQuote.value"
-                [keyId] = "profitQuote.key"
-            >           
-            </app-one-offer-change>
-
-        </cdk-virtual-scroll-viewport> 
-    
-    </ul>
-
-    <!-- Neutral share price  -->
+    </app-profit-list>   
 
     <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.neutral)">
 
@@ -46,20 +29,10 @@
 
     <!-- Negative share price  -->
 
-    <ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.lose)">
+    <app-losses-list [loseQuotes]="getLoseQuotes">
 
-        <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
-
-            <app-one-offer-loose 
-                *cdkVirtualFor="let loseQuote of getLoseQuotes | keyvalue: unsorted"
-                [loseQuote] ="loseQuote.value"
-                [keyId] = "loseQuote.key"
-            >           
-            </app-one-offer-loose>
-
-        </cdk-virtual-scroll-viewport>
-
-    </ul>
+    </app-losses-list>
+    
 
     <!-- Btn container  -->
 

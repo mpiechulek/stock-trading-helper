@@ -1,1 +1,14 @@
-<p>losses-list works!</p>
+<ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.lose)">
+
+    <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
+
+        <app-one-offer-loose 
+            *cdkVirtualFor="let loseQuote of getLoseQuotes | keyvalue: unsorted"
+            [loseQuote] ="loseQuote.value"
+            [keyId] = "loseQuote.key"
+        >           
+        </app-one-offer-loose>
+
+    </cdk-virtual-scroll-viewport>
+
+</ul>
