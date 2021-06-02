@@ -11,7 +11,9 @@
             (savePickedOffer) ="onSavePickedOffer($event)"
             (sellStock) ="onSellStock($event)"
             *ngFor = "let stockElement of stockBoardArray"
-            [stockElement]="stockElement"
+            [stockElement]="stockElement"   
+            [offerMarker]="stockElement?.markerOfferType"        
+            [offerId]="stockElement?.markerOfferValue" 
         >
         </app-stock-tile>     
 

@@ -52,7 +52,11 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
   private headerCalculationsSubscription: Subscription;
 
   public tradeTileOffers = TradeTileOffersState;
+
+  @Input()
   private offerId: string = null;
+  
+  @Input()
   private offerMarker: string = null;
 
   @Input()
@@ -104,13 +108,13 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         });
 
     this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
-    this.stockTilePresenterService.generateQuotes();
+    this.stockTilePresenterService.generateQuotes();    
 
   }
 
   ngAfterViewInit() {
     // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
-    // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+    this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
   }
 
   ngOnDestroy() {
