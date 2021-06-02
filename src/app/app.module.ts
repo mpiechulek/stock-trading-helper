@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent  
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,8 @@ import { SharedModule } from './../../shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { OneOfferLooseComponent } from './components/trade/stock-tile/one-offer-loose/one-offer-loose.component';
+import { ProfitListComponent } from './components/trade/stock-tile/profit-list/profit-list.component';
+import { LossesListComponent } from './components/trade/stock-tile/losses-list/losses-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { OneOfferLooseComponent } from './components/trade/stock-tile/one-offer-
     OneOfferChangeComponent,
     TileHeaderComponent,
     NeutralOfferComponent,
-    OneOfferLooseComponent
+    OneOfferLooseComponent,
+    ProfitListComponent,
+    LossesListComponent
   ],
   imports: [
     CommonModule,
