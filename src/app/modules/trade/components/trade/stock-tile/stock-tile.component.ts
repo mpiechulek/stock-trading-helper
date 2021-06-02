@@ -188,12 +188,12 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onSavePickedOfferData(): void {
 
-    let markerData: StockMarkerSaveDataModel;
+    const markerData: StockMarkerSaveDataModel = {
 
-    markerData = {
       id: this.stockElement.id,
       markerOfferValue: this.offerId,
       markerOfferType: this.offerMarker
+      
     }
 
     this.savePickedOffer.emit(markerData)
