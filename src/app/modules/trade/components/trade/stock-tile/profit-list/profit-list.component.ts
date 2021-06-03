@@ -34,6 +34,11 @@ export class ProfitListComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    ngAfterViewInit() {
+        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
+        this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+      }
+
     // Angular material CDK virtual scrolling
     @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
 
