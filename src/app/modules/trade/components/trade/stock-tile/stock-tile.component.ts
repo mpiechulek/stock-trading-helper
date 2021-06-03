@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {
   HeaderCalculationsModel,
+  OfferClickEventEmitDataModel,
   StockMarkerSaveDataModel,
   StockOfferDictionaryModel,
   StockTileModel,
@@ -187,7 +188,13 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
    * Changing the offer selection on the lists
    * @param event 
    */
-  onClickedList(event, listMarker: string): void {
+  onClickedList(eventData: OfferClickEventEmitDataModel): void {
+    this.stockTilePresenterService.changeSelectedOfferElement(eventData.event, eventData.listMarker);
+    this.offerId = this.stockTilePresenterService.getChosenElementId(eventData.event);
+    this.offerMarker = eventData.listMarker;
+  }
+
+  onClickedNeutralList(event: MouseEvent, listMarker: string): void {
     this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
     this.offerId = this.stockTilePresenterService.getChosenElementId(event);
     this.offerMarker = listMarker;

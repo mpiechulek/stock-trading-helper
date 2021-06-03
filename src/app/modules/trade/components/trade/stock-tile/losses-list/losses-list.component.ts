@@ -5,7 +5,7 @@ import {
     FixedSizeVirtualScrollStrategy,
     VIRTUAL_SCROLL_STRATEGY
 } from '@angular/cdk/scrolling';
-import { StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
+import { OfferClickEventEmitDataModel, StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 
 
@@ -27,7 +27,8 @@ export class LossesListComponent implements OnInit {
 
     @Input() loseQuotes: StockOfferDictionaryModel;
 
-    @Output() profitOfferClick: EventEmitter<any> = new EventEmitter();
+    @Output() losesOfferClick: EventEmitter<OfferClickEventEmitDataModel> =
+         new EventEmitter<OfferClickEventEmitDataModel>();
 
     constructor() { }
 
@@ -62,16 +63,14 @@ export class LossesListComponent implements OnInit {
    * Changing the offer selection on the lists
    * @param event 
    */
-    onClickedList(event: MouseEvent, listMarker: string): void {
-
-        console.log(event);
+    onClickedList(event: MouseEvent, listMarker: string): void {       
         
-        const dataToEmit = {
+        const dataToEmit: OfferClickEventEmitDataModel = {
             event,
             listMarker
         }
 
-        this.profitOfferClick.emit(dataToEmit);
+        this.losesOfferClick.emit(dataToEmit);
        
     }
 

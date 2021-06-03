@@ -60,6 +60,11 @@ export interface StockMarkerSaveDataModel {
     markerOfferType: string;
 }
 
+export interface OfferClickEventEmitDataModel {
+    event: MouseEvent,
+    listMarker: string
+}
+
 
 
 

@@ -12,11 +12,13 @@
 
     <!-- Positive share price  -->
 
-    <app-profit-list [profitQuotes]="getProfitQuotes" styles="height: 100%">
-
+    <app-profit-list 
+        [profitQuotes]="getProfitQuotes"
+        (profitOfferClick)="onClickedList($event)"
+    >
     </app-profit-list>   
 
-    <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.neutral)">
+    <ul class="trade-tile__neutral-stock-change" (click)="onClickedNeutralList($event,tradeTileOffers.neutral)">
 
         <app-neutral-offer 
             *ngFor="let neutralQuote of getNeutralQuote | keyvalue: unsorted"
@@ -29,7 +31,10 @@
 
     <!-- Negative share price  -->
 
-    <app-losses-list [loseQuotes]="getLoseQuotes">
+    <app-losses-list
+     [loseQuotes]="getLoseQuotes"
+     (losesOfferClick)="onClickedList($event)"
+     >
 
     </app-losses-list>
     
