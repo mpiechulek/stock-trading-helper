@@ -7,6 +7,7 @@ import {
 } from '@angular/cdk/scrolling';
 import { OfferClickEventEmitDataModel, StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
+import { Observable, Subscription } from 'rxjs';
 
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
     constructor() {
@@ -24,21 +25,40 @@ export class ProfitListComponent implements OnInit {
 
     public tradeTileOffers = TradeTileOffersState;
 
+    //==========================================================================
+
+    private profitOfferIdSubscription: Subscription;
+
+    //==========================================================================
+
     @Input() profitQuotes: StockOfferDictionaryModel;
-    @Input() profitOfferId: string;
+    @Input() profitOfferId: Observable<string>;
+
+    //==========================================================================
 
     @Output() profitOfferClick: EventEmitter<OfferClickEventEmitDataModel> =
         new EventEmitter<OfferClickEventEmitDataModel>();
 
+    //==========================================================================
+
     constructor() { }
 
+    //==========================================================================
+
     ngOnInit(): void {
+
+        this.profitOfferIdSubscription = this.profitOfferId.subscribe((id) => {
+
+            if (id !== null) {
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id));
+            }
+
+        })
     }
 
-    ngAfterViewInit() {
-        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
-        this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
-      }
+    ngAfterViewInit() {       
+        // this.cdkVirtualScrollViewport.scrollTo({ bottom: 0 });
+    }
 
     // Angular material CDK virtual scrolling
     @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
@@ -66,9 +86,9 @@ export class ProfitListComponent implements OnInit {
     }
 
     /**
-* Changing the offer selection on the lists
-* @param event 
-*/
+    * Changing the offer selection on the lists
+    * @param event 
+    */
     onClickedList(event: MouseEvent, listMarker: string): void {
 
         const dataToEmit: OfferClickEventEmitDataModel = {
@@ -79,15 +99,5 @@ export class ProfitListComponent implements OnInit {
         this.profitOfferClick.emit(dataToEmit);
 
     }
-
-    /**
-    * 
-    */
-    find() {
-
-        this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.profitOfferId));
-        
-    }
-
 
 }

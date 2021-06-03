@@ -14,7 +14,7 @@
 
     <app-profit-list 
         [profitQuotes]="getProfitQuotes"
-        [profitOfferId]="getProfitOfferId | async"
+        [profitOfferId]="getProfitOfferId"
         (profitOfferClick)="onClickedList($event)"
     >
     </app-profit-list>   
@@ -34,7 +34,7 @@
 
     <app-losses-list
      [loseQuotes]="getLoseQuotes"
-     [loseOfferId]="getLoseOfferId | async"
+     [loseOfferId]="getLoseOfferId"
      (losesOfferClick)="onClickedList($event)"
      >
 

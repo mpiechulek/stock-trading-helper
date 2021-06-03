@@ -108,13 +108,14 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
                 });
 
         this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
-        this.stockTilePresenterService.generateQuotes();
 
+        this.stockTilePresenterService.generateQuotes();
     }
 
     ngAfterViewInit() {
         // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
         // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+        this.onFindSelectedOffer();
     }
 
     ngOnDestroy() {
@@ -292,7 +293,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     /**
-     * 
+     * when clicking find button the current offer id is sent to the proper subscriber
      */
     onFindSelectedOffer() {
 
