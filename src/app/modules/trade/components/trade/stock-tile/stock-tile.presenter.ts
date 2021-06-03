@@ -411,11 +411,16 @@ export class StockTilePresenterService {
     let id: string;
 
     if (event.target.classList.contains('trade-tile-stock-change-container')) {
+
       return id = event.target.id;
+
     } else if (event.target.parentElement.classList.contains('trade-tile-stock-change-container')) {
+      
       return id = event.target.parentElement.id;
     } else if (event.target.parentElement.parentElement.classList.contains('trade-tile-stock-change-container')) {
+
       return id = event.target.parentElement.parentElement.id;
+      
     }
 
     return null;

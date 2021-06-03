@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import {
     CdkVirtualScrollViewport,
     FixedSizeVirtualScrollStrategy,
@@ -7,6 +7,7 @@ import {
 } from '@angular/cdk/scrolling';
 import { StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
+
 
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
     constructor() {
@@ -25,6 +26,8 @@ export class LossesListComponent implements OnInit {
     public tradeTileOffers = TradeTileOffersState;
 
     @Input() loseQuotes: StockOfferDictionaryModel;
+
+    @Output() profitOfferClick: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
@@ -59,10 +62,17 @@ export class LossesListComponent implements OnInit {
    * Changing the offer selection on the lists
    * @param event 
    */
-    onClickedList(event, listMarker: string): void {
-        // this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
-        // this.offerId = this.stockTilePresenterService.getChosenElementId(event);
-        // this.offerMarker = listMarker;
+    onClickedList(event: MouseEvent, listMarker: string): void {
+
+        console.log(event);
+        
+        const dataToEmit = {
+            event,
+            listMarker
+        }
+
+        this.profitOfferClick.emit(dataToEmit);
+       
     }
 
     /**
