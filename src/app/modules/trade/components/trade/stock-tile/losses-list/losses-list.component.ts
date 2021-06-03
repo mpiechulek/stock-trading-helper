@@ -75,9 +75,9 @@ export class LossesListComponent implements OnInit {
     }
 
     /**
-     * 
+     * Finding the offer in the list
      */
-    find() {
+    onFindPickedOffer() {
         // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
     }
 
