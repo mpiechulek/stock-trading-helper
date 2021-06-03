@@ -60,6 +60,13 @@ export class ProfitListComponent implements OnInit {
         // this.cdkVirtualScrollViewport.scrollTo({ bottom: 0 });
     }
 
+    ngOnDestroy() {
+
+        if(this.profitOfferIdSubscription) {
+            this.profitOfferIdSubscription.unsubscribe();
+        }
+    }
+
     // Angular material CDK virtual scrolling
     @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
 

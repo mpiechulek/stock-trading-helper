@@ -7,6 +7,7 @@ import {
 } from '@angular/cdk/scrolling';
 import { OfferClickEventEmitDataModel, StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
+import { Observable, Subscription } from 'rxjs';
 
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
     constructor() {
@@ -26,21 +27,49 @@ export class LossesListComponent implements OnInit {
 
     //==========================================================================
 
+    private loseOfferIdSubscription: Subscription;
+
+    //==========================================================================
+
     @Input() loseQuotes: StockOfferDictionaryModel;
-    @Input() loseOfferId: string;
+    @Input() loseOfferId: Observable<string>;
 
     //==========================================================================
 
     @Output() losesOfferClick: EventEmitter<OfferClickEventEmitDataModel> =
-         new EventEmitter<OfferClickEventEmitDataModel>();
+        new EventEmitter<OfferClickEventEmitDataModel>();
 
     //========================================================================== 
-         
+
     constructor() { }
 
     //==========================================================================
 
     ngOnInit(): void {
+
+        this.loseOfferIdSubscription = this.loseOfferId.subscribe((id) => {
+
+            if (id !== null) {
+
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id));
+
+            }
+
+        });
+
+    }
+
+    ngAfterViewInit() {
+        // this.cdkVirtualScrollViewport.scrollTo({ bottom: 0 });
+    }
+
+    ngOnDestroy() {
+
+        if (this.loseOfferIdSubscription) {
+
+            this.loseOfferIdSubscription.unsubscribe();
+
+        }
     }
 
     // Angular material CDK virtual scrolling
@@ -71,26 +100,15 @@ export class LossesListComponent implements OnInit {
    * Changing the offer selection on the lists
    * @param event 
    */
-    onClickedList(event: MouseEvent, listMarker: string): void {       
-        
+    onClickedList(event: MouseEvent, listMarker: string): void {
+
         const dataToEmit: OfferClickEventEmitDataModel = {
             event,
             listMarker
         }
 
         this.losesOfferClick.emit(dataToEmit);
-       
-    }
 
-    /**
-     * Finding the offer in the list
-     */
-    onFindPickedOffer() {
-
-        console.log(this.loseOfferId);        
-
-        this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.loseOfferId));
-        
     }
 
 }
