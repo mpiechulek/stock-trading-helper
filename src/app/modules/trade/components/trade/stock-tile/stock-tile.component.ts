@@ -28,13 +28,16 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
     providers: [StockTilePresenterService]
 })
 
-export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
+export class StockTileComponent implements OnInit, OnDestroy {
 
     private profitQuotes = {} as StockOfferDictionaryModel;
     private loseQuotes = {} as StockOfferDictionaryModel;
     private neutralQuote = {} as StockOfferDictionaryModel;
     private headerCalculations = {} as HeaderCalculationsModel;
-    
+
+    private profitOfferIdInit: string;
+    private loseOfferIdInit: string;
+
     public tradeTileOffers = TradeTileOffersState;
 
     //==========================================================================
@@ -114,13 +117,26 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
 
         this.stockTilePresenterService.generateQuotes();
-    }
 
-    ngAfterViewInit() {      
-        this.onFindSelectedOffer();
+        // Positioning the chosen offer onload/refresh 
+        if (this.offerMarker === 'profit') {
+
+            this.profitOfferIdInit = this.offerId;
+            this.loseOfferIdInit = null;
+
+        }
+
+        if (this.offerMarker === 'lose') {
+
+            this.profitOfferIdInit = null;
+            this.loseOfferIdInit = this.offerId;
+
+        }
+
     }
 
     ngOnDestroy() {
+        
         if (this.profitQuotesSubscription) {
             this.profitQuotesSubscription.unsubscribe();
         }
@@ -145,35 +161,35 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     /**
     * Returning an object of objects { key1:{...}, key2:{...}}
     */
-    get getProfitQuotes():StockOfferDictionaryModel {
+    get getProfitQuotes(): StockOfferDictionaryModel {
         return this.profitQuotes;
     }
 
     /**
      * 
      */
-    get getLoseQuotes():StockOfferDictionaryModel {
+    get getLoseQuotes(): StockOfferDictionaryModel {
         return this.loseQuotes;
     }
 
     /**
      * 
      */
-    get getNeutralQuote():StockOfferDictionaryModel {
+    get getNeutralQuote(): StockOfferDictionaryModel {
         return this.neutralQuote;
     }
 
     /**
      * 
      */
-    get getHeaderCalculations():HeaderCalculationsModel {
+    get getHeaderCalculations(): HeaderCalculationsModel {
         return this.headerCalculations;
     }
 
     /**
      * 
      */
-    get getStockElement():StockTileModel {
+    get getStockElement(): StockTileModel {
         return this.stockElement;
     }
 
@@ -199,12 +215,25 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     /**
+   *         
+   */
+     get getLoseOfferId(): Observable<string> {
+       return this.loseIdMarkerSubject$;
+   }
+
+    /**
     *         
     */
-    get getLoseOfferId(): Observable<string> {
-        return this.loseIdMarkerSubject$;
+    get getProfitOfferIdInit(): string {
+        return this.profitOfferIdInit;
     }
 
+      /**
+    *         
+    */
+       get getLoseOfferIdInit(): string {
+        return this.loseOfferIdInit;
+    }
 
     // =============================================================================
     // ================================== Methods ==================================
@@ -299,12 +328,9 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
      */
     onFindSelectedOffer() {
 
-        console.log('i m running');        
-
         if (this.offerMarker === 'profit') {
 
             this.profitIdMarkerSubject.next(this.offerId);
-
             this.loseIdMarkerSubject.next(null);
 
         }
@@ -312,7 +338,6 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.offerMarker === 'lose') {
 
             this.loseIdMarkerSubject.next(this.offerId);
-
             this.profitIdMarkerSubject.next(null);
 
         }

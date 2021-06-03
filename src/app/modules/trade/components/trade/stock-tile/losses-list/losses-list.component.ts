@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import {
     CdkVirtualScrollViewport,
     FixedSizeVirtualScrollStrategy,
@@ -21,18 +21,19 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
     providers: [{ provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
 })
 
-export class LossesListComponent implements OnInit {
+export class LossesListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public tradeTileOffers = TradeTileOffersState;
-
+    
     //==========================================================================
-
+    
     private loseOfferIdSubscription: Subscription;
-
+    
     //==========================================================================
-
+    
     @Input() loseQuotes: StockOfferDictionaryModel;
     @Input() loseOfferId: Observable<string>;
+    @Input() loseOfferIdInit: string;
 
     //==========================================================================
 
@@ -58,9 +59,7 @@ export class LossesListComponent implements OnInit {
 
             if (id !== null) {
 
-                console.log(id);
-
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id), 'smooth');
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id), 'smooth');                
 
             }
 
@@ -72,8 +71,13 @@ export class LossesListComponent implements OnInit {
 
         setTimeout(() => {
 
-            this.cdkVirtualScrollViewport.scrollToIndex(50);
-            
+            if(this.loseOfferIdInit !== null) {
+
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.loseOfferIdInit),'smooth');
+
+            }
+
+
         });
     }
 

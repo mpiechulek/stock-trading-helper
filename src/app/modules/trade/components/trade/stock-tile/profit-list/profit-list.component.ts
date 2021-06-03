@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import {
     CdkVirtualScrollViewport,
     FixedSizeVirtualScrollStrategy,
@@ -21,9 +21,9 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
     providers: [{ provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
 })
 
-export class ProfitListComponent implements OnInit {
+export class ProfitListComponent implements OnInit , OnDestroy, AfterViewInit {
 
-    public tradeTileOffers = TradeTileOffersState;
+    public tradeTileOffers = TradeTileOffersState;    
 
     //==========================================================================
 
@@ -32,6 +32,7 @@ export class ProfitListComponent implements OnInit {
     //==========================================================================
 
     @Input() profitQuotes: StockOfferDictionaryModel;
+    @Input() profitOfferIdInit: string;
     @Input() profitOfferId: Observable<string>;
 
     //==========================================================================
@@ -56,23 +57,27 @@ export class ProfitListComponent implements OnInit {
 
             if (id !== null) {
 
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id),'smooth');
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id),'smooth');                    
 
             }
 
-        })
+        });
     }  
 
     ngAfterViewInit(): void {
 
         setTimeout(() => {
 
-            this.cdkVirtualScrollViewport.scrollToIndex(50);
+            if(this.profitOfferIdInit !== null){
+
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.profitOfferIdInit),'smooth');                
+
+            }
 
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
 
         if(this.profitOfferIdSubscription) {
 

@@ -15,6 +15,7 @@
     <app-profit-list 
         [profitQuotes]="getProfitQuotes"
         [profitOfferId]="getProfitOfferId"
+        [profitOfferIdInit]="getProfitOfferIdInit"
         (profitOfferClick)="onClickedList($event)"
     >
     </app-profit-list>   
@@ -33,11 +34,11 @@
     <!-- Negative share price  -->
 
     <app-losses-list
-     [loseQuotes]="getLoseQuotes"
-     [loseOfferId]="getLoseOfferId"
-     (losesOfferClick)="onClickedList($event)"
+        [loseQuotes]="getLoseQuotes"
+        [loseOfferId]="getLoseOfferId"
+        [loseOfferIdInit]="getLoseOfferIdInit"
+        (losesOfferClick)="onClickedList($event)"
      >
-
     </app-losses-list>
     
 
