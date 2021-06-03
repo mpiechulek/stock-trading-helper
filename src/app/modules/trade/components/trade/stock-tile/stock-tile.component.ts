@@ -135,7 +135,6 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
-
     // =============================================================================
     // ================================== Getters ==================================
     // =============================================================================
@@ -193,14 +192,14 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     * 
     */
     get getProfitOfferId(): Observable<string> {
-        return this.offerId;
+        return this.profitIdMarkerSubject$;
     }
 
     /**
     *         
     */
     get getLoseOfferId(): Observable<string> {
-        return this.offerId;
+        return this.loseIdMarkerSubject$;
     }
 
 
@@ -232,12 +231,20 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.offerMarker = eventData.listMarker;
     }
 
+    /**
+     * 
+     * @param event 
+     * @param listMarker 
+     */
     onClickedNeutralList(event: MouseEvent, listMarker: string): void {
         this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
         this.offerId = this.stockTilePresenterService.getChosenElementId(event);
         this.offerMarker = listMarker;
     }
 
+    /**
+     * 
+     */
     onSavePickedOfferData(): void {
 
         const markerData: StockMarkerSaveDataModel = {
