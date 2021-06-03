@@ -41,17 +41,26 @@ export class LossesListComponent implements OnInit {
 
     //========================================================================== 
 
+    // Angular material CDK virtual scrolling
+    @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
+
+    //==========================================================================
+
     constructor() { }
 
     //==========================================================================
 
     ngOnInit(): void {
 
+        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt('20'));
+
         this.loseOfferIdSubscription = this.loseOfferId.subscribe((id) => {
 
             if (id !== null) {
 
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id));
+                console.log(id);
+
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id), 'smooth');
 
             }
 
@@ -59,11 +68,16 @@ export class LossesListComponent implements OnInit {
 
     }
 
-    ngAfterViewInit() {
-        // this.cdkVirtualScrollViewport.scrollTo({ bottom: 0 });
+    ngAfterViewInit(): void {
+
+        setTimeout(() => {
+
+            this.cdkVirtualScrollViewport.scrollToIndex(50);
+            
+        });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
 
         if (this.loseOfferIdSubscription) {
 
@@ -72,20 +86,17 @@ export class LossesListComponent implements OnInit {
         }
     }
 
-    // Angular material CDK virtual scrolling
-    @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
-
     /**
      * 
      */
-    get getLoseQuotes() {
+    get getLoseQuotes(): StockOfferDictionaryModel {
         return this.loseQuotes;
     }
 
     /**
    * This fixes the object sorting pipe bug 
    */
-    unsorted() { }
+    unsorted(): void { }
 
     /**
      * Reverse object sorting of key value

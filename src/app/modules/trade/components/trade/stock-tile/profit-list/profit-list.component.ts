@@ -41,6 +41,11 @@ export class ProfitListComponent implements OnInit {
 
     //==========================================================================
 
+    // Angular material CDK virtual scrolling
+    @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
+
+    //==========================================================================
+
     constructor() { }
 
     //==========================================================================
@@ -50,33 +55,42 @@ export class ProfitListComponent implements OnInit {
         this.profitOfferIdSubscription = this.profitOfferId.subscribe((id) => {
 
             if (id !== null) {
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id));
+
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id),'smooth');
+
             }
 
         })
-    }
+    }  
 
-    ngAfterViewInit() {       
-        // this.cdkVirtualScrollViewport.scrollTo({ bottom: 0 });
+    ngAfterViewInit(): void {
+
+        setTimeout(() => {
+
+            this.cdkVirtualScrollViewport.scrollToIndex(50);
+
+        });
     }
 
     ngOnDestroy() {
 
         if(this.profitOfferIdSubscription) {
+
             this.profitOfferIdSubscription.unsubscribe();
+
         }
     }
 
-    // Angular material CDK virtual scrolling
-    @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
+    //==========================================================================   
 
     /**
     * 
     */
     get getProfitQuotes() {
-        return this.profitQuotes;
-    }
 
+        return this.profitQuotes;
+
+    }
 
     /**
    * This fixes the object sorting pipe bug 

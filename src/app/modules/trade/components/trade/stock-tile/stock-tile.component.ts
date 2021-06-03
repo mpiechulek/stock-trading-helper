@@ -34,13 +34,17 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     private loseQuotes = {} as StockOfferDictionaryModel;
     private neutralQuote = {} as StockOfferDictionaryModel;
     private headerCalculations = {} as HeaderCalculationsModel;
+    
+    public tradeTileOffers = TradeTileOffersState;
+
+    //==========================================================================
 
     private profitQuotesSubscription: Subscription;
     private loseQuotesSubscription: Subscription;
     private neutralQuoteSubscription: Subscription;
     private headerCalculationsSubscription: Subscription;
 
-    public tradeTileOffers = TradeTileOffersState;
+    //==========================================================================
 
     private profitIdMarkerSubject = new Subject<string>();
     private profitIdMarkerSubject$ = this.profitIdMarkerSubject.asObservable();
@@ -112,9 +116,7 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.stockTilePresenterService.generateQuotes();
     }
 
-    ngAfterViewInit() {
-        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
-        // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
+    ngAfterViewInit() {      
         this.onFindSelectedOffer();
     }
 
@@ -143,49 +145,49 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
     /**
     * Returning an object of objects { key1:{...}, key2:{...}}
     */
-    get getProfitQuotes() {
+    get getProfitQuotes():StockOfferDictionaryModel {
         return this.profitQuotes;
     }
 
     /**
      * 
      */
-    get getLoseQuotes() {
+    get getLoseQuotes():StockOfferDictionaryModel {
         return this.loseQuotes;
     }
 
     /**
      * 
      */
-    get getNeutralQuote() {
+    get getNeutralQuote():StockOfferDictionaryModel {
         return this.neutralQuote;
     }
 
     /**
      * 
      */
-    get getHeaderCalculations() {
+    get getHeaderCalculations():HeaderCalculationsModel {
         return this.headerCalculations;
     }
 
     /**
      * 
      */
-    get getStockElement() {
+    get getStockElement():StockTileModel {
         return this.stockElement;
     }
 
     /**
      * 
      */
-    get getOfferId() {
+    get getOfferId(): string {
         return this.offerId;
     }
 
     /**
      * 
      */
-    get getOfferMarker() {
+    get getOfferMarker(): string {
         return this.offerMarker;
     }
 
@@ -296,6 +298,8 @@ export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
      * when clicking find button the current offer id is sent to the proper subscriber
      */
     onFindSelectedOffer() {
+
+        console.log('i m running');        
 
         if (this.offerMarker === 'profit') {
 
