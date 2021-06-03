@@ -1,17 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
   selector: 'app-statistics-ui',
-  templateUrl: './statistics.component.html',
-
+  templateUrl: './statistics.component.html'
 })
+
 export class StatisticsComponent implements OnInit {
 
-  tabLoadTimes: Date[] = [];
-
   @Input() transactionsData: StockSellModel[];
+  @Input() linearChartData;
+  @Input() profitLossesData;
+  @Input() transactionWallet: TransactionWalletModel[];
 
   constructor() { }
 
@@ -23,15 +24,18 @@ export class StatisticsComponent implements OnInit {
    * 
    */
   get getTransactionsData(): StockSellModel[] {
+
     return this.transactionsData;
+
   }
 
-  getTimeLoaded(index: number) {
-    if (!this.tabLoadTimes[index]) {
-      this.tabLoadTimes[index] = new Date();
-    }
+  /**
+   * 
+   */
+  get getTransactionWallet(): TransactionWalletModel[] {  
 
-    return this.tabLoadTimes[index];
+    return this.transactionWallet;
+
   }
 
 }

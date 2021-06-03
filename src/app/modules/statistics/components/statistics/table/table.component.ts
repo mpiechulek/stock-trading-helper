@@ -13,23 +13,7 @@ import { Observable, Subscriber, Subscription } from 'rxjs';
 
 export class TableComponent implements OnInit {
 
-    public dataSource;
-
-    data: StockSellModel[] = [
-        {
-            id: '23131312321',
-            companyName: 'AAAAAAa',
-            sellDate: new Date(),
-            amountOfShares: 455,
-            buyPrice: 5453,
-            buyValue: 54353,
-            currentPrice: 534,
-            currentValue: 5,
-            profitBeforeTax: 53453,
-            profitAfterTax: 3453,
-            percentageChange: 534
-        }
-    ]
+    public dataSource;   
 
     public displayedColumns: string[] =
         [

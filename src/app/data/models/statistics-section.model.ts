@@ -1,22 +1,21 @@
 import { HeaderCalculationsModel } from "./stock-tile.model";
 
-// export interface TradeTableDataModel {
-//     position: number;
-//     stockName: string;
-//     quantity: string;
-//     buyPrice: string;
-//     sellPrice: string;
-//     profitBeforeTax: string;
-//     profitAfterTax: string;
-//     date: string;
-// }
-
 export interface StockSellModel extends HeaderCalculationsModel { 
     companyName: string;
-    sellDate?: Date;
+    sellDate?: Date | string;
 }
 
-export interface TransactionProfitModel {
+export interface TransactionProfitArrayModel {
+    value: number | string;   
+    name: string;  
+}
+
+export interface TransactionProfitModel {    
+    name: string;
+    series: any[];
+}
+
+export interface TransactionWalletModel {
+    name: string;
     value: number;
-    sellDate: string;
 }

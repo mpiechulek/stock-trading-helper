@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionProfitModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
+import { StockTileModel } from 'src/app/data/models/stock-tile.model';
 
 @Component({
     selector: 'app-statistics',
@@ -12,37 +13,71 @@ export class StatisticsContainerComponent implements OnInit {
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
+
+    private profitLossesData;
     private linearChartData;
-
-    private transactionsDataSubject = new Subject<StockSellModel[]>();
-    private transactionsDataSubject$ = this.transactionsDataSubject.asObservable();
-
-    private transactionsDataSubject2 = new Subject<StockSellModel[]>();
-    private transactionsDataSubject2$ = this.transactionsDataSubject2.asObservable();
+    private transactionWallet: TransactionWalletModel[];
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
 
     ngOnInit(): void {
 
-
         this.transactionsSubscription =
 
-            this.stockTradeBoardService.getTransactionsArray.subscribe((data) => {
+            this.stockTradeBoardService.getTransactionsArray
 
-                this.transactionsData = data;
+                .subscribe((data) => {
 
-                this.linearChartData = this.calculateLinearChartObject(data);
+                    this.transactionsData = this.fixDateInArrayOfObjects(data);
 
-            });
+                    this.profitLossesData = this.calculateProfitLosses(this.transactionsData);
+
+                    this.linearChartData = this.calculateLinearChart(this.transactionsData);
+
+                    this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
+
+                });
 
         this.stockTradeBoardService.getTransactionsFromLocalStorage();
+
     }
 
     ngOnDestroy(): void {
 
         if (this.transactionsSubscription) {
+
             this.transactionsSubscription.unsubscribe();
+
         }
+
+    }
+
+    //==========================================================================
+
+    /**
+     * 
+     */
+    get getProfitLossesData() {
+
+        return this.profitLossesData;
+
+    }
+
+    /**
+   * 
+   */
+    get getLinearChartData() {
+
+        return this.linearChartData;
+
+    }
+
+    /**
+    * 
+    */
+    get getTransactionWallet(): TransactionWalletModel[] {
+
+        return this.transactionWallet;
 
     }
 
@@ -55,41 +90,52 @@ export class StatisticsContainerComponent implements OnInit {
 
     }
 
+    //==========================================================================
+
     /**
      * Calculating total profits value, total loses value and total trade balance
      * @param tradeData 
      * @returns 
      */
-    calculateLinearChartObject(tradeData) {
+    calculateLinearChart(tradeData: StockSellModel[]) {
 
         let dataArray = [
             {
-                name: "Profit/Lose",
-                "series": []
+                name: 'Profit/Lose',
+                series: []
             }
         ];
 
-        let profitLossesData = [
-            {
-              "name": "Lose",
-              "value": 135.65
-            },
-            {
-              "name": "Profit",
-              "value": 245.32
-            }
-
-          ];
-
-        let walletValue = [
-            
-            {
-              "name": "JSW",
-              "value": 1356.58
-            }
-        ]
-
         let profitTotalValue: number = 0;
+
+        tradeData.forEach((trade) => {
+
+            profitTotalValue = profitTotalValue + trade.profitBeforeTax;
+
+            dataArray[0].series.push(
+
+                {
+
+                    name: trade.sellDate,
+                    value: profitTotalValue.toFixed(2)
+
+                }
+
+            )
+
+        });
+
+        return dataArray;
+
+    }
+
+    /**
+     * Calculating total profits value, total loses value and total trade balance
+     * @param tradeData 
+     * @returns 
+     */
+ calculateProfitLosses(tradeData: StockSellModel[]) {
+
         let profitValue: number = 0;
         let lossValue: number = 0;
 
@@ -101,26 +147,113 @@ export class StatisticsContainerComponent implements OnInit {
 
             } else {
 
-                lossValue = profitValue - trade.profitBeforeTax;
+                lossValue = lossValue - trade.profitBeforeTax;
 
             }
 
-            profitTotalValue = profitValue + trade.profitBeforeTax;
+        });
 
-            dataArray[0].series.push({
+        let profitLossesData = [
 
-                name: trade.sellDate,
-                value: profitTotalValue.toFixed(2)
+            {
+                "name": "Lose",
+                "percentage": (((lossValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "value": lossValue.toFixed(2)
+            },
+            {
+                "name": "Profit",
+                "percentage": (((profitValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "value": profitValue.toFixed(2)
+            }
 
-            })
+        ];
+
+        return   profitLossesData;
+
+    }
+
+    /**
+     * 
+     * @param tradeData 
+     * @returns 
+     */
+    generateTransactionsWallet(tradeData: StockSellModel[]) {
+
+        let dataArray: TransactionWalletModel[] = [];
+
+        tradeData.forEach((trade) => {
+
+            if(trade.profitBeforeTax > 0) {
+
+                dataArray.push({
+    
+                    name: trade.companyName,
+                    value: trade.profitBeforeTax
+    
+                });
+            }
 
         });
 
-        console.log(dataArray);
-        console.log(lossValue);
-        console.log(profitValue);
-
         return dataArray;
+
+    }
+
+    /**
+     * 
+     * @param data 
+     * @returns 
+     */
+    fixDateInArrayOfObjects(data: StockSellModel[]): StockSellModel[] {
+
+        const newData = data;
+
+        newData.forEach((trade) => {
+
+            trade.sellDate = this.generateDateAndTimeForDisplay(trade.sellDate);
+
+        });
+
+        return newData;
+
+    }
+
+    /**
+     * 
+     * @param data 
+     */
+    generateDateAndTimeForDisplay(data: Date | string): string {
+
+        if (typeof data === 'string') {
+
+            data = new Date(data);
+
+        }
+
+        let day: string | number = data.getDate();
+
+        // Be careful! January is 0, not 1
+        let month: string | number = data.getMonth() + 1;
+
+        const year: number = data.getFullYear();
+
+        const time: string = data.toLocaleTimeString();
+
+        if (month.toString().length < 2) {
+
+            month = '0' + month;
+
+        }
+
+        if (day.toString().length < 2) {
+
+            day = '0' + day;
+
+        }
+
+        const dateTime = `${year}-${month}-${day} ${time}`;
+
+        return dateTime;
 
     }
 

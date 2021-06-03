@@ -1,11 +1,14 @@
-import { Component, NgModule, OnInit  } from '@angular/core';
+import { Component, Input, NgModule, OnInit  } from '@angular/core';
 import { multi } from './data';
 
 @Component({
   selector: 'app-linear-chart',
   templateUrl: './linear-chart.component.html' 
 })
+
 export class LinearChartComponent implements OnInit {
+
+  @Input() linearChartData;
 
   multi: any[];
 
@@ -23,7 +26,9 @@ export class LinearChartComponent implements OnInit {
   autoScale: boolean = true;
 
   colorScheme = {
+
     domain: ['#2196F3']
+
   };
 
   constructor() {
@@ -31,8 +36,9 @@ export class LinearChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    Object.assign(this, { multi });
+   console.log(this.linearChartData);
+   
+
   }
 
   onSelect(data): void {

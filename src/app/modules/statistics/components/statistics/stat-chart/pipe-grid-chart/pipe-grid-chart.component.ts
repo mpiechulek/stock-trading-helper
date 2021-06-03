@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { single } from './data';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pipe-grid-chart',
@@ -7,37 +6,47 @@ import { single } from './data';
 })
 export class PipeGridChartComponent implements OnInit {
 
-  single: any[];
-
+  
   view = [500, 350];
-
+  
   // options
   gradient: boolean = true;
   showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
-
+  
   colorScheme = {
     domain: [
       '#D80925',
       '#2196F3'
     ]
   };
+  
+  @Input() profitLossesData;
+  
+  constructor() {  
 
-  constructor() {
-    Object.assign(this, { single });
     this.onChangeChartSize(window.innerWidth);
+    
   }
 
   ngOnInit(): void {
 
   }
 
+  /**
+   * 
+   * @param event 
+   */
   onResize(event) {
     this.onChangeChartSize(event.target.innerWidth);
   }
 
+  /**
+   * 
+   * @param width 
+   */
   onChangeChartSize(width: number): void {
     if (width <= 1440 && width > 960) {
       this.view = [500, 400];
@@ -50,16 +59,28 @@ export class PipeGridChartComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param data 
+   */
   onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
+  /**
+   * 
+   * @param data 
+   */
   onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+    // console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
+  /**
+   * 
+   * @param data 
+   */
   onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    // console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
 }
