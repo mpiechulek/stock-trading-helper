@@ -25,6 +25,7 @@ export class ProfitListComponent implements OnInit {
     public tradeTileOffers = TradeTileOffersState;
 
     @Input() profitQuotes: StockOfferDictionaryModel;
+    @Input() profitOfferId: string;
 
     @Output() profitOfferClick: EventEmitter<OfferClickEventEmitDataModel> =
         new EventEmitter<OfferClickEventEmitDataModel>();
@@ -83,7 +84,9 @@ export class ProfitListComponent implements OnInit {
     * 
     */
     find() {
-        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+
+        this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.profitOfferId));
+        
     }
 
 

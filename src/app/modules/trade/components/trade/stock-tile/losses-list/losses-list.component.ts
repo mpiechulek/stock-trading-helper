@@ -8,7 +8,6 @@ import {
 import { OfferClickEventEmitDataModel, StockOfferDictionaryModel } from 'src/app/data/models/stock-tile.model';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
 
-
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
     constructor() {
         super(50, 250, 500);
@@ -25,12 +24,21 @@ export class LossesListComponent implements OnInit {
 
     public tradeTileOffers = TradeTileOffersState;
 
+    //==========================================================================
+
     @Input() loseQuotes: StockOfferDictionaryModel;
+    @Input() loseOfferId: string;
+
+    //==========================================================================
 
     @Output() losesOfferClick: EventEmitter<OfferClickEventEmitDataModel> =
          new EventEmitter<OfferClickEventEmitDataModel>();
 
+    //========================================================================== 
+         
     constructor() { }
+
+    //==========================================================================
 
     ngOnInit(): void {
     }
@@ -78,7 +86,11 @@ export class LossesListComponent implements OnInit {
      * Finding the offer in the list
      */
     onFindPickedOffer() {
-        // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+
+        console.log(this.loseOfferId);        
+
+        this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.loseOfferId));
+        
     }
 
 }
