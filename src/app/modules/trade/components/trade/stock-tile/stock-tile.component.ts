@@ -37,6 +37,7 @@ export class StockTileComponent implements OnInit, OnDestroy {
 
     private profitOfferIdInit: string;
     private loseOfferIdInit: string;
+    public saveButtonDisabled = true;
 
     public tradeTileOffers = TradeTileOffersState;
 
@@ -258,6 +259,7 @@ export class StockTileComponent implements OnInit, OnDestroy {
      * @param event 
      */
     onClickedList(eventData: OfferClickEventEmitDataModel): void {
+        this.saveButtonDisabled= false;
         this.stockTilePresenterService.changeSelectedOfferElement(eventData.event, eventData.listMarker);
         this.offerId = this.stockTilePresenterService.getChosenElementId(eventData.event);
         this.offerMarker = eventData.listMarker;
@@ -269,6 +271,7 @@ export class StockTileComponent implements OnInit, OnDestroy {
      * @param listMarker 
      */
     onClickedNeutralList(event: MouseEvent, listMarker: string): void {
+        this.saveButtonDisabled= false;
         this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
         this.offerId = this.stockTilePresenterService.getChosenElementId(event);
         this.offerMarker = listMarker;
@@ -287,7 +290,9 @@ export class StockTileComponent implements OnInit, OnDestroy {
 
         }
 
-        this.savePickedOffer.emit(markerData)
+        this.savePickedOffer.emit(markerData);
+
+        this.saveButtonDisabled = true;
     }
 
     /**

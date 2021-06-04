@@ -50,7 +50,7 @@
             class="trade-board__button-postion"            
             mat-raised-button
             (click)="onSavePickedOfferData()"
-            [disabled]="!getOfferMarker && !getOfferId"
+            [disabled]="saveButtonDisabled"
         >
            Save
         </button>
