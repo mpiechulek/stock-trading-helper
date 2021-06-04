@@ -1,95 +1,95 @@
+<section class="statistics-table">
 
-<section class="statistics-table">  
-    
     <!-- <h1 class="statistics-header" >Trade data table</h1> -->
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">    
+    <div class="statistics-table-container">
 
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="stockName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.companyName}} </mat-cell>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="stockName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.companyName}} </mat-cell>
+            </ng-container>
 
-        <!-- Quantity Column -->
-        <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.amountOfShares}} </mat-cell>
-        </ng-container>
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.amountOfShares}} </mat-cell>
+            </ng-container>
 
-        <!-- Buy price Column -->
-        <ng-container matColumnDef="buyPrice">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Buy Price </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.buyPrice}} </mat-cell>
-        </ng-container>
+            <!-- Buy price Column -->
+            <ng-container matColumnDef="buyPrice">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Buy Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.buyPrice}} </mat-cell>
+            </ng-container>
 
-        <!-- Sell Price Column -->
-        <ng-container matColumnDef="sellPrice">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.currentPrice}} </mat-cell>
-        </ng-container>
+            <!-- Sell Price Column -->
+            <ng-container matColumnDef="sellPrice">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.currentPrice}} </mat-cell>
+            </ng-container>
 
-        <!-- profitBeforeTax Column -->
-        
-        <ng-container matColumnDef="profitBeforeTax">
+            <!-- profitBeforeTax Column -->
 
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Profit ber. tax </mat-header-cell>
+            <ng-container matColumnDef="profitBeforeTax">
 
-            <mat-cell *matCellDef="let element">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Profit ber. tax </mat-header-cell>
 
-                <span 
-                    [ngClass]="{'table-font-color-green': (0 < element.profitBeforeTax),
-                                'table-font-color-red': (0 > element.profitBeforeTax) }"
-                >
+                <mat-cell *matCellDef="let element">
 
-                    {{element?.profitBeforeTax}}
+                    <span [ngClass]="{'table-font-color-green': (0 < element.profitBeforeTax),
+                                'table-font-color-red': (0 > element.profitBeforeTax) }">
 
-                </span> 
+                        {{element?.profitBeforeTax}}
 
-            </mat-cell>
+                    </span>
 
-        </ng-container>
+                </mat-cell>
 
-        <!-- profitAfterTax Column -->
+            </ng-container>
 
-        <ng-container matColumnDef="profitAfterTax">
+            <!-- profitAfterTax Column -->
 
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Profit aft. tax </mat-header-cell>
+            <ng-container matColumnDef="profitAfterTax">
 
-            <mat-cell *matCellDef="let element"> 
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Profit aft. tax </mat-header-cell>
 
-                <span 
-                    [ngClass]="{'table-font-color-green': (0 < element.profitAfterTax),
-                                'table-font-color-red': (0 > element.profitAfterTax)}"
-                >
+                <mat-cell *matCellDef="let element">
 
-                    {{element?.profitAfterTax}}
+                    <span [ngClass]="{'table-font-color-green': (0 < element.profitAfterTax),
+                                'table-font-color-red': (0 > element.profitAfterTax)}">
 
-                </span> 
-               
-             </mat-cell>
+                        {{element?.profitAfterTax}}
 
-        </ng-container>
-       
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="sellDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-            <mat-cell *matCellDef="let element" > {{element?.sellDate}} </mat-cell>
-        </ng-container>
+                    </span>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+                </mat-cell>
+
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="sellDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.sellDate}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+    </div>
 
     <div class="statistics-table-tools-wrapper">
 
         <mat-form-field>
-            <input matInput id="table-search-field"(keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            <input matInput id="table-search-field" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
 
         <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
 
     </div>
 
-</section> 
+</section>

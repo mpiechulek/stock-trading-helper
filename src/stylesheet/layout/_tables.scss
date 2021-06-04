@@ -1,0 +1,12 @@
+.statistics-table-container {
+
+    width: 100%;
+
+    @include respond(md) {
+
+       width: 488px;
+       overflow-x: auto;
+       
+    }
+
+}
