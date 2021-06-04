@@ -23,17 +23,16 @@
             <p class="trade-tile-stock-text">Buy price</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.buyPrice}}</p>
         </div>
-
-        <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Quantity</p>
-            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.amountOfShares}}</p>
-        </div>
-
+        
         <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Buy Value</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.buyValue}}</p>
         </div>
-
+        
+        <div class="trade-tile-stock-header-wrapper">
+            <p class="trade-tile-stock-text">Quantity</p>
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.amountOfShares}}</p>
+        </div>
     </div>
 
     <div class="trade-tile-stock-header-container">
@@ -63,7 +62,7 @@
 
         </div>
 
-        <div class="trade-tile-stock-header-wrapper">
+        <!-- <div class="trade-tile-stock-header-wrapper">
             <p class="trade-tile-stock-text">Aft.tax</p>
 
             <p 
@@ -76,7 +75,7 @@
                 {{headerCalculations?.profitAfterTax}}
             </p>
             
-        </div>
+        </div> -->
     </div>
 
 </div>
