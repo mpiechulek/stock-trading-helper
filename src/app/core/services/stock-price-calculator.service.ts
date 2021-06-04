@@ -61,7 +61,7 @@ export class StockPriceCalculatorService {
 
     result = buyPrice + (buyPrice * (percentageChange / 100));
 
-    return this.roundingNumberFloorTwoDecimalPlaces(result);
+    return this.roundingNumberFloorThreeDecimalPlaces(result);
   }
 
   /**
@@ -127,5 +127,13 @@ export class StockPriceCalculatorService {
    */
   roundingNumberFloorTwoDecimalPlaces(value: number): number {
     return Math.floor((value) * 100) / 100;
+  }
+
+  /**
+   * 
+   * @param value 
+   */
+   roundingNumberFloorThreeDecimalPlaces(value: number): number {
+    return Math.floor((value) * 1000) / 1000;
   }
 }
