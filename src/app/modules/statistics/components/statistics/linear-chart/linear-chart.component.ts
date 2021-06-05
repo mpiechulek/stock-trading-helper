@@ -34,9 +34,8 @@ export class LinearChartComponent implements OnInit {
   constructor() {
    
   }
-
-  ngOnInit(): void {  
-   
+    
+  ngOnInit(): void {     
 
   }
 
