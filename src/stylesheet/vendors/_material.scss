@@ -32,7 +32,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 
   @include respond(xs) {
 
-      font-size: 2.5rem;
+    font-size: 2rem;
 
   }
 
@@ -72,7 +72,21 @@ mat-label#trade-dialog-form {
 // Calculator form 
 
 mat-form-field#stock-advanced-calculator-form-field {
+
   width: 12rem;
+
+  @include respond(sm) {
+
+    width: 14rem;
+
+  }
+
+  @include respond(sm) {
+
+    width: 80%;
+
+  }
+
 }
 
 // Statistics-Module
