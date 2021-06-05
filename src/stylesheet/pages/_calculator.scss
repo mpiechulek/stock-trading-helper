@@ -25,8 +25,16 @@
     padding: 2rem;
 
     @include respond(ld) {
-      flex-direction: column;
-      justify-content: flex-start;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+    }
+
+
+    @include respond(md) {
+
+      width: 80%;
+      align-items: center;
+
     }
 
     .calculator-result-board-wrapper {
@@ -66,92 +74,6 @@
   }
 }
 
-// Calculator device
-.calc-device-container {
-  max-width: 44rem;
-  height: 60rem;
-  display: flex;
-  flex-direction: column;
-
-  border: 4px solid rgb(27, 44, 75);
-  background-color: rgb(27, 44, 75);
-
-  @include respond(xld) {
-    height: 48rem;
-  } 
-
-  &__output {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__input {
-    display: grid;
-    grid-gap: 4px;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: repeat(4, 10rem);
-    grid-template-rows: repeat(5, 8rem);
-
-    @include respond(xld) {
-      grid-template-columns: repeat(4, 8rem);
-      grid-template-rows: repeat(5, 6rem);
-    }
-
-    .btn-width {
-      grid-column: 1/3;
-    }
-  }
-}
-
-.equation,
-.calc-result {
-  min-height: 6rem;
-  padding: 0 2rem;
-  text-align: right;
-  color: white;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
-
-.calc-result {
-  font-size: 4.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.equation {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
-  color: rgb(177, 177, 177);
-  font-size: 3.5rem;
-}
-
-.calc-button {
-  background-color: rgb(75, 75, 75);
-  color: white;
-  border: none;
-  outline: none;
-  font-size: 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    background-color: rgb(1, 103, 255);
-  }
-
-  &--num {
-    color: black;
-    background-color: rgb(255, 255, 255);
-  }
-
-  &--equale {
-    background-color: rgb(255, 187, 0);
-  }
-}
-
 //
 .calculator-result-board {
   width: 35rem;
@@ -171,15 +93,30 @@
 
   @include respond(ld) {
     width: 100%;
+    height: 100%;
     margin-right: 1rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
-    height: 30rem;
+  }
+
+  @include respond(md) {
+   
+    margin-top: 4rem;
+   
   }
 }
 
 // Advance calculator form 
 .stock-advanced-calculator {
+
   width: 40rem;
+
+  @include respond(sm) {
+
+    min-width: 80%;
+    width: 100%;
+
+  }
 
   &__header {
     display: flex;
@@ -218,8 +155,8 @@
     }
   }
 
-  &__button-wrapper {
-    margin-top: 2rem;
+  &__button-wrapper {   
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
