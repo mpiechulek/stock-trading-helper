@@ -216,13 +216,17 @@
   }
 
   &--xld {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 500;
     max-width: 10ch;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: right;
+
+    @include respond(md) {
+      font-size: 1.8rem;
+    }
 
     @include respond(xs) {
       font-size: 2rem;
