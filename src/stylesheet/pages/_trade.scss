@@ -8,6 +8,12 @@
   @include respond(xs) {
 
     align-items: center;
+    scrollbar-width: 3px; 
+
+    ::-webkit-scrollbar {
+      display: inline-block;
+    }
+    
     
   }
 

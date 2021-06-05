@@ -167,4 +167,11 @@
   margin-bottom: 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+
+  
+  @include respond(sm) {
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
 }
