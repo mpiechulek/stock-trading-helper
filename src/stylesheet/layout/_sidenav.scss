@@ -59,6 +59,12 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 2rem;
+
+      
+    @include respond(sm) {
+      width:80%;      
+    }
 
       .theme-wrapper {
 
