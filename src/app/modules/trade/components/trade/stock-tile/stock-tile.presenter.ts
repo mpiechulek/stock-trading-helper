@@ -17,6 +17,19 @@ export class StockTilePresenterService {
 
   private numberOfRepeats: number = 200;
   private percentageChange: number = 0.5;
+  private numericObject = {} as StockTileNumericModel;
+
+  private selectedOfferMarker: SelectedOfferMarkerModel = {
+    "profit": null,
+    "lose": null,
+    "neutral": null
+  }
+
+  private chosenOfferMarkerHolder: string = 'neutral';
+  private chosenOfferIdHolder: string = '0';
+  public tradeTileOffers = TradeTileOffersState;
+
+  // ===========================================================================
 
   private loseQuotes = new Subject<StockOfferDictionaryModel>();
   private loseQuotes$ = this.loseQuotes.asObservable();
@@ -33,24 +46,17 @@ export class StockTilePresenterService {
   private headerCalculations = new Subject<HeaderCalculationsModel>();
   private headerCalculations$ = this.headerCalculations.asObservable();
 
-  private numericObject = {} as StockTileNumericModel;
-
-  private selectedOfferMarker: SelectedOfferMarkerModel = {
-    "profit": null,
-    "lose": null,
-    "neutral": null
-  }
-
-  private chosenOfferMarkerHolder: string = 'neutral';
-  private chosenOfferIdHolder: string = '0';
-
-  public tradeTileOffers = TradeTileOffersState;
+  // ===========================================================================
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
+
+ // ===========================================================================
 
   ngOnInit() {
 
   }
+
+  // ===========================================================================
 
   get getProfitQuotes$() {
     return this.profitQuotes$;
@@ -67,6 +73,10 @@ export class StockTilePresenterService {
   get getHeaderCalculations$() {
     return this.headerCalculations$;
   }
+
+  // ===========================================================================
+  // ======================== Generating offer quotes ==========================
+  // ===========================================================================
 
   /**
    * This method is converting an object with string values to a object with only 
@@ -132,7 +142,7 @@ export class StockTilePresenterService {
     );
 
     // Setting the chosen quote offer
-    this.checkWitchQuoteToUpdate( this.chosenOfferMarkerHolder,   this.chosenOfferIdHolder);
+    this.checkWitchQuoteToUpdate(this.chosenOfferMarkerHolder, this.chosenOfferIdHolder);
 
     this.calculateHeader(this.numericObject);
   }
@@ -245,40 +255,51 @@ export class StockTilePresenterService {
         );
 
       result[i] = {
+
         percentageChange:
           percentageStep
             .toFixed(
               this.stockPriceCalculatorService.getNumberOfDecimalPlaces
             ),
+
         newPrice:
           currentPrice
-            .toFixed(
-              this.stockPriceCalculatorService.getNumberOfDecimalPlaces
-            ),
+            .toFixed(3),
+
         profit:
           profit
             .toFixed(
               this.stockPriceCalculatorService.getNumberOfDecimalPlaces
             ),
+
         selected: false
+
       }
+
     }
 
     if (profitLoos === 'profit') {
+
       this.profitQuotesHolder = result;
+
       this.profitQuotes.next(result);
+
     }
 
     if (profitLoos === 'lose') {
+
       this.loseQuotesHolder = result;
+
       this.loseQuotes.next(result);
+      
     }
+    
     return;
   }
 
-// =============================================================================
-// ===================== Generating header calculations ========================
-// =============================================================================
+  // =============================================================================
+  // ===================== Generating header calculations ========================
+  // =============================================================================
 
   /**
    * 
@@ -293,7 +314,7 @@ export class StockTilePresenterService {
 
     result.amountOfShares = numericObject.amountOfShares;
 
-    result.buyPrice =  numericObject.buyPrice;
+    result.buyPrice = numericObject.buyPrice;
 
     result.buyValue =
       this.stockPriceCalculatorService
@@ -360,14 +381,14 @@ export class StockTilePresenterService {
       this.stockPriceCalculatorService.calculatePercentageChange(
         result.currentPrice,
         numericObject.buyPrice
-      );   
+      );
 
     this.headerCalculations.next(result);
   }
 
-// =============================================================================
-// ====================== Price selection functionality ========================
-// =============================================================================
+  // =============================================================================
+  // ====================== Price selection functionality ========================
+  // =============================================================================
 
   /**
    * 
@@ -411,11 +432,16 @@ export class StockTilePresenterService {
     let id: string;
 
     if (event.target.classList.contains('trade-tile-stock-change-container')) {
+
       return id = event.target.id;
+
     } else if (event.target.parentElement.classList.contains('trade-tile-stock-change-container')) {
+
       return id = event.target.parentElement.id;
     } else if (event.target.parentElement.parentElement.classList.contains('trade-tile-stock-change-container')) {
+
       return id = event.target.parentElement.parentElement.id;
+
     }
 
     return null;
@@ -439,6 +465,11 @@ export class StockTilePresenterService {
     return quoteListHolder;
   };
 
+  /**
+   * 
+   * @param groupMarker 
+   * @param selectedId 
+   */
   checkWitchQuoteToUpdate(
     groupMarker: string,
     selectedId: string

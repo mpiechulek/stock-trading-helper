@@ -1,4 +1,3 @@
-<div class="trade-tile">
 
     <!-- Stock data -->
 
@@ -12,28 +11,15 @@
 
     <!-- Positive share price  -->
 
-    <ul class="trade-tile__positive-stock-change" (click)="onClickedList($event,tradeTileOffers.profit)" >
+    <app-profit-list 
+        [profitQuotes]="getProfitQuotes"
+        [profitOfferId]="getProfitOfferId"
+        [profitOfferIdInit]="getProfitOfferIdInit"
+        (profitOfferClick)="onClickedList($event)"
+    >
+    </app-profit-list>   
 
-        <cdk-virtual-scroll-viewport 
-            itemSize="28" 
-            orientation="bottom"
-            class="example-viewport"            
-        >
-
-            <app-one-offer-change 
-                *cdkVirtualFor="let profitQuote of getProfitQuotes | keyvalue: unsorted"
-                [profitQuote] ="profitQuote.value"
-                [keyId] = "profitQuote.key"
-            >           
-            </app-one-offer-change>
-
-        </cdk-virtual-scroll-viewport> 
-    
-    </ul>
-
-    <!-- Neutral share price  -->
-
-    <ul class="trade-tile__neutral-stock-change" (click)="onClickedList($event,tradeTileOffers.neutral)">
+    <ul class="trade-tile__neutral-stock-change" (click)="onClickedNeutralList($event,tradeTileOffers.neutral)">
 
         <app-neutral-offer 
             *ngFor="let neutralQuote of getNeutralQuote | keyvalue: unsorted"
@@ -46,20 +32,14 @@
 
     <!-- Negative share price  -->
 
-    <ul class="trade-tile__negative-stock-change" (click)="onClickedList($event, tradeTileOffers.lose)">
-
-        <cdk-virtual-scroll-viewport itemSize="28" class="example-viewport">
-
-            <app-one-offer-loose 
-                *cdkVirtualFor="let loseQuote of getLoseQuotes | keyvalue: unsorted"
-                [loseQuote] ="loseQuote.value"
-                [keyId] = "loseQuote.key"
-            >           
-            </app-one-offer-loose>
-
-        </cdk-virtual-scroll-viewport>
-
-    </ul>
+    <app-losses-list
+        [loseQuotes]="getLoseQuotes"
+        [loseOfferId]="getLoseOfferId"
+        [loseOfferIdInit]="getLoseOfferIdInit"
+        (losesOfferClick)="onClickedList($event)"
+     >
+    </app-losses-list>
+    
 
     <!-- Btn container  -->
 
@@ -69,7 +49,7 @@
             class="trade-board__button-postion"            
             mat-raised-button
             (click)="onSavePickedOfferData()"
-            [disabled]="!getOfferMarker && !getOfferId"
+            [disabled]="saveButtonDisabled"
         >
            Save
         </button>
@@ -93,4 +73,3 @@
         </button>
     </div>
 
-</div>

@@ -29,6 +29,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
+
+    @include respond(md) {
+      flex-direction: column;
+    }
   }
 
   &__section-3 {

@@ -122,7 +122,7 @@ export class TradeDialogComponent implements OnInit {
   }
 
   onClearField(event) {
-    console.log(event);
+    // console.log(event);
   }
 
   onClearForm() {

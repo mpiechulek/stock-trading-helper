@@ -36,6 +36,14 @@ mat-dialog-container#modal-component {
   width: 50rem;
   height: auto;
   background-color: var(--color-page-background);
+
+  @include respond(md) {
+    width: 65rem;
+  }
+
+  @include respond(md) {
+    width: 70rem;
+  }
 }
 
 mat-form-field#trade-dialog-form {

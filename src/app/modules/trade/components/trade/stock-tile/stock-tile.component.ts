@@ -1,248 +1,351 @@
 import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild
 } from '@angular/core';
 import {
-  CdkVirtualScrollViewport,
-  FixedSizeVirtualScrollStrategy,
-  VIRTUAL_SCROLL_STRATEGY
-} from '@angular/cdk/scrolling';
-import {
-  HeaderCalculationsModel,
-  StockMarkerSaveDataModel,
-  StockOfferDictionaryModel,
-  StockTileModel,
+    HeaderCalculationsModel,
+    OfferClickEventEmitDataModel,
+    StockMarkerSaveDataModel,
+    StockOfferDictionaryModel,
+    StockTileModel,
 } from '../../../../../data/models/stock-tile.model';
 import { StockTilePresenterService } from './stock-tile.presenter';
 import { KeyValue } from '@angular/common';
 import { TradeTileOffersState } from 'src/app/data/enums/trade-tile-offer.enum';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 
 
-export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
-  constructor() {
-    super(50, 250, 500);
-  }
-}
-
 @Component({
-  selector: 'app-stock-tile',
-  templateUrl: './stock-tile.component.html',
-  providers: [StockTilePresenterService,
-    { provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy }]
+    selector: 'app-stock-tile',
+    templateUrl: './stock-tile.component.html',
+    providers: [StockTilePresenterService]
 })
 
-export class StockTileComponent implements OnInit, OnDestroy, AfterViewInit {
+export class StockTileComponent implements OnInit, OnDestroy {
 
-  private profitQuotes = {} as StockOfferDictionaryModel;
-  private loseQuotes = {} as StockOfferDictionaryModel;
-  private neutralQuote = {} as StockOfferDictionaryModel;
-  private headerCalculations = {} as HeaderCalculationsModel;
+    private profitQuotes = {} as StockOfferDictionaryModel;
+    private loseQuotes = {} as StockOfferDictionaryModel;
+    private neutralQuote = {} as StockOfferDictionaryModel;
+    private headerCalculations = {} as HeaderCalculationsModel;
 
-  private profitQuotesSubscription: Subscription;
-  private loseQuotesSubscription: Subscription;
-  private neutralQuoteSubscription: Subscription;
-  private headerCalculationsSubscription: Subscription;
+    private profitOfferIdInit: string;
+    private loseOfferIdInit: string;
+    public saveButtonDisabled = true;
 
-  public tradeTileOffers = TradeTileOffersState;
-  private offerId: string = null;
-  private offerMarker: string = null;
+    public tradeTileOffers = TradeTileOffersState;
 
-  @Input()
-  private stockElement: StockTileModel;
+    //==========================================================================
 
-  @Output()
-  deleteTile: EventEmitter<string> = new EventEmitter<string>();
+    private profitQuotesSubscription: Subscription;
+    private loseQuotesSubscription: Subscription;
+    private neutralQuoteSubscription: Subscription;
+    private headerCalculationsSubscription: Subscription;
 
-  @Output()
-  editTile: EventEmitter<string> = new EventEmitter<string>();
+    //==========================================================================
 
-  @Output()
-  savePickedOffer: EventEmitter<StockMarkerSaveDataModel> = new EventEmitter<StockMarkerSaveDataModel>();
+    private profitIdMarkerSubject = new Subject<string>();
+    private profitIdMarkerSubject$ = this.profitIdMarkerSubject.asObservable();
 
-  @Output()
-  sellStock: EventEmitter<StockSellModel> = new EventEmitter<StockSellModel>();
+    private loseIdMarkerSubject = new Subject<string>();
+    private loseIdMarkerSubject$ = this.loseIdMarkerSubject.asObservable();
 
-  constructor(
-    private stockTilePresenterService: StockTilePresenterService
-  ) { }
+    // =========================================================================
 
-  // Angular material CDK virtual scrolling
-  @ViewChild(CdkVirtualScrollViewport) cdkVirtualScrollViewport: CdkVirtualScrollViewport;
+    @Input()
+    private offerId: string = null;
 
-  ngOnInit(): void {
+    @Input()
+    private offerMarker: string = null;
 
-    this.profitQuotesSubscription =
-      this.stockTilePresenterService.getProfitQuotes$
-        .subscribe((data) => {
-          this.profitQuotes = data;
-        });
+    @Input()
+    private stockElement: StockTileModel;
 
-    this.loseQuotesSubscription =
-      this.stockTilePresenterService.getLoseQuotes$
-        .subscribe((data) => {
-          this.loseQuotes = data;
-        });
+    //==========================================================================
 
-    this.neutralQuoteSubscription =
-      this.stockTilePresenterService.getNeutralQuote$
-        .subscribe((data) => {
-          this.neutralQuote = data;
-        });
+    @Output()
+    deleteTile: EventEmitter<string> = new EventEmitter<string>();
 
-    this.headerCalculationsSubscription =
-      this.stockTilePresenterService.getHeaderCalculations$
-        .subscribe((data) => {
-          this.headerCalculations = data;
-        });
+    @Output()
+    editTile: EventEmitter<string> = new EventEmitter<string>();
 
-    this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
-    this.stockTilePresenterService.generateQuotes();
+    @Output()
+    savePickedOffer: EventEmitter<StockMarkerSaveDataModel> = new EventEmitter<StockMarkerSaveDataModel>();
 
-  }
+    @Output()
+    sellStock: EventEmitter<StockSellModel> = new EventEmitter<StockSellModel>();
 
-  ngAfterViewInit() {
-    // this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.stockElement.markerOfferValue));
-    // this.cdkVirtualScrollViewport.scrollTo({bottom: 0});
-  }
+    // =========================================================================
 
-  ngOnDestroy() {
-    if (this.profitQuotesSubscription) {
-      this.profitQuotesSubscription.unsubscribe();
+    constructor(
+        private stockTilePresenterService: StockTilePresenterService
+    ) { }
+
+    // =========================================================================
+
+    ngOnInit(): void {
+
+        this.profitQuotesSubscription =
+            this.stockTilePresenterService.getProfitQuotes$
+                .subscribe((data) => {
+                    this.profitQuotes = data;
+                });
+
+        this.loseQuotesSubscription =
+            this.stockTilePresenterService.getLoseQuotes$
+                .subscribe((data) => {
+                    this.loseQuotes = data;
+                });
+
+        this.neutralQuoteSubscription =
+            this.stockTilePresenterService.getNeutralQuote$
+                .subscribe((data) => {
+                    this.neutralQuote = data;
+                });
+
+        this.headerCalculationsSubscription =
+            this.stockTilePresenterService.getHeaderCalculations$
+                .subscribe((data) => {
+                    this.headerCalculations = data;
+                });
+
+        this.stockTilePresenterService.convertStringObjectElementsToNumber(this.stockElement);
+
+        this.stockTilePresenterService.generateQuotes();
+
+        // Positioning the chosen offer onload/refresh 
+        if (this.offerMarker === 'profit') {
+
+            this.profitOfferIdInit = this.offerId;
+            this.loseOfferIdInit = null;
+
+        }
+
+        if (this.offerMarker === 'lose') {
+
+            this.profitOfferIdInit = null;
+            this.loseOfferIdInit = this.offerId;
+
+        }
+
     }
 
-    if (this.loseQuotesSubscription) {
-      this.loseQuotesSubscription.unsubscribe();
+    ngOnDestroy() {
+        
+        if (this.profitQuotesSubscription) {
+            this.profitQuotesSubscription.unsubscribe();
+        }
+
+        if (this.loseQuotesSubscription) {
+            this.loseQuotesSubscription.unsubscribe();
+        }
+
+        if (this.neutralQuoteSubscription) {
+            this.neutralQuoteSubscription.unsubscribe();
+        }
+
+        if (this.headerCalculationsSubscription) {
+            this.headerCalculationsSubscription.unsubscribe();
+        }
     }
 
-    if (this.neutralQuoteSubscription) {
-      this.neutralQuoteSubscription.unsubscribe();
+    // =============================================================================
+    // ================================== Getters ==================================
+    // =============================================================================
+
+    /**
+    * Returning an object of objects { key1:{...}, key2:{...}}
+    */
+    get getProfitQuotes(): StockOfferDictionaryModel {
+        return this.profitQuotes;
     }
 
-    if (this.headerCalculationsSubscription) {
-      this.headerCalculationsSubscription.unsubscribe();
+    /**
+     * 
+     */
+    get getLoseQuotes(): StockOfferDictionaryModel {
+        return this.loseQuotes;
     }
-  }
 
-  /**
-  * Returning an object of objects { key1:{...}, key2:{...}}
-  */
-  get getProfitQuotes() {
-    return this.profitQuotes;
-  }
+    /**
+     * 
+     */
+    get getNeutralQuote(): StockOfferDictionaryModel {
+        return this.neutralQuote;
+    }
 
-  get getLoseQuotes() {
-    return this.loseQuotes;
-  }
+    /**
+     * 
+     */
+    get getHeaderCalculations(): HeaderCalculationsModel {
+        return this.headerCalculations;
+    }
 
-  get getNeutralQuote() {
-    return this.neutralQuote;
-  }
+    /**
+     * 
+     */
+    get getStockElement(): StockTileModel {
+        return this.stockElement;
+    }
 
-  get getHeaderCalculations() {
-    return this.headerCalculations;
-  }
+    /**
+     * 
+     */
+    get getOfferId(): string {
+        return this.offerId;
+    }
 
-  get getStockElement() {
-    return this.stockElement;
-  }
+    /**
+     * 
+     */
+    get getOfferMarker(): string {
+        return this.offerMarker;
+    }
 
-  get getOfferId() {
-    return this.offerId;
-  }
+    /**
+    * 
+    */
+    get getProfitOfferId(): Observable<string> {
+        return this.profitIdMarkerSubject$;
+    }
 
-  get getOfferMarker() {
-    return this.offerMarker;
-  }
-
-  /**
-   * This fixes the object sorting pipe bug 
+    /**
+   *         
    */
-  unsorted() { }
+     get getLoseOfferId(): Observable<string> {
+       return this.loseIdMarkerSubject$;
+   }
 
-  /**
-   * Reverse object sorting of key value
-   * @param a 
-   * @param b 
-   */
-  orderbyValueDsc(a: KeyValue<number, string>, b: KeyValue<number, string>): number {
-    return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
-  }
-
-  /**
-   * Changing the offer selection on the lists
-   * @param event 
-   */
-  onClickedList(event, listMarker: string): void {
-    this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
-    this.offerId = this.stockTilePresenterService.getChosenElementId(event);
-    this.offerMarker = listMarker;
-  }
-
-  onSavePickedOfferData(): void {
-
-    let markerData: StockMarkerSaveDataModel;
-
-    markerData = {
-      id: this.stockElement.id,
-      markerOfferValue: this.offerId,
-      markerOfferType: this.offerMarker
+    /**
+    *         
+    */
+    get getProfitOfferIdInit(): string {
+        return this.profitOfferIdInit;
     }
 
-    this.savePickedOffer.emit(markerData)
-  }
+      /**
+    *         
+    */
+       get getLoseOfferIdInit(): string {
+        return this.loseOfferIdInit;
+    }
 
-  /**
-   * 
-   * @param id 
-   */
-  onEditTile(id: string): void {
-    this.editTile.emit(id);
-  }
+    // =============================================================================
+    // ================================== Methods ==================================
+    // =============================================================================
 
-  /**
-   * 
-   * @param id 
-   */
-  onDeleteTile(id: string): void {
-    this.deleteTile.emit(id);
-  }
+    /**
+     * This fixes the object sorting pipe bug 
+     */
+    unsorted() { }
 
-  /**
-   * 
-   */
-  onSellStock(): void {
-   
-    const stockToSell:StockSellModel = {
+    /**
+     * Reverse object sorting of key value
+     * @param a 
+     * @param b 
+     */
+    orderbyValueDsc(a: KeyValue<number, string>, b: KeyValue<number, string>): number {
+        return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1
+    }
 
-      id: this.stockElement.id,
-      companyName: this.stockElement.companyName,     
-      ...this.headerCalculations
+    /**
+     * Changing the offer selection on the lists
+     * @param event 
+     */
+    onClickedList(eventData: OfferClickEventEmitDataModel): void {
+        this.saveButtonDisabled= false;
+        this.stockTilePresenterService.changeSelectedOfferElement(eventData.event, eventData.listMarker);
+        this.offerId = this.stockTilePresenterService.getChosenElementId(eventData.event);
+        this.offerMarker = eventData.listMarker;
+    }
+
+    /**
+     * 
+     * @param event 
+     * @param listMarker 
+     */
+    onClickedNeutralList(event: MouseEvent, listMarker: string): void {
+        this.saveButtonDisabled= false;
+        this.stockTilePresenterService.changeSelectedOfferElement(event, listMarker);
+        this.offerId = this.stockTilePresenterService.getChosenElementId(event);
+        this.offerMarker = listMarker;
+    }
+
+    /**
+     * 
+     */
+    onSavePickedOfferData(): void {
+
+        const markerData: StockMarkerSaveDataModel = {
+
+            id: this.stockElement.id,
+            markerOfferValue: this.offerId,
+            markerOfferType: this.offerMarker
+
+        }
+
+        this.savePickedOffer.emit(markerData);
+
+        this.saveButtonDisabled = true;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    onEditTile(id: string): void {
+        this.editTile.emit(id);
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    onDeleteTile(id: string): void {
+        this.deleteTile.emit(id);
+    }
+
+    /**
+     * 
+     */
+    onSellStock(): void {
+
+        const stockToSell: StockSellModel = {
+
+            id: this.stockElement.id,
+            companyName: this.stockElement.companyName,
+            ...this.headerCalculations
+
+        }
+
+        this.sellStock.emit(stockToSell);
 
     }
 
-    this.sellStock.emit(stockToSell);
+    /**
+     * when clicking find button the current offer id is sent to the proper subscriber
+     */
+    onFindSelectedOffer() {
 
-  }
+        if (this.offerMarker === 'profit') {
 
-  /**
-   * 
-   */
-  onFindSelectedOffer() {
+            this.profitIdMarkerSubject.next(this.offerId);
+            this.loseIdMarkerSubject.next(null);
 
-    if (this.offerMarker === 'profit') {
-      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
+        }
+
+        if (this.offerMarker === 'lose') {
+
+            this.loseIdMarkerSubject.next(this.offerId);
+            this.profitIdMarkerSubject.next(null);
+
+        }
+
     }
-
-    if (this.offerMarker === 'lose') {
-      this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.offerId));
-    }
-  }
 }

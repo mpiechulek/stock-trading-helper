@@ -31,6 +31,7 @@ export interface StockOfferModel {
     selected?: boolean;
 }
 
+// object of objects
 export interface StockOfferDictionaryModel {
     [index: string]: StockOfferModel;
 }
@@ -58,6 +59,11 @@ export interface StockMarkerSaveDataModel {
     id: string;
     markerOfferValue: string;
     markerOfferType: string;
+}
+
+export interface OfferClickEventEmitDataModel {
+    event: MouseEvent,
+    listMarker: string
 }
 
 
