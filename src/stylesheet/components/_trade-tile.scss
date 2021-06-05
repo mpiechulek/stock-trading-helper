@@ -1,19 +1,26 @@
 .trade-tile {
   width: 35rem;
   min-width: 32rem;
-  height: calc(100vh - 19rem);
+  height: calc(100vh - 20rem);
   border: 1px solid var(--color-border);
   border-radius: 5px;
-  padding: 1rem;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr;
   // grid-template-rows: 24% 32.5% 6% 32.5% 5%;
   // grid-template-rows: 2fr 5fr 1fr 5fr 1fr;
-  grid-template-rows: 12.7rem 1fr 3.6rem 1fr 36px;
+  grid-template-rows: 12.7rem 1fr 4rem 1fr 42px;
+
+  @include respond(md) {
+    grid-template-rows: 14rem 1fr 4rem 1fr 42px;
+    width: 37rem;
+  }
 
   @include respond(xs) {
     width: 100%;
     min-width: 100%;
+    grid-template-rows: 14.5rem 1fr 5rem 1fr 37px;
+    padding: 15px;
   }
 
   &__stock-data {
@@ -153,5 +160,18 @@
     .stock-offer-change-margin-left {
       margin-left: 1rem;
     }
+  }
+}
+
+.trade-tile-margin {
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  
+  @include respond(sm) {
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
 }

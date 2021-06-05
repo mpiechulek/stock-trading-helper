@@ -48,14 +48,14 @@ const routes: Routes = [
             m => m.StatisticsModule
           )
       },
-      {
-        path: '',
-        loadChildren: () => 
-          import('./modules/calendar/calendar.module').then(
-            m => m.CalendarDateModule
-          )
-      },
-      { path: '**', redirectTo: '/', pathMatch: 'full' } 
+      // {
+      //   path: '',
+      //   loadChildren: () => 
+      //     import('./modules/calendar/calendar.module').then(
+      //       m => m.CalendarDateModule
+      //     )
+      // },
+      // { path: '**', redirectTo: '/', pathMatch: 'full' } 
     ]
   }
 ];
