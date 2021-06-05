@@ -5,6 +5,12 @@
   align-items: flex-end;
   justify-content: center;
 
+  @include respond(xs) {
+
+    align-items: center;
+    
+  }
+
   &__container {
     width: 100%;
     height: 100%;

@@ -11,9 +11,16 @@
   // grid-template-rows: 2fr 5fr 1fr 5fr 1fr;
   grid-template-rows: 12.7rem 1fr 4rem 1fr 37px;
 
+  @include respond(md) {
+    grid-template-rows: 14rem 1fr 4rem 1fr 37px;
+    width: 37rem;
+  }
+
   @include respond(xs) {
     width: 100%;
     min-width: 100%;
+    grid-template-rows: 14.5rem 1fr 5rem 1fr 37px;
+    padding: 15px;
   }
 
   &__stock-data {

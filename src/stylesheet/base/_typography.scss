@@ -213,10 +213,14 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    @include respond(md) {
+      font-size: 1.8rem;
+    }
   }
 
   &--xld {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 500;
     max-width: 10ch;
     overflow: hidden;
