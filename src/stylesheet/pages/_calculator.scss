@@ -9,9 +9,7 @@
   align-items: center;
   overflow-y: auto;
 
-  @include respond(ld) {    
-
-  }
+  @include respond(ld) {}
 
   @include respond(md) {
 
@@ -29,13 +27,13 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    padding: 2rem;	
+    padding: 2rem;
 
-	&--margin-bottom {
-		
-		margin-bottom: 2rem;
+    &--margin-bottom {
 
-	}
+      margin-bottom: 2rem;
+
+    }
 
     @include respond(ld) {
 
@@ -80,8 +78,7 @@
   .calculator-result-board {
 
     width: 26.5rem;
-    max-height: 100%;
-	height: 56.4rem;
+    height: 56.4rem;
     margin-right: 2rem;
     padding: 2rem;
     list-style: none;
@@ -97,6 +94,7 @@
     @include respond(ld) {
 
       width: 100%;
+      height: 35rem;
       margin-right: 0;
       margin-top: 4rem;
 
@@ -105,7 +103,7 @@
     @include respond(md) {
 
       width: 50rem;
-	  height: 30rem;
+      height: 30rem;
 
     }
 
@@ -164,7 +162,6 @@
       @include respond(xs) {
 
         align-items: center;
-
         flex-direction: column;
 
       }
