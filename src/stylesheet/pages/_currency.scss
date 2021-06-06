@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
 
   @include respond(sm) {
     overflow: auto;
@@ -28,13 +28,10 @@
 
     @include respond(sm) {
       justify-content: center;
-      align-items: center;
+      align-items: center;	 
+      width: 100%;
     }
-
-    &--margin-right {
-      margin-right: 2rem;
-    }
-
+   
     &--margin-bottom {
       margin-bottom: 2rem;
     }
@@ -65,52 +62,88 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
+    @include respond(sm) {
+
+      width: 100%;
+
+    }
+
   }
 
   .currency-crypto-wrapper {
+
     margin-bottom: 2rem;
     align-items: center;
+    
   }
 
   .currency-offer-overflow-wrapper {
-    height: calc(100vh - 30rem); 
-    overflow:auto;   
+
+    height: calc(100vh - 37rem);
+    overflow: auto;
 
     @include respond(sm) {
-      overflow:none;   
-      height: 100%;   
+      overflow: none;
+      height: 100%;
     }
   }
 
   .currency-select-wrapper {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: auto;
+
+    @include respond(sm) {
+      width: 30rem;
+    }
+
   }
 
   .currency-select-option-wrapper,
   .currency-offer-wrapper {
+
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: auto;
+
   }
 
   .currency-offer-wrapper {
+
     margin-bottom: 1rem;
     width: 25rem;
+
+    @include respond(sm) {
+
+       width: 30rem;
+
+    }
   }
 
   .offer-margin-right {
+
     margin-right: 1rem;
+
   }
 
   .offer-currency-width {
+
     width: 6ch;
+
+    @include respond(sm) {
+
+      width: 7ch;
+
+    }
+
   }
+
 }
 
 .currency-btn-wrapper {
