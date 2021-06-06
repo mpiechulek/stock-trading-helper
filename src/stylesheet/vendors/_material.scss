@@ -81,9 +81,9 @@ mat-form-field#stock-advanced-calculator-form-field {
 
   }
 
-  @include respond(sm) {
+  @include respond(xs) {
 
-    width: 80%;
+    width: 100%;
 
   }
 

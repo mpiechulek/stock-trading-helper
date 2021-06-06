@@ -1,6 +1,10 @@
 .calculator-result-board-text {
   font-size: 1.6rem;
   color: $color-white;
+  
+  @include respond(sm) {
+    font-size: 12px;
+  }  
 
   &--bold {
     font-weight: 700;
@@ -250,9 +254,12 @@
   }
 }
 
+// footer
+
 .footer-text {
   color: var(--color-text-prime);
-  font-size: 1.3rem;
+  font-size: 12px;
+  text-align: center;
 }
 
 // Dialog
