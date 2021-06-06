@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
   
-    border: 4px solid rgb(27, 44, 75);
-    background-color: rgb(27, 44, 75);   
+    border: 4px solid $color-cloud-burs;
+    background-color: $color-cloud-burs;   
 
     @include respond(md) {
 
