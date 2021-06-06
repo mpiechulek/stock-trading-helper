@@ -73,6 +73,13 @@
   color: var(--color-text-prime);
   // font-family: monospace;
 
+  
+  @include respond(sm) {
+
+    font-size:12px;
+
+  }
+  
   &--bold {
     font-weight: 500;
   }

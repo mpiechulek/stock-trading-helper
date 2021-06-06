@@ -9,12 +9,14 @@
     >
 
         <app-currency-crypto
+            class="currency-crypto-wrapper"
             [bitCoinPriceData]="bitCoinPriceData"
             [ethereumPriceData]="ethereumPriceData"
         >
         </app-currency-crypto>
 
         <app-currency-foreign-exchange
+            class="currency-exchange-wrapper"
             [currencyData]="currencyData"            
         >
         </app-currency-foreign-exchange>
@@ -30,6 +32,9 @@
     >
     
         <app-currency-form 
+
+            class="currency-calculator-form" 
+            
             [currencyData]="currencyData"
             [currencyCalculationResult$]="currencyCalculationResult$"
             [firstCurrencyName$]="firstCurrencyName$"
