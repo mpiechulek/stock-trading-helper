@@ -1,5 +1,4 @@
 import { Component, Input, NgModule, OnInit  } from '@angular/core';
-import { multi } from './data';
 
 @Component({
   selector: 'app-linear-chart',
@@ -9,8 +8,6 @@ import { multi } from './data';
 export class LinearChartComponent implements OnInit {
 
   @Input() linearChartData;
-
-  multi: any[];
 
   // options
   legend: boolean = false;
@@ -23,7 +20,7 @@ export class LinearChartComponent implements OnInit {
   xAxisLabel: string = 'Date';
   yAxisLabel: string = 'Ballance';
   timeline: boolean = true;
-  autoScale: boolean = true;
+  autoScale: boolean = false;
 
   colorScheme = {
 
