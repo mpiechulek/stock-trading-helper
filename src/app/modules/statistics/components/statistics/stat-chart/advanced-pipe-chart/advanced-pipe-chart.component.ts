@@ -48,13 +48,13 @@ export class AdvancedPipeChartComponent implements OnInit {
    */
   onChangeChartSize(width: number): void {
     if (width <= 1440 && width > 960) {
-      this.view = [500, 800];
-    } else if (width <= 960 && width > 800) {
-      this.view = [400, 800];
-    } else if (width <= 800 && width > 400) {
       this.view = [450, 800];
+    } else if (width <= 960 && width > 800) {
+      this.view = [350, 800];
+    } else if (width <= 800 && width > 400) {
+      this.view = [340, 800];
     }else if (width <= 400 ) {
-      this.view = [300, 2000];
+      this.view = [200, 2000];
     }
   }
 

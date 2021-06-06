@@ -68,12 +68,14 @@
   justify-content: space-evenly;
 
   @include respond(sm) {
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
     align-items: center;
+    overflow: hidden;
   }
 
   &__container {
+    max-width: 50%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -81,6 +83,10 @@
     flex-grow: 1;
     max-height: 100%;
     overflow-y: scroll;
+
+    @include respond(sm) {
+      max-width: 100%;
+    }
 
   }
 
