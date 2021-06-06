@@ -27,6 +27,17 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
   color: var(--color-text-nav);
 }
 
+//global font size change for material form fields
+.mat-form-field {
+
+  @include respond(xs) {
+
+    font-size: 2rem;
+
+  }
+
+}
+
 /* Trade component material elements */
 
 /* Overwrite the styles of the mat-dialog-container element globally, but only for those
@@ -61,7 +72,21 @@ mat-label#trade-dialog-form {
 // Calculator form 
 
 mat-form-field#stock-advanced-calculator-form-field {
+
   width: 12rem;
+
+  @include respond(sm) {
+
+    width: 14rem;
+
+  }
+
+  @include respond(xs) {
+
+    width: 100%;
+
+  }
+
 }
 
 // Statistics-Module

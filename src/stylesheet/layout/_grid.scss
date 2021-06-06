@@ -1,20 +1,27 @@
 .main { 
+
   display: grid;
   height: 100vh;
   grid-template-columns: 100%;
-  grid-template-rows: 12% 85% 3%; 
+  grid-template-rows: 12% 84% 4%; 
   margin: 0 5rem;
 
   @include respond(xld) {
+
     margin: 0 2rem;
+
   }
 
   @include respond(md) {
-    grid-template-rows: 8% 89% 3%; 
+
+    grid-template-rows: 8% 87% 5%; 
+
   } 
 
   .main-container {
+
     height: 100%;
     position: relative;
+
   } 
 }
