@@ -5,14 +5,18 @@
   align-items: flex-end;
   justify-content: center;
 
+  @include respond(sm) {
+    flex-direction: row-reverse;
+  }
+
   @include respond(xs) {
 
     align-items: center;
-    scrollbar-width: 3px; 
+    // scrollbar-width: 3px; 
 
-    ::-webkit-scrollbar {
-      display: inline-block;
-    }    
+    // ::-webkit-scrollbar {
+    //   display: inline-block;
+    // }    
     
   }
 

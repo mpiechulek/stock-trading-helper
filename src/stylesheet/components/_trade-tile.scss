@@ -9,23 +9,25 @@
   grid-template-columns: 1fr;
   // grid-template-rows: 24% 32.5% 6% 32.5% 5%;
   // grid-template-rows: 2fr 5fr 1fr 5fr 1fr;
-  grid-template-rows: 12.7rem 1fr 4rem 1fr 42px;
+  grid-template-rows: 12.7rem 1fr 37px 1fr 42px;
 
   @include respond(md) {
-    grid-template-rows: 14rem 1fr 40px 1fr 42px;
+    grid-template-rows: 14rem 1fr 37px 1fr 42px;
     width: 40rem;
     height: calc(100vh - 22.5rem);
   }
 
   @include respond(sm) {     
     height: calc(100vh - 25rem);
+    padding: 5px;
+    margin-right: 10px;
   }
 
   @include respond(xs) {    
     height: calc(100vh - 27rem);  
     width: 100%;
     min-width: 100%;
-    grid-template-rows: 14.5rem 1fr 40px 1fr 37px;
+    grid-template-rows: 14.5rem 1fr 37px 1fr 37px;
     padding: 15px;
   }
 
@@ -138,7 +140,7 @@
   //li item 
   .trade-tile-stock-change-container {
     display: flex;
-    min-height: 29px;
+    min-height: 28px;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
