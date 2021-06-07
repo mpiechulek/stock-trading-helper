@@ -1,7 +1,7 @@
 .trade-tile {
   width: 35rem;
   min-width: 32rem;
-  height: calc(100vh - 19rem);
+  height: calc(100vh - 22.8rem);
   border: 1px solid var(--color-border);
   border-radius: 5px;
   padding: 10px;
@@ -9,24 +9,36 @@
   grid-template-columns: 1fr;
   // grid-template-rows: 24% 32.5% 6% 32.5% 5%;
   // grid-template-rows: 2fr 5fr 1fr 5fr 1fr;
-  grid-template-rows: 12.7rem 1fr 4rem 1fr 42px;
+  grid-template-rows: 12.7rem 1fr 37px 1fr 40px;
+
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  @include respond(sm) {
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
 
   @include respond(md) {
-    grid-template-rows: 14rem 1fr 4rem 1fr 42px;
-    width: 37rem;
-    height: calc(100vh - 20.15rem);
+    grid-template-rows: 14rem 1fr 37px 1fr 42px;
+    width: 40rem;
+    height: calc(100vh - 22.5rem);
   }
 
-  @include respond(sm) {     
-    height: calc(100vh - 23.65rem);
+  @include respond(sm) {
+    height: calc(100vh - 25rem);
+    padding: 5px;
+    width: 80%;
+    min-width: 200px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  @include respond(xs) {    
-    height: calc(100vh - 25.65rem);  
-    width: 100%;
-    min-width: 100%;
-    grid-template-rows: 14.5rem 1fr 5rem 1fr 37px;
-    padding: 15px;
+  @include respond(xs) {
+    height: calc(100vh - 27rem);   
+    grid-template-rows: 14.5rem 1fr 37px 1fr 37px;
   }
 
   &__stock-data {
@@ -74,7 +86,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-   
+
   }
 
   &__neutral-stock-change {
@@ -89,7 +101,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-   
+
   }
 
   &__button-container {
@@ -138,7 +150,7 @@
   //li item 
   .trade-tile-stock-change-container {
     display: flex;
-    min-height: 29px;
+    min-height: 28px;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
@@ -170,18 +182,5 @@
     .stock-offer-change-margin-left {
       margin-left: 1rem;
     }
-  }
-}
-
-.trade-tile-margin {
-  margin-bottom: 1rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-
-  
-  @include respond(sm) {
-    margin-bottom: 2rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
   }
 }

@@ -6,10 +6,12 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow-y: auto;
 
-  @include respond(ld) {}
+  @include respond(ld) {
+
+  }
 
   @include respond(md) {
 
@@ -18,11 +20,9 @@
 
   }
 
-  &__container {
+  &__container {    
 
-    position: relative;
-    width: auto;
-    height: 100%;
+    width: auto;   
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -46,6 +46,7 @@
 
       width: 100%;
       align-items: center;
+      padding: 2rem;
 
     }
 

@@ -84,7 +84,10 @@
       align-items: center;
       padding: 0 3rem;
 
-      @include respond(sm) {
+      @include respond(sm) {      
+        position: relative;
+        min-height: 115px;
+        z-index: 1;
         left: 0;
         top: 0;
         height: 20%;
@@ -100,15 +103,18 @@
       width: 41%;
       height: 29rem;
       background-color: #858585;
-
+      
       display: flex;
       flex-direction: column;
       padding: 3rem 4rem;
-
+      
       @include respond(sm) {
+        position: relative;
         left: 0;
-        height: 32%;
-        top: 20%;
+        top: 0;
+        z-index: 1;
+        height: 20%;       
+        min-height: 185px;
         width: 100%;
       }
 
@@ -136,8 +142,11 @@
 
       @include respond(sm) {
         left: 0;
-        top: 50%;
-        height: 48%;
+        top: 0;
+        z-index: 1;
+        position: relative;     
+        height: 40%;
+        min-height: 250px;
         width: 100%;
         flex-direction: row;
       }

@@ -1,16 +1,13 @@
-import { Component, Input, NgModule, OnInit  } from '@angular/core';
-import { multi } from './data';
+import { Component, HostListener, Input, NgModule, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-linear-chart',
-  templateUrl: './linear-chart.component.html' 
+  templateUrl: './linear-chart.component.html'
 })
 
 export class LinearChartComponent implements OnInit {
 
   @Input() linearChartData;
-
-  multi: any[];
 
   // options
   legend: boolean = false;
@@ -18,12 +15,13 @@ export class LinearChartComponent implements OnInit {
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
+  showYAxisLabel: boolean = true;
   xAxisLabel: string = 'Date';
   yAxisLabel: string = 'Ballance';
   timeline: boolean = true;
-  autoScale: boolean = true;
+  autoScale: boolean = false;
+  roundDomains: boolean = true;
 
   colorScheme = {
 
@@ -32,11 +30,59 @@ export class LinearChartComponent implements OnInit {
   };
 
   constructor() {
-   
-  }
-    
-  ngOnInit(): void {     
 
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+
+    this.onChangeChartSettings(event.target.innerWidth, event.target.innerHeight);
+
+  }
+
+  ngOnInit(): void {   
+    
+    this.onChangeChartSettings(window.innerWidth, window.innerHeight);
+
+  }
+  
+  /**
+   * 
+   * @param event 
+   */
+  onChangeChartSettings(innerWidth: number, innerHeight: number): void {
+
+    
+    if(innerWidth < 768 && innerHeight < 420) {
+      
+      this.xAxis = false;
+      this.yAxis = false;
+      this.showLabels = false;
+      this.showXAxisLabel = false;
+      this.showYAxisLabel = false;
+      
+      return;
+
+    }
+
+    if (innerWidth < 768 && innerHeight > 420) {
+
+      this.xAxis = true;
+      this.yAxis = true;
+      this.showLabels = false;
+      this.showXAxisLabel = false;
+      this.showYAxisLabel = false;
+
+
+    } else if (innerWidth > 768 && innerHeight > 420) {
+
+      this.xAxis = true;
+      this.yAxis = true;
+      this.showLabels = true;
+      this.showXAxisLabel = true;
+      this.showYAxisLabel = true;
+
+    }
   }
 
   onSelect(data): void {

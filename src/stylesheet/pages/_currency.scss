@@ -13,12 +13,14 @@
   }
 
   &__header {
+
     margin-bottom: 2rem;
+    
   }
 
   &__container {
-    position: relative;
-    height: 100%;
+
+    position: relative;   
     width: 40rem;
     display: flex;
     flex-direction: column;

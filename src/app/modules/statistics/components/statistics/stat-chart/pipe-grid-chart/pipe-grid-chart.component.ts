@@ -48,15 +48,22 @@ export class PipeGridChartComponent implements OnInit {
    * @param width 
    */
   onChangeChartSize(width: number): void {
+
     if (width <= 1440 && width > 960) {
+
       this.view = [500, 400];
+      this.showLabels = true;
+
     } else if (width <= 960 && width > 800) {
-      this.view = [450, 350];
-    } else if (width <= 800 && width > 400) {
-      this.view = [350, 200];
-    } else if (width <= 400) {
-      this.view = [300, 200];
-    }
+
+      this.view = [430, 350];
+      this.showLabels = true;
+
+    } else if (width <= 800 ) {
+
+      this.view = [450, 200];
+      this.showLabels = false;
+    } 
   }
 
   /**

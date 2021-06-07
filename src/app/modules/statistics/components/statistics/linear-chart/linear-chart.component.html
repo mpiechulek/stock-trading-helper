@@ -1,4 +1,4 @@
-<article class="linear-chart-container "> 
+<article class="linear-chart-container"> 
 
   <h1 class="statistics-header">Linear chart of profit/lose gross value</h1>
 
@@ -13,7 +13,8 @@
       [yAxisLabel]="yAxisLabel"
       [timeline]="timeline"
       [results]="linearChartData"
-      [autoScale]="autoScale" 
+      [autoScale]="autoScale"
+      [roundDomains]="roundDomains" 
 
       (select)="onSelect($event)"
       (activate)="onActivate($event)"
