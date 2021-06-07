@@ -65,7 +65,7 @@
     @include respond(sm) {
 
       width:90%;      
-      
+
     }
 
       .theme-wrapper {
@@ -116,8 +116,11 @@
         transition: all 0.2s ease;
 
         &:not(last-child) {
+
           margin-bottom: 2rem;
+          
         }
+
       }
 
       .sidenav-link {
