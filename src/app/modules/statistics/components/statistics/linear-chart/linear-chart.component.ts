@@ -20,7 +20,8 @@ export class LinearChartComponent implements OnInit {
   xAxisLabel: string = 'Date';
   yAxisLabel: string = 'Ballance';
   timeline: boolean = true;
-  autoScale: boolean = true;
+  autoScale: boolean = false;
+  roundDomains: boolean = true;
 
   colorScheme = {
 
