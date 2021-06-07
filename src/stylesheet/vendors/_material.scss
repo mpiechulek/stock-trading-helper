@@ -12,7 +12,14 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 /*  Styling mat select in language choice */
 .language-wrapper mat-form-field {
   margin-left: 1rem;
-  width: 5rem;
+  width: 5rem;  
+
+  @include respond(sm) {
+
+      width: 6rem;  
+
+  }
+
 }
 
 .language-wrapper .mat-select-value {
@@ -30,9 +37,9 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 //global font size change for material form fields
 .mat-form-field {
 
-  @include respond(xs) {
+  @include respond(sm) {
 
-    font-size: 2rem;
+    font-size: 2.3rem;
 
   }
 
