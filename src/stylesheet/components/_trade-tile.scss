@@ -11,24 +11,34 @@
   // grid-template-rows: 2fr 5fr 1fr 5fr 1fr;
   grid-template-rows: 12.7rem 1fr 37px 1fr 42px;
 
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  @include respond(sm) {
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
   @include respond(md) {
     grid-template-rows: 14rem 1fr 37px 1fr 42px;
     width: 40rem;
     height: calc(100vh - 22.5rem);
   }
 
-  @include respond(sm) {     
+  @include respond(sm) {
     height: calc(100vh - 25rem);
     padding: 5px;
-    margin-right: 10px;
+    width: 80%;
+    min-width: 200px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  @include respond(xs) {    
-    height: calc(100vh - 27rem);  
-    width: 100%;
-    min-width: 100%;
+  @include respond(xs) {
+    height: calc(100vh - 27rem);   
     grid-template-rows: 14.5rem 1fr 37px 1fr 37px;
-    padding: 15px;
   }
 
   &__stock-data {
@@ -76,7 +86,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-   
+
   }
 
   &__neutral-stock-change {
@@ -91,7 +101,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-   
+
   }
 
   &__button-container {
@@ -172,18 +182,5 @@
     .stock-offer-change-margin-left {
       margin-left: 1rem;
     }
-  }
-}
-
-.trade-tile-margin {
-  margin-bottom: 1rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-
-  
-  @include respond(sm) {
-    margin-bottom: 2rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
   }
 }
