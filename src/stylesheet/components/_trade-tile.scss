@@ -75,10 +75,10 @@
   }
 
   &__positive-stock-change {
-    overflow-y: auto;
+    overflow-y: scroll;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 
   }
 
