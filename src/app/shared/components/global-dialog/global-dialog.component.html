@@ -1,9 +1,11 @@
 <div class="global-dialog">
 
-    <h1 class="global-dialog__header modal-dialog-header-text" >Delete Stock</h1>
+    <h1 class="global-dialog__header modal-dialog-header-text" >{{data.header | translate }}</h1>
 
     <div class="global-dialog__text">
-        <p class="modal-dialog-text">Are you sure, you want to delete the stock?</p>
+     
+        <p class="modal-dialog-text">{{data.description | translate }}</p>        
+       
     </div>
 
 
@@ -13,9 +15,11 @@
             mat-raised-button
             type="button"
             color="warn"
-            (click)="onDelete()"
+            (click)="onConfirm()"
+
         >
-            Yes
+            {{'trade.confirmButtonText' | translate }}
+            
         </button>
     
         <button 
@@ -23,9 +27,12 @@
             type="button"
             (click)="onCancel()"
         >
-           No
+
+            {{'trade.declineButtonText' | translate }}
+
         </button>
 
     </div>
 
 </div>
+

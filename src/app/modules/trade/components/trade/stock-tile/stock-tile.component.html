@@ -51,7 +51,7 @@
             (click)="onSavePickedOfferData()"
             [disabled]="saveButtonDisabled"
         >
-           Save
+        {{'trade.saveButtonText' | translate}}
         </button>
 
         <button 
@@ -60,7 +60,7 @@
             mat-raised-button
             (click)="onSellStock()"
         >
-           Sell
+        {{'trade.sellButtonText' | translate}}
         </button>
 
         <button 
@@ -69,7 +69,7 @@
             (click)="onFindSelectedOffer()"
             [disabled]="!getOfferMarker && !getOfferId"
         >
-            Find
+            {{'trade.findButtonText' | translate}}
         </button>
     </div>
-
+ 

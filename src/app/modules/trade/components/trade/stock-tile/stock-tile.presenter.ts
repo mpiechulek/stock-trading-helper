@@ -50,7 +50,7 @@ export class StockTilePresenterService {
 
   constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
- // ===========================================================================
+  // ===========================================================================
 
   ngOnInit() {
 
@@ -84,14 +84,41 @@ export class StockTilePresenterService {
    * @param object 
    */
   convertStringObjectElementsToNumber(stockTileData: StockTileModel) {
-    let newObject = {} as StockTileNumericModel;
+
+    let newObject = {} as StockTileNumericModel;    
+
+    if (stockTileData.taxRate === '') {
+
+      stockTileData.taxRate = '0';
+
+    }
+
+    if (stockTileData.minCommission === '') {
+
+      stockTileData.minCommission = '0';
+
+    }
+
+
+    if (stockTileData.commission === '') {
+
+      stockTileData.commission = '0';
+
+    }
+
 
     for (let [key, value] of Object.entries(stockTileData)) {
 
       if (value === null) {
+
         newObject[key] = value;
-      } else if (!isNaN(value)) {
+
+      }
+
+      if (!isNaN(value)) {
+
         newObject[key] = parseFloat(value);
+
       }
     }
 
@@ -291,9 +318,9 @@ export class StockTilePresenterService {
       this.loseQuotesHolder = result;
 
       this.loseQuotes.next(result);
-      
+
     }
-    
+
     return;
   }
 

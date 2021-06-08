@@ -97,18 +97,9 @@ export class TradeContainerComponent implements OnInit {
    * 
    * @param value 
    */
-  savePickedOffer(value: StockMarkerSaveDataModel):void {
+  savePickedOffer(value: StockMarkerSaveDataModel): void {
     this.stockTradeBoardService.savePickedOfferToStockData(value);
   }
-
-  /**
-   * 
-   */
-  sellStock(stockSellData: StockSellModel):void {   
-    this.stockTradeBoardService.sellStock(stockSellData);
-
-  }
-
 
   // ===========================================================================
   // ==================== Angular material form dialog triggering ==============
@@ -212,11 +203,11 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
-    // How to translate this :/??   
-    // dialogConfig.data = {
-    //   header: "Delete Stock",     
-    //   description: "Are you sure, you want to delete the stock?"  
-    // }
+    
+    dialogConfig.data = {
+      header: 'trade.deleteConfirmDialogHeader',     
+      description: 'trade.deleteConfirmDialogText' 
+    }     
 
     // Initializing dialog
     const modalDialog = this.matDialog
@@ -231,11 +222,55 @@ export class TradeContainerComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param tileId 
-   */
+  * 
+  * @param tileId 
+  */
   deleteStockTileData(tileId: string): void {
     this.stockTradeBoardService.deletePositionFromBoard(tileId);
   }
+
+  /**
+   * Deleting a stock by id 
+   * Opening global dialog to confirm the deletion
+   * if true then call the delete method
+   * @param tileId 
+   */
+  openFormDialogSell(stockSellData: StockSellModel): void {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+ 
+    dialogConfig.data = {
+      header: 'trade.sellConfirmDialogHeader',     
+      description: 'trade.sellConfirmDialogText' 
+    }
+
+    // Initializing dialog
+    const modalDialog = this.matDialog
+      .open(GlobalDialogComponent, dialogConfig);
+
+    // Receive data from dialog
+    modalDialog.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.sellStock(stockSellData);
+
+      }
+    });
+  }
+
+  /**
+   * 
+   * @param stockSellData 
+   */
+  sellStock(stockSellData: StockSellModel): void {
+
+    this.stockTradeBoardService.sellStock(stockSellData);
+
+  }
+
 
 }

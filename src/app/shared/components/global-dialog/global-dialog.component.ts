@@ -16,7 +16,7 @@ export class GlobalDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDelete(): void {
+  onConfirm(): void {
     this.dialogRef.close(true);
   }
 

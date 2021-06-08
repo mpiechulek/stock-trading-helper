@@ -6,8 +6,10 @@
         "navBarCurrency": "Currency",
         "navBarStatistics": "Statistics",
         "navBarCalendar": "Calendar",
+
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Settings:",
+        
         "gridComponentOneHeader": "Money",
         "gridComponentTwoHeader": "Strategy",
         "gridComponentThreeHeader": "Knowledge",
@@ -15,6 +17,7 @@
         "gridComponentThreeText": "“We can have all the knowledge in the world, but it means nothing without the wisdom to know what to do with it.”",
         "gridComponentTwoAuthor":"- Mark Zuckerberg",
         "gridComponentThreeAuthor":"- Marie Osmond",
+
         "dayMonday": "Monday",
         "dayTuesday": "Tuesday",
         "dayWednesday": "Wednesday",
@@ -22,5 +25,42 @@
         "dayFriday": "Friday",
         "daySaturday": "Saturday",
         "daySunday": "Sunday"
+    },
+    "trade": {       
+        "addButtonText": "Add",
+        "confirmButtonText": "Yes",
+        "declineButtonText": "No",
+        "saveButtonText": "Save", 
+        "findButtonText": "Find", 
+        "clearButtonText": "Clear",     
+        "sellButtonText": "Sell",
+
+        "entireDialogFormHeaderEdit": "Edit stock",
+        "entireDialogFormHeaderAdd": "Add stock",
+        "entireDialogFormName": "* Enter company name",
+        "entireDialogFormQuantity": "* Number of shares",
+        "entireDialogFormBuyPrice": "* Buy price",
+        "entireDialogFormTax": "Tax rate %",
+        "entireDialogFormCommission": "Brokers commission %",
+        "entireDialogFormMinCommission": "Min. commission",
+        "entireDialogFormOfferNumber": "Number of offers",
+        "entireDialogFormPercentageStep": "Percentage step",
+
+        "entireDialogFormErrorMessageName": "Company name is required.",
+        "entireDialogFormErrorMessageQuantity": "Number of shares is required.",
+        "entireDialogFormErrorMessageBuyPrice": "  Buy price is required",
+
+        "tileHeaderBuyPrice": "Buy price",
+        "tileHeaderBuyValue": "Buy value",
+        "tileHeaderQuantity": "Quantity",
+        "tileHeaderCurrentPrice": "Cur. price",
+        "tileHeaderCurrentValue": "Cur. value",
+        "tileHeaderProfitBeforeTax": "Bef. tax",        
+        
+        "sellConfirmDialogHeader": "Sell stock",
+        "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
+        "deleteConfirmDialogHeader": "Delete stock",
+        "deleteConfirmDialogText": "Are you sure, you want to delete this stock?"       
     }
 }
+

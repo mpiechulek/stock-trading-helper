@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
     // margin-right: 10rem;
 
     @include respond(xld) {
