@@ -5,9 +5,15 @@
 
 </button>
 
-<h1 class="modal-dialog-header-text  trade-entry-form__header" *ngIf="dialogState == formState.Add">Add Stock</h1>  
+<h1 class="modal-dialog-header-text  trade-entry-form__header" 
+    *ngIf="dialogState == formState.Add">
+    {{'trade.entireDialogFormHeaderAdd' | translate}}
+</h1>  
 
-<h1 class="modal-dialog-header-text  trade-entry-form__header" *ngIf="dialogState == formState.Edit">Edit Stock</h1>   
+<h1 class="modal-dialog-header-text  trade-entry-form__header" 
+    *ngIf="dialogState == formState.Edit">
+    {{'trade.entireDialogFormHeaderEdit' | translate}}
+</h1>   
 
 <form class="trade-entry-form" [formGroup]="entryStockForm" (submit)="onSubmitDialog()">
 
@@ -17,7 +23,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">* Enter company name</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormName' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="companyName"> 
 
@@ -33,7 +39,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">* Number of shares </mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormQuantity' | translate}}</mat-label>
 
             <input matInput type="number" formControlName="amountOfShares">  
 
@@ -59,7 +65,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">* Buy price</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormBuyPrice' | translate}}</mat-label>
             
             <input matInput type="text" formControlName="buyPrice" appNumberDigit>            
            
@@ -75,7 +81,7 @@
 
         <mat-form-field id="trade-dialog-form">
         
-            <mat-label id="trade-dialog-form">Tax rate %</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormTax' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="taxRate" appNumberDigit>  
 
@@ -89,7 +95,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">Brokers commission %</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormCommission' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="commission" appNumberDigit>  
 
@@ -99,7 +105,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">Min. brokers commission</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormMinCommission' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="minCommission" appNumberDigit>    
 
@@ -112,7 +118,7 @@
         <!-- Number of calculation steps -->
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">Number of offers</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormOfferNumber' | translate}}</mat-label>
 
             <input matInput type="number" formControlName="calcStepCount">   
 
@@ -128,7 +134,7 @@
 
         <mat-form-field id="trade-dialog-form">
 
-            <mat-label id="trade-dialog-form">Percentage step</mat-label>
+            <mat-label id="trade-dialog-form">{{'trade.entireDialogFormPercentageStep' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="calcStepValue" appNumberDigit>  
 
@@ -152,9 +158,9 @@
             color="primary"           
             [disabled]="entryStockForm.invalid"
         >
-           <span  *ngIf="dialogState == formState.Add">ADD</span>
+           <span  *ngIf="dialogState == formState.Add"> {{'trade.addButtonText' | translate}}</span>
 
-           <span  *ngIf="dialogState == formState.Edit">SAVE</span>   
+           <span  *ngIf="dialogState == formState.Edit"> {{'trade.saveButtonText' | translate}}</span>   
 
         </button>
 
@@ -162,7 +168,7 @@
 
         <!-- clear -->
 
-        <button mat-raised-button type="button" (click)="onClearForm()">Clear</button>
+        <button mat-raised-button type="button" (click)="onClearForm()">{{'trade.clearButtonText' | translate}}</button>
 
     </div>
 

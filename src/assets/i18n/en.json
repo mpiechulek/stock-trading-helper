@@ -6,8 +6,10 @@
         "navBarCurrency": "Currency",
         "navBarStatistics": "Statistics",
         "navBarCalendar": "Calendar",
+
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Settings:",
+        
         "gridComponentOneHeader": "Money",
         "gridComponentTwoHeader": "Strategy",
         "gridComponentThreeHeader": "Knowledge",
@@ -15,6 +17,7 @@
         "gridComponentThreeText": "“We can have all the knowledge in the world, but it means nothing without the wisdom to know what to do with it.”",
         "gridComponentTwoAuthor":"- Mark Zuckerberg",
         "gridComponentThreeAuthor":"- Marie Osmond",
+
         "dayMonday": "Monday",
         "dayTuesday": "Tuesday",
         "dayWednesday": "Wednesday",
@@ -29,9 +32,11 @@
         "declineButtonText": "No",
         "saveButtonText": "Save", 
         "findButtonText": "Find", 
-        "clearButtonText": "Clear",
+        "clearButtonText": "Clear",     
         "sellButtonText": "Sell",
 
+        "entireDialogFormHeaderEdit": "Edit stock",
+        "entireDialogFormHeaderAdd": "Add stock",
         "entireDialogFormName": "*Enter company name",
         "entireDialogFormQuantity": "*Number of shares",
         "entireDialogFormBuyPrice": "*Buy price",
@@ -46,7 +51,7 @@
         "tileHeaderQuantity": "Quantity",
         "tileHeaderCurrentPrice": "Cur. price",
         "tileHeaderCurrentValue": "Cur. value",
-        "tileHeaderProfitBeforeTax": "Bef. tax",
+        "tileHeaderProfitBeforeTax": "Bef. tax",        
         
         "sellConfirmDialogHeader": "Sell stock",
         "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",

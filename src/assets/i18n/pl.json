@@ -6,8 +6,10 @@
         "navBarCurrency": "Waluty",
         "navBarStatistics": "Statystyki",
         "navBarCalendar": "Kalendarz",
+
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Ustawienia:",
+
         "gridComponentOneHeader": "Kapitał",
         "gridComponentTwoHeader": "Strategia",
         "gridComponentThreeHeader": "Wiedza",
@@ -15,6 +17,7 @@
         "gridComponentThreeText": "“Możemy mieć całą wiedzę świata, ale to nic nie znaczy bez mądrości, by wiedzieć, co z nią zrobić.”",
         "gridComponentTwoAuthor":"- Mark Zuckerberg",
         "gridComponentThreeAuthor":"- Marie Osmond",
+
         "dayMonday": "Poniedziałek",
         "dayTuesday": "Wtorek",
         "dayWednesday": "Środa",
@@ -31,7 +34,9 @@
         "findButtonText": "Znajdź", 
         "clearButtonText": "Wyczyść",
         "sellButtonText": "Sprzedaj",
-
+        
+        "entireDialogFormHeaderEdit": "Edytuj spółkę",
+        "entireDialogFormHeaderAdd": "Dodaj spółkę",
         "entireDialogFormName": "*Wprowadź nazwę spółki",
         "entireDialogFormQuantity": "*Ilość udziałow",
         "entireDialogFormBuyPrice": "*Cena kupna",
