@@ -30,6 +30,7 @@
         "saveButtonText": "Save", 
         "findButtonText": "Find", 
         "clearButtonText": "Clear",
+        "sellButtonText": "Sell",
 
         "entireDialogFormName": "*Enter company name",
         "entireDialogFormQuantity": "*Number of shares",

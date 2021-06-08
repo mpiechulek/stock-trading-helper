@@ -30,6 +30,7 @@
         "saveButtonText": "Zapisz", 
         "findButtonText": "Znajdź", 
         "clearButtonText": "Wyczyść",
+        "sellButtonText": "Sprzedaj",
 
         "entireDialogFormName": "*Wprowadź nazwę spółki",
         "entireDialogFormQuantity": "*Ilość udziałow",

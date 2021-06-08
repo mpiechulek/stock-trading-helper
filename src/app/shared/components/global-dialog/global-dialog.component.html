@@ -16,8 +16,10 @@
             type="button"
             color="warn"
             (click)="onConfirm()"
+
         >
-            Yes
+            {{'trade.confirmButtonText' | translate }}
+            
         </button>
     
         <button 
@@ -25,9 +27,12 @@
             type="button"
             (click)="onCancel()"
         >
-           No
+
+            {{'trade.declineButtonText' | translate }}
+
         </button>
 
     </div>
 
 </div>
+
