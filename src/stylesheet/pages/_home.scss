@@ -22,6 +22,7 @@
 
     margin-top: 2rem;
     align-items: flex-start;
+    overflow-y: auto;
 
   }
 
@@ -146,7 +147,7 @@
         z-index: 1;
         position: relative;     
         height: 40%;
-        min-height: 250px;
+        min-height: 235px;
         width: 100%;
         flex-direction: row;
       }

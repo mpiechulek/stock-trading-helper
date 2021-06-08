@@ -1,6 +1,10 @@
 .trade-entry-form {
   position: relative;
 
+  @include respond(md) {
+   
+  }
+
   &__close-btn {
     position: absolute;
     top: 20px;

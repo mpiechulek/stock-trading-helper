@@ -203,11 +203,11 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
-    // How to translate this :/??   
-    // dialogConfig.data = {
-    //   header: "Delete Stock",     
-    //   description: "Are you sure, you want to delete the stock?"  
-    // }
+    
+    dialogConfig.data = {
+      header: "Delete Stock",     
+      description: "Are you sure, you want to delete the stock?"  
+    }
 
     // Initializing dialog
     const modalDialog = this.matDialog
@@ -238,14 +238,14 @@ export class TradeContainerComponent implements OnInit {
   openFormDialogSell(stockSellData: StockSellModel): void {
 
     const dialogConfig = new MatDialogConfig();
-    
+
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
     // How to translate this :/??   
     dialogConfig.data = {
       header: "Sell stock",
-      description: "Are you sure, you want to sell your stock?"
+      description: `Are you sure, you want to sell your  "${stockSellData.companyName}"  stock shares?`
     }
 
     // Initializing dialog
