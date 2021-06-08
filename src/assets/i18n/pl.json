@@ -61,5 +61,14 @@
         "sellConfirmDialogText": "Czy na pewno chcesz sprzedać swoje akcje?",
         "deleteConfirmDialogHeader": "Usuń spółkę",
         "deleteConfirmDialogText": "Czy na pewno chcesz usunąć spółkę?"       
+    },
+    "calculator": {  
+        "calculatorFormHeader": "Dodaj dane giełdowe do obliczeń", 
+        "calculatorFormBuyPrice": "* Cena kupna", 
+        "calculatorFormQuantity": "* Ilość udziałów", 
+        "calculatorFormSellPrice": "* Cena sprzedaży", 
+        "calculatorFormTaxRate": "* Stopa podatkowa %", 
+        "calculatorFormCommission": "* Prowizja maklerska %", 
+        "calculatorFormMinCommission": "* Min. prowizja"
     }
 }

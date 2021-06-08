@@ -61,6 +61,15 @@
         "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
         "deleteConfirmDialogHeader": "Delete stock",
         "deleteConfirmDialogText": "Are you sure, you want to delete this stock?"       
+    },
+    "calculator": {  
+        "calculatorFormHeader": "Add stock data for calculations", 
+        "calculatorFormBuyPrice": "* BuyPrice", 
+        "calculatorFormQuantity": "* Number of shares", 
+        "calculatorFormSellPrice": "* Sell price", 
+        "calculatorFormTaxRate": "* Tax rate", 
+        "calculatorFormCommission": "* Commission", 
+        "calculatorFormMinCommission": "* Min. Commission"
     }
 }
 
