@@ -29,14 +29,14 @@
 
             <mat-error *ngIf="companyName.dirty || companyName.touched">
 
-                A company name is required.
+                {{'trade.entireDialogFormErrorMessageName' | translate}}
 
             </mat-error>     
 
         </mat-form-field>
 
         <!-- Number of shares -->
-
+       
         <mat-form-field id="trade-dialog-form">
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormQuantity' | translate}}</mat-label>
@@ -51,7 +51,7 @@
 
             <mat-error *ngIf="amountOfShares.touched && !amountOfShares.hasError('pattern')">
 
-                Number of shares is required.
+                {{'trade.entireDialogFormErrorMessageQuantity' | translate}}
 
             </mat-error>      
 
@@ -71,7 +71,7 @@
                        
             <mat-error *ngIf="buyPrice.touched">
 
-               Buy price is required
+                  {{'trade.entireDialogFormErrorMessageBuyPrice' | translate}}
 
             </mat-error>    
         

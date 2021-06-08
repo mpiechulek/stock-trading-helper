@@ -37,14 +37,18 @@
         
         "entireDialogFormHeaderEdit": "Edytuj spółkę",
         "entireDialogFormHeaderAdd": "Dodaj spółkę",
-        "entireDialogFormName": "*Wprowadź nazwę spółki",
-        "entireDialogFormQuantity": "*Ilość udziałow",
-        "entireDialogFormBuyPrice": "*Cena kupna",
+        "entireDialogFormName": "* Wprowadź nazwę spółki",
+        "entireDialogFormQuantity": "* Ilość udziałów",
+        "entireDialogFormBuyPrice": "* Cena kupna",
         "entireDialogFormTax": "Stopa podatkowa %",
         "entireDialogFormCommission": "Prowizja maklerska %",
         "entireDialogFormMinCommission": "Min. prowizja",
         "entireDialogFormOfferNumber": "Ilość ofert",
         "entireDialogFormPercentageStep": "Krok zmiany",
+
+        "entireDialogFormErrorMessageName": "Nazwa spółki jest wymagana",
+        "entireDialogFormErrorMessageQuantity": "Liczba akcji jest wymagana",
+        "entireDialogFormErrorMessageBuyPrice": "Cena kupna jest wymagana",
 
         "tileHeaderBuyPrice": "Cena kupna",
         "tileHeaderBuyValue": "Wartość kupna",
@@ -56,6 +60,6 @@
         "sellConfirmDialogHeader": "Sprzedaj akcje",
         "sellConfirmDialogText": "Czy na pewno chcesz sprzedać swoje akcje?",
         "deleteConfirmDialogHeader": "Usuń spółkę",
-        "deleteConfirmDialogText": "Czy na pewno chcesz usunąć te akcje?"       
+        "deleteConfirmDialogText": "Czy na pewno chcesz usunąć spółkę?"       
     }
 }
