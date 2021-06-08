@@ -1,6 +1,6 @@
 <div class="trade-tile__stock-data">
 
-    <div class="trade-tile-stock-header-container"> 
+    <div class="trade-tile-stock-header-container">
 
         <h2 class="trade-tile-stock-name-text ">{{stockElement?.companyName}}</h2>
 
@@ -15,52 +15,48 @@
             <button class="btn trade-tile-header-margin-left" (click)="onDeleteTile()">
 
                 <svg class="icon icon--close"></svg>
-                
-            </button>
-            
-        </div>
 
+            </button>
+
+        </div>
+        
     </div>
 
     <div class="trade-tile-stock-header-container">
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Buy price</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderBuyPrice' | translate}}</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.buyPrice}}</p>
         </div>
-        
+
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Buy Value</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderBuyValue' | translate}}</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.buyValue}}</p>
         </div>
-        
+
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Quantity</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderQuantity' | translate}}</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{stockElement?.amountOfShares}}</p>
         </div>
     </div>
 
     <div class="trade-tile-stock-header-container">
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Cur.Price</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderCurrentPrice' | translate}}</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.currentPrice}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Cur. Value</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderCurrentValue' | translate}}</p>
             <p class="trade-tile-stock-text trade-tile-stock-text--ld">{{headerCalculations?.currentValue}}</p>
         </div>
 
         <div class="trade-tile-stock-header-wrapper">
-            <p class="trade-tile-stock-text">Bef.tax</p>
+            <p class="trade-tile-stock-text">{{'trade.tileHeaderProfitBeforeTax' | translate}}</p>
 
-            <p 
-               class="trade-tile-stock-text trade-tile-stock-text--ld"
-               [ngClass]="{
+            <p class="trade-tile-stock-text trade-tile-stock-text--ld" [ngClass]="{
                    'trade-tile-stock-text--green': headerCalculations?.profitBeforeTax > 1,
                    'trade-tile-stock-text--red': headerCalculations?.profitBeforeTax < 1
-                }"
-
-            >
+                }">
                 {{headerCalculations?.profitBeforeTax}}
             </p>
 

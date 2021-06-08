@@ -22,5 +22,18 @@
         "dayFriday": "Friday",
         "daySaturday": "Saturday",
         "daySunday": "Sunday"
+    },
+    "trade": {
+        "tileHeaderBuyPrice": "Buy price",
+        "tileHeaderBuyValue": "Buy value",
+        "tileHeaderQuantity": "Quantity",
+        "tileHeaderCurrentPrice": "Cur. price",
+        "tileHeaderCurrentValue": "Cur. value",
+        "tileHeaderProfitBeforeTax": "Bef. tax",
+        "sellConfirmDialogHeader": "Sell stock",
+        "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
+        "deleteConfirmDialogHeader": "Delete stock",
+        "deleteConfirmDialogText": "Are you sure, you want to delete this stock?"       
     }
 }
+

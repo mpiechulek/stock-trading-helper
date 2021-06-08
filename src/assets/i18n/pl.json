@@ -22,5 +22,17 @@
         "dayFriday": "Piątek",
         "daySaturday": "Sobota",
         "daySunday": "Niedziela"
+    },
+    "trade": {
+        "tileHeaderBuyPrice": "Cena kupna",
+        "tileHeaderBuyValue": "Wartość kupna",
+        "tileHeaderQuantity": "Ilość",
+        "tileHeaderCurrentPrice": "Cena akt.",
+        "tileHeaderCurrentValue": "Wartość akt.",
+        "tileHeaderProfitBeforeTax": "Zysk brutto",
+        "sellConfirmDialogHeader": "Sprzedaj akcje",
+        "sellConfirmDialogText": "Czy na pewno chcesz sprzedać swoje akcje?",
+        "deleteConfirmDialogHeader": "Usuń spółkę",
+        "deleteConfirmDialogText": "Czy na pewno chcesz usunąć te akcje?"       
     }
 }

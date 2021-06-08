@@ -24,6 +24,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { OneOfferLooseComponent } from './components/trade/stock-tile/losses-list/one-offer-loose/one-offer-loose.component';
 import { ProfitListComponent } from './components/trade/stock-tile/profit-list/profit-list.component';
 import { LossesListComponent } from './components/trade/stock-tile/losses-list/losses-list.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,21 @@ import { LossesListComponent } from './components/trade/stock-tile/losses-list/l
     MatInputModule,
     SharedModule,
     MatRadioModule,
-    ScrollingModule
-  ]
+    ScrollingModule,
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateModule,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })   
+  ],
+  providers: [TranslateService]
 })
 export class TradeModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

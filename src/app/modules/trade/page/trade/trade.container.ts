@@ -205,9 +205,9 @@ export class TradeContainerComponent implements OnInit {
 
     
     dialogConfig.data = {
-      header: "Delete Stock",     
-      description: "Are you sure, you want to delete the stock?"  
-    }
+      header: 'trade.deleteConfirmDialogHeader',     
+      description: 'trade.deleteConfirmDialogText' 
+    }     
 
     // Initializing dialog
     const modalDialog = this.matDialog
@@ -241,11 +241,10 @@ export class TradeContainerComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
-
-    // How to translate this :/??   
+ 
     dialogConfig.data = {
-      header: "Sell stock",
-      description: `Are you sure, you want to sell your  "${stockSellData.companyName}"  stock shares?`
+      header: 'trade.sellConfirmDialogHeader',     
+      description: 'trade.sellConfirmDialogText' 
     }
 
     // Initializing dialog

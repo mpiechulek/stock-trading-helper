@@ -1,11 +1,11 @@
 <div class="global-dialog">
 
-    <h1 class="global-dialog__header modal-dialog-header-text" >{{data.header}}</h1>
+    <h1 class="global-dialog__header modal-dialog-header-text" >{{data.header | translate }}</h1>
 
     <div class="global-dialog__text">
-
-        <p class="modal-dialog-text">{{data.description}}</p>
-        
+     
+        <p class="modal-dialog-text">{{data.description | translate }}</p>        
+       
     </div>
 
 
@@ -15,7 +15,7 @@
             mat-raised-button
             type="button"
             color="warn"
-            (click)="onDelete()"
+            (click)="onConfirm()"
         >
             Yes
         </button>
