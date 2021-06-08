@@ -24,12 +24,29 @@
         "daySunday": "Niedziela"
     },
     "trade": {
+        "addButtonText": "Dodaj",
+        "confirmButtonText": "Tak",
+        "declineButtonText": "Nie",
+        "saveButtonText": "Zapisz", 
+        "findButtonText": "Znajdź", 
+        "clearButtonText": "Wyczyść",
+
+        "entireDialogFormName": "*Wprowadź nazwę spółki",
+        "entireDialogFormQuantity": "*Ilość udziałow",
+        "entireDialogFormBuyPrice": "*Cena kupna",
+        "entireDialogFormTax": "Stopa podatkowa %",
+        "entireDialogFormCommission": "Prowizja maklerska %",
+        "entireDialogFormMinCommission": "Min. prowizja",
+        "entireDialogFormOfferNumber": "Ilość ofert",
+        "entireDialogFormPercentageStep": "Krok zmiany",
+
         "tileHeaderBuyPrice": "Cena kupna",
         "tileHeaderBuyValue": "Wartość kupna",
         "tileHeaderQuantity": "Ilość",
         "tileHeaderCurrentPrice": "Cena akt.",
         "tileHeaderCurrentValue": "Wartość akt.",
         "tileHeaderProfitBeforeTax": "Zysk brutto",
+
         "sellConfirmDialogHeader": "Sprzedaj akcje",
         "sellConfirmDialogText": "Czy na pewno chcesz sprzedać swoje akcje?",
         "deleteConfirmDialogHeader": "Usuń spółkę",

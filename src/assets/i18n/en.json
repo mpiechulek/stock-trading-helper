@@ -23,13 +23,30 @@
         "daySaturday": "Saturday",
         "daySunday": "Sunday"
     },
-    "trade": {
+    "trade": {       
+        "addButtonText": "Add",
+        "confirmButtonText": "Yes",
+        "declineButtonText": "No",
+        "saveButtonText": "Save", 
+        "findButtonText": "Find", 
+        "clearButtonText": "Clear",
+
+        "entireDialogFormName": "*Enter company name",
+        "entireDialogFormQuantity": "*Number of shares",
+        "entireDialogFormBuyPrice": "*Buy price",
+        "entireDialogFormTax": "Tax rate %",
+        "entireDialogFormCommission": "Brokers commission %",
+        "entireDialogFormMinCommission": "Min. commission",
+        "entireDialogFormOfferNumber": "Number of offers",
+        "entireDialogFormPercentageStep": "Percentage step",
+
         "tileHeaderBuyPrice": "Buy price",
         "tileHeaderBuyValue": "Buy value",
         "tileHeaderQuantity": "Quantity",
         "tileHeaderCurrentPrice": "Cur. price",
         "tileHeaderCurrentValue": "Cur. value",
         "tileHeaderProfitBeforeTax": "Bef. tax",
+        
         "sellConfirmDialogHeader": "Sell stock",
         "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
         "deleteConfirmDialogHeader": "Delete stock",
