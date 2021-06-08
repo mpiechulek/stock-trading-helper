@@ -55,7 +55,7 @@
         "tileHeaderQuantity": "Quantity",
         "tileHeaderCurrentPrice": "Cur. price",
         "tileHeaderCurrentValue": "Cur. value",
-        "tileHeaderProfitBeforeTax": "Bef. tax",        
+        "tileHeaderProfitBeforeTax": "Bef. tax",               
         
         "sellConfirmDialogHeader": "Sell stock",
         "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
@@ -83,7 +83,8 @@
         "calculatorResultGrossBuy": "Gross buy value",
         "calculatorResultGrossSell": "Gross sell value",     
         "calculatorResultProfitBefore": "Profit before tax",
-        "calculatorResultProfitAfter": "Profit after tax"
+        "calculatorResultProfitAfter": "Profit after tax",
+        "calculatorResultFormWarning": "Number value is required"
 
     }
 }

@@ -2,26 +2,7 @@
 
     <app-header></app-header>
   
-    <app-form ></app-form>
-
-    <div class="stock-advanced-calculator__button-wrapper">
-
-        <button             
-            mat-raised-button        
-        >
-            {{'calculator.calculatorFormButtonClear' | translate}}
-        </button>
-        
-        <button        
-            color="primary"
-            mat-raised-button 
-            (click)="onCalculate()"          
-        >
-           {{'calculator.calculatorFormButtonCalculate' | translate}}
-        </button>      
-
-        
-    </div>
+    <app-form ></app-form>    
 
     <app-result [formExpand]="getFormExpand"></app-result>
     

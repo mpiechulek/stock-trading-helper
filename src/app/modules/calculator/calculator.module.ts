@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatExpansionModule,
     HttpClientModule,
     TranslateModule.forChild({

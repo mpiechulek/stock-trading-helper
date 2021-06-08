@@ -1,26 +1,54 @@
-<form class="stock-advanced-calculator__form">
+<form class="stock-advanced-calculator__form" [formGroup]="getCalculatorForm" (submit)="onCalculate()">
 
     <div class="stock-advanced-calculator-form-wrapper">    
  
         <!-- Buy price -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label> {{'calculator.calculatorFormBuyPrice' | translate}} </mat-label>
-            <input matInput type="number" formControlName="amountOfShares">
+
+            <input matInput type="number" formControlName="buyPrice">
+
+            <mat-error *ngIf="buyPrice.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>    
+
         </mat-form-field>
 
         <!-- Number Of shares -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label>{{'calculator.calculatorFormQuantity' | translate}} </mat-label>
+
             <input matInput type="number" formControlName="amountOfShares">
+
+            <mat-error *ngIf="amountOfShares.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>    
+
         </mat-form-field>
 
         <!-- Sell price -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label>{{'calculator.calculatorFormSellPrice' | translate}}</mat-label>
-            <input matInput type="number" formControlName="amountOfShares">
+
+            <input matInput type="number" formControlName="sellPrice">
+
+            <mat-error *ngIf="sellPrice.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>     
+
+
         </mat-form-field>
 
     </div>
@@ -30,24 +58,71 @@
         <!-- Tax rate -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label>{{'calculator.calculatorFormTaxRate' | translate}} </mat-label>
-            <input matInput type="number" formControlName="amountOfShares">
+
+            <input matInput type="number" formControlName="taxRate">
+
+            <mat-error *ngIf="taxRate.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>     
+
         </mat-form-field>
 
         <!-- Commission -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label>{{'calculator.calculatorFormCommission' | translate}}</mat-label>
-            <input matInput type="number" formControlName="amountOfShares">
+
+            <input matInput type="number" formControlName="commission">
+
+            <mat-error *ngIf="commission.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>
+
         </mat-form-field>
 
          <!--Min. Commission -->
 
         <mat-form-field id="stock-advanced-calculator-form-field">
+
             <mat-label>{{'calculator.calculatorFormMinCommission' | translate}}</mat-label>
-            <input matInput type="number" formControlName="amountOfShares">
+
+            <input matInput type="number" formControlName="minCommission">
+
+            <mat-error *ngIf="minCommission.dirty">
+
+                {{'calculator.calculatorResultFormWarning' | translate}}              
+
+            </mat-error>
+
+
         </mat-form-field>
         
+    </div>
+
+    <div class="stock-advanced-calculator__button-wrapper">
+
+        <button             
+            mat-raised-button  
+            (click)="onClearForm()"      
+        >
+            {{'calculator.calculatorFormButtonClear' | translate}}
+        </button>
+        
+        <button        
+            color="primary"
+            mat-raised-button 
+            (click)="onCalculate()" 
+            [disabled] = "getCalculatorForm.invalid"         
+        >
+           {{'calculator.calculatorFormButtonCalculate' | translate}}
+        </button>        
     </div>
 
 </form>

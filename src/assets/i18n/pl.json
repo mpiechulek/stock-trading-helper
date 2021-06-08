@@ -83,6 +83,7 @@
         "calculatorResultGrossBuy": "Wartość zakupu brutto",
         "calculatorResultGrossSell": "Wartość sprzedaży brutto",     
         "calculatorResultProfitBefore": "Zysk brutto",
-        "calculatorResultProfitAfter": "Zysk netto"
+        "calculatorResultProfitAfter": "Zysk netto",
+        "calculatorResultFormWarning": "Wartość liczbowa jest wymagana"
     }
 }

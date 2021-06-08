@@ -9,9 +9,7 @@
   align-items: flex-start;
   overflow-y: auto;
 
-  @include respond(ld) {
-
-  }
+  @include respond(ld) {}
 
   @include respond(md) {
 
@@ -20,9 +18,9 @@
 
   }
 
-  &__container {    
+  &__container {
 
-    width: auto;   
+    width: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -193,8 +191,10 @@
   }
 
   &__button-wrapper {
-
+    
+    width: 100%;
     margin-bottom: 2rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
