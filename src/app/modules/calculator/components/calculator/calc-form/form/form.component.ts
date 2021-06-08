@@ -134,6 +134,12 @@ export class FormComponent implements OnInit {
 
         );
 
+        // for(let element in this.calculatorForm.value) {
+
+        //     element : parseInt(this.calculatorForm.value[element]);
+
+        // }       
+
         // this.formPresenterService
 
         return;

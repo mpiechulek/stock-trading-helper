@@ -80,7 +80,7 @@ mat-label#trade-dialog-form {
 // Calculator form 
 
 mat-form-field#stock-advanced-calculator-form-field {
-
+  color: var(--color-text-form);
   width: 12rem;
 
   @include respond(sm) {
