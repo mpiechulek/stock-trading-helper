@@ -5,7 +5,9 @@
         <mat-expansion-panel-header>
 
             <mat-panel-description>
-                Result
+
+                {{'calculator.calculatorResultResult' | translate}}
+
             </mat-panel-description>
 
         </mat-expansion-panel-header>
@@ -14,62 +16,63 @@
 
             <div class="stock-advanced-calculator__result">
 
-                <!-- 1. Buy Value -->
+                <!-- 1. net Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net buy Value</p>
+                    <p class="">{{'calculator.calculatorResultNetBuyValue' | translate}}</p>
                     <p class="">{{2000}}</p>
                 </div>
 
-                <!-- 2. Buy Value -->
+                <!-- 2. Gross Buy Value -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Net sell Value</p>
-                    <p class="">{{2150}}</p>
-                </div>
-
-                <!-- 3. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Buy commission</p>
-                    <p class="">{{6.58}}</p>
-                </div>
-
-                <!-- 4. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Sell commission</p>
-                    <p class="">{{7.25}}</p>
-                </div>
-
-                <!-- 5. Buy Value -->
-
-                <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Gross buy Value</p>
+                    <p class="">{{'calculator.calculatorResultGrossBuy' | translate}}</p>
                     <p class="">{{2006.58}}</p>
                 </div>
 
-                <!-- 6. Buy Value -->
+                <!-- 3. Buy commission -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Gross sell Value</p>
-                    <p class="">{{2142.25}}</p>
+                    <p class="">{{'calculator.calculatorResultResultBuyCommission' | translate}}</p>
+                    <p class="">{{6.58}}</p>
                 </div>
 
-                <!-- 7. Buy Value -->
+                <!-- 4. Sell commission -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Profit before tax.</p>
+                    <p class="">{{'calculator.calculatorResultSellCommission' | translate}}</p>
+                    <p class="">{{6.58}}</p>
+                </div>
+
+
+                <!-- 5. Gross sell value -->
+
+                <div class="stock-advanced-calculator-result-wrapper">
+                    <p class="">{{'calculator.calculatorResultGrossSell' | translate}}</p>
+                    <p class="">{{2000}}</p>
+                </div>
+
+                <!-- 6. Net sell value -->
+
+                <div class="stock-advanced-calculator-result-wrapper">
+                    <p class="">{{'calculator.calculatorResultNetSellValue' | translate}}</p>
+                    <p class="">{{1993.42}}</p>
+                </div>
+
+                <!-- 7. Profit before tax -->
+
+                <div class="stock-advanced-calculator-result-wrapper">
+                    <p class="">{{'calculator.calculatorResultProfitBefore' | translate}}</p>
                     <p class="">{{142.25}}</p>
                 </div>
 
-                <!-- 8. Buy Value -->
+                <!-- 8. Profit after tax -->
 
                 <div class="stock-advanced-calculator-result-wrapper">
-                    <p class="">Profit after tax.</p>
+                    <p class="">{{'calculator.calculatorResultProfitAfter' | translate}}</p>
                     <p class="">{{132.87}}</p>
                 </div>
-           
+
             </div>
 
         </ng-template>

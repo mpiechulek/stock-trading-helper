@@ -69,7 +69,22 @@
         "calculatorFormSellPrice": "* Sell price", 
         "calculatorFormTaxRate": "* Tax rate", 
         "calculatorFormCommission": "* Commission", 
-        "calculatorFormMinCommission": "* Min. Commission"
+        "calculatorFormMinCommission": "* Min. Commission",
+
+        "calculatorFormButtonClear": "Clear", 
+        "calculatorFormButtonCalculate": "Calculate",
+
+        "calculatorResultResult": "Result",
+
+        "calculatorResultNetBuyValue": "Net buy value",
+        "calculatorResultNetSellValue": "Net sell value",
+        "calculatorResultResultBuyCommission": "Buy commission",
+        "calculatorResultSellCommission": "Sell commission",
+        "calculatorResultGrossBuy": "Gross buy value",
+        "calculatorResultGrossSell": "Gross sell value",     
+        "calculatorResultProfitBefore": "Profit before tax",
+        "calculatorResultProfitAfter": "Profit after tax"
+
     }
 }
 

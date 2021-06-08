@@ -63,12 +63,26 @@
         "deleteConfirmDialogText": "Czy na pewno chcesz usunąć spółkę?"       
     },
     "calculator": {  
-        "calculatorFormHeader": "Dodaj dane giełdowe do obliczeń", 
+        "calculatorFormHeader": "Dodaj dane walorów do obliczeń", 
         "calculatorFormBuyPrice": "* Cena kupna", 
         "calculatorFormQuantity": "* Ilość udziałów", 
         "calculatorFormSellPrice": "* Cena sprzedaży", 
         "calculatorFormTaxRate": "* Stopa podatkowa %", 
         "calculatorFormCommission": "* Prowizja maklerska %", 
-        "calculatorFormMinCommission": "* Min. prowizja"
+        "calculatorFormMinCommission": "* Min. prowizja",
+
+        "calculatorFormButtonClear": "Wyczyść", 
+        "calculatorFormButtonCalculate": "Licz",
+
+        "calculatorResultResult": "Wynik",
+
+        "calculatorResultNetBuyValue": "Wartość zakupu netto",
+        "calculatorResultNetSellValue": "Wartośc sprzedaży netto",
+        "calculatorResultResultBuyCommission": "Prowizja kupna",
+        "calculatorResultSellCommission": "Prowizja sprzedaży",
+        "calculatorResultGrossBuy": "Wartość zakupu brutto",
+        "calculatorResultGrossSell": "Wartość sprzedaży brutto",     
+        "calculatorResultProfitBefore": "Zysk brutto",
+        "calculatorResultProfitAfter": "Zysk netto"
     }
 }
