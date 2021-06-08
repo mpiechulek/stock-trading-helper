@@ -6,7 +6,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: 'home',
     pathMatch:'full'
   },
   {
@@ -55,7 +55,7 @@ const routes: Routes = [
       //       m => m.CalendarDateModule
       //     )
       // },
-      { path: '**', redirectTo: '/', pathMatch: 'full' } 
+      // { path: '**', redirectTo: '/', pathMatch: 'full' } 
     ]
   }
 ];

@@ -136,13 +136,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormPercentageStep' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>  
-
-            <mat-error *ngIf="calcStepValue.hasError('pattern')">
-
-                Number of steps must be a positive number.
-
-            </mat-error>     
+            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>         
 
         </mat-form-field>
 

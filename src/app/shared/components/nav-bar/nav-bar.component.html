@@ -1,9 +1,14 @@
-<header class="header">
+<header class="header"> 
+                
 
-    <div class="header-main">
+    <a class="header-main" 
+         routerLink="home"
+         routerLinkActive="router-link-active"        
+    >
         <svg class="icon icon--header-main header-icon-margin-right"></svg>
         <h1 class="main-header-h1">Stock <span class="mian-header--span">Helper</span></h1>
-    </div>
+
+    </a>
 
     <nav class="nav-bar">
 
@@ -12,13 +17,16 @@
         <ul class="nav-bar__list">
 
             <li class="nav-list-item">
+
                 <a 
                     class="nav-bar-link"                  
                     routerLink="home"
                     routerLinkActive="router-link-active"
                 >
+
                     <svg class="icon icon--home"></svg>
                     <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarHome' | translate }}</p>
+
                 </a>
             </li>
 
