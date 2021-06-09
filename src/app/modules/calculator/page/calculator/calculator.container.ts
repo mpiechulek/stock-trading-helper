@@ -44,30 +44,53 @@ export class CalculatorContainerComponent implements OnInit {
 	 */
 	calculate(calcData: AdvanceCalculatorFormStringDataModel): void {
 
+		// converting string object to numeric object
 		const numericObject: AdvanceCalculatorFormNumberDataModel =
 			this.convertStringObjectValuesToNumber(calcData);
 
-		const netBuyValue = this.stockPriceCalculatorService
+		//======================================================================	
+
+		const netBuyValue: number = this.stockPriceCalculatorService
 			.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
 
-		const percentageCommissionValue = (netBuyValue * numericObject.commission) / 1000;
+		const percentageBuyCommissionValue: number = this.stockPriceCalculatorService
+			.calculatePercentageCommission(netBuyValue, numericObject.commission);
 
-		const buyCommission = this.stockPriceCalculatorService
-			.calculateCommissionValue(netBuyValue, percentageCommissionValue, numericObject.minCommission);
+		const buyCommission: number = this.stockPriceCalculatorService
+			.calculateCommissionValue(netBuyValue, percentageBuyCommissionValue, numericObject.minCommission);
 
-		const grossBuyValue = this.stockPriceCalculatorService
-			.calculateCommissionValue(netBuyValue, numericObject.commission, numericObject.minCommission);
+		const grossBuyValue: number = netBuyValue + buyCommission;
+
+		const grossSellValue: number = this.stockPriceCalculatorService
+			.calculateCurrentValue(numericObject.sellPrice, numericObject.amountOfShares);
+
+		const percentageSellCommissionValue: number = this.stockPriceCalculatorService
+			.calculatePercentageCommission(grossSellValue, numericObject.commission);
+
+		const sellCommission: number = this.stockPriceCalculatorService
+			.calculateCommissionValue(grossSellValue, percentageSellCommissionValue, numericObject.minCommission);
+
+		const totalCommission = this.stockPriceCalculatorService
+			.calculateTotalCommissionValue(sellCommission, buyCommission);
+
+		const netSellValue: number = grossSellValue - sellCommission;
+
+		const profitBeforeTax = this.stockPriceCalculatorService.
+			calculateProfitBeforeTax(grossSellValue, netBuyValue, totalCommission);
+
+		const profitAfterTax = this.stockPriceCalculatorService.
+			calculateProfitAfterTax(profitBeforeTax, numericObject.taxRate);
 
 		const result: AdvanceCalculatorResultDataModel = {
 
 			netBuyValue: netBuyValue,
 			buyCommission: buyCommission,
-			grossBuyValue: netBuyValue + buyCommission,
-			sellCommission: 1,
-			grossSellValue: 1,
-			netSellValue: 1,
-			profitBeforeTax: 1,
-			profitAfterTax: 1
+			grossBuyValue: grossBuyValue,
+			sellCommission: sellCommission,
+			grossSellValue: grossSellValue,
+			netSellValue: netSellValue,
+			profitBeforeTax: profitBeforeTax,
+			profitAfterTax: profitAfterTax
 
 		};
 
