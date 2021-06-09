@@ -48,7 +48,6 @@ export class FormComponent implements OnInit {
             minCommission: ['3', [
                 Validators.required,
                 Validators.min(0)
-
             ]]
         });
 

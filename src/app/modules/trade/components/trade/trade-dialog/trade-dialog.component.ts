@@ -35,24 +35,27 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
-        // Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
-        Validators.min(0)
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'), 
+        Validators.min(0.00000000001)
       ]],
       taxRate: ['0.0000', [
-        Validators.min(0)
+        Validators.min(0),
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
       ]],
       commission: ['0.0000', [
-        Validators.min(0)
+        Validators.min(0),
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
       ]],
       minCommission: ['0.0000', [
-        Validators.min(0)
+        Validators.min(0),
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
       ]],
       calcStepCount: ['200', [
-        Validators.min(0),
+        Validators.min(1),
         Validators.pattern('^[1-9][0-9]*$')
       ]],
       calcStepValue: ['0.5', [
-        Validators.min(0),
+        Validators.min(0.1),
          Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')    
       ]]
     });    
