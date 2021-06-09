@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-calc-device',
   templateUrl: './calc-device.component.html'
@@ -14,13 +13,14 @@ export class CalcDeviceComponent implements OnInit {
   displayResult: string = '0';
 
   // Is holding the entered number
-  enteredNumber: string = '0';
+  enteredNumber: string = '';
 
   // Is holding the previous entered number
   previousEnteredNumber: string = '0';
 
   // Chose operation
   chosenOperator: string = undefined;
+
   // Is holding the global calculations result    
   result: string = '0';
 
@@ -49,8 +49,6 @@ export class CalcDeviceComponent implements OnInit {
 
     }
 
-    this.resettingTheEnteredNumber(value);
-
     if (this.isNumber(value) && this.isStringLengthApproval(value)) {
 
       this.enteredNumber += this.canAppendNumber(value);
@@ -67,20 +65,6 @@ export class CalcDeviceComponent implements OnInit {
   preventFromMultiZero(value: string): boolean {
 
     return this.enteredNumber[0] === '0' && this.enteredNumber.length === 1 && value === '0';
-
-  }
-
-  /**
-   * Overwriting the entered Number value from '0' to '' , to avoid exp. 07 digit
-   * @param value 
-   */
-  resettingTheEnteredNumber(value: string): void {
-
-    if (this.enteredNumber === '0' && value !== '.') {
-
-      this.enteredNumber = '';
-
-    }
 
   }
 
@@ -228,7 +212,7 @@ export class CalcDeviceComponent implements OnInit {
       default:
 
         return
-        
+
     }
 
     this.createEquationForDisplay(operator);   
