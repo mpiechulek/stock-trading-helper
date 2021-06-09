@@ -1,1 +1,5 @@
-<app-calculator-ui [calculationResults]="getCalculationResults"></app-calculator-ui>
+<app-calculator-ui
+    [calculationResults]="getCalculationResults"
+    (outputFormData)="calculate($event)"
+ >
+</app-calculator-ui>

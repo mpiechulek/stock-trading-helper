@@ -108,6 +108,9 @@
 
     <div class="stock-advanced-calculator__button-wrapper">
 
+
+        <!-- Clear button -->
+
         <button             
             mat-raised-button  
             (click)="onClearForm()"      
@@ -115,10 +118,12 @@
             {{'calculator.calculatorFormButtonClear' | translate}}
         </button>
         
+        <!-- Calculate button -->
+
         <button        
             color="primary"
             mat-raised-button 
-            (click)="onCalculate()" 
+            type="submit"
             [disabled] = "getCalculatorForm.invalid"         
         >
            {{'calculator.calculatorFormButtonCalculate' | translate}}

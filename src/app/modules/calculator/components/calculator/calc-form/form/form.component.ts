@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdvanceCalculatorFormStringDataModel } from 'src/app/data/models/form.model';
 
 @Component({
     selector: 'app-form',
@@ -9,6 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormComponent implements OnInit {
 
     public calculatorForm: FormGroup;
+
+    //==========================================================================
+
+    @Output()
+    outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =
+        new EventEmitter<AdvanceCalculatorFormStringDataModel>();
+
+    //==========================================================================
 
     constructor(private formBuilder: FormBuilder) { }
 
@@ -110,7 +119,7 @@ export class FormComponent implements OnInit {
 
     }
 
-// =============================================================================
+    // =============================================================================
 
     /**
      * 
@@ -131,18 +140,9 @@ export class FormComponent implements OnInit {
 
             },
             { emitEvent: false }
+        );        
 
-        );
-
-        // for(let element in this.calculatorForm.value) {
-
-        //     element : parseInt(this.calculatorForm.value[element]);
-
-        // }       
-
-        // this.formPresenterService
-
-        return;
+        this.outputFormData.emit(this.calculatorForm.value);
 
     }
 

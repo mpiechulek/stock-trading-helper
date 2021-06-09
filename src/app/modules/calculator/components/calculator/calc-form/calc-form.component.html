@@ -2,11 +2,11 @@
 
     <app-header></app-header>
   
-    <app-form ></app-form>    
+    <app-form  (outputFormData)="calculate($event)" ></app-form>    
 
     <app-result 
         [formExpand]="getFormExpand"
-        [calculationResults]="calculationResults"
+        [calculationResults]="calculationResults"       
     ></app-result>
     
     

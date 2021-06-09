@@ -1,77 +1,91 @@
 import { Component, OnInit } from '@angular/core';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
-import { AdvanceCalculatorFormNumberDataModel, AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
+import {
+	AdvanceCalculatorFormNumberDataModel,
+	AdvanceCalculatorFormStringDataModel,
+	AdvanceCalculatorResultDataModel
+} from 'src/app/data/models/form.model';
 
 @Component({
-  selector: 'app-calculator',
-  templateUrl: './calculator.container.html',
+	selector: 'app-calculator',
+	templateUrl: './calculator.container.html',
 })
 
 export class CalculatorContainerComponent implements OnInit {
 
-  private calculatorResult: AdvanceCalculatorResultDataModel;
+	private calculatorResult: AdvanceCalculatorResultDataModel;
 
-  constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
+	//==========================================================================
 
-  ngOnInit(): void {
-  }
+	constructor(private stockPriceCalculatorService: StockPriceCalculatorService) { }
 
-  /**
- 
-   * !Obliczanie formy 
-   * ! expand box zamkniety , po obliczaniu sie otwiera
-   * ! tablica wyników  click event na wartos wyniku
-   * ! poprawic kalkulator by liczył dobrze  
-   */
+	//==========================================================================
 
-  get getCalculationResults(): AdvanceCalculatorResultDataModel {
+	ngOnInit(): void {
 
-    return this.calculatorResult;
 
-  }
+	}
 
-  /**
-   * 
-   * @param calcData 
-   */
-  calculate(calcData: AdvanceCalculatorFormStringDataModel): void {
+	//==========================================================================
 
-    const result: AdvanceCalculatorResultDataModel = {
+	get getCalculationResults(): AdvanceCalculatorResultDataModel {
 
-      netBuyValue: 1,
-      grossBuyValue: 1,
-      buyCommission: 1,
-      sellCommission: 1,
-      grossSellValue: 1,
-      netSellValue: 1,
-      profitBeforeTax: 1,
-      profitAfterTax: 1
+		return this.calculatorResult;
 
-    };
+	}
 
-    // this.stockPriceCalculatorService;
-    this.calculatorResult = result;
+	// =============================================================================
+	// ============================ Calculation methods ============================
+	// =============================================================================
 
-  }
+	/**
+	 * 
+	 * @param calcData 
+	 */
+	calculate(calcData: AdvanceCalculatorFormStringDataModel): void {
 
-  /**
-   * Convert object key string values to numbers
-   * @param object 
-   * @returns 
-   */
-  convertStringObjectValuesToNumber(object: AdvanceCalculatorFormStringDataModel): AdvanceCalculatorFormNumberDataModel {
+		const numericObject: AdvanceCalculatorFormNumberDataModel =
+			this.convertStringObjectValuesToNumber(calcData);
 
-    let newObject: AdvanceCalculatorFormNumberDataModel;
+			console.log('calculate');
+			
 
-    for(let element in object) {
+		const result: AdvanceCalculatorResultDataModel = {
 
-      newObject[element] = parseFloat(object[element]);
+			netBuyValue: 1,
+			grossBuyValue: 1,
+			buyCommission: 1,
+			sellCommission: 1,
+			grossSellValue: 1,
+			netSellValue: 1,
+			profitBeforeTax: 1,
+			profitAfterTax: 1
 
-    }
+		};
 
-    return newObject;
+		// this.stockPriceCalculatorService;
+		this.calculatorResult = result;
 
-  }
+	}
+
+	/**
+	 * Convert object key string values to numbers
+	 * @param object 
+	 * @returns 
+	 */
+	convertStringObjectValuesToNumber(object: AdvanceCalculatorFormStringDataModel): AdvanceCalculatorFormNumberDataModel {
+
+		let newObject: AdvanceCalculatorFormNumberDataModel = {} as AdvanceCalculatorFormNumberDataModel;
+
+		for (let key in object) {
+
+			newObject[key] = parseFloat(object[key]);
+
+		}
+
+		return newObject;
+
+	}
 
 
 
