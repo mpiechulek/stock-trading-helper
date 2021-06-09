@@ -47,14 +47,22 @@ export class CalculatorContainerComponent implements OnInit {
 		const numericObject: AdvanceCalculatorFormNumberDataModel =
 			this.convertStringObjectValuesToNumber(calcData);
 
-			console.log('calculate');
-			
+		const netBuyValue = this.stockPriceCalculatorService
+			.calculateBuyValue(numericObject.amountOfShares, numericObject.buyPrice);
+
+		const percentageCommissionValue = (netBuyValue * numericObject.commission) / 1000;
+
+		const buyCommission = this.stockPriceCalculatorService
+			.calculateCommissionValue(netBuyValue, percentageCommissionValue, numericObject.minCommission);
+
+		const grossBuyValue = this.stockPriceCalculatorService
+			.calculateCommissionValue(netBuyValue, numericObject.commission, numericObject.minCommission);
 
 		const result: AdvanceCalculatorResultDataModel = {
 
-			netBuyValue: 1,
-			grossBuyValue: 1,
-			buyCommission: 1,
+			netBuyValue: netBuyValue,
+			buyCommission: buyCommission,
+			grossBuyValue: netBuyValue + buyCommission,
 			sellCommission: 1,
 			grossSellValue: 1,
 			netSellValue: 1,
@@ -63,7 +71,8 @@ export class CalculatorContainerComponent implements OnInit {
 
 		};
 
-		// this.stockPriceCalculatorService;
+		console.log(result);
+
 		this.calculatorResult = result;
 
 	}

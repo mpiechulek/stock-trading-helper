@@ -25,27 +25,27 @@ export class FormComponent implements OnInit {
 
         this.calculatorForm = this.formBuilder.group({
 
-            buyPrice: ['1', [
+            buyPrice: ['10', [
                 Validators.required,
             ]],
-            amountOfShares: ['1', [
+            amountOfShares: ['100', [
                 Validators.required,
                 Validators.pattern('^[1-9][0-9]*$'),
                 Validators.min(1)
             ]],
-            sellPrice: ['1', [
+            sellPrice: ['12', [
                 Validators.required
             ]],
-            taxRate: ['1', [
+            taxRate: ['19', [
                 Validators.required,
                 Validators.min(0)
             ]],
-            commission: ['0.1', [
+            commission: ['0.3', [
                 Validators.required,
                 Validators.min(0)
 
             ]],
-            minCommission: ['1', [
+            minCommission: ['3', [
                 Validators.required,
                 Validators.min(0)
 

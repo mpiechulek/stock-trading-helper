@@ -68,7 +68,7 @@
         "calculatorFormQuantity": "* Number of shares", 
         "calculatorFormSellPrice": "* Sell price", 
         "calculatorFormTaxRate": "* Tax rate", 
-        "calculatorFormCommission": "* Commission", 
+        "calculatorFormCommission": "* Commission %", 
         "calculatorFormMinCommission": "* Min. Commission",
 
         "calculatorFormButtonClear": "Clear", 
