@@ -84,6 +84,8 @@
         "calculatorResultGrossSell": "Wartość sprzedaży brutto",     
         "calculatorResultProfitBefore": "Zysk brutto",
         "calculatorResultProfitAfter": "Zysk netto",
-        "calculatorResultFormWarning": "Wartość liczbowa jest wymagana"
+        "calculatorResultFormWarning_1": "Wartość liczbowa jest wymagana",
+        "calculatorResultFormWarning_2": "Musi być liczbą dodatnią",
+        "calculatorResultFormWarning_3": "Musi być dodatnią liczbą całkowitą"
     }
 }

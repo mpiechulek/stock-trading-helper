@@ -67,7 +67,7 @@
         "calculatorFormBuyPrice": "* BuyPrice", 
         "calculatorFormQuantity": "* Number of shares", 
         "calculatorFormSellPrice": "* Sell price", 
-        "calculatorFormTaxRate": "* Tax rate", 
+        "calculatorFormTaxRate": "* Tax rate %", 
         "calculatorFormCommission": "* Commission %", 
         "calculatorFormMinCommission": "* Min. Commission",
 
@@ -84,7 +84,9 @@
         "calculatorResultGrossSell": "Gross sell value",     
         "calculatorResultProfitBefore": "Profit before tax",
         "calculatorResultProfitAfter": "Profit after tax",
-        "calculatorResultFormWarning": "Number value is required"
+        "calculatorResultFormWarning_1": "Number value is required",
+        "calculatorResultFormWarning_2": "Must by a positive number",
+        "calculatorResultFormWarning_3": "Must by a positive integer"        
 
     }
 }
