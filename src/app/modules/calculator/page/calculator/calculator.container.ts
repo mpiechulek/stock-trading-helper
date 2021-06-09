@@ -23,7 +23,6 @@ export class CalculatorContainerComponent implements OnInit {
 
 	ngOnInit(): void {
 
-
 	}
 
 	//==========================================================================
@@ -75,11 +74,22 @@ export class CalculatorContainerComponent implements OnInit {
 
 		const netSellValue: number = grossSellValue - sellCommission;
 
-		const profitBeforeTax = this.stockPriceCalculatorService.
+		const profitBeforeTax: number = this.stockPriceCalculatorService.
 			calculateProfitBeforeTax(grossSellValue, netBuyValue, totalCommission);
 
-		const profitAfterTax = this.stockPriceCalculatorService.
-			calculateProfitAfterTax(profitBeforeTax, numericObject.taxRate);
+		let profitAfterTax: number;
+
+		// We don't pay taxes from losses
+		if (profitBeforeTax < 0) {
+
+			profitAfterTax = profitBeforeTax;
+
+		} else {
+
+			profitAfterTax = this.stockPriceCalculatorService.
+				calculateProfitAfterTax(profitBeforeTax, numericObject.taxRate);
+
+		}
 
 		const result: AdvanceCalculatorResultDataModel = {
 
@@ -93,8 +103,6 @@ export class CalculatorContainerComponent implements OnInit {
 			profitAfterTax: profitAfterTax
 
 		};
-
-		console.log(result);
 
 		this.calculatorResult = result;
 

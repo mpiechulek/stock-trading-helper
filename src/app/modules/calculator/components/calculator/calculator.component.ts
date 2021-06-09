@@ -7,7 +7,7 @@ import { AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel 
 })
 export class CalculatorComponent implements OnInit {
 
-  @Input() calculationResults: AdvanceCalculatorResultDataModel;
+  @Input() readonly calculationResults: AdvanceCalculatorResultDataModel;
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =

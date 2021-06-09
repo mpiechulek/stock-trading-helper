@@ -12,7 +12,7 @@ export class ResultComponent implements OnInit {
   formExpand: number = 1;
 
   @Input()
-  calculationResults: AdvanceCalculatorResultDataModel;
+  readonly calculationResults: AdvanceCalculatorResultDataModel;
 
   constructor() { }
 

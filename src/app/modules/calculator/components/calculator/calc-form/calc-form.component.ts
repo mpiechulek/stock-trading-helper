@@ -10,7 +10,7 @@ export class CalcFormComponent implements OnInit {
 
   private formExpand: number;
 
-  @Input() calculationResults: AdvanceCalculatorResultDataModel;
+  @Input() readonly calculationResults: AdvanceCalculatorResultDataModel;
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =
@@ -19,6 +19,7 @@ export class CalcFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   get getFormExpand(): number {
