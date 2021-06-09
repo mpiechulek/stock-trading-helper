@@ -9,7 +9,7 @@ export interface TradeFormData {
     calcStepValue?: string;
 }
 
-export interface AdvanceCalculatorFormDataModel {
+export interface AdvanceCalculatorFormStringDataModel {
 
     buyPrice: string;
     amountOfShares: string;
@@ -17,6 +17,17 @@ export interface AdvanceCalculatorFormDataModel {
     taxRate: string;
     commission: string;
     minCommission: string;
+    
+}
+
+export interface AdvanceCalculatorFormNumberDataModel {
+
+    buyPrice: number;
+    amountOfShares: number;
+    sellPrice: number;
+    taxRate: number;
+    commission: number;
+    minCommission: number;
 
 }
 
@@ -30,5 +41,5 @@ export interface AdvanceCalculatorResultDataModel {
     netSellValue: number;
     profitBeforeTax: number;
     profitAfterTax: number;
-    
+
 }

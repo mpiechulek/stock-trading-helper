@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
-import { AdvanceCalculatorFormDataModel, AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
+import { AdvanceCalculatorFormNumberDataModel, AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
 
 @Component({
   selector: 'app-calculator',
@@ -27,10 +27,14 @@ export class CalculatorContainerComponent implements OnInit {
   get getCalculationResults(): AdvanceCalculatorResultDataModel {
 
     return this.calculatorResult;
-    
+
   }
 
-  calculate(calcData: AdvanceCalculatorFormDataModel): void {
+  /**
+   * 
+   * @param calcData 
+   */
+  calculate(calcData: AdvanceCalculatorFormStringDataModel): void {
 
     const result: AdvanceCalculatorResultDataModel = {
 
@@ -49,6 +53,27 @@ export class CalculatorContainerComponent implements OnInit {
     this.calculatorResult = result;
 
   }
+
+  /**
+   * Convert object key string values to numbers
+   * @param object 
+   * @returns 
+   */
+  convertStringObjectValuesToNumber(object: AdvanceCalculatorFormStringDataModel): AdvanceCalculatorFormNumberDataModel {
+
+    let newObject: AdvanceCalculatorFormNumberDataModel;
+
+    for(let element in object) {
+
+      newObject[element] = parseFloat(object[element]);
+
+    }
+
+    return newObject;
+
+  }
+
+
 
 
 
