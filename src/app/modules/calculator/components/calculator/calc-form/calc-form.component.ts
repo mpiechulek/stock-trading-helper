@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
 
 @Component({
   selector: 'app-calc-form',
@@ -9,6 +10,8 @@ export class CalcFormComponent implements OnInit {
 
   private formExpand: number;
 
+  @Input() calculationResults: AdvanceCalculatorResultDataModel;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,8 +21,8 @@ export class CalcFormComponent implements OnInit {
     return this.formExpand;
   }
 
-  onCalculate() { 
-    
+  onCalculate() {
+
   }
 
 }

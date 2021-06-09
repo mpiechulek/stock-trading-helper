@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
 
 @Component({
   selector: 'app-result',
@@ -10,6 +11,9 @@ export class ResultComponent implements OnInit {
   @Input()
   formExpand: number = 1;
 
+  @Input()
+  calculationResults: AdvanceCalculatorResultDataModel;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,7 +21,7 @@ export class ResultComponent implements OnInit {
 
   // Toggle expansion pane 
   setStep() {
- 
+
   }
 
 
