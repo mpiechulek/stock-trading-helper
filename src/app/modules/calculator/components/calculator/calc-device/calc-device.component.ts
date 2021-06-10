@@ -16,7 +16,7 @@ export class CalcDeviceComponent implements OnInit {
 	enteredNumber: string = '0';
 
 	// Is holding the previous entered number
-	previousEnteredNumber: string = '0';
+	previousEnteredNumber: string = null;
 
 	// Chose operation
 	chosenOperator: string = undefined;
@@ -133,10 +133,11 @@ export class CalcDeviceComponent implements OnInit {
 
 			usedOperator = this.chosenOperator;
 
-		}
-	
+		}			
+		
+		this.createEquationForDisplay(usedOperator);
 
-		this.result = this.chooseOperation(usedOperator);
+		this.result = this.chooseOperation(usedOperator);	
 
 		this.displayResult = this.prepareResultToDisplay(this.result);
 
@@ -148,6 +149,7 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		this.previousEnteredNumber = this.enteredNumber;
+
 
 		this.chosenOperator = operator;
 
@@ -193,9 +195,7 @@ export class CalcDeviceComponent implements OnInit {
 
 				return
 
-		}
-
-		this.createEquationForDisplay(operator);
+		}	
 
 		return calcResult.toString();
 	}
@@ -207,14 +207,6 @@ export class CalcDeviceComponent implements OnInit {
 	 * @returns 
 	 */
 	sum(): number {
-
-		if(this.result === null) {
-
-			this.result = this.enteredNumber;			
-
-			return this.stringToNumber(this.enteredNumber);
-
-		}
 
 		return this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
 
@@ -275,6 +267,9 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	createEquationForDisplay(operator: string): void {
 
+		console.log(this.result);
+		
+
 		if (this.orderOfEquation()) {
 
 			this.displayEquation = `${this.enteredNumber} ${operator}`;
@@ -299,7 +294,6 @@ export class CalcDeviceComponent implements OnInit {
 
 		console.log(calculation);
 
-
 		this.calculationsArray.push(calculation);
 
 	}
@@ -310,7 +304,7 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	orderOfEquation(): boolean {
 
-		return this.previousEnteredNumber === '0' && this.result === '0';
+		return this.previousEnteredNumber === null  && this.result === '0';
 
 	}
 
@@ -331,6 +325,8 @@ export class CalcDeviceComponent implements OnInit {
 			this.previousEnteredNumber = this.enteredNumber;
 
 		}
+
+		this.createEquationForDisplay(this.chosenOperator);
 
 		this.result = this.chooseOperation(this.chosenOperator);
 
@@ -419,7 +415,7 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.displayResult = '0';
 		this.enteredNumber = '';
-		this.previousEnteredNumber = '0';
+		this.previousEnteredNumber = null;
 		this.result = '0';
 		this.displayEquation = '0';
 		this.chosenOperator = undefined;
