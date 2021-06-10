@@ -22,6 +22,8 @@
   &__output {
     display: flex;
     flex-direction: column;
+    max-width: 412px;
+    max-height: 140px;
   }
 
   &__input {
@@ -55,11 +57,13 @@
   text-align: right;
   color: white;
   word-wrap: break-word;
-  white-space: pre-wrap;
+  white-space: pre-wrap;  
+  text-overflow: ellipsis;
+  width: 18ch;
 }
 
 .calc-result {
-  font-size: 4.5rem;
+  font-size: 4rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -69,8 +73,8 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
-  color: rgb(177, 177, 177);
-  font-size: 3.5rem;
+  color: rgb(151, 150, 150);
+  font-size: 4rem;
 }
 
 .calc-button {

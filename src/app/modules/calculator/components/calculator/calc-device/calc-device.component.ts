@@ -23,6 +23,8 @@ export class CalcDeviceComponent implements OnInit {
 
 	// Is holding the global calculations result    
 	result: string = '0';
+	
+	onComputeWasUsed: boolean = false;
 
 	// is holding all of the equations and results
 	calculationsArray: Object[] = [];
@@ -42,6 +44,14 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param value A number string or a '.'
 	 */
 	onEnterNumber(value: string) {
+
+		if(this.onComputeWasUsed) {
+
+			this.clearAll();
+
+			this.onComputeWasUsed = false;
+
+		}
 
 		// prefects entering multi '0'
 		if (this.preventFromMultiZero(value)) return;
@@ -137,10 +147,12 @@ export class CalcDeviceComponent implements OnInit {
 	onEnterOperation(operator: string) {
 
 		let usedOperator: string;
-
+		
 		if (this.enteredNumber === '') return;
-
+		
 		if (operator === undefined) return;
+		
+		this.onComputeWasUsed = false;
 
 		// 
 		if (this.chosenOperator === undefined || this.chosenOperator === operator) {
@@ -167,6 +179,8 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		this.previousEnteredNumber = this.enteredNumber;
+
+		this.enteredNumber = '0';
 
 		this.chosenOperator = operator;
 		
@@ -237,6 +251,7 @@ export class CalcDeviceComponent implements OnInit {
 		if(this.result = '0') {
 
 			return this.stringToNumber(this.enteredNumber);
+			
 		}
 
 		return this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
@@ -329,9 +344,17 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	onCompute(value: string): void {
 
-		if (this.chosenOperator === undefined) return;		
+		if (this.chosenOperator === undefined) return;	
 
-		this.previousEnteredNumber = this.enteredNumber;		
+		this.onComputeWasUsed = true;
+		
+		if (this.previousEnteredNumber === null) {
+
+			console.log(this.enteredNumber);			
+
+			 this.previousEnteredNumber = this.enteredNumber;	
+
+		}
 
 		this.createEquationForDisplay(this.chosenOperator);
 		
@@ -342,6 +365,7 @@ export class CalcDeviceComponent implements OnInit {
 		if (!this.orderOfEquation()) {
 
 			this.saveResultToArray();
+
 		}
 
 	}
