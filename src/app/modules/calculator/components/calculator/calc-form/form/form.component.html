@@ -10,6 +10,8 @@
 
             <input matInput type="number" formControlName="buyPrice">
 
+            <!-- <button mat-button *ngIf="buyPrice" matSuffix mat-icon-button aria-label="Clear" (click)="buyPrice=''"></button> -->
+
             <mat-error *ngIf="buyPrice.touched && !(buyPrice.hasError('pattern'))">
 
                 {{'calculator.calculatorResultFormWarning_1' | translate}}
