@@ -13,7 +13,7 @@ export class CalcDeviceComponent implements OnInit {
 	displayResult: string = '0';
 
 	// Is holding the entered number
-	enteredNumber: string = '';
+	enteredNumber: string = '0';
 
 	// Is holding the previous entered number
 	previousEnteredNumber: string = '0';
@@ -37,17 +37,11 @@ export class CalcDeviceComponent implements OnInit {
 	// ===========================================================================
 
 	/**
-	 * EEnter a digit
+	 * * !!! Improved !!!
+	 * Enter a digit
 	 * @param value A number string or a '.'
 	 */
-	onEnterNumber(value: string) {
-
-		// Not allowing to Enter a multi "0" string
-		if (this.preventFromMultiZero(value)) {
-
-			return;
-
-		}
+	onEnterNumber(value: string) {		
 
 		// checking if the entered value is a number ora a dot and if the max length is ok
 		if (this.isNumber(value) && this.isStringLengthApproval(value)) {
@@ -55,20 +49,13 @@ export class CalcDeviceComponent implements OnInit {
 			// appending the enteredNumber string and checking if the value is a number or a dot 
 			this.enteredNumber += this.canAppendNumber(value);
 
+			// removes the first zero exp. 01234 ==> 1234
+			this.enteredNumber = this.removeFrontZero(this.enteredNumber);
+
 			// Formatting string to local sting 
 			this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
 
 		}
-
-	}
-
-	/**
-	 * preventing form repeating of '0' characters in string
-	 * @param value 
-	 */
-	preventFromMultiZero(value: string): boolean {
-
-		return this.enteredNumber[0] === '0' && this.enteredNumber.length === 1 && value === '0';
 
 	}
 
@@ -88,11 +75,7 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	isNumber(value: string) {
 
-		if (!isNaN(parseInt(value)) || value === '.') {
-
-			return true;
-
-		}
+		if (!isNaN(parseInt(value)) || value === '.') return true;
 
 		return false;
 
@@ -106,15 +89,22 @@ export class CalcDeviceComponent implements OnInit {
 	canAppendNumber(value: string) {
 
 		//This prevents multi dots in string
-		if (this.enteredNumber.includes('.') && value === '.') {
+		if (this.enteredNumber.includes('.') && value === '.') return '';
 
-			return '';
+		return value;
 
-		} else {
+	}
 
-			return value;
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	removeFrontZero(value:string): string {
 
-		}
+		// parse int will round up the unnecessary zero
+		return parseInt(value).toString();
+
 	}
 
 	// ===========================================================================
@@ -122,20 +112,35 @@ export class CalcDeviceComponent implements OnInit {
 	// ===========================================================================
 
 	/**
-	 * 
+	 * when clicking an arithmetic operation button
 	 * @param operator 
 	 * @returns 
 	 */
 	onEnterOperation(operator: string) {
 
+		let usedOperator: string;
+
 		if (this.enteredNumber === '') return;
 
-		this.chosenOperator = operator;
+		if (operator === undefined) return;
 
-		this.result = this.chooseOperation(operator);
+		// 
+		if (this.chosenOperator === undefined || this.chosenOperator === operator) {
+
+			usedOperator = operator;
+
+		} else {
+
+			usedOperator = this.chosenOperator;
+
+		}
+	
+
+		this.result = this.chooseOperation(usedOperator);
 
 		this.displayResult = this.prepareResultToDisplay(this.result);
 
+		// if previousEnteredNumber and result are not "0"
 		if (!this.orderOfEquation()) {
 
 			this.saveResultToArray();
@@ -143,6 +148,8 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		this.previousEnteredNumber = this.enteredNumber;
+
+		this.chosenOperator = operator;
 
 		this.enteredNumber = '';
 	}
@@ -152,7 +159,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param operator 
 	 * @returns 
 	 */
-	chooseOperation(operator: string) {
+	chooseOperation(operator: string): string {
 
 		let calcResult: number;
 
@@ -160,56 +167,25 @@ export class CalcDeviceComponent implements OnInit {
 
 			case '+':
 
-				if (this.orderOfEquation()) {
-
-					calcResult = this.stringToNumber(this.enteredNumber);
-
-				} else {
-
-					calcResult = this.sum();
-
-				}
+				calcResult = this.sum();
 
 				break
 
 			case '-':
 
-				if (this.orderOfEquation()) {
+				calcResult = this.subtraction();
 
-					calcResult = this.stringToNumber(this.enteredNumber);
-
-				} else {
-
-					calcResult = this.subtraction();
-
-				}
 				break
 
 			case '*':
 
-				if (this.orderOfEquation()) {
-
-					calcResult = this.stringToNumber(this.enteredNumber);
-
-				} else {
-
-					calcResult = this.multiplication();
-
-				}
+				calcResult = this.multiplication();
 
 				break
 
 			case '/':
 
-				if (this.orderOfEquation()) {
-
-					calcResult = this.stringToNumber(this.enteredNumber);
-
-				} else {
-
-					calcResult = this.division();
-
-				}
+				calcResult = this.division();
 
 				break
 
@@ -224,11 +200,21 @@ export class CalcDeviceComponent implements OnInit {
 		return calcResult.toString();
 	}
 
+	// =========================================================================
+
 	/**
 	 * 
 	 * @returns 
 	 */
-	sum() {
+	sum(): number {
+
+		if(this.result === null) {
+
+			this.result = this.enteredNumber;			
+
+			return this.stringToNumber(this.enteredNumber);
+
+		}
 
 		return this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
 
@@ -238,7 +224,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * 
 	 * @returns 
 	 */
-	subtraction() {
+	subtraction(): number {
 
 		return this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
 
@@ -248,7 +234,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * 
 	 * @returns 
 	 */
-	multiplication() {
+	multiplication(): number {
 
 		return this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
 	}
@@ -257,11 +243,20 @@ export class CalcDeviceComponent implements OnInit {
 	 * 
 	 * @returns 
 	 */
-	division() {
+	division(): number {
+	
+
+		// if(this.enteredNumber === '0')   {
+
+		// 	this.clearAll();
+
+		// }
 
 		return this.stringToNumber(this.result) / this.stringToNumber(this.enteredNumber);
 
 	}
+
+	// =========================================================================
 
 	/**
 	 * 
@@ -295,12 +290,15 @@ export class CalcDeviceComponent implements OnInit {
 	 * 
 	 */
 	saveResultToArray() {
+
 		let calculation = {
 
 			equation: this.displayEquation,
-
 			result: this.result
 		}
+
+		console.log(calculation);
+
 
 		this.calculationsArray.push(calculation);
 
@@ -313,19 +311,26 @@ export class CalcDeviceComponent implements OnInit {
 	orderOfEquation(): boolean {
 
 		return this.previousEnteredNumber === '0' && this.result === '0';
+
 	}
 
-	// ===========================================================================
-	// ================================= computing ===============================
-	// ===========================================================================
+	// =========================================================================
+	// ================================= computing =============================
+	// =========================================================================
 
 	/**
-	 * 
+	 * =
 	 * @param value 
 	 */
-	onCompute(value: string) {
+	onCompute(value: string): void {
 
-		// if(this.result === '0')
+		if (this.chosenOperator === undefined) return;
+
+		if (this.previousEnteredNumber === '0' && this.enteredNumber !== '') {
+
+			this.previousEnteredNumber = this.enteredNumber;
+
+		}
 
 		this.result = this.chooseOperation(this.chosenOperator);
 
@@ -336,7 +341,6 @@ export class CalcDeviceComponent implements OnInit {
 			this.saveResultToArray();
 		}
 
-		this.previousEnteredNumber = this.enteredNumber;
 	}
 
 	// ===========================================================================
@@ -349,17 +353,23 @@ export class CalcDeviceComponent implements OnInit {
 	 * @returns 
 	 */
 	onDelete(operation: string) {
+
 		if (operation === 'del') {
+
 			this.deleteDigit()
 
 		} else if (operation === 'c') {
+
 			this.clearAll();
 
 		} else if (operation === 'ce') {
+
 			this.clearEntry();
 
 		} else {
+
 			return;
+
 		}
 	}
 
@@ -370,7 +380,7 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.displayResult = '0';
 
-		this.enteredNumber = '0';
+		this.enteredNumber = '';
 
 	}
 
@@ -396,7 +406,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param value 
 	 * @returns 
 	 */
-	removeStringsLastCharacter(value: string) {		
+	removeStringsLastCharacter(value: string) {
 
 		return value.slice(0, -1);
 
@@ -413,7 +423,6 @@ export class CalcDeviceComponent implements OnInit {
 		this.result = '0';
 		this.displayEquation = '0';
 		this.chosenOperator = undefined;
-		this.calculationsArray = [];
 
 	}
 
@@ -421,7 +430,9 @@ export class CalcDeviceComponent implements OnInit {
 	// ==================== Converting string to locale string ===================
 	// ===========================================================================
 
+
 	/**
+	 * * !!! Improved !!!
 	 * displaying the endeared number value as a local sting 
 	 * @param enteredNumber 
 	 * @returns 
@@ -471,9 +482,9 @@ export class CalcDeviceComponent implements OnInit {
 
 			return result;
 
-		} else {	
+		} else {
 
-			result = result + splitNumber[1];			
+			result = result + splitNumber[1];
 
 			return result
 		}
