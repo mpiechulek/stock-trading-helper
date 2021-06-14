@@ -272,7 +272,7 @@ export class CalcDeviceComponent implements OnInit {
 	}
 
 	/**
-	 * This logic tells us if the calculation is on the beginning
+	 * This logic tells us if the calculation is on the beginning of the operations cycle
 	 * @returns 
 	 */
 	orderOfEquation(): boolean {
@@ -328,10 +328,16 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.onComputeWasUsed = true;
 
-		// this.enteredNumber = this.previousEnteredNumber;
+		
+		// Making a loop exp. 3 + = reapeating  =
+		if(this.chosenOperator !== undefined && this.enteredNumber === '0' && this.previousEnteredNumber !== null) {
+			
+			this.enteredNumber = this.previousEnteredNumber;
+
+		}
 
 		this.createEquationForDisplay(this.chosenOperator);
-
+	
 		this.result = this.chooseOperation(this.chosenOperator);
 
 		this.displayResult = this.prepareResultToDisplay(this.result);
