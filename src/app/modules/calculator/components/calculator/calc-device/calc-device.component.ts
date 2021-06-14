@@ -49,33 +49,31 @@ export class CalcDeviceComponent implements OnInit {
 		if (this.onComputeWasUsed) {
 
 			this.clearAll();
-
 			this.onComputeWasUsed = false;
 
 		}
 
 		// prevents entering multi '0'
-		if (this.preventFromMultiZero(value)) return;
+		if (this.preventFromMultiZero(value)) return;		
 
-		// checking if the entered value is a number ora a dot and if the max length is ok
-		if (this.isNumber(value) && this.isStringLengthApproval(value)) {
+		// checking if max length of sting is caressed
+		if (!this.isStringLengthApproval(value)) return;		
+		
+		// checking if the entered value is a number
+		// checking if the entered value is a dot
+		if (!this.isNumber(value) && !this.isCharacterADot(value)) return;	
 
-			if( value ==="." && this.preventFromMultiZero(value)) {
+		// the string can have only one dot character
+		if (this.checkIfDotInString(value)) return;	
 
-				value = "0.1";
-				
-			}
+		// appending the enteredNumber with new character
+		this.enteredNumber += value;		
 
-			// appending the enteredNumber string and checking if the value is a number or a dot 
-			this.enteredNumber += this.canAppendNumber(value);
+		// removing the unnecessary front zero 
+		this.enteredNumber = this.removeFrontZero(this.enteredNumber);	
 
-			// removing the unnecessary front zero 
-			this.enteredNumber = this.removeFrontZero(this.enteredNumber);
-
-			// Formatting string to local sting 
-			this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
-
-		}
+		// Formatting string to local sting 
+		this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
 
 	}
 
@@ -91,11 +89,22 @@ export class CalcDeviceComponent implements OnInit {
 	}
 
 	/**
-	 * Checking if the value is a number or a dot symbol
+	 * 
 	 */
-	isNumber(value: string) {		
+	isCharacterADot(value: string): boolean {
 
-		return !isNaN(parseInt(value)) || value === '.';
+		return value === '.';
+
+	}
+
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	isNumber(value: string): boolean {
+
+		return !isNaN(parseInt(value));
 
 	}
 
@@ -114,12 +123,10 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param value 
 	 * @returns 
 	 */
-	canAppendNumber(value: string) {
+	checkIfDotInString(value: string) {
 
-		//This prevents multi dots in string
-		if (this.enteredNumber.includes('.') && value === '.') return '';
-
-		return value;
+		//This prevents multi dots in string	
+		return this.enteredNumber.includes('.') && value === '.';
 
 	}
 
@@ -130,7 +137,13 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	removeFrontZero(value: string): string {
 
-		if (this.enteredNumber[0] === '0' && this.enteredNumber.length > 1) {
+		if (value === '0.') {
+
+			return value;
+
+		}
+
+		if (value[0] === '0' && value[1] !== '0' && value[1] !== '.') {
 
 			return value.substr(1);
 
@@ -294,7 +307,7 @@ export class CalcDeviceComponent implements OnInit {
 
 		return parseFloat(value);
 
-	}	
+	}
 
 	/**
 	 * This logic tells us if the calculation is on the beginning
@@ -310,7 +323,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * 
 	 * @param operator 
 	 */
-	 createEquationForDisplay(operator: string): void {
+	createEquationForDisplay(operator: string): void {
 
 
 		if (this.orderOfEquation()) {
