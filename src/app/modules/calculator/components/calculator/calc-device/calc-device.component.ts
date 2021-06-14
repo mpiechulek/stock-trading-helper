@@ -54,23 +54,23 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		// prevents entering multi '0'
-		if (this.preventFromMultiZero(value)) return;		
+		if (this.preventFromMultiZero(value)) return;
 
 		// checking if max length of sting is caressed
-		if (!this.isStringLengthApproval(value)) return;		
-		
+		if (!this.isStringLengthApproval(value)) return;
+
 		// checking if the entered value is a number
 		// checking if the entered value is a dot
-		if (!this.isNumber(value) && !this.isCharacterADot(value)) return;	
+		if (!this.isNumber(value) && !this.isCharacterADot(value)) return;
 
 		// the string can have only one dot character
-		if (this.checkIfDotInString(value)) return;	
+		if (this.checkIfDotInString(value)) return;
 
 		// appending the enteredNumber with new character
-		this.enteredNumber += value;		
+		this.enteredNumber += value;
 
 		// removing the unnecessary front zero 
-		this.enteredNumber = this.removeFrontZero(this.enteredNumber);	
+		this.enteredNumber = this.removeFrontZero(this.enteredNumber);
 
 		// Formatting string to local sting 
 		this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
@@ -166,13 +166,14 @@ export class CalcDeviceComponent implements OnInit {
 
 		let usedOperator: string;
 
-		if (this.enteredNumber === '') return;
+		if (this.enteredNumber === '' || isNaN(parseFloat(this.enteredNumber))) return;
 
 		if (operator === undefined) return;
 
+		// resting compute marker
 		this.onComputeWasUsed = false;
 
-		// 
+		// assigning operator for current operation
 		if (this.chosenOperator === undefined || this.chosenOperator === operator) {
 
 			usedOperator = operator;
@@ -196,10 +197,13 @@ export class CalcDeviceComponent implements OnInit {
 
 		}
 
+		// saving current number as previous number
 		this.previousEnteredNumber = this.enteredNumber;
 
+		// resting entered numen
 		this.enteredNumber = '0';
 
+		// saving operator for future operation's
 		this.chosenOperator = operator;
 
 	}
@@ -213,29 +217,35 @@ export class CalcDeviceComponent implements OnInit {
 
 		let calcResult: number;
 
+		if (this.result === '0' && this.chosenOperator === undefined) {
+
+			return this.stringToNumber(this.enteredNumber).toString();
+
+		}
+
 		switch (operator) {
 
 			case '+':
 
-				calcResult = this.sum();
+				calcResult = this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
 
 				break
 
 			case '-':
 
-				calcResult = this.subtraction();
+				calcResult = this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
 
 				break
 
 			case '*':
 
-				calcResult = this.multiplication();
+				calcResult = this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
 
 				break
 
 			case '/':
 
-				calcResult = this.division();
+				calcResult = this.stringToNumber(this.result) / this.stringToNumber(this.enteredNumber);
 
 				break
 
@@ -246,55 +256,7 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		return calcResult.toString();
-	}
-
-	// =========================================================================
-
-	/**
-	 * 
-	 * @returns 
-	 */
-	sum(): number {
-
-		return this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
-
-	}
-
-	/**
-	 * 
-	 * @returns 
-	 */
-	subtraction(): number {
-
-		if (this.result = '0') {
-
-			return this.stringToNumber(this.enteredNumber);
-
-		}
-
-		return this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
-
-	}
-
-	/**
-	 * 
-	 * @returns 
-	 */
-	multiplication(): number {
-
-		return this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
-
-	}
-
-	/**
-	 * 
-	 * @returns 
-	 */
-	division(): number {
-
-		return this.stringToNumber(this.result) / this.stringToNumber(this.enteredNumber);
-
-	}
+	}	
 
 	// =========================================================================
 
@@ -366,7 +328,7 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.onComputeWasUsed = true;
 
-		this.enteredNumber = this.previousEnteredNumber;
+		// this.enteredNumber = this.previousEnteredNumber;
 
 		this.createEquationForDisplay(this.chosenOperator);
 
