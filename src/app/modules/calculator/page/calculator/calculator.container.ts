@@ -14,6 +14,7 @@ import {
 export class CalculatorContainerComponent implements OnInit {
 
 	private calculatorResult: AdvanceCalculatorResultDataModel;
+	private arrayOfResults: Object[] = [];
 
 	//==========================================================================
 
@@ -27,9 +28,21 @@ export class CalculatorContainerComponent implements OnInit {
 
 	//==========================================================================
 
+	/**
+	 * 
+	 */
 	get getCalculationResults(): AdvanceCalculatorResultDataModel {
 
 		return this.calculatorResult;
+
+	}
+
+	/**
+	 * 
+	 */
+	get getArrayOfResults(): Object {
+
+		return this.arrayOfResults;
 
 	}
 
@@ -127,8 +140,24 @@ export class CalculatorContainerComponent implements OnInit {
 
 	}
 
+	/**
+	  * 
+	  */
+	onSaveResultToArray(arrayOfResults: any): void {
 
+		console.log(arrayOfResults);
 
+		this.arrayOfResults.push(arrayOfResults);
 
+	}	
+	
+	/**
+	  * 
+	  */
+	onResetBoardOfResults(): void {
+
+		this.arrayOfResults = [];
+
+	}
 
 }

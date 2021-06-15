@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 @Component({
 	selector: 'app-calc-device',
 	templateUrl: './calc-device.component.html'
@@ -29,8 +28,9 @@ export class CalcDeviceComponent implements OnInit {
 
 	onComputeWasUsed: boolean = false;
 
-	// is holding all of the equations and results
-	calculationsArray: Object[] = [];
+	//=============================================================================
+
+	@Output() resultArrayEmitter:EventEmitter<any> = new EventEmitter<any>();
 
 	constructor() { }
 
@@ -41,12 +41,11 @@ export class CalcDeviceComponent implements OnInit {
 	// =============================== Enter number  =============================
 	// ===========================================================================
 
-	/**
-	 * * !!! Improved !!!
+	/**	 
 	 * Enter a digit
 	 * @param value A number string or a '.'
 	 */
-	onEnterNumber(value: string) {
+	onEnterNumber(value: string): void {
 
 		// after using the "=" character , new entire number is resting the device
 		if (this.onComputeWasUsed) {
@@ -129,7 +128,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param value 
 	 * @returns 
 	 */
-	checkIfDotInString(value: string) {
+	checkIfDotInString(value: string): boolean {
 
 		//This prevents multi dots in string	
 		return this.enteredNumber.includes('.') && value === '.';
@@ -168,16 +167,16 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param operator 
 	 * @returns 
 	 */
-	onEnterOperation(operator: string) {
+	onEnterOperation(operator: string): void {
 
-		if (operator === undefined) return;		
+		if (operator === undefined) return;
 
 		// if the chosen operatort is or the operator has changed the same and the number wasn't entered
 		// exp. 1 + + + or 1 + - *
 		if ((this.chosenOperator === operator ||
 			this.chosenOperator !== operator) &&
 			this.numberWasEntered === false &&
-			this.enteredNumber === '0') {		
+			this.enteredNumber === '0') {
 
 			this.chosenOperator = operator;
 			this.createEquationForDisplay(operator);
@@ -185,8 +184,8 @@ export class CalcDeviceComponent implements OnInit {
 			return;
 		}
 
-		if(this.onComputeWasUsed) {		
-			
+		if (this.onComputeWasUsed) {
+
 			this.onComputeWasUsed = false;
 			this.numberWasEntered = false;
 			this.enteredNumber = '0';
@@ -194,11 +193,11 @@ export class CalcDeviceComponent implements OnInit {
 			this.createEquationForDisplay(operator);
 
 			return;
-		}			
+		}
 
 		// exp. (2 + 3 - 4 ) it should display (5-) when pressing "-" then (4 =) gets us 1
-		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {		
-			
+		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {
+
 			//calculating the previous entries
 			this.result = this.chooseOperation(this.chosenOperator);
 			this.displayResult = this.prepareResultToDisplay(this.result);
@@ -211,7 +210,7 @@ export class CalcDeviceComponent implements OnInit {
 
 			return;
 		}
-	
+
 		this.createEquationForDisplay(operator);
 		this.result = this.chooseOperation(operator);
 		this.displayResult = this.prepareResultToDisplay(this.result);
@@ -231,7 +230,7 @@ export class CalcDeviceComponent implements OnInit {
 		this.numberWasEntered = false;
 		// saving operator for future operation's
 		this.chosenOperator = operator;
-		
+
 		this.onComputeWasUsed = false;
 	}
 
@@ -331,16 +330,19 @@ export class CalcDeviceComponent implements OnInit {
 	/**
 	 * 
 	 */
-	saveResultToArray() {
+	saveResultToArray(): void {
 
-		let calculation = {
+		let calculation: Object = {}
+
+		calculation = {
 
 			equation: this.displayEquation,
-			result: this.result
+			result: this.prepareResultToDisplay(this.result)
 
-		}
+		}		
 
-		this.calculationsArray.push(calculation);
+		// emitting the array of results
+		this.resultArrayEmitter.emit(calculation);
 
 	}
 
