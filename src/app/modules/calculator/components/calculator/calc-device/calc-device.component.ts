@@ -172,11 +172,12 @@ export class CalcDeviceComponent implements OnInit {
 
 		if (operator === undefined) return;
 
-		console.log('current operator', operator);
-		console.log('previousEnteredNumber', this.previousEnteredNumber);
 		console.log('enteredNumber', this.enteredNumber);
+		console.log('previousEnteredNumber', this.previousEnteredNumber);
+		console.log('current operator', operator);
 		console.log('chosenOperator', this.chosenOperator);
 		console.log('numberWasEntered', this.numberWasEntered);
+		console.log('onComputeWasUsed', this.onComputeWasUsed);
 		console.log('************************************************************************');
 
 		// if the chosen operatort is or the operator has changed the same and the number wasn't entered
@@ -184,7 +185,7 @@ export class CalcDeviceComponent implements OnInit {
 		if ((this.chosenOperator === operator ||
 			this.chosenOperator !== operator) &&
 			this.numberWasEntered === false &&
-			this.enteredNumber === '0') {
+			this.enteredNumber === '0') {		
 
 			this.chosenOperator = operator;
 			this.createEquationForDisplay(operator);
@@ -192,22 +193,36 @@ export class CalcDeviceComponent implements OnInit {
 			return;
 		}
 
-		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {
-
-			this.enteredNumber = '0';
+		if(this.onComputeWasUsed) {		
+			
+			this.onComputeWasUsed = false;
 			this.numberWasEntered = false;
+			this.enteredNumber = '0';
+			this.chosenOperator = operator;
 			this.createEquationForDisplay(operator);
 
 			return;
+		}			
+
+		// exp. (2 + 3 - 4 ) it should display (5-) when pressing "-" then (4 =) gets us 1
+		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {		
+			
+			//calculating the previous entries
+			this.result = this.chooseOperation(this.chosenOperator);
+			this.displayResult = this.prepareResultToDisplay(this.result);
+
+			// displaying the new operator and result
+			this.enteredNumber = '0';
+			this.numberWasEntered = false;
+			this.createEquationForDisplay(operator);
+			this.chosenOperator = operator;
+
+			return;
 		}
-
-		// resting compute marker
+			
 		this.onComputeWasUsed = false;
-
 		this.createEquationForDisplay(operator);
-
 		this.result = this.chooseOperation(operator);
-
 		this.displayResult = this.prepareResultToDisplay(this.result);
 
 		// if previousEnteredNumber and result are not "0"
@@ -219,19 +234,13 @@ export class CalcDeviceComponent implements OnInit {
 
 		// saving current number as previous number
 		this.previousEnteredNumber = this.enteredNumber;
-
 		// resting entered numen
 		this.enteredNumber = '0';
-
 		// resting entered number marker
 		this.numberWasEntered = false;
-
 		// saving operator for future operation's
 		this.chosenOperator = operator;
-
 	}
-
-	
 
 	/**
 	 * 
@@ -356,7 +365,6 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.onComputeWasUsed = true;
 
-
 		// Making a loop exp. 3 + = repeating  =
 		if (this.chosenOperator !== undefined && this.enteredNumber === '0' && this.previousEnteredNumber !== null) {
 
@@ -375,6 +383,8 @@ export class CalcDeviceComponent implements OnInit {
 			this.saveResultToArray();
 
 		}
+
+		this.numberWasEntered = false;
 
 	}
 
