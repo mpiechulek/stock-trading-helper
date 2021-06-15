@@ -18,6 +18,9 @@ export class CalcDeviceComponent implements OnInit {
 	// Is holding the previous entered number
 	previousEnteredNumber: string = null;
 
+	// entering number marker
+	numberWasEntered: boolean = false;
+
 	// Chose operation
 	chosenOperator: string = undefined;
 
@@ -71,6 +74,9 @@ export class CalcDeviceComponent implements OnInit {
 
 		// removing the unnecessary front zero 
 		this.enteredNumber = this.removeFrontZero(this.enteredNumber);
+
+		// remembering information for equation operations future purpose 
+		this.numberWasEntered = true;
 
 		// Formatting string to local sting 
 		this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
@@ -164,29 +170,42 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	onEnterOperation(operator: string) {
 
-		let usedOperator: string;
-
-		if (this.enteredNumber === '' || isNaN(parseFloat(this.enteredNumber))) return;
-
 		if (operator === undefined) return;
+
+		console.log('current operator', operator);
+		console.log('previousEnteredNumber', this.previousEnteredNumber);
+		console.log('enteredNumber', this.enteredNumber);
+		console.log('chosenOperator', this.chosenOperator);
+		console.log('numberWasEntered', this.numberWasEntered);
+		console.log('************************************************************************');
+
+		// if the operator is hosed the same and the number wasn't entered
+		if ((this.chosenOperator === operator ||
+			this.chosenOperator !== operator) &&
+			this.numberWasEntered === false &&
+			this.enteredNumber === '0') {
+
+			this.chosenOperator = operator;
+			this.createEquationForDisplay(operator);
+
+			return;
+		}
+
+		// // when changing operators without adding a new number
+		// if (this.chosenOperator !== operator && this.numberWasEntered === false && this.enteredNumber === '0') {
+
+		// 	this.chosenOperator = operator;
+
+		// 	return;
+
+		// };
 
 		// resting compute marker
 		this.onComputeWasUsed = false;
 
-		// assigning operator for current operation
-		if (this.chosenOperator === undefined || this.chosenOperator === operator) {
+		this.createEquationForDisplay(operator);
 
-			usedOperator = operator;
-
-		} else {
-
-			usedOperator = this.chosenOperator;
-
-		}
-
-		this.createEquationForDisplay(usedOperator);
-
-		this.result = this.chooseOperation(usedOperator);
+		this.result = this.chooseOperation(operator);
 
 		this.displayResult = this.prepareResultToDisplay(this.result);
 
@@ -202,6 +221,9 @@ export class CalcDeviceComponent implements OnInit {
 
 		// resting entered numen
 		this.enteredNumber = '0';
+
+		// resting entered number marker
+		this.numberWasEntered = false;
 
 		// saving operator for future operation's
 		this.chosenOperator = operator;
@@ -256,9 +278,7 @@ export class CalcDeviceComponent implements OnInit {
 		}
 
 		return calcResult.toString();
-	}	
-
-	// =========================================================================
+	}
 
 	/**
 	 * 
@@ -287,16 +307,20 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	createEquationForDisplay(operator: string): void {
 
-
 		if (this.orderOfEquation()) {
 
 			this.displayEquation = `${this.enteredNumber} ${operator}`;
+
+		} else if (this.numberWasEntered === false && this.enteredNumber === '0') {
+
+			this.displayEquation = `${this.result} ${operator}`;
 
 		} else {
 
 			this.displayEquation = `${this.result} ${operator} ${this.enteredNumber}`;
 
 		}
+
 	}
 
 	/**
@@ -308,6 +332,7 @@ export class CalcDeviceComponent implements OnInit {
 
 			equation: this.displayEquation,
 			result: this.result
+
 		}
 
 		this.calculationsArray.push(calculation);
@@ -328,16 +353,16 @@ export class CalcDeviceComponent implements OnInit {
 
 		this.onComputeWasUsed = true;
 
-		
-		// Making a loop exp. 3 + = reapeating  =
-		if(this.chosenOperator !== undefined && this.enteredNumber === '0' && this.previousEnteredNumber !== null) {
-			
+
+		// Making a loop exp. 3 + = repeating  =
+		if (this.chosenOperator !== undefined && this.enteredNumber === '0' && this.previousEnteredNumber !== null) {
+
 			this.enteredNumber = this.previousEnteredNumber;
 
 		}
 
 		this.createEquationForDisplay(this.chosenOperator);
-	
+
 		this.result = this.chooseOperation(this.chosenOperator);
 
 		this.displayResult = this.prepareResultToDisplay(this.result);
@@ -386,7 +411,6 @@ export class CalcDeviceComponent implements OnInit {
 	clearEntry(): void {
 
 		this.displayResult = '0';
-
 		this.enteredNumber = '0';
 
 	}
@@ -436,7 +460,6 @@ export class CalcDeviceComponent implements OnInit {
 	// ===========================================================================
 	// ==================== Converting string to locale string ===================
 	// ===========================================================================
-
 
 	/**
 	 * * !!! Improved !!!
