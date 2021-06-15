@@ -170,15 +170,7 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	onEnterOperation(operator: string) {
 
-		if (operator === undefined) return;
-
-		console.log('enteredNumber', this.enteredNumber);
-		console.log('previousEnteredNumber', this.previousEnteredNumber);
-		console.log('current operator', operator);
-		console.log('chosenOperator', this.chosenOperator);
-		console.log('numberWasEntered', this.numberWasEntered);
-		console.log('onComputeWasUsed', this.onComputeWasUsed);
-		console.log('************************************************************************');
+		if (operator === undefined) return;		
 
 		// if the chosen operatort is or the operator has changed the same and the number wasn't entered
 		// exp. 1 + + + or 1 + - *
@@ -219,8 +211,7 @@ export class CalcDeviceComponent implements OnInit {
 
 			return;
 		}
-			
-		this.onComputeWasUsed = false;
+	
 		this.createEquationForDisplay(operator);
 		this.result = this.chooseOperation(operator);
 		this.displayResult = this.prepareResultToDisplay(this.result);
@@ -240,6 +231,8 @@ export class CalcDeviceComponent implements OnInit {
 		this.numberWasEntered = false;
 		// saving operator for future operation's
 		this.chosenOperator = operator;
+		
+		this.onComputeWasUsed = false;
 	}
 
 	/**

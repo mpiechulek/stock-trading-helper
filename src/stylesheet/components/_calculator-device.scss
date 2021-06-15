@@ -57,24 +57,21 @@
   text-align: right;
   color: white;
   word-wrap: break-word;
-  white-space: pre-wrap;  
+  font-size: 4rem;
+
   text-overflow: ellipsis;
-  width: 18ch;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .calc-result {
-  font-size: 4rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .equation {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
-  color: rgb(151, 150, 150);
-  font-size: 4rem;
+  font-size: 2.8rem;
+  color: rgb(151, 150, 150); 
 }
 
 .calc-button {
