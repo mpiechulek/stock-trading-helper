@@ -19,15 +19,21 @@
 
         <!-- Result board -->
 
-        <app-result-board class="calculator-component-container" 
-        [arrayOfResults]="arrayOfResults"
-        (resetResultArray)="onResetBoardOfResults()"
+        <app-result-board 
+            class="calculator-component-container" 
+            [arrayOfResults]="arrayOfResults"
+            (chosenResult)="onChoseResult($event)"
+            (resetResultArray)="onResetBoardOfResults()"
         >
-    </app-result-board>
+        </app-result-board>
 
         <!-- Calc device -->
 
-        <app-calc-device class="calculator-component-container" (resultArrayEmitter)="onSaveResultToArray($event)"></app-calc-device>
+        <app-calc-device 
+            class="calculator-component-container"
+            (resultArrayEmitter)="onSaveResultToArray($event)"
+        >
+        </app-calc-device>
 
     </article>
 

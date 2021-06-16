@@ -7,16 +7,24 @@ import { AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel 
 })
 export class CalculatorComponent implements OnInit {
 
-  @Input() readonly calculationResults: AdvanceCalculatorResultDataModel;
-  @Input() readonly arrayOfResults: Object[];
+  @Input()
+  readonly calculationResults: AdvanceCalculatorResultDataModel;
+
+  @Input()
+  readonly arrayOfResults: Object[];
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =
     new EventEmitter<AdvanceCalculatorFormStringDataModel>();
 
-  @Output() resultArrayEmitter = new EventEmitter<Object[]>();
+  @Output()
+  resultArrayEmitter = new EventEmitter<Object[]>();
 
-  @Output() resetResultArray: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  resetResultArray: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  chosenResult: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -36,7 +44,7 @@ export class CalculatorComponent implements OnInit {
   /**
    * 
    */
-   onSaveResultToArray(calculationResultObject: any): void {
+  onSaveResultToArray(calculationResultObject: any): void {
 
     this.resultArrayEmitter.emit(calculationResultObject);
 
@@ -45,9 +53,18 @@ export class CalculatorComponent implements OnInit {
   /**
    * 
    */
-  onResetBoardOfResults():void {
+  onResetBoardOfResults(): void {
 
     this.resetResultArray.emit();
+
+  }
+
+  /**
+ * 
+ */
+  onChoseResult(chosenResult: string): void {
+
+    this.chosenResult.emit(chosenResult);
 
   }
 
