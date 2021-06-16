@@ -9,7 +9,11 @@ export class ResultBoardComponent implements OnInit {
 
   @Input() readonly arrayOfResults: Object[];
 
-  @Output() resetResultArray: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  resetResultArray: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  chosenResult: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -25,7 +29,15 @@ export class ResultBoardComponent implements OnInit {
 
   }
 
-  onClickResultList(event:MouseEvent) {
+  onClickResultList(event: any): void {
+
+    if (event.target.getAttribute('key') === 'result') {
+
+      this.chosenResult.emit(event.target.innerText);
+
+    }
+
+    return;
 
   }
 
