@@ -47,7 +47,8 @@ export class CalcDeviceComponent implements OnInit {
 		this.chosenResultFromBoardSubscription =
 
 			this.chosenResult$
-				.subscribe(result => {
+
+				.subscribe(result => {								
 
 					this.result = result;
 

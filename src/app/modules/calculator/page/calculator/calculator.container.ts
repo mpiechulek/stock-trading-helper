@@ -178,7 +178,7 @@ export class CalculatorContainerComponent implements OnInit {
 	 * 
 	 * @param result 
 	 */
-	onChoseResult(result: string): void {
+	onChoseResult(result: string): void {		
 
 		this.chosenResultSubject.next(result);
 

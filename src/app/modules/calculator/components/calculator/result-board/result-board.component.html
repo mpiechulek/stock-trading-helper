@@ -1,6 +1,6 @@
 <ul class="calculator-result-board" >
 
-    <button (click)="onResetBoardOfResults()">reset</button>
+    <button (click)="onClickResultList($event)">reset</button>
 
     <div class="calculator-result-list-wrapper" (click)="onClickResultList($event)">
 
@@ -8,7 +8,7 @@
     
             <p class="calculator-result-board-text">{{operation?.equation}}</p>
     
-            <p class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
+            <p key="result" class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
     
         </li>
 

@@ -66,7 +66,9 @@ export class CalculatorComponent implements OnInit {
   /**
  * 
  */
-  onChoseResult(chosenResult: string): void {
+   onChoseResult(chosenResult: string): void {
+
+    console.log('111');
 
     this.chosenResult.emit(chosenResult);
 

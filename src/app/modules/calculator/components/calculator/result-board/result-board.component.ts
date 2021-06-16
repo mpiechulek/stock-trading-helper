@@ -29,9 +29,12 @@ export class ResultBoardComponent implements OnInit {
 
   }
 
-  onClickResultList(event: any): void {
+  onClickResultList(event: any): void {     
 
     if (event.target.getAttribute('key') === 'result') {
+
+      console.log('dsdasd');
+      
 
       this.chosenResult.emit(event.target.innerText);
 
