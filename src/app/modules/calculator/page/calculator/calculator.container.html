@@ -1,6 +1,8 @@
 <app-calculator-ui
     [calculationResults]="getCalculationResults"
     [arrayOfResults]="getArrayOfResults"
+    [chosenResultObservable] = "getChosenResult$"
+
     (outputFormData)="calculate($event)"
     (resultArrayEmitter)="onSaveResultToArray($event)"
     (resetResultArray)="onResetBoardOfResults()"

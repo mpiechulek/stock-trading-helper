@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel } from 'src/app/data/models/form.model';
 
 @Component({
@@ -12,6 +13,9 @@ export class CalculatorComponent implements OnInit {
 
   @Input()
   readonly arrayOfResults: Object[];
+
+  @Input()
+  readonly chosenResultObservable: Observable<string>;
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =
