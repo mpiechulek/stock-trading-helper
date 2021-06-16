@@ -57,6 +57,19 @@
 
     }
 
+
+    .calculator-result-board-list-item:not(:last-child) {
+
+      margin-top: 2rem;
+
+    }
+
+  }
+
+  .calculator-result-list-wrapper {
+
+    width: 100%;
+    
   }
 
   .calculator-component-container {
@@ -191,7 +204,7 @@
   }
 
   &__button-wrapper {
-    
+
     width: 100%;
     margin-bottom: 2rem;
     margin-top: 3px;
