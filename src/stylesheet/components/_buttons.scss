@@ -6,8 +6,12 @@
   justify-content: center;
   align-items: center;
 
-  &--sidenav-open {}
+  &--reset-btn {
 
+    padding: 2px 4px;
+    background: white;
+    color: $color-black;
 
-  &--sidenav-close {}
+  }
+
 }

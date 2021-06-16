@@ -1,65 +1,19 @@
-<ul class="calculator-result-board">
+<ul class="calculator-result-board" >
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
+    <button (click)="onResetBoardOfResults()" class="btn btn--reset-btn">reset</button>
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
+    <div class="calculator-result-list-wrapper" (click)="onClickResultList($event)">
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
+        <li class="calculator-result-board-list-item" *ngFor="let operation of arrayOfResults">
+    
+            <p class="calculator-result-board-text">{{operation?.equation}}</p>
+    
+            <p key="result" class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
+    
+        </li>
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
+    </div>
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
 
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-       <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>
-
-    <li class="calculator-result-board-list-item">
-        <p class="calculator-result-board-text">10 +  10 - 60 / 70 * 67</p>
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">11256</p>
-    </li>   
 
 </ul>
-
-

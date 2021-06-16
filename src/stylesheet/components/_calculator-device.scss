@@ -22,6 +22,8 @@
   &__output {
     display: flex;
     flex-direction: column;
+    max-width: 412px;
+    max-height: 140px;
   }
 
   &__input {
@@ -55,22 +57,21 @@
   text-align: right;
   color: white;
   word-wrap: break-word;
-  white-space: pre-wrap;
+  font-size: 4rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .calc-result {
-  font-size: 4.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .equation {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
-  color: rgb(177, 177, 177);
-  font-size: 3.5rem;
+  font-size: 2.8rem;
+  color: rgb(151, 150, 150); 
 }
 
 .calc-button {

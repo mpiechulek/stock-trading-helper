@@ -1,1 +1,11 @@
-<app-calculator-ui></app-calculator-ui>
+<app-calculator-ui
+    [calculationResults]="getCalculationResults"
+    [arrayOfResults]="getArrayOfResults"
+    [chosenResult$] = "getChosenResult$"
+
+    (outputFormData)="calculate($event)"
+    (resultArrayEmitter)="onSaveResultToArray($event)"
+    (resetResultArray)="onResetBoardOfResults()"
+    (chosenResult)="onChoseResult($event)"
+ >
+</app-calculator-ui>

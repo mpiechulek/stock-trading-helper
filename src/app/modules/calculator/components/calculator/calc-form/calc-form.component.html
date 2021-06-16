@@ -2,27 +2,12 @@
 
     <app-header></app-header>
   
-    <app-form ></app-form>
+    <app-form  (outputFormData)="calculate($event)" ></app-form>    
 
-    <div class="stock-advanced-calculator__button-wrapper">
-
-        <button        
-            color="primary"
-            mat-raised-button 
-            (click)="onCalculate()"          
-        >
-           Calculate
-        </button>
-
-        <button             
-            mat-raised-button        
-        >
-            Clear
-        </button>
-        
-    </div>
-
-    <app-result [formExpand]="getFormExpand"></app-result>
+    <app-result 
+        [formExpand]="getFormExpand"
+        [calculationResults]="calculationResults"       
+    ></app-result>
     
     
 </div>

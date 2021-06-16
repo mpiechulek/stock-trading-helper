@@ -26,6 +26,18 @@ export class StockPriceCalculatorService {
   /**
    * 
    * @param buyValue 
+   * @param percenbuyValuetageCommission 
+   * @returns 
+   */
+  calculatePercentageCommission(buyValue: number, percentageCommission: number): number {    
+
+    return (buyValue * percentageCommission) / 1000;
+
+  }
+
+  /**
+   * 
+   * @param buyValue 
    * @param commissionValue 
    * @param minCommissionValue 
    */

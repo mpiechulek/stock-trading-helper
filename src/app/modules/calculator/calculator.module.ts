@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../../shared/shared.module';
 import { FormComponent } from './components/calculator/calc-form/form/form.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,23 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
-    MatExpansionModule
-  ]
+    FormsModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateModule,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })   
+  ],
+  providers: [TranslateService]
 })
 export class CalculatorModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

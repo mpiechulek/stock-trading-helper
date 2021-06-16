@@ -1,310 +1,567 @@
-import { Component, OnInit } from '@angular/core';
-
-
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 @Component({
-  selector: 'app-calc-device',
-  templateUrl: './calc-device.component.html'
+	selector: 'app-calc-device',
+	templateUrl: './calc-device.component.html'
 })
 export class CalcDeviceComponent implements OnInit {
 
-  // Displays the string of current equation exp. 2 + 2
-  displayEquation: string = '0';
-  // Displays the entered number and the current equation result
-  displayResult: string = '0';
-  // Is holding the entered number
-  enteredNumber: string = '0';
-  // Is holding the previous entered number
-  previousEnteredNumber: string = '0';
-  // Chose operation
-  chosenOperator: string = undefined;
-  // Is holding the global calculations result    
-  result: string = '0';
-  // is holding all of the equations and results
-  calculationsArray: Object[] = [];
+	// Displays the string of current equation exp. 2 + 2
+	displayEquation: string = '0';
 
-  constructor() { }
+	// Displays the entered number and the current equation result
+	displayResult: string = '0';
 
-  ngOnInit(): void {
-  }
+	// Is holding the entered number
+	enteredNumber: string = '0';
 
-  // ===========================================================================
-  // =============================== Enter number  =============================
-  // ===========================================================================
+	// Is holding the previous entered number
+	previousEnteredNumber: string = null;
 
-  /**
-   * EEnter a digit
-   * @param value A number string or a '.'
-   */
-  onEnterNumber(value: string) {
-    // Not allowing to Enter a multi "0" string
-    if (this.preventFromMultiZero(value)) {
-      return;
-    }
+	// entering number marker
+	numberWasEntered: boolean = false;
 
-    this.resettingTheEnteredNumber(value);
+	// Chose operation
+	chosenOperator: string = undefined;
 
-    if (this.isNumber(value) && this.isStringLengthApproval(value)) {
-      this.enteredNumber += this.canAppendNumber(value);
-      this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
-    }
-  }
+	// Is holding the global calculations result    
+	result: string = '0';
 
-  /**
-   * preventing form repeating of '0' characters in string
-   * @param value 
-   */
-  preventFromMultiZero(value: string): boolean {
-    return this.enteredNumber[0] === '0' && this.enteredNumber.length === 1 && value === '0';
-  }
+	onComputeWasUsed: boolean = false;
 
-  /**
-   * Overwriting the entered Number value from '0' to '' , to avoid exp. 07 digit
-   * @param value 
-   */
-  resettingTheEnteredNumber(value: string): void {
-    if (this.enteredNumber === '0' && value !== '.') {
-      this.enteredNumber = '';
-    }
-  }
+	// =========================================================================
 
-  isStringLengthApproval(value: string): boolean {
-    return this.enteredNumber.length < 13;
-  }
+	private chosenResultFromBoardSubscription: Subscription;
 
-  // Checking if the value is a number or a dot symbol
-  isNumber(value: string) {
-    if (!isNaN(parseInt(value)) || value === '.') {
-      return true;
-    }
-    return false;
-  }
+	// =========================================================================
 
-  //Appending the string with numbers only if it contains max 1 dot symbol     
-  canAppendNumber(value: string) {
-    //This prevents multi dots in string
-    if (this.enteredNumber.includes('.') && value === '.') {
-      return '';
-    } else {
-      return value;
-    }
-  }
+	@Input()
+	readonly chosenResult$: Observable<string>;
 
-  // ===========================================================================
-  // =========================== Arithmetic operations =========================
-  // ===========================================================================
+	@Output() resultArrayEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  onEnterOperation(operator: string) {
-    if (this.enteredNumber === '') return;
-    
-    this.chosenOperator = operator;
+	constructor() { }
 
-    this.result = this.chooseOperation(operator);
-    this.displayResult = this.prepareResultToDisplay(this.result);
+	ngOnInit(): void {
 
-    if (!this.orderOfEquation()) {
-      this.saveResultToArray();
-    }
+		this.chosenResultFromBoardSubscription =
 
-    this.previousEnteredNumber = this.enteredNumber;
-    this.enteredNumber = '';
-  }
+			this.chosenResult$
 
-  chooseOperation(operator: string) {
-    let calcResult: number;
+				.subscribe(result => {								
 
-    switch (operator) {
-      case '+':
-        if (this.orderOfEquation()) {
-          calcResult = this.stringToNumber(this.enteredNumber);
-        } else {
-          calcResult = this.sum();
-        }
-        break
-      case '-':
-        if (this.orderOfEquation()) {
-          calcResult = this.stringToNumber(this.enteredNumber);
-        } else {
-          calcResult = this.subtraction();
-        }
-        break
-      case '*':
-        if (this.orderOfEquation()) {
-          calcResult = this.stringToNumber(this.enteredNumber);
-        } else {
-          calcResult = this.multiplication();
-        }
-        break
-      case '/':
-        if (this.orderOfEquation()) {
-          calcResult = this.stringToNumber(this.enteredNumber);
-        } else {
-          calcResult = this.division();
-        }
-        break
-      default:
-        return
-    }
+					this.result = result;
 
-    this.createEquationForDisplay(operator);   
+					this.displayResult = result;
 
-    return calcResult.toString();
-  }
+				});
 
-  sum() {
-    return this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
-  }
-  subtraction() {
-    return this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
-  }
+	}
 
-  multiplication() {  
+	ngOnDestroy(): void {
 
-    return this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
-  }
+		if (this.chosenResultFromBoardSubscription) {
 
-  division() {
-    return this.stringToNumber(this.result) / this.stringToNumber(this.enteredNumber);
-  }
+			this.chosenResultFromBoardSubscription.unsubscribe();
 
-  stringToNumber(value: string): number {
-    return parseFloat(value);
-  }
+		}
+	}
 
-  createEquationForDisplay(operator: string): void {
-    if (this.orderOfEquation()) {
-      this.displayEquation = `${this.enteredNumber} ${operator}`;
-    } else {
-      this.displayEquation = `${this.result} ${operator} ${this.enteredNumber}`;
-    }
-  }
+	// ===========================================================================
+	// =============================== Enter number  =============================
+	// ===========================================================================
 
-  saveResultToArray() {
-    let calculation = {
-      equation: this.displayEquation,
-      result: this.result
-    }
+	/**	 
+	 * Enter a digit
+	 * @param value A number string or a '.'
+	 */
+	onEnterNumber(value: string): void {
 
-    this.calculationsArray.push(calculation);  
+		// after using the "=" character , new entire number is resting the device
+		if (this.onComputeWasUsed) {
 
-  }
+			this.clearAll();
+			this.onComputeWasUsed = false;
 
-  orderOfEquation(): boolean {
-    return this.previousEnteredNumber === '0' && this.result === '0';
-  }
+		}
 
-  // ===========================================================================
-  // ================================= computing ===============================
-  // ===========================================================================
+		// prevents entering multi '0'
+		if (this.preventFromMultiZero(value)) return;
 
-  /**
-   * TODO: make ot work beter !!
-   * @param value 
-   */
-  onCompute(value: string) {   
-    
-    // if(this.result === '0')
-   
-    this.result = this.chooseOperation(this.chosenOperator);
-    this.displayResult = this.prepareResultToDisplay(this.result);
+		// checking if max length of sting is caressed
+		if (!this.isStringLengthApproval(value)) return;
 
-    if (!this.orderOfEquation()) {
-      this.saveResultToArray();
-    }
+		// checking if the entered value is a number
+		// checking if the entered value is a dot
+		if (!this.isNumber(value) && !this.isCharacterADot(value)) return;
 
-    this.previousEnteredNumber = this.enteredNumber;   
-  }
+		// the string can have only one dot character
+		if (this.checkIfDotInString(value)) return;
 
-  // ===========================================================================
-  // ============================= Delete operations ===========================
-  // ===========================================================================
+		// appending the enteredNumber with new character
+		this.enteredNumber += value;
 
-  onDelete(operation: string) {
-    if (operation === 'del') {
-      this.deleteDigit()
+		// removing the unnecessary front zero 
+		this.enteredNumber = this.removeFrontZero(this.enteredNumber);
 
-    } else if (operation === 'c') {
-      this.clearAll();
+		// remembering information for equation operations future purpose 
+		this.numberWasEntered = true;
 
-    } else if (operation === 'ce') {
-      this.clearEntry();
+		// Formatting string to local sting 
+		this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
 
-    } else {
-      return;
-    }
-  }
+	}
 
-  clearEntry(): void {
-    this.displayResult = '0';
-    this.enteredNumber = '0';
-  }
+	/**
+	 * This method is for controlling the max length of the entered value
+	 * @param value 
+	 * @returns 
+	 */
+	isStringLengthApproval(value: string): boolean {
 
-  deleteDigit(): void {
-    if (this.enteredNumber !== '') {
-      this.enteredNumber = this.removeStringsLastCharacter(this.enteredNumber)
-      this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
-    }
-    return;
-  }
+		return this.enteredNumber.length < 13;
 
-  removeStringsLastCharacter(value: string) {
-    return value.substring(0, this.enteredNumber.length - 1);
-  }
+	}
 
-  //
-  clearAll(): void {
-    this.displayResult = '0';
-    this.enteredNumber = '0';
-    this.previousEnteredNumber = '0';
-    this.result = '0';
-    this.displayEquation = '0'; 
-    this.chosenOperator = undefined;
-    this.calculationsArray = [];
-  }
+	/**
+	 * 
+	 */
+	isCharacterADot(value: string): boolean {
 
+		return value === '.';
 
-  // ===========================================================================
-  // ==================== Converting string to locale string ===================
-  // ===========================================================================
+	}
 
-  prepareResultToDisplay(enteredNumber: string): string {
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	isNumber(value: string): boolean {
 
-    let splitNumber: string[];
-    let toNumber: number = 0;
-    let result: string;
+		return !isNaN(parseInt(value));
 
-    if (enteredNumber === '') {
-      return '0';
-    }
+	}
 
-    // If the entry sting contains a '.' character, then split the sting, by 
-    // the character and save in an array
-    if (enteredNumber.includes('.')) {
-      splitNumber = enteredNumber.split('.');
-      toNumber = parseInt(splitNumber[0]);
-    } else {
-      toNumber = parseInt(enteredNumber);
-    }
+	/**
+	 * preventing form repeating of '0' characters in string
+	 * @param value 
+	 */
+	preventFromMultiZero(value: string): boolean {
 
-    //
-    if (!enteredNumber.includes('.')) {
-      result = toNumber.toLocaleString();
+		return this.enteredNumber[0] === '0' && this.enteredNumber.length === 1 && value === '0';
 
-    } else {
-      result = toNumber.toLocaleString(undefined, { minimumFractionDigits: 1 });
-      result = this.removeStringsLastCharacter(result);
-    }
+	}
 
-    //
-    if (!splitNumber) {
-      return result;
+	/**
+	 * Appending the string with numbers only if it contains max 1 dot symbol
+	 * @param value 
+	 * @returns 
+	 */
+	checkIfDotInString(value: string): boolean {
 
-    } else if (splitNumber && (splitNumber[1] === '')) {
-      return result;
+		//This prevents multi dots in string	
+		return this.enteredNumber.includes('.') && value === '.';
 
-    } else {
-      result = result + splitNumber[1];
-      return result
-    }
-  }
+	}
+
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	removeFrontZero(value: string): string {
+
+		if (value === '0.') {
+
+			return value;
+
+		}
+
+		if (value[0] === '0' && value[1] !== '0' && value[1] !== '.') {
+
+			return value.substr(1);
+
+		}
+
+		return value;
+
+	}
+
+	// ===========================================================================
+	// =========================== Arithmetic operations =========================
+	// ===========================================================================
+
+	/**
+	 * when clicking an arithmetic operation button
+	 * @param operator 
+	 * @returns 
+	 */
+	onEnterOperation(operator: string): void {
+
+		if (operator === undefined) return;
+
+		// if the chosen operators is or the operator has changed the same and the number wasn't entered
+		// exp. 1 + + + or 1 + - *
+		if ((this.chosenOperator === operator ||
+			this.chosenOperator !== operator) &&
+			this.numberWasEntered === false &&
+			this.enteredNumber === '0') {
+
+			this.chosenOperator = operator;
+			this.createEquationForDisplay(operator);				
+
+			return;
+		}
+
+		if (this.onComputeWasUsed) {
+
+			this.onComputeWasUsed = false;
+			this.numberWasEntered = false;
+			this.enteredNumber = '0';
+			this.chosenOperator = operator;
+			this.createEquationForDisplay(operator);		
+
+			return;
+		}
+
+		// exp. (2 + 3 - 4 ) it should display (5-) when pressing "-" then (4 =) gets us 1
+		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {
+
+			//calculating the previous entries
+			this.createEquationForDisplay(this.chosenOperator);
+			this.result = this.chooseOperation(this.chosenOperator);
+			this.displayResult = this.prepareResultToDisplay(this.result);	
+
+			if (!this.orderOfEquation()) {
+
+				this.saveResultToArray();
+	
+			}	
+
+			// displaying the new operator and result
+			this.enteredNumber = '0';
+			this.numberWasEntered = false;			
+			this.chosenOperator = operator;	
+
+			return;
+		}
+
+		this.createEquationForDisplay(operator);
+		this.result = this.chooseOperation(operator);
+		this.displayResult = this.prepareResultToDisplay(this.result);
+
+		// if previousEnteredNumber and result are not "0"
+		if (!this.orderOfEquation()) {
+
+			this.saveResultToArray();
+
+		}
+
+		// saving current number as previous number
+		this.previousEnteredNumber = this.enteredNumber;
+		// resting entered numen
+		this.enteredNumber = '0';
+		// resting entered number marker
+		this.numberWasEntered = false;
+		// saving operator for future operation's
+		this.chosenOperator = operator;
+
+		this.onComputeWasUsed = false;
+	}
+
+	/**
+	 * 
+	 * @param operator 
+	 * @returns 
+	 */
+	chooseOperation(operator: string): string {
+
+		let calcResult: number;
+
+		if (this.result === '0' && this.chosenOperator === undefined) {
+
+			return this.stringToNumber(this.enteredNumber).toString();
+
+		}
+
+		switch (operator) {
+
+			case '+':
+
+				calcResult = this.stringToNumber(this.result) + this.stringToNumber(this.enteredNumber);
+
+				break
+
+			case '-':
+
+				calcResult = this.stringToNumber(this.result) - this.stringToNumber(this.enteredNumber);
+
+				break
+
+			case '*':
+
+				calcResult = this.stringToNumber(this.result) * this.stringToNumber(this.enteredNumber);
+
+				break
+
+			case '/':
+
+				calcResult = this.stringToNumber(this.result) / this.stringToNumber(this.enteredNumber);
+
+				break
+
+			default:
+
+				return
+
+		}
+
+		return calcResult.toString();
+	}
+
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	stringToNumber(value: string): number {
+
+		return parseFloat(value);
+
+	}
+
+	/**
+	 * This logic tells us if the calculation is on the beginning of the operations cycle
+	 * @returns 
+	 */
+	orderOfEquation(): boolean {
+
+		return this.previousEnteredNumber === null && this.result === '0';
+
+	}
+
+	/**
+	 * 
+	 * @param operator 
+	 */
+	createEquationForDisplay(operator: string): void {
+
+		if (this.orderOfEquation()) {
+
+			this.displayEquation = `${this.enteredNumber} ${operator}`;
+
+		} else if (this.numberWasEntered === false && this.enteredNumber === '0') {
+
+			this.displayEquation = `${this.result} ${operator}`;
+
+		} else {
+
+			this.displayEquation = `${this.result} ${operator} ${this.enteredNumber}`;
+
+		}
+
+	}
+
+	/**
+	 * 
+	 */
+	saveResultToArray(): void {
+
+		let calculation: Object = {}
+
+		calculation = {
+
+			equation: this.displayEquation,
+			result: this.prepareResultToDisplay(this.result)
+
+		}
+
+		// emitting the array of results
+		this.resultArrayEmitter.emit(calculation);
+
+	}
+
+	// =========================================================================
+	// ================================= computing =============================
+	// =========================================================================
+
+	/**
+	 * =
+	 * @param value 
+	 */
+	onCompute(value: string): void {
+
+		if (this.chosenOperator === undefined) return;
+
+		this.onComputeWasUsed = true;
+
+		// Making a loop exp. 3 + = repeating  =
+		if (this.chosenOperator !== undefined && this.enteredNumber === '0' && this.previousEnteredNumber !== null) {
+
+			this.enteredNumber = this.previousEnteredNumber;
+
+		}
+
+		this.createEquationForDisplay(this.chosenOperator);
+
+		this.result = this.chooseOperation(this.chosenOperator);
+
+		this.displayResult = this.prepareResultToDisplay(this.result);
+
+		if (!this.orderOfEquation()) {
+
+			this.saveResultToArray();
+
+		}
+
+		this.numberWasEntered = false;
+
+	}
+
+	// ===========================================================================
+	// ============================= Delete operations ===========================
+	// ===========================================================================
+
+	/**
+	 * 
+	 * @param operation 
+	 * @returns 
+	 */
+	onDelete(operation: string) {
+
+		if (operation === 'del') {
+
+			this.deleteDigit()
+
+		} else if (operation === 'c') {
+
+			this.clearAll();
+
+		} else if (operation === 'ce') {
+
+			this.clearEntry();
+
+		} else {
+
+			return;
+
+		}
+	}
+
+	/**
+	 * 
+	 */
+	clearEntry(): void {
+
+		this.displayResult = '0';
+		this.enteredNumber = '0';
+
+	}
+
+	/**
+	 * 
+	 * @returns 
+	 */
+	deleteDigit(): void {
+
+		if (this.enteredNumber !== '') {
+
+			this.enteredNumber = this.removeStringsLastCharacter(this.enteredNumber)
+			this.displayResult = this.prepareResultToDisplay(this.enteredNumber);
+
+		}
+
+		return;
+
+	}
+
+	/**
+	 * 
+	 * @param value 
+	 * @returns 
+	 */
+	removeStringsLastCharacter(value: string) {
+
+		return value.slice(0, -1);
+
+	}
+
+	/**
+	 * 
+	 */
+	clearAll(): void {
+
+		this.displayResult = '0';
+		this.enteredNumber = '0';
+		this.previousEnteredNumber = null;
+		this.result = '0';
+		this.displayEquation = '0';
+		this.chosenOperator = undefined;
+
+	}
+
+	// ===========================================================================
+	// ==================== Converting string to locale string ===================
+	// ===========================================================================
+
+	/**
+	 * * !!! Improved !!!
+	 * displaying the endeared number value as a local sting 
+	 * @param enteredNumber 
+	 * @returns 
+	 */
+	prepareResultToDisplay(enteredNumber: string): string {
+
+		let splitNumber: string[];
+		let toNumber: number = 0;
+		let result: string;
+
+		if (enteredNumber === '') {
+
+			return '0';
+
+		}
+
+		// If the entry sting contains a '.' character, then split the sting, by 
+		// the character and save in an array
+		if (enteredNumber.includes('.')) {
+
+			splitNumber = enteredNumber.split('.');
+
+			toNumber = parseInt(splitNumber[0]);
+
+			//this gives a ',0' at the end of the sting exp. 1234,0
+			result = toNumber.toLocaleString(undefined, { minimumFractionDigits: 1 });
+
+			result = this.removeStringsLastCharacter(result);
+
+		}
+
+		//
+		if (!enteredNumber.includes('.')) {
+
+			toNumber = parseInt(enteredNumber);
+
+			result = toNumber.toLocaleString();
+
+		}
+
+		// if there was a dot, spitNumber exist
+		if (!splitNumber) {
+
+			return result;
+
+		} else if (splitNumber && (splitNumber[1] === '')) {
+
+			return result;
+
+		} else {
+
+			result = result + splitNumber[1];
+
+			return result
+		}
+	}
 
 }

@@ -55,12 +55,39 @@
         "tileHeaderQuantity": "Quantity",
         "tileHeaderCurrentPrice": "Cur. price",
         "tileHeaderCurrentValue": "Cur. value",
-        "tileHeaderProfitBeforeTax": "Bef. tax",        
+        "tileHeaderProfitBeforeTax": "Bef. tax",               
         
         "sellConfirmDialogHeader": "Sell stock",
         "sellConfirmDialogText": "Are you sure, you want to sell your stock shares?",
         "deleteConfirmDialogHeader": "Delete stock",
         "deleteConfirmDialogText": "Are you sure, you want to delete this stock?"       
+    },
+    "calculator": {  
+        "calculatorFormHeader": "Add stock data for calculations", 
+        "calculatorFormBuyPrice": "* BuyPrice", 
+        "calculatorFormQuantity": "* Number of shares", 
+        "calculatorFormSellPrice": "* Sell price", 
+        "calculatorFormTaxRate": "* Tax rate %", 
+        "calculatorFormCommission": "* Commission %", 
+        "calculatorFormMinCommission": "* Min. Commission",
+
+        "calculatorFormButtonClear": "Clear", 
+        "calculatorFormButtonCalculate": "Calculate",
+
+        "calculatorResultResult": "Result",
+
+        "calculatorResultNetBuyValue": "Net buy value",
+        "calculatorResultNetSellValue": "Net sell value",
+        "calculatorResultResultBuyCommission": "Buy commission",
+        "calculatorResultSellCommission": "Sell commission",
+        "calculatorResultGrossBuy": "Gross buy value",
+        "calculatorResultGrossSell": "Gross sell value",     
+        "calculatorResultProfitBefore": "Profit before tax",
+        "calculatorResultProfitAfter": "Profit after tax",
+        "calculatorResultFormWarning_1": "Number value is required",
+        "calculatorResultFormWarning_2": "Must by a positive number",
+        "calculatorResultFormWarning_3": "Must by a positive integer"        
+
     }
 }
 
