@@ -144,9 +144,7 @@ export class CalculatorContainerComponent implements OnInit {
 	/**
 	  * 
 	  */
-	onSaveResultToArray(arrayOfResults: any): void {
-
-		console.log(arrayOfResults);
+	onSaveResultToArray(arrayOfResults: any): void {	
 
 		this.arrayOfResults.push(arrayOfResults);
 
