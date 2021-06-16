@@ -15,7 +15,7 @@ export class CalculatorComponent implements OnInit {
   readonly arrayOfResults: Object[];
 
   @Input()
-  readonly chosenResultObservable: Observable<string>;
+  readonly chosenResult$: Observable<string>;
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =

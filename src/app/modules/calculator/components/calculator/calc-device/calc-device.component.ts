@@ -1,4 +1,5 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 @Component({
 	selector: 'app-calc-device',
 	templateUrl: './calc-device.component.html'
@@ -28,13 +29,41 @@ export class CalcDeviceComponent implements OnInit {
 
 	onComputeWasUsed: boolean = false;
 
-	//=============================================================================
+	// =========================================================================
 
-	@Output() resultArrayEmitter:EventEmitter<any> = new EventEmitter<any>();
+	private chosenResultFromBoardSubscription: Subscription;
+
+	// =========================================================================
+
+	@Input()
+	readonly chosenResult$: Observable<string>;
+
+	@Output() resultArrayEmitter: EventEmitter<any> = new EventEmitter<any>();
 
 	constructor() { }
 
 	ngOnInit(): void {
+
+		this.chosenResultFromBoardSubscription =
+
+			this.chosenResult$
+				.subscribe(result => {
+
+					this.result = result;
+
+					this.displayResult = result;
+
+				});
+
+	}
+
+	ngOnDestroy(): void {
+
+		if (this.chosenResultFromBoardSubscription) {
+
+			this.chosenResultFromBoardSubscription.unsubscribe();
+
+		}
 	}
 
 	// ===========================================================================
@@ -339,7 +368,7 @@ export class CalcDeviceComponent implements OnInit {
 			equation: this.displayEquation,
 			result: this.prepareResultToDisplay(this.result)
 
-		}		
+		}
 
 		// emitting the array of results
 		this.resultArrayEmitter.emit(calculation);
