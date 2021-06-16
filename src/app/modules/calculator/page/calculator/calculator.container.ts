@@ -175,8 +175,9 @@ export class CalculatorContainerComponent implements OnInit {
 	}
 
 	onChoseResult(result: string): void {
-		
 
+		this.chosenResultSubject.next(result);
+		
 	}
 
 }
