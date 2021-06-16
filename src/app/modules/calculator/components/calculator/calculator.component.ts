@@ -57,7 +57,7 @@ export class CalculatorComponent implements OnInit {
   /**
    * 
    */
-  onResetBoardOfResults(): void {
+   onResetBoardOfResults(): void {
 
     this.resetResultArray.emit();
 

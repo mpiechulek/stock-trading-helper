@@ -47,7 +47,7 @@ export class CalculatorContainerComponent implements OnInit {
 	/**
 	 * 
 	 */
-	get getArrayOfResults(): Object {
+	get getArrayOfResults(): Object[] {
 
 		return this.arrayOfResults;
 
@@ -162,13 +162,15 @@ export class CalculatorContainerComponent implements OnInit {
 	onSaveResultToArray(arrayOfResults: any): void {	
 
 		this.arrayOfResults.push(arrayOfResults);
+		
+		return;
 
 	}	
 	
 	/**
 	  * 
 	  */
-	onResetBoardOfResults(): void {
+	 onResetBoardOfResults(): void {
 
 		this.arrayOfResults = [];
 

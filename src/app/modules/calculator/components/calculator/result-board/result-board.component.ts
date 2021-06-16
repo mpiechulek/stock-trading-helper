@@ -23,7 +23,7 @@ export class ResultBoardComponent implements OnInit {
   /**
    * 
    */
-  onResetBoardOfResults(): void {
+   onResetBoardOfResults(): void {
 
     this.resetResultArray.emit();
 
@@ -31,10 +31,7 @@ export class ResultBoardComponent implements OnInit {
 
   onClickResultList(event: any): void {     
 
-    if (event.target.getAttribute('key') === 'result') {
-
-      console.log('dsdasd');
-      
+    if (event.target.getAttribute('key') === 'result') {      
 
       this.chosenResult.emit(event.target.innerText);
 
