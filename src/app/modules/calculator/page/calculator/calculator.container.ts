@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { StockPriceCalculatorService } from 'src/app/core/services/stock-price-calculator.service';
 import {
 	AdvanceCalculatorFormNumberDataModel,
@@ -15,6 +16,11 @@ export class CalculatorContainerComponent implements OnInit {
 
 	private calculatorResult: AdvanceCalculatorResultDataModel;
 	private arrayOfResults: Object[] = [];
+
+	// =========================================================================
+
+	private chosenResultSubject = new BehaviorSubject<string>('0');
+	private chosenResultSubject$: Observable<string> = this.chosenResultSubject.asObservable();
 
 	//==========================================================================
 
