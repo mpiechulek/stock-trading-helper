@@ -25,4 +25,8 @@ export class ResultBoardComponent implements OnInit {
 
   }
 
+  onClickResultList(event:MouseEvent) {
+
+  }
+
 }

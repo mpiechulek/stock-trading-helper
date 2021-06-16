@@ -2,7 +2,7 @@
 
     <button (click)="onResetBoardOfResults()">reset</button>
 
-    <div class="calculator-result-list-wrapper ">
+    <div class="calculator-result-list-wrapper" (click)="onClickResultList($event)">
 
         <li class="calculator-result-board-list-item" *ngFor="let operation of arrayOfResults">
     
@@ -11,7 +11,7 @@
             <p class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
     
         </li>
-        
+
     </div>
 
 
