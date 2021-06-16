@@ -201,7 +201,7 @@ export class CalcDeviceComponent implements OnInit {
 
 		if (operator === undefined) return;
 
-		// if the chosen operatort is or the operator has changed the same and the number wasn't entered
+		// if the chosen operators is or the operator has changed the same and the number wasn't entered
 		// exp. 1 + + + or 1 + - *
 		if ((this.chosenOperator === operator ||
 			this.chosenOperator !== operator) &&
@@ -209,7 +209,7 @@ export class CalcDeviceComponent implements OnInit {
 			this.enteredNumber === '0') {
 
 			this.chosenOperator = operator;
-			this.createEquationForDisplay(operator);
+			this.createEquationForDisplay(operator);				
 
 			return;
 		}
@@ -220,7 +220,7 @@ export class CalcDeviceComponent implements OnInit {
 			this.numberWasEntered = false;
 			this.enteredNumber = '0';
 			this.chosenOperator = operator;
-			this.createEquationForDisplay(operator);
+			this.createEquationForDisplay(operator);		
 
 			return;
 		}
@@ -229,14 +229,20 @@ export class CalcDeviceComponent implements OnInit {
 		if (this.chosenOperator !== operator && this.chosenOperator !== undefined) {
 
 			//calculating the previous entries
+			this.createEquationForDisplay(this.chosenOperator);
 			this.result = this.chooseOperation(this.chosenOperator);
-			this.displayResult = this.prepareResultToDisplay(this.result);
+			this.displayResult = this.prepareResultToDisplay(this.result);	
+
+			if (!this.orderOfEquation()) {
+
+				this.saveResultToArray();
+	
+			}	
 
 			// displaying the new operator and result
 			this.enteredNumber = '0';
-			this.numberWasEntered = false;
-			this.createEquationForDisplay(operator);
-			this.chosenOperator = operator;
+			this.numberWasEntered = false;			
+			this.chosenOperator = operator;	
 
 			return;
 		}
