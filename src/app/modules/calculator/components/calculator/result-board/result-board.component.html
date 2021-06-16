@@ -1,14 +1,19 @@
 <ul class="calculator-result-board" >
-    
+
     <button (click)="onResetBoardOfResults()">reset</button>
 
-    <li class="calculator-result-board-list-item" *ngFor="let operation of arrayOfResults">
+    <div class="calculator-result-list-wrapper ">
 
-        <p class="calculator-result-board-text">{{operation?.equation}}</p>
+        <li class="calculator-result-board-list-item" *ngFor="let operation of arrayOfResults">
+    
+            <p class="calculator-result-board-text">{{operation?.equation}}</p>
+    
+            <p class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
+    
+        </li>
+        
+    </div>
 
-        <p class="calculator-result-board-text calculator-result-board-text--bold ">{{operation?.result}}</p>
-
-    </li>
 
 
 </ul>
