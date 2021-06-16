@@ -161,4 +161,9 @@ export class CalculatorContainerComponent implements OnInit {
 
 	}
 
+	onChoseResult(result: string): void {
+		
+
+	}
+
 }
