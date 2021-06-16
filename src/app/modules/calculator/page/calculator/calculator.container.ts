@@ -53,6 +53,15 @@ export class CalculatorContainerComponent implements OnInit {
 
 	}
 
+	/**
+	 * 
+	 */
+	get getChosenResult$(): Observable<string> {
+
+		return this.chosenResultSubject$;
+
+	}
+
 	// =============================================================================
 	// ============================ Calculation methods ============================
 	// =============================================================================
