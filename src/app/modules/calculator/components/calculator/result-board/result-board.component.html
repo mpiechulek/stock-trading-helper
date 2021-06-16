@@ -1,4 +1,6 @@
 <ul class="calculator-result-board" >
+    
+    <button (click)="onResetBoardOfResults()">reset</button>
 
     <li class="calculator-result-board-list-item" *ngFor="let operation of arrayOfResults">
 
@@ -8,6 +10,5 @@
 
     </li>
 
-    <button (click)="onResetBoardOfResults()">reset</button>
 
 </ul>
