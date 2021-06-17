@@ -27,8 +27,8 @@ export class MainLayoutComponent implements OnInit {
                 this.showLoadingIndicator = false;
 
             }
-        })
 
+        })
 
     }
 
@@ -36,8 +36,8 @@ export class MainLayoutComponent implements OnInit {
     }
 
     /**
-       * 
-       */
+    * 
+    */
     get getShowLoadingIndicator(): boolean {
 
         return this.showLoadingIndicator;

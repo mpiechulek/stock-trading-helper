@@ -4,8 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { SideNavService } from 'src/app/core/services/side-nav.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { LanguageService } from 'src/app/core/services/language.service';
-import { RouterLinkService } from 'src/app/core/services/router-link.service';
-
 @Component({
   selector: 'app-side-nav-ui',
   templateUrl: './side-nav.component.html'
@@ -25,8 +23,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private themeService: ThemeService,
     private sideNavService: SideNavService,
     public translate: TranslateService,
-    private languageService: LanguageService,
-    private routerLinkService: RouterLinkService
+    private languageService: LanguageService  
   ) { }
 
   //============================================================================
