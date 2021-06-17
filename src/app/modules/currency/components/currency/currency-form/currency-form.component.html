@@ -1,12 +1,14 @@
 <form class="currency-calculator-form" [formGroup]="currencyForm" >
 
-    <h2 class="currency__header currency-header">Currency exchange calculator</h2>
+    <h2 class="currency__header currency-header">{{ 'currency.currencyCalculatorHeader'| translate}}</h2>
 
     <div class="currency-select-wrapper">
 
+        <!-- Currency 1 -->
+
         <mat-form-field id="currency-select">
 
-            <mat-label id="currency-label">Currency 1</mat-label>
+            <mat-label id="currency-label">{{ 'currency.currencyCalculatorForm_1'| translate}}</mat-label>
 
             <mat-select 
                 formControlName="currencyOneName"
@@ -24,9 +26,11 @@
 
         </mat-form-field>
 
+        <!-- Quantity -->
+
         <mat-form-field id="currency-input">
 
-            <mat-label id="currency-label">Quantity</mat-label>
+            <mat-label id="currency-label">{{ 'currency.currencyCalculatorFormQuantity'| translate}}</mat-label>
 
             <input 
                 type="number"
@@ -65,9 +69,11 @@
 
     <div class="currency-select-wrapper">
 
+        <!-- Currency 2 -->
+
         <mat-form-field id="currency-select">
 
-            <mat-label id="currency-label">Currency 2</mat-label>
+            <mat-label id="currency-label">{{ 'currency.currencyCalculatorForm_2'| translate}}</mat-label>
 
             <mat-select 
                 formControlName="currencyTwoName"  
@@ -86,9 +92,11 @@
 
         </mat-form-field>
 
+        <!-- Result -->
+
         <mat-form-field id="currency-input">
 
-            <mat-label id="currency-label">Result</mat-label>           
+            <mat-label id="currency-label">{{ 'currency.currencyCalculatorFormResult'| translate}}</mat-label>           
 
             <input 
                 type="text"
