@@ -200,6 +200,12 @@
 .trade-board-info-text {
 
   color: $color-tundora;
+
+  @include respond(sm) {
+
+    font-size: 12px;
+    
+  }
   
 }
 
