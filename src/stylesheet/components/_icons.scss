@@ -45,9 +45,33 @@
   }
 
   &--menu {
+
     background-image: url('./../../assets/icon/Icon feather-menu.svg');
     width: 20px;
     height: 18px;
+    display: none;
+
+    @include respond(md) {
+
+      display: block;
+
+    }
+
+  }
+
+  &--gear {
+
+    background-image: url('./../../assets/icon/gear.svg');
+    width: 18px;
+    height: 18px;
+    display: block;
+
+    @include respond(md) {
+
+      display: none;
+
+    }
+
   }
 
   &--sidenav-open {
@@ -66,7 +90,7 @@
     background-image: url('./../../assets/icon/Icon awesome-pencil-alt.svg');
     width: 2rem;
     height: 2rem;
- 
+
   }
 
   // Navbar
