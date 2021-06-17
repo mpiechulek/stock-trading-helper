@@ -1,0 +1,46 @@
+.pulsing-rings {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 50px;
+  border: 2px solid white;
+}
+
+.pulsing-rings :before,
+.pulsing-rings :after,
+span {
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #287ec6;
+  animation: glow-grow 2s ease-out infinite;
+}
+
+.pulsing-rings:after {
+  animation-delay: .66s;
+}
+
+span {
+  animation-delay: 1.33s;
+}
+
+@keyframes glow-grow {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
