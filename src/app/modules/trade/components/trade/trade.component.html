@@ -2,12 +2,14 @@
 
     <button class="trade-board__button-postion" mat-raised-button (click)="onAddNewStock()">  {{'trade.addButtonText' | translate}}</button>
 
-    <div *ngIf="stockBoardArray.length === 0" class="trade-board__infosign-wrapper">
-        <p class="trade-board-info-text">The trading board is empty</p>
-        <p class="trade-board-info-text">Please add a stocks to work on</p>
-    </div>
+   
 
-    <article class="trade-board__container">        
+    <article class="trade-board__container">   
+        
+        <div *ngIf="stockBoardArray.length === 0" class="trade-board-info-sign-wrapper">
+            <p class="trade-board-info-text">The trading board is empty</p>
+            <p class="trade-board-info-text">Please add a stocks to work on</p>
+        </div>
         
         <app-stock-tile 
             class="trade-tile-margin trade-tile" 
