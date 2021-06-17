@@ -11,7 +11,7 @@ import { ThemeService } from './core/services/theme.service';
 })
 export class AppComponent {
 
-  private currentLanguage: string;
+  private currentLanguage: string;  
 
   constructor(
     private themeService: ThemeService,
@@ -20,11 +20,15 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
+    
     // setting theme
     this.themeService.lodeTheme();
+
     // setting translations    
     this.currentLanguage =this.languageService.getFromLocalStorage();
+
     this.translateService.addLangs(['en', 'pl']);
+
     this.translateService.setDefaultLang(this.currentLanguage);
   }
 }

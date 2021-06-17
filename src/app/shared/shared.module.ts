@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { NumberDigitDirective } from './directives/number-digit.directive';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NumberDigitDirective } from './directives/number-digit.directive';
     SideNavComponent,
     FooterComponent,
     NumberDigitDirective,
-    GlobalDialogComponent
+    GlobalDialogComponent,
+    LoadingScreenComponent
   ],
   imports: [
     CommonModule,
