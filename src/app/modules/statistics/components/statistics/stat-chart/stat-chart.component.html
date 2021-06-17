@@ -2,7 +2,11 @@
 
     <div class="statistics-characters__container">     
 
-        <h2 class="statistics-header statistics-header-align-center">Total Profits</h2>
+        <h2 class="statistics-header statistics-header-align-center">
+
+            {{ 'statistics.statisticsStatisticsProfitTransactions'| translate}}
+
+        </h2>
 
         <app-advanced-pipe-chart  [transactionWallet]="getTransactionWallet"></app-advanced-pipe-chart>
 
@@ -13,11 +17,15 @@
         <div class="statistics-container-stats-wrapper">
 
             <h1 class="statistics-header statistics-header--color-blue statistics-header-align-center">
-                Profits: {{profitLossesData[1]?.percentage}}% ({{profitLossesData[1]?.value}})
+
+                {{ 'statistics.statisticsStatisticsProfits'| translate}}: {{profitLossesData[1]?.percentage}}% ({{profitLossesData[1]?.value}})
+
             </h1>
 
             <h1 class="statistics-header statistics-header--color-red statistics-header-align-center">
-                Losses: {{profitLossesData[0]?.percentage}}% ({{profitLossesData[0]?.value}})
+
+                {{ 'statistics.statisticsStatisticsLosses'| translate}}: {{profitLossesData[0]?.percentage}}% ({{profitLossesData[0]?.value}})
+
             </h1>
 
         </div>
