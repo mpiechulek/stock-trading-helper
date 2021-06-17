@@ -98,22 +98,22 @@
         "currencyCalculatorFormResult": "Wynik"
     },
     "statistics" : {
-        "statisticsStepperChart": "Trade Chart",
-        "statisticsStepperTable": "Trades table",
-        "statisticsStepperStatistics": "Statistics",
-        "statisticsLinearChartHeader": "Linear chart of profit/lose gross value",
-        "statisticsLinearChartY": "Ballance",
+        "statisticsStepperChart": "Wykres",
+        "statisticsStepperTable": "Tabela",
+        "statisticsStepperStatistics": "Statystyki",
+        "statisticsLinearChartHeader": "Wykres liniowy wartości zysku/strata brutto",
+        "statisticsLinearChartY": "Saldo",
         "statisticsLinearChartX": "Data",
 
-        "statisticsTableName": "Name",
-        "statisticsTableQuantity": "Quantity",
-        "statisticsTableDate": "Date",
-        "statisticsTableBuyPrice": "Buy Price",
-        "statisticsTableSellPrice": "Sell Proce",
-        "statisticsTableProftBeforeTax": "Profit bef. tax",
-        "statisticsStatisticsProfitTransactions": "Profit transactions",
-        "statisticsStatisticsProfits": "Profits",
-        "statisticsStatisticsLosses": "Losses"       
+        "statisticsTableName": "Nazwa",
+        "statisticsTableQuantity": "Ilość",
+        "statisticsTableDate": "Data",
+        "statisticsTableBuyPrice": "Cena zakupu",
+        "statisticsTableSellPrice": "Cena sprzedaży",
+        "statisticsTableProftBeforeTax": "Zysk brutto",
+        "statisticsStatisticsProfitTransactions": "Zysk netto",
+        "statisticsStatisticsProfits": "Zysk",
+        "statisticsStatisticsLosses": "Strata"      
       
     }
 

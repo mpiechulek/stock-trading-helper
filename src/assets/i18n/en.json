@@ -97,6 +97,26 @@
         "currencyCalculatorForm_2": "Currency 2",
         "currencyCalculatorFormQuantity": "Quantity",
         "currencyCalculatorFormResult": "Result"
+    },
+
+    "statistics" : {
+        "statisticsStepperChart": "Trade Chart",
+        "statisticsStepperTable": "Trades table",
+        "statisticsStepperStatistics": "Statistics",
+        "statisticsLinearChartHeader": "Linear chart of profit/lose gross value",
+        "statisticsLinearChartY": "Ballance",
+        "statisticsLinearChartX": "Data",
+
+        "statisticsTableName": "Name",
+        "statisticsTableQuantity": "Quantity",
+        "statisticsTableDate": "Date",
+        "statisticsTableBuyPrice": "Buy Price",
+        "statisticsTableSellPrice": "Sell Proce",
+        "statisticsTableProftBeforeTax": "Profit bef. tax",
+        "statisticsStatisticsProfitTransactions": "Profit transactions",
+        "statisticsStatisticsProfits": "Profits",
+        "statisticsStatisticsLosses": "Losses"       
+      
     }
 }
 
