@@ -37,7 +37,7 @@ export class AdvancedPipeChartComponent implements OnInit {
  * 
  * @param event 
  */
-  onResize(event) {
+  onResize(event): void {
     this.onChangeChartSize(event.target.innerWidth);
   }
 
@@ -47,13 +47,13 @@ export class AdvancedPipeChartComponent implements OnInit {
    */
   onChangeChartSize(width: number): void {
     if (width <= 1440 && width > 960) {
-      this.view = [450, 800];
+      this.view = [450, 500];
     } else if (width <= 960 && width > 800) {
-      this.view = [350, 800];
+      this.view = [350, 500];
     } else if (width <= 800 && width > 400) {
-      this.view = [340, 800];
+      this.view = [340, 500];
     }else if (width <= 400 ) {
-      this.view = [200, 2000];
+      this.view = [200, 1200];
     }
   }
 
