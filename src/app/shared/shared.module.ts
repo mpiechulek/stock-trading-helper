@@ -18,7 +18,11 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+
 import { NumberDigitDirective } from './directives/number-digit.directive';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { NumberDigitDirective } from './directives/number-digit.directive';
     SideNavComponent,
     FooterComponent,
     NumberDigitDirective,
-    GlobalDialogComponent
+    GlobalDialogComponent,
+    LoadingScreenComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +42,7 @@ import { NumberDigitDirective } from './directives/number-digit.directive';
     MatFormFieldModule, 
     MatInputModule,  
     MatButtonModule,
+    MatProgressSpinnerModule,
     HttpClientModule,   
     TranslateModule.forChild({
       loader: {
@@ -53,7 +59,8 @@ import { NumberDigitDirective } from './directives/number-digit.directive';
     TranslateModule,
     FooterComponent,
     NumberDigitDirective,
-    GlobalDialogComponent
+    GlobalDialogComponent,
+    LoadingScreenComponent
   ],
   providers: [TranslateService]
 })
