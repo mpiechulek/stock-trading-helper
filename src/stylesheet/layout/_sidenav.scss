@@ -61,12 +61,12 @@
       align-items: center;
       margin-bottom: 2rem;
 
-      
-    @include respond(sm) {
 
-      width:90%;      
+      @include respond(sm) {
 
-    }
+        width: 90%;
+
+      }
 
       .theme-wrapper {
 
@@ -106,7 +106,16 @@
 
       }
 
-      .sidenav-liste {}
+      .sidenav-list-hide {
+
+        display: none;
+
+        @include respond(md) {
+
+          display: block
+        }
+
+      }
 
       .sidenav-list-item {
         list-style: none;
@@ -118,7 +127,7 @@
         &:not(last-child) {
 
           margin-bottom: 2rem;
-          
+
         }
 
       }
