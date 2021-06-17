@@ -197,6 +197,18 @@
   }
 }
 
+.trade-board-info-text {
+
+  color: $color-tundora;
+
+  @include respond(sm) {
+
+    font-size: 12px;
+    
+  }
+  
+}
+
 // Trade tile 
 .trade-tile-stock-percentage-change-text {
   font-size: 1.8rem;

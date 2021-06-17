@@ -1,24 +1,43 @@
 <section class="trade-board">
 
-    <button class="trade-board__button-postion" mat-raised-button (click)="onAddNewStock()">  {{'trade.addButtonText' | translate}}</button>
+    <button 
+        class="trade-board__button-postion" 
+        mat-raised-button (click)="onAddNewStock()"
+    >
 
-    <article class="trade-board__container">        
-        
-        <app-stock-tile 
-            class="trade-tile-margin trade-tile" 
-            (editTile) = "onEditTile($event)"
-            (deleteTile) = "onDeleteTile($event)"   
-            (savePickedOffer) ="onSavePickedOffer($event)"
-            (sellStock) ="onSellStock($event)"
-            *ngFor = "let stockElement of stockBoardArray"
-            [stockElement]="stockElement"   
-            [offerMarker]="stockElement?.markerOfferType"        
-            [offerId]="stockElement?.markerOfferValue" 
+        {{'trade.addButtonText' | translate}}
+
+    </button>
+
+    <article class="trade-board__container">
+
+        <div 
+            *ngIf="stockBoardArray.length === 0" 
+            class="trade-board-info-sign-wrapper"
         >
-        </app-stock-tile>     
+
+            <p class="trade-board-info-text">{{'trade.tradeInfoTextOne' | translate}}</p>
+
+            <p class="trade-board-info-text">{{'trade.tradeInfoTextTwo' | translate}}</p>
+
+        </div>
+
+        <app-stock-tile 
+
+            class="trade-tile-margin trade-tile" 
+            (editTile)="onEditTile($event)"
+            (deleteTile)="onDeleteTile($event)"
+            (savePickedOffer)="onSavePickedOffer($event)"
+            (sellStock)="onSellStock($event)"
+            *ngFor="let stockElement of stockBoardArray"
+            [stockElement]="stockElement"
+            [offerMarker]="stockElement?.markerOfferType"
+            [offerId]="stockElement?.markerOfferValue"
+
+        >
+
+        </app-stock-tile>
 
     </article>
 
 </section>
-
-

@@ -27,6 +27,10 @@
         "daySunday": "Niedziela"
     },
     "trade": {
+
+        "tradeInfoTextOne": "Tablica jest pusta",
+        "tradeInfoTextTwo": "Proszę dodaj spółkę",
+
         "addButtonText": "Dodaj",
         "confirmButtonText": "Tak",
         "declineButtonText": "Nie",
