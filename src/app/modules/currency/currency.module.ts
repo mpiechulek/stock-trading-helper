@@ -16,6 +16,7 @@ import { CurrencyForeignExchangeComponent } from './components/currency/currency
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateModule,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ]
 })
 export class CurrencyModule { }
