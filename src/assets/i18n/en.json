@@ -26,7 +26,11 @@
         "daySaturday": "Saturday",
         "daySunday": "Sunday"
     },
-    "trade": {       
+    "trade": {    
+        
+        "tradeInfoTextOne": "The trading board is empty",
+        "tradeInfoTextTwo": "Please add a stock",
+
         "addButtonText": "Add",
         "confirmButtonText": "Yes",
         "declineButtonText": "No",
