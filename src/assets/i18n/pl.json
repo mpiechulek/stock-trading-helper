@@ -96,6 +96,27 @@
         "currencyCalculatorForm_2": "Waluta 2",
         "currencyCalculatorFormQuantity": "Ilość",
         "currencyCalculatorFormResult": "Wynik"
+    },
+    "statistics" : {
+        "statisticsStepperChart": "Wykres",
+        "statisticsStepperTable": "Tabela",
+        "statisticsStepperStatistics": "Statystyki",
+        "statisticsLinearChartHeader": "Wykres liniowy wartości zysku/strata brutto",
+        "statisticsLinearChartY": "Saldo",
+        "statisticsLinearChartX": "Data",
+
+        "statisticsTableName": "Nazwa",
+        "statisticsTableQuantity": "Ilość",
+        "statisticsTableBuyPrice": "Cena zakupu",
+        "statisticsTableSellPrice": "Cena sprzedaży",
+        "statisticsTableProfitBeforeTax": "Zysk brutto",
+        "statisticsTableProfitAfterTax": "Zysk netto",
+        "statisticsTableDate": "Data",
+
+        "statisticsStatisticsProfitTransactions": "Transakcje zyskowne",
+        "statisticsStatisticsProfits": "Zysk",
+        "statisticsStatisticsLosses": "Strata"    
+      
     }
 
 }

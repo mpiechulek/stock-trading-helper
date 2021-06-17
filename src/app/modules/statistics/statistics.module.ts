@@ -18,7 +18,9 @@ import { MatInputModule } from '@angular/material/input';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AdvancedPipeChartComponent } from './components/statistics/stat-chart/advanced-pipe-chart/advanced-pipe-chart.component';
 import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-grid-chart/pipe-grid-chart.component';
-
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,21 @@ import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxChartsModule
+    NgxChartsModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateModule,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
 
   ]
 })
 export class StatisticsModule { }
+
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

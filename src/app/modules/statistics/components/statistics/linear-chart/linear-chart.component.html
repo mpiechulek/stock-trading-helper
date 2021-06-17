@@ -1,16 +1,17 @@
 <article class="linear-chart-container"> 
 
-  <h1 class="statistics-header">Linear chart of profit/lose gross value</h1>
+  <h1 class="statistics-header"> {{ 'statistics.statisticsLinearChartHeader'| translate}} </h1>
 
     <ngx-charts-line-chart    
+    
       [scheme]="colorScheme"
       [legend]="legend"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
       [xAxis]="xAxis"
       [yAxis]="yAxis"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
+      [xAxisLabel]="'statistics.statisticsLinearChartX'| translate"
+      [yAxisLabel]="'statistics.statisticsLinearChartY'| translate"
       [timeline]="timeline"
       [results]="linearChartData"
       [autoScale]="autoScale"
@@ -19,7 +20,6 @@
       (select)="onSelect($event)"
       (activate)="onActivate($event)"
       (deactivate)="onDeactivate($event)"
-
       
       >
     </ngx-charts-line-chart>
