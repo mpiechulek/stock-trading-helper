@@ -87,5 +87,15 @@
         "calculatorResultFormWarning_1": "Wartość liczbowa jest wymagana",
         "calculatorResultFormWarning_2": "Musi być liczbą dodatnią",
         "calculatorResultFormWarning_3": "Musi być dodatnią liczbą całkowitą"
+    },
+    "currency" : {
+        "cryptoCurrencyHeader": "Rzeczywiste 30s. notowania crypto",
+        "foreignCurrencyHeader": "Kursy walut",
+        "currencyCalculatorHeader":"Kalkulator kursu walut",
+        "currencyCalculatorForm_1": "Waluta 1",
+        "currencyCalculatorForm_2": "Waluta 2",
+        "currencyCalculatorFormQuantity": "Ilość",
+        "currencyCalculatorFormResult": "Wynik"
     }
+
 }

@@ -88,6 +88,15 @@
         "calculatorResultFormWarning_2": "Must by a positive number",
         "calculatorResultFormWarning_3": "Must by a positive integer"        
 
+    },
+    "currency" : {
+        "cryptoCurrencyHeader": "Live 30s. crypto currency quotes",
+        "foreignCurrencyHeader": "Currency quotes",
+        "currencyCalculatorHeader":"Currency exchange calculator",
+        "currencyCalculatorForm_1": "Currency 1",
+        "currencyCalculatorForm_2": "Currency 2",
+        "currencyCalculatorFormQuantity": "Quantity",
+        "currencyCalculatorFormResult": "Result"
     }
 }
 
