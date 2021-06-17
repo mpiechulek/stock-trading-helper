@@ -7,26 +7,30 @@
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
 
             <!-- Name Column -->
+            
             <ng-container matColumnDef="stockName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableName'| translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element?.companyName}} </mat-cell>
             </ng-container>
 
             <!-- Quantity Column -->
+
             <ng-container matColumnDef="quantity">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableQuantity'| translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element?.amountOfShares}} </mat-cell>
             </ng-container>
 
             <!-- Buy price Column -->
+
             <ng-container matColumnDef="buyPrice">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Buy Price </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableBuyPrice'| translate}}  </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element?.buyPrice}} </mat-cell>
             </ng-container>
 
             <!-- Sell Price Column -->
+
             <ng-container matColumnDef="sellPrice">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableSellPrice'| translate}}  </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element?.currentPrice}} </mat-cell>
             </ng-container>
 
@@ -34,7 +38,7 @@
 
             <ng-container matColumnDef="profitBeforeTax">
 
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Profit ber. tax </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableProfitBeforeTax'| translate}}  </mat-header-cell>
 
                 <mat-cell *matCellDef="let element">
 
@@ -53,7 +57,7 @@
 
             <ng-container matColumnDef="profitAfterTax">
 
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Profit aft. tax </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableProfitAfterTax'| translate}}  </mat-header-cell>
 
                 <mat-cell *matCellDef="let element">
 
@@ -68,9 +72,10 @@
 
             </ng-container>
 
-            <!-- Symbol Column -->
+            <!-- Date --> 
+
             <ng-container matColumnDef="sellDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'statistics.statisticsTableDate'| translate}}  </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element?.sellDate}} </mat-cell>
             </ng-container>
 

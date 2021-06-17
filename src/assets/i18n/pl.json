@@ -107,10 +107,12 @@
 
         "statisticsTableName": "Nazwa",
         "statisticsTableQuantity": "Ilość",
-        "statisticsTableDate": "Data",
         "statisticsTableBuyPrice": "Cena zakupu",
         "statisticsTableSellPrice": "Cena sprzedaży",
-        "statisticsTableProftBeforeTax": "Zysk brutto",
+        "statisticsTableProfitBeforeTax": "Zysk brutto",
+        "statisticsTableProfitAfterTax": "Zysk netto",
+        "statisticsTableDate": "Data",
+
         "statisticsStatisticsProfitTransactions": "Zysk netto",
         "statisticsStatisticsProfits": "Zysk",
         "statisticsStatisticsLosses": "Strata"    

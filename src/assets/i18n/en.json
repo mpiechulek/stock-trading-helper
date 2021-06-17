@@ -109,10 +109,12 @@
 
         "statisticsTableName": "Name",
         "statisticsTableQuantity": "Quantity",
-        "statisticsTableDate": "Date",
         "statisticsTableBuyPrice": "Buy Price",
-        "statisticsTableSellPrice": "Sell Proce",
-        "statisticsTableProftBeforeTax": "Profit bef. tax",
+        "statisticsTableSellPrice": "Sell Price",
+        "statisticsTableProfitBeforeTax": "Profit bef. tax",
+        "statisticsTableProfitAfterTax": "Profit aft. tax",
+        "statisticsTableDate": "Date",
+
         "statisticsStatisticsProfitTransactions": "Profit transactions",
         "statisticsStatisticsProfits": "Profits",
         "statisticsStatisticsLosses": "Losses"       
