@@ -51,7 +51,8 @@
     transition: ease-in;
 
     @include respond(md) {
-      width: 100%;     
+      width: 100%;   
+      animation-duration: 1s;  
     }
 
     @include respond(sm) {
