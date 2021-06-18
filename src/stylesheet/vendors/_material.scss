@@ -12,11 +12,11 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 /*  Styling mat select in language choice */
 .language-wrapper mat-form-field {
   margin-left: 1rem;
-  width: 5rem;  
+  width: 5rem;
 
   @include respond(sm) {
 
-      width: 6rem;  
+    width: 6rem;
 
   }
 
@@ -202,11 +202,17 @@ mat-label#currency-label {
 // ======================================================================
 // Snack bar 
 
-::ng-deep .mat-snack-bar-container{
-  color: #155724 !important;
-  background-color: #d4edda !important;
-  border-color: #c3e6cb !important;
+.mat-snack-bar-container.snack-bar-error {
+  background-color: $color-monza ;
+  color: white;
 }
-::ng-deep .mat-simple-snackbar-action {
-  color: red;
+
+.mat-snack-bar-container.snack-bar-warning {
+  background-color: $color-buddha-gold;
+  color: black;
+}
+
+.mat-snack-bar-container.snack-bar-success {
+  background-color: $color-japanese-laurel;
+  color: white;
 }

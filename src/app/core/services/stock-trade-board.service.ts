@@ -4,6 +4,7 @@ import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stoc
 import * as uuid from 'uuid';
 import { Observable, Subject } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class StockTradeBoardService {
   private transactionsProfitArray = new Subject<StockSellModel[]>();
   private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
 
-  constructor() { }
+  constructor(private snackBarService: SnackBarService) { }
 
   /**
    * 
@@ -74,7 +75,9 @@ export class StockTradeBoardService {
    * @param data 
    */
   saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
+
     localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
+
   }
 
   // ===========================================================================
@@ -108,6 +111,8 @@ export class StockTradeBoardService {
 
     // Informing subscribers
     this.stockBoardArraySubject.next(tradeBoardArr);   
+
+    this.snackBarService.onDisplaySuccess('Created new position successful');
   
   }
 
