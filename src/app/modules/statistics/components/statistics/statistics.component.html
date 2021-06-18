@@ -25,6 +25,7 @@
 
                 <app-table                 
                     [transactions]="getTransactionsData"             
+                    (deleteTradePositionFromTable)="onDeletePositionFromTable($event)"            
                 >
                 </app-table>
 

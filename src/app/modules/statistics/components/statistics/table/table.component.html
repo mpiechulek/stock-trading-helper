@@ -150,7 +150,10 @@
 
                 <mat-cell *matCellDef="let element">
 
-                     <button class="btn">
+                     <button 
+                        class="btn"
+                        (click)="onDeletePosition(element.id)"
+                     >
 
                         <svg class="icon icon--delete-black"></svg>                       
 

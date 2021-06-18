@@ -1,10 +1,8 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild,EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
-import { Observable, Subscriber, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-table',
@@ -27,10 +25,17 @@ export class TableComponent implements OnInit {
             'deleteBtn'
         ];
 
-    @Input() transactions: StockSellModel[];  
+    @Input()
+     transactions: StockSellModel[]; 
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @Output() 
+    deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();  
+
+    @ViewChild(MatPaginator)
+     paginator: MatPaginator;
+
+    @ViewChild(MatSort)
+     sort: MatSort;
 
     constructor() {
 
@@ -47,6 +52,10 @@ export class TableComponent implements OnInit {
 
     }
 
+    /**
+     * 
+     * @param filterValue 
+     */
     applyFilter(filterValue: string) {
 
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -58,10 +67,19 @@ export class TableComponent implements OnInit {
         }
     }
 
-    onDeletePosition(): void {
+    /**
+     * 
+     * @param id 
+     */
+    onDeletePosition(id: string): void {            
+
+        this.deleteTradePositionFromTable.emit(id);
 
     }
 
+    /**
+     * 
+     */
     onEditPosition(): void {
 
     }

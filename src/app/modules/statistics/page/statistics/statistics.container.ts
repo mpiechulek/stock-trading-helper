@@ -257,4 +257,14 @@ export class StatisticsContainerComponent implements OnInit {
 
     }
 
+    /**
+     * 
+     * @param id 
+     */
+    deletePositionFromTable(id:string): void {
+
+        this.stockTradeBoardService.deleteTransaction(id);
+
+    }
+ 
 }

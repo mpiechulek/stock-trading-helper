@@ -3,5 +3,6 @@
     [linearChartData]="getLinearChartData"
     [profitLossesData]="getProfitLossesData" 
     [transactionWallet]="getTransactionWallet" 
+    (deleteTradePositionFromTable)="deletePositionFromTable($event)"
 >
 </app-statistics-ui>
