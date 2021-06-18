@@ -389,7 +389,9 @@ export class StockTradeBoardService {
 		let newTransactionArr = [...transactionArr];
 
 		newTransactionArr = newTransactionArr.filter((element) => {
+
 			return element.id !== tradeId;
+			
 		});
 
 		// Updating ui
