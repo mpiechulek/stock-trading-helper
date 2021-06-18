@@ -310,10 +310,7 @@ export class StockTradeBoardService {
 
 			transactions = JSON.parse(localStorage.getItem(this.storageTradeTransactionKeyName));
 
-		}
-
-		// Informing all subscribers
-		this.transactionsArraySubject.next(transactions);
+		}		
 
 		return [...transactions];
 
@@ -326,6 +323,17 @@ export class StockTradeBoardService {
 	saveTransactionToLocalStorage(data: StockSellModel[]): void {
 
 		localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
+
+	}
+
+	/**
+	 * 
+	 */
+	fetchTransactions():void {
+
+		const transactions = this.getTransactionsFromLocalStorage();
+
+		this.transactionsArraySubject.next(transactions);
 
 	}
 
@@ -382,6 +390,10 @@ export class StockTradeBoardService {
 
 	}
 
+	/**
+	 * 
+	 * @param tradeId 
+	 */
 	deleteTransaction(tradeId: string): void {
 		
 		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
@@ -415,6 +427,9 @@ export class StockTradeBoardService {
 
 	}
 
+	/**
+	 * 
+	 */
 	editTransaction(): void {
 
 	}

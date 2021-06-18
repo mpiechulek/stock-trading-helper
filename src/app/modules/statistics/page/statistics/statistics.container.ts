@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel, TransactionProfitModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
-import { StockTileModel } from 'src/app/data/models/stock-tile.model';
+import { StockSellModel, , TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
     selector: 'app-statistics',
@@ -14,8 +13,8 @@ export class StatisticsContainerComponent implements OnInit {
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
 
-    private profitLossesData;
-    private linearChartData;
+    private profitLossesData: any;
+    private linearChartData: any;
     private transactionWallet: TransactionWalletModel[];
 
     constructor(private stockTradeBoardService: StockTradeBoardService) { }
@@ -28,17 +27,14 @@ export class StatisticsContainerComponent implements OnInit {
 
                 .subscribe((data) => {
 
-                    this.transactionsData = this.fixDateInArrayOfObjects(data);
+                    console.log('231231231');
 
-                    this.profitLossesData = this.calculateProfitLosses(this.transactionsData);
+                    this.makeCalculationsForDisplay(data);
 
-                    this.linearChartData = this.calculateLinearChart(this.transactionsData);
+                }
+            );
 
-                    this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
-
-                });
-
-        this.stockTradeBoardService.getTransactionsFromLocalStorage();
+        this.stockTradeBoardService.fetchTransactions();
 
     }
 
@@ -57,7 +53,7 @@ export class StatisticsContainerComponent implements OnInit {
     /**
      * 
      */
-    get getProfitLossesData() {
+    get getProfitLossesData(): any {
 
         return this.profitLossesData;
 
@@ -66,7 +62,7 @@ export class StatisticsContainerComponent implements OnInit {
     /**
    * 
    */
-    get getLinearChartData() {
+    get getLinearChartData(): any {
 
         return this.linearChartData;
 
@@ -91,6 +87,22 @@ export class StatisticsContainerComponent implements OnInit {
     }
 
     //==========================================================================
+
+    /**
+     * 
+     * @param data 
+     */
+    makeCalculationsForDisplay(data): void {
+
+        this.transactionsData = this.fixDateInArrayOfObjects(data);
+
+        this.profitLossesData = this.calculateProfitLosses(this.transactionsData);
+
+        this.linearChartData = this.calculateLinearChart(this.transactionsData);
+
+        this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
+
+    }
 
     /**
      * Calculating total profits value, total loses value and total trade balance
@@ -134,7 +146,7 @@ export class StatisticsContainerComponent implements OnInit {
      * @param tradeData 
      * @returns 
      */
- calculateProfitLosses(tradeData: StockSellModel[]) {
+    calculateProfitLosses(tradeData: StockSellModel[]) {
 
         let profitValue: number = 0;
         let lossValue: number = 0;
@@ -168,7 +180,7 @@ export class StatisticsContainerComponent implements OnInit {
 
         ];
 
-        return   profitLossesData;
+        return profitLossesData;
 
     }
 
@@ -183,13 +195,13 @@ export class StatisticsContainerComponent implements OnInit {
 
         tradeData.forEach((trade) => {
 
-            if(trade.profitBeforeTax > 0) {
+            if (trade.profitBeforeTax > 0) {
 
                 dataArray.push({
-    
+
                     name: trade.companyName,
                     value: trade.profitBeforeTax
-    
+
                 });
             }
 
@@ -261,10 +273,10 @@ export class StatisticsContainerComponent implements OnInit {
      * 
      * @param id 
      */
-    deletePositionFromTable(id:string): void {
+    deletePositionFromTable(id: string): void {
 
         this.stockTradeBoardService.deleteTransaction(id);
 
     }
- 
+
 }
