@@ -6,13 +6,11 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class SnackBarService {
 
-    private durationTimeMilliseconds: number = 2000;
+    private durationTimeMilliseconds: number = 3000;
     private horizontalPosition: MatSnackBarHorizontalPosition = 'start';
     private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
     constructor(private snackBar: MatSnackBar) { }
-
-
 
     /**
      * 
@@ -21,7 +19,7 @@ export class SnackBarService {
 
         this.snackBar.open(
             message,
-            'Close',
+            'X',
             {
                 horizontalPosition: this.horizontalPosition,
                 verticalPosition: this.verticalPosition,
@@ -37,19 +35,33 @@ export class SnackBarService {
      * 
      */
     onDisplayWarning(message: string): void {
-        this.snackBar.open(message, 'Close', {
-            duration: 2000
-        });
 
+        this.snackBar.open(
+            message,
+            'X',
+            {
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+                duration: this.durationTimeMilliseconds,
+                panelClass: 'snack-bar-warning'
+            }
+        );
     }
 
     /**
      * 
      */
     onDisplayError(message: string): void {
-        this.snackBar.open(message, 'Close', {
-            duration: 2000
-        });
+        this.snackBar.open(
+            message,
+            'X',
+            {
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+                duration: this.durationTimeMilliseconds,
+                panelClass: 'snack-bar-error'
+            }
+        );
 
     }
 
