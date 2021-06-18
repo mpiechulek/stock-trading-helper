@@ -118,7 +118,7 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (newStockTile.id === createdStock.id) {
 
-			this.snackBarService.onDisplaySuccess('Success in creating new position');
+			this.snackBarService.onDisplaySuccess('Success created new position');
 
 		} else {
 
@@ -149,7 +149,7 @@ export class StockTradeBoardService {
 		this.stockBoardArraySubject.next(tradeBoardArr);
 
 		// checking if the stock is saved in local storage
-		const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);
+		const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);		
 
 		// Displaying proper snack bar message
 		if (stockId === editedStock.id) {
@@ -165,7 +165,7 @@ export class StockTradeBoardService {
 	}
 
 	/**
-	 * Editing the stock offer
+	 * Saving the picked stock offer
 	 *  @param value
 	 */
 	savePickedOfferToStockData(value: StockMarkerSaveDataModel): void {
@@ -192,11 +192,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (value.id === savedStock.id) {
 
-			this.snackBarService.onDisplaySuccess('Success saved position');
+			this.snackBarService.onDisplaySuccess('Success saved position offer');
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to save position');
+			this.snackBarService.onDisplayError('Failed to save position offer');
 
 		}
 	}
@@ -223,6 +223,8 @@ export class StockTradeBoardService {
 		// checking if the stock is saved in local storage
 		const deleteStock = this.findStockInArray(stockId);
 
+		console.log(deleteStock);		
+
 		// Displaying proper snack bar message
 		if (deleteStock === null) {
 
@@ -242,15 +244,15 @@ export class StockTradeBoardService {
 	*/
 	findStockInArray(stockId: string): StockTileModel {
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();		
 
-		let elementsIndex: number = null;
+		const elementIndex: number = this.findStockArrayIndex(stockId);
 
-		elementsIndex = this.findStockArrayIndex(stockId);
+		console.log('elementIndex', elementIndex);		
 
-		if (elementsIndex === null) return null;
+		if (elementIndex === null || elementIndex === -1) return null;
 
-		return tradeBoardArr[elementsIndex];
+		return tradeBoardArr[elementIndex];
 	}
 
 	/**
@@ -261,7 +263,9 @@ export class StockTradeBoardService {
 
 		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		const elementIndex = tradeBoardArr.findIndex((element) => {
+		let  elementIndex: number = null;
+
+		elementIndex = tradeBoardArr.findIndex((element) => {
 
 			return element.id === stockId;
 
