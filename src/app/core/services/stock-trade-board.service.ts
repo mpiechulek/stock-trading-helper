@@ -4,10 +4,11 @@ import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stoc
 import * as uuid from 'uuid';
 import { Observable, Subject } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
-import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class StockTradeBoardService {
 
   private storageTradeBoardKeyName: string = 'tradeBoardData';
