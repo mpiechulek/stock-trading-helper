@@ -12,11 +12,11 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 /*  Styling mat select in language choice */
 .language-wrapper mat-form-field {
   margin-left: 1rem;
-  width: 5rem;  
+  width: 5rem;
 
   @include respond(sm) {
 
-      width: 6rem;  
+    width: 6rem;
 
   }
 
@@ -197,4 +197,22 @@ mat-label#currency-label {
 
 .mat-select-arrow {
   color: var(--color-text-form);
+}
+
+// ======================================================================
+// Snack bar 
+
+.mat-snack-bar-container.snack-bar-error {
+  background-color: $color-monza ;
+  color: white;
+}
+
+.mat-snack-bar-container.snack-bar-warning {
+  background-color: $color-buddha-gold;
+  color: black;
+}
+
+.mat-snack-bar-container.snack-bar-success {
+  background-color: $color-japanese-laurel;
+  color: white;
 }
