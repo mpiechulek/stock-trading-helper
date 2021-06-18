@@ -51,7 +51,9 @@ export class StockTradeBoardService {
 	 * 
 	 */
 	checkIfTradeBoardDataInLocalStorage(): boolean {
+
 		return localStorage.getItem(this.storageTradeBoardKeyName) === null;
+		
 	}
 
 	/**
@@ -380,11 +382,38 @@ export class StockTradeBoardService {
 
 	}
 
-	deleteTransaction() {
+	deleteTransaction(tradeId: string): void {
+		
+		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
+
+		let newTransactionArr = [...transactionArr];
+
+		newTransactionArr = newTransactionArr.filter((element) => {
+			return element.id !== tradeId;
+		});
+
+		// Updating ui
+		this.transactionsArraySubject.next(newTransactionArr);
+
+		this.saveTransactionToLocalStorage(newTransactionArr);
+
+		// checking if the stock is saved in local storage
+		const deleteTransaction = this.findTransactionInArray(tradeId);
+
+		// Displaying proper snack bar message
+		if (deleteTransaction === null) {
+
+			this.snackBarService.onDisplaySuccess('Transaction was deleted');
+
+		} else {
+
+			this.snackBarService.onDisplayError('Failed to delete transaction');
+
+		}
 
 	}
 
-	editTransaction() {
+	editTransaction(): void {
 
 	}
 
@@ -393,9 +422,9 @@ export class StockTradeBoardService {
 	* 
 	* @param stockId 
 	*/
-	findTransactionInArray(stockId: string): StockTileModel {
+	findTransactionInArray(stockId: string): StockSellModel {
 
-		let transactionArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
 		const elementIndex: number = this.findStockArrayIndex(stockId);
 
@@ -410,11 +439,11 @@ export class StockTradeBoardService {
 	 */
 	findTransactionIndex(stockId: string): number {
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
 		let elementIndex: number = null;
 
-		elementIndex = tradeBoardArr.findIndex((element) => {
+		elementIndex = transactionArr.findIndex((element) => {
 
 			return element.id === stockId;
 
