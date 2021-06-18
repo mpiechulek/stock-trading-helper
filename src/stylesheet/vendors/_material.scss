@@ -131,8 +131,11 @@ mat-table#statistics-table {
   .mat-header-cell,
   .mat-cell {
     color: var(--color-text-form);
-  }
-
+    overflow: hidden;   
+    text-overflow: ellipsis;
+    padding-right: 2px;  
+  }  
+ 
   // styling custom column in mat table
   .mat-column-deleteBtn {
     max-width: 5rem;
