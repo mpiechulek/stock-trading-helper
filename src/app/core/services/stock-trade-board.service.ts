@@ -26,6 +26,8 @@ export class StockTradeBoardService {
 
 	constructor(private snackBarService: SnackBarService) { }
 
+	// =========================================================================
+
 	/**
 	 * 
 	 */
@@ -40,7 +42,10 @@ export class StockTradeBoardService {
 		return this.transactionsArraySubject$;
 	}
 
-	// ===========================================================================
+
+	// =============================================================================
+	// ========================= Trade board local storage =========================
+	// =============================================================================
 
 	/**
 	 * 
@@ -80,7 +85,10 @@ export class StockTradeBoardService {
 
 	}
 
-	// ===========================================================================
+
+	// =============================================================================
+	// ==================== Trade board data manipulator logic =====================
+	// =============================================================================
 
 	/**
 	 *  Creating a new object from the received form data, adding to it an id, also 
@@ -149,7 +157,7 @@ export class StockTradeBoardService {
 		this.stockBoardArraySubject.next(tradeBoardArr);
 
 		// checking if the stock is saved in local storage
-		const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);		
+		const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);
 
 		// Displaying proper snack bar message
 		if (stockId === editedStock.id) {
@@ -223,8 +231,6 @@ export class StockTradeBoardService {
 		// checking if the stock is saved in local storage
 		const deleteStock = this.findStockInArray(stockId);
 
-		console.log(deleteStock);		
-
 		// Displaying proper snack bar message
 		if (deleteStock === null) {
 
@@ -244,11 +250,9 @@ export class StockTradeBoardService {
 	*/
 	findStockInArray(stockId: string): StockTileModel {
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();		
+		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
 		const elementIndex: number = this.findStockArrayIndex(stockId);
-
-		console.log('elementIndex', elementIndex);		
 
 		if (elementIndex === null || elementIndex === -1) return null;
 
@@ -263,7 +267,7 @@ export class StockTradeBoardService {
 
 		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		let  elementIndex: number = null;
+		let elementIndex: number = null;
 
 		elementIndex = tradeBoardArr.findIndex((element) => {
 
@@ -274,20 +278,9 @@ export class StockTradeBoardService {
 		return elementIndex;
 	}
 
-	/**
-	 * Selling the chosen stock, and deleting it form the board list
-	 */
-	sellStock(stockSellData: StockSellModel): void {
-
-		this.createNewSellTransaction(stockSellData);
-
-		this.deletePositionFromBoard(stockSellData.id);
-	}
-
-
-	// =============================================================================
-	// ============================== Sold stock data ==============================
-	// =============================================================================
+	// =========================================================================
+	// =================== Sold stock transactions local storage  ==============
+	// =========================================================================
 
 	/**
 	 * 
@@ -334,6 +327,34 @@ export class StockTradeBoardService {
 
 	}
 
+	// =========================================================================
+	// ==================== Transactions data manipulator logic ================
+	// =========================================================================
+
+	/**
+	 * Selling the chosen stock, and deleting it form the board list
+	 */
+	sellStock(stockSellData: StockSellModel): void {
+
+		this.createNewSellTransaction(stockSellData);
+
+		this.deletePositionFromBoard(stockSellData.id);
+
+		// checking if the stock is saved in local storage
+		const soldStock = this.findTransactionInArray(stockSellData.id);
+
+		// Displaying proper snack bar message
+		if (soldStock.id === stockSellData.id) {
+
+			this.snackBarService.onDisplaySuccess('Position was sold successfully');
+
+		} else {
+
+			this.snackBarService.onDisplayError('Failed to sell position');
+
+		}
+	}
+
 	/**
 	 * 
 	 * @param stockSellData 
@@ -365,6 +386,41 @@ export class StockTradeBoardService {
 
 	editTransaction() {
 
+	}
+
+
+	/**
+	* 
+	* @param stockId 
+	*/
+	findTransactionInArray(stockId: string): StockTileModel {
+
+		let transactionArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+
+		const elementIndex: number = this.findStockArrayIndex(stockId);
+
+		if (elementIndex === null || elementIndex === -1) return null;
+
+		return transactionArr[elementIndex];
+	}
+
+	/**
+	 * 
+	 * @param stockId 
+	 */
+	findTransactionIndex(stockId: string): number {
+
+		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+
+		let elementIndex: number = null;
+
+		elementIndex = tradeBoardArr.findIndex((element) => {
+
+			return element.id === stockId;
+
+		});
+
+		return elementIndex;
 	}
 
 }
