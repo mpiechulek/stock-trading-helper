@@ -23,7 +23,8 @@ export class TableComponent implements OnInit {
             'sellPrice',
             'profitBeforeTax',
             'profitAfterTax',
-            'sellDate'
+            'sellDate',
+            'deleteBtn'
         ];
 
     @Input() transactions: StockSellModel[];  

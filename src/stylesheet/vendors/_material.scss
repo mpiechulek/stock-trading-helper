@@ -108,10 +108,10 @@ mat-form-field#stock-advanced-calculator-form-field {
   color: var(--color-text-form);
 }
 
-.mat-tab-nav-bar,
-.mat-tab-header {
-  // border-bottom: .4px solid var(--color-text-form);
-}
+// .mat-tab-nav-bar,
+// .mat-tab-header {
+//   // border-bottom: .4px solid var(--color-text-form);
+// }
 
 mat-tab-group#statistics {
   height: 100%;
@@ -131,6 +131,11 @@ mat-table#statistics-table {
   .mat-header-cell,
   .mat-cell {
     color: var(--color-text-form);
+  }
+
+  // styling custom column in mat table
+  .mat-column-deleteBtn {
+    max-width: 5rem;
   }
 
   mat-row,
@@ -203,7 +208,7 @@ mat-label#currency-label {
 // Snack bar 
 
 .mat-snack-bar-container.snack-bar-error {
-  background-color: $color-monza ;
+  background-color: $color-monza;
   color: white;
 }
 
