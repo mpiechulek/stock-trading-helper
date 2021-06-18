@@ -25,9 +25,7 @@ export class StatisticsContainerComponent implements OnInit {
 
             this.stockTradeBoardService.getTransactionsArray
 
-                .subscribe((data) => {
-
-                    console.log('231231231');
+                .subscribe((data) => {                 
 
                     this.makeCalculationsForDisplay(data);
 
@@ -276,6 +274,8 @@ export class StatisticsContainerComponent implements OnInit {
     deletePositionFromTable(id: string): void {
 
         this.stockTradeBoardService.deleteTransaction(id);
+
+        this.stockTradeBoardService.fetchTransactions();
 
     }
 

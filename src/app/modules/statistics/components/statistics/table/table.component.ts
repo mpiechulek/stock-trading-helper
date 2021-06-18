@@ -43,6 +43,10 @@ export class TableComponent implements OnInit {
 
     ngOnInit() {     
 
+        /**
+         * !! Tutaj trzeba sie zasubskrybowac do danych by po kliknieciu usun tabela sie odswierzała !!
+         */
+
         this.dataSource = new MatTableDataSource<StockSellModel>(this.transactions);
 
         // the time out is used because normally it didn't work
@@ -73,7 +77,7 @@ export class TableComponent implements OnInit {
      */
     onDeletePosition(id: string): void {            
 
-        this.deleteTradePositionFromTable.emit(id);
+        this.deleteTradePositionFromTable.emit(id);       
 
     }
 
