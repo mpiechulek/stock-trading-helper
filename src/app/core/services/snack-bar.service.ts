@@ -6,5 +6,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class SnackBarService {
 
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
+
+  //  //snackbar
+  //  this.snackBar.open('Message archived', 'Undo', {
+  //   duration: 2000
+  // });
 }

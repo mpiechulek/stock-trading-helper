@@ -23,7 +23,7 @@ export class StockTradeBoardService {
   private transactionsProfitArray = new Subject<StockSellModel[]>();
   private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor() { }
 
   /**
    * 
@@ -107,12 +107,7 @@ export class StockTradeBoardService {
     this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
 
     // Informing subscribers
-    this.stockBoardArraySubject.next(tradeBoardArr);
-
-    //snackbar
-    this.snackBar.open('Message archived', 'Undo', {
-      duration: 2000
-    });
+    this.stockBoardArraySubject.next(tradeBoardArr);   
   
   }
 
