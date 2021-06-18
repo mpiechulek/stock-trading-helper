@@ -22,7 +22,8 @@ export class SnackBarService {
     this.snackBar.open(message, 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: this.durationTimeMilliseconds
+      duration: this.durationTimeMilliseconds,
+      panelClass: 'snack-bar-success'
     });
 
   }
