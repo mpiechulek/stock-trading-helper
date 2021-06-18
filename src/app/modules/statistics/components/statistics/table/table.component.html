@@ -142,9 +142,21 @@
 
             <ng-container matColumnDef="deleteBtn">
 
-                <mat-header-cell *matHeaderCellDef mat-sort-header> delete  </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
 
-                <mat-cell *matCellDef="let element"> <button class="btn">delete</button> </mat-cell>
+                    {{ 'statistics.statisticsTableDelete'| translate}} 
+                    
+                </mat-header-cell>
+
+                <mat-cell *matCellDef="let element">
+
+                     <button class="btn">
+
+                        <svg class="icon icon--delete-black"></svg>                       
+
+                     </button> 
+
+                 </mat-cell>
 
             </ng-container>
 
