@@ -3,8 +3,8 @@ import { TradeFormData } from '../../data/models/form.model';
 import { StockMarkerSaveDataModel, StockTileModel } from '../../data/models/stock-tile.model';
 import * as uuid from 'uuid';
 import { Observable, Subject } from 'rxjs';
-import { StockSellModel, TransactionProfitModel } from 'src/app/data/models/statistics-section.model';
-
+import { StockSellModel } from 'src/app/data/models/statistics-section.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +22,7 @@ export class StockTradeBoardService {
   private transactionsProfitArray = new Subject<StockSellModel[]>();
   private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
 
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
 
   /**
    * 
@@ -107,6 +107,12 @@ export class StockTradeBoardService {
 
     // Informing subscribers
     this.stockBoardArraySubject.next(tradeBoardArr);
+
+    //snackbar
+    this.snackBar.open('Message archived', 'Undo', {
+      duration: 2000
+    });
+  
   }
 
   /**

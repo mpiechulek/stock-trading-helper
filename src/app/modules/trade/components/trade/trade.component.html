@@ -11,12 +11,9 @@
 
     <article class="trade-board__container">
 
-        <div class="pulsing-rings" (click)="onAddNewStock()">
+        <div class="pulsing-rings" *ngIf="stockBoardArray.length === 0" (click)="onAddNewStock()">
         
-            <div 
-                *ngIf="stockBoardArray.length === 0" 
-                class="trade-board-info-sign-wrapper "
-            >
+            <div class="trade-board-info-sign-wrapper ">
     
                 <p class="trade-board-info-text">{{'trade.tradeInfoTextOne' | translate}}</p>
     

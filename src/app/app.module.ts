@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule ,
+    MatSnackBarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
