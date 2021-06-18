@@ -9,12 +9,13 @@ import { TradeDialogComponent } from '../../components/trade/trade-dialog/trade-
 import { FormState } from '../../../../data/enums/form-state.enum';
 import { GlobalDialogComponent } from '../../../../shared/components/global-dialog/global-dialog.component';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
-
 @Component({
+
   selector: 'app-trade',
   templateUrl: './trade.container.html',
 
 })
+
 export class TradeContainerComponent implements OnInit {
 
   // form state edit or add
@@ -36,17 +37,19 @@ export class TradeContainerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.previousFormDataSubscription = this.formService.getEntreFormSubject()
-      .subscribe((data) => {
-        this.previousFormData = data;
-      });
+    this.previousFormDataSubscription =
+      this.formService.getEntreFormSubject()
+        .subscribe((data) => {
+          this.previousFormData = data;
+        });
 
     this.getLastFormEntre();
 
-    this.stockBoardDataSubscription = this.stockTradeBoardService.getStockBoardArray
-      .subscribe((data) => {
-        this.stockBoardArray = data;
-      });
+    this.stockBoardDataSubscription =
+      this.stockTradeBoardService.getStockBoardArray
+        .subscribe((data) => {          
+          this.stockBoardArray = data;
+        });
 
     this.fetchStockBoardArray();
   }
@@ -90,7 +93,7 @@ export class TradeContainerComponent implements OnInit {
    * 
    */
   fetchStockBoardArray(): void {
-    this.stockTradeBoardService.getTradeBoardDataFromLocalStorage();
+    this.stockTradeBoardService.fetchTradeBoardData();
   }
 
   /**
@@ -203,11 +206,11 @@ export class TradeContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
-    
+
     dialogConfig.data = {
-      header: 'trade.deleteConfirmDialogHeader',     
-      description: 'trade.deleteConfirmDialogText' 
-    }     
+      header: 'trade.deleteConfirmDialogHeader',
+      description: 'trade.deleteConfirmDialogText'
+    }
 
     // Initializing dialog
     const modalDialog = this.matDialog
@@ -241,10 +244,10 @@ export class TradeContainerComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
- 
+
     dialogConfig.data = {
-      header: 'trade.sellConfirmDialogHeader',     
-      description: 'trade.sellConfirmDialogText' 
+      header: 'trade.sellConfirmDialogHeader',
+      description: 'trade.sellConfirmDialogText'
     }
 
     // Initializing dialog

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel, , TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel,TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
     selector: 'app-statistics',

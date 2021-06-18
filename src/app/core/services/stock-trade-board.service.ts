@@ -53,7 +53,7 @@ export class StockTradeBoardService {
 	checkIfTradeBoardDataInLocalStorage(): boolean {
 
 		return localStorage.getItem(this.storageTradeBoardKeyName) === null;
-		
+
 	}
 
 	/**
@@ -72,7 +72,7 @@ export class StockTradeBoardService {
 			tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
 		}
 
-		this.stockBoardArraySubject.next(tradeBoardDataArray);
+
 
 		return [...tradeBoardDataArray];
 	}
@@ -85,6 +85,17 @@ export class StockTradeBoardService {
 
 		localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
 
+	}
+
+	/**
+	 * 
+	 */
+	fetchTradeBoardData(): void {
+
+		let boardData = this.getTradeBoardDataFromLocalStorage();
+
+		this.stockBoardArraySubject.next(boardData);
+		
 	}
 
 
@@ -310,7 +321,7 @@ export class StockTradeBoardService {
 
 			transactions = JSON.parse(localStorage.getItem(this.storageTradeTransactionKeyName));
 
-		}		
+		}
 
 		return [...transactions];
 
@@ -329,7 +340,7 @@ export class StockTradeBoardService {
 	/**
 	 * 
 	 */
-	fetchTransactions():void {
+	fetchTransactions(): void {
 
 		const transactions = this.getTransactionsFromLocalStorage();
 
@@ -395,7 +406,7 @@ export class StockTradeBoardService {
 	 * @param tradeId 
 	 */
 	deleteTransaction(tradeId: string): void {
-		
+
 		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
 		let newTransactionArr = [...transactionArr];
@@ -403,7 +414,7 @@ export class StockTradeBoardService {
 		newTransactionArr = newTransactionArr.filter((element) => {
 
 			return element.id !== tradeId;
-			
+
 		});
 
 		// Updating ui
