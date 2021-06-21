@@ -8,7 +8,7 @@ import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/stat
 
 export class StatChartComponent implements OnInit {
 
-  @Input() profitLossesData;
+  @Input() profitLossesData: any;
   @Input() transactionWallet: TransactionWalletModel[];
 
   ngOnInit(): void { }
@@ -17,7 +17,7 @@ export class StatChartComponent implements OnInit {
   /**
    * 
    */
-  get getProfitLossesData(): StockSellModel[] {
+  get getProfitLossesData(): any{
     return this.profitLossesData;
   }
 

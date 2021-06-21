@@ -1,23 +1,11 @@
 <article class="statistics-charts">
 
-    <div class="statistics-container-stats-wrapper">
 
-        <h1 class="statistics-header statistics-header--color-blue statistics-header-align-center">
-
-            {{ 'statistics.statisticsStatisticsProfits'| translate}}: {{profitLossesData[1]?.percentage}}%
-            ({{profitLossesData[1]?.value}})
-
-        </h1>
-
-        <h1 class="statistics-header statistics-header--color-red statistics-header-align-center">
-
-            {{ 'statistics.statisticsStatisticsLosses'| translate}}: {{profitLossesData[0]?.percentage}}%
-            ({{profitLossesData[0]?.value}})
-
-        </h1>
-
-    </div>
-
+    <app-stat-header 
+        class="statistics-container-stats-wrapper"
+        [profitLossesData]="getProfitLossesData"
+     >
+    </app-stat-header>
 
     <div class="statistics-charts__container">
 

@@ -21,6 +21,7 @@ import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
+import { StatHeaderComponent } from './components/statistics/stat-chart/stat-header/stat-header.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
     LinearChartComponent,
     StatChartComponent,
     AdvancedPipeChartComponent,
-    PipeGridChartComponent
+    PipeGridChartComponent,
+    StatHeaderComponent
   ],
   imports: [
     CommonModule,
