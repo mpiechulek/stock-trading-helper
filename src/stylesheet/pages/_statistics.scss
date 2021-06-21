@@ -13,6 +13,33 @@
       margin: 1rem 0;
 
     }
+
+  }
+
+  .statistics-header-underline {
+    position: relative;
+    display: flex;
+    background-color: white;
+    height: 2px;
+    width: 100%;
+
+    animation: underline-animation 0.65s linear;    
+
+    @keyframes underline-animation {
+
+      0% {
+
+        width: 0;
+
+      }
+
+      100% {
+
+        width: 100%;
+
+      }
+    }
+
   }
 }
 
@@ -92,7 +119,7 @@
     width: 100%;
     flex-direction: row;
     justify-content: center;
-    align-content: flex-start;    
+    align-content: flex-start;
 
     @include respond(sm) {
 
@@ -102,7 +129,7 @@
     }
 
     .statistics-charts-wrapper {
-      
+
       width: auto;
       max-width: 50%;
       display: flex;
