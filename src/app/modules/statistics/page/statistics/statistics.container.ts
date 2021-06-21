@@ -13,6 +13,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
 
     private chosenTypeOfDataForDisplay = StatisticTypeMarker;
+    
     private loseProfitDataMarker: string = this.chosenTypeOfDataForDisplay.profit
     private chartColorPallet =  {
         domain: [

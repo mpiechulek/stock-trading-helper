@@ -1,5 +1,5 @@
 <div>
-    
+
     <h1 
         class="statistics-header btn statistics-header--color-blue statistics-header-align-center"
         [ngClass] ="{'statistics-header--underline': true}"
@@ -11,7 +11,7 @@
     
     </h1>
 
-    <div class="statistics-header-underline"></div>
+    <div [ngClass] ="{'statistics-header-underline': true}"></div>
 
 </div>
 
@@ -19,7 +19,7 @@
 
     <h1 
         class="statistics-header btn statistics-header--color-red statistics-header-align-center"
-        [ngClass] ="{'statistics-header--underline': true}"
+        [ngClass] ="{'statistics-header--underline': loseProfitDataMarker === chosenTypeOfDataForDisplay.profit}"
         (click)="onShowLoseCharts()"
     > 
     
@@ -28,6 +28,6 @@
     
     </h1>
 
-    <div class="statistics-header-underline"></div>
+    <div [ngClass] ="{'statistics-header-underline': loseProfitDataMarker === chosenTypeOfDataForDisplay.lose}"></div>
 
 </div>

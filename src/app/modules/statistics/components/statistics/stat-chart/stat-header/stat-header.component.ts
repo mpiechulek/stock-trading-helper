@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { StatisticTypeMarker } from 'src/app/data/enums/statistics-markers.enum';
 import { TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
@@ -7,6 +8,8 @@ import { TransactionWalletModel } from 'src/app/data/models/statistics-section.m
 })
 
 export class StatHeaderComponent implements OnInit {
+
+  readonly chosenTypeOfDataForDisplay = StatisticTypeMarker;
 
   @Input()
   readonly profitLossesData: any;
