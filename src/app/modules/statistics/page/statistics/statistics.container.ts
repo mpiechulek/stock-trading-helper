@@ -105,6 +105,15 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
     }
 
+    /**
+      * 
+      */
+    get getLoseProfitDataMarker(): string {
+
+        return this.loseProfitDataMarker;        
+
+    }
+
     //==========================================================================
 
     /**

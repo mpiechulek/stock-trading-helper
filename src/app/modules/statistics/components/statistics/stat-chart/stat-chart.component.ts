@@ -16,6 +16,9 @@ export class StatChartComponent implements OnInit {
 
   @Input()
   chartColorPallet: Object;
+  
+  @Input()
+  loseProfitDataMarker: string;
 
   ngOnInit(): void { }
 
@@ -43,5 +46,14 @@ export class StatChartComponent implements OnInit {
     return this.chartColorPallet;
 
   }
+
+    /**
+   * 
+   */
+     get getLoseProfitDataMarker(): string {
+
+      return this.loseProfitDataMarker;
+  
+    }
 
 }

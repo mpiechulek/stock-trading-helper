@@ -24,6 +24,9 @@ export class StatisticsComponent implements OnInit {
   @Input()
   chartColorPallet: Object;
 
+  @Input()
+  loseProfitDataMarker: string;
+
   @Output()
   deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
 
@@ -59,6 +62,16 @@ export class StatisticsComponent implements OnInit {
     return this.chartColorPallet;
 
   }
+
+  /**
+   * 
+   */
+  get getLoseProfitDataMarker(): string {
+
+    return this.loseProfitDataMarker;
+
+  }
+
 
   // ===========================================================================
 

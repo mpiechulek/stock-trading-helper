@@ -8,7 +8,11 @@ import { TransactionWalletModel } from 'src/app/data/models/statistics-section.m
 
 export class StatHeaderComponent implements OnInit {
 
-  @Input() readonly profitLossesData: any;
+  @Input()
+  readonly profitLossesData: any;
+
+  @Input()
+  readonly loseProfitDataMarker: string;
 
   constructor() { }
 
