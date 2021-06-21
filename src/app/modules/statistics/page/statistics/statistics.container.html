@@ -2,7 +2,12 @@
     [linearChartData]="getLinearChartData"
     [profitLossesData]="getProfitLossesData" 
     [transactionWallet]="getTransactionWallet" 
+
     [transactionsData]="getTransactionsData" 
+    [chartColorPallet]="getChartColorPallet"
+    [loseProfitDataMarker]="getLoseProfitDataMarker"
+
     (deleteTradePositionFromTable)="deletePositionFromTable($event)"
+    (switchProfitLoseCharts)="switchProfitLoseCharts($event)"
 >
 </app-statistics-ui>

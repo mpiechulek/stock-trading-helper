@@ -21,8 +21,17 @@ export class StatisticsComponent implements OnInit {
   @Input()
   transactionWallet: TransactionWalletModel[];
 
+  @Input()
+  chartColorPallet: Object;
+
+  @Input()
+  loseProfitDataMarker: string;
+
   @Output()
   deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> =  new EventEmitter<string>();
 
   constructor() { }
 
@@ -49,12 +58,43 @@ export class StatisticsComponent implements OnInit {
   }
 
   /**
+    * 
+    */
+  get getChartColorPallet(): Object {
+
+    return this.chartColorPallet;
+
+  }
+
+  /**
+   * 
+   */
+  get getLoseProfitDataMarker(): string {
+
+    return this.loseProfitDataMarker;
+
+  }
+
+
+  // ===========================================================================
+
+  /**
    * 
    */
   onDeletePositionFromTable(id: string): void {
 
     this.deleteTradePositionFromTable.emit(id);
 
+  }
+  
+  /**
+   * 
+   * @param marker 
+   */
+   onSwitchProfitLoseCharts(marker: string):void {
+
+    this.switchProfitLoseCharts.emit(marker);
+    
   }
 
 }

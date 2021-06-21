@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { id } from '@swimlane/ngx-charts';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
+import { StatisticTypeMarker } from 'src/app/data/enums/statistics-markers.enum';
 import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
@@ -9,6 +11,17 @@ import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/stat
 
 })
 export class StatisticsContainerComponent implements OnInit, OnDestroy {
+
+
+    private chosenTypeOfDataForDisplay = StatisticTypeMarker;
+
+    private loseProfitDataMarker: string = this.chosenTypeOfDataForDisplay.profit
+
+    private chartColorPallet = {
+        domain: [
+            '#00A8FF'
+        ]
+    };
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
@@ -85,7 +98,25 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         return this.transactionsData;
 
     }
- 
+
+    /**
+      * 
+      */
+    get getChartColorPallet(): Object {
+
+        return this.chartColorPallet;
+
+    }
+
+    /**
+      * 
+      */
+    get getLoseProfitDataMarker(): string {
+
+        return this.loseProfitDataMarker;
+
+    }
+
     //==========================================================================
 
     /**
@@ -198,12 +229,21 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
         tradeData.forEach((trade) => {
 
-            if (trade.profitBeforeTax > 0) {
+            if (trade.profitBeforeTax > 0 && this.loseProfitDataMarker === this.chosenTypeOfDataForDisplay.profit) {
 
                 dataArray.push({
 
                     name: trade.companyName,
                     value: trade.profitBeforeTax
+
+                });
+
+            } else if (trade.profitBeforeTax < 0 && this.loseProfitDataMarker === this.chosenTypeOfDataForDisplay.lose) {
+
+                dataArray.push({
+
+                    name: trade.companyName,
+                    value: trade.profitBeforeTax * -1
 
                 });
             }
@@ -269,6 +309,47 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         const dateTime = `${year}-${month}-${day} ${time}`;
 
         return dateTime;
+
+    }
+
+    /**
+     * 
+     * @param marker 
+     */
+    switchProfitLoseCharts(marker: string): void {
+
+        if( this.loseProfitDataMarker === marker) return;
+
+        //overWriting the marker
+        this.loseProfitDataMarker = marker;
+
+        // changing the color of the charts profit or lose
+        if (marker === this.chosenTypeOfDataForDisplay.profit) {
+
+            this.chartColorPallet = {
+
+                domain: [
+
+                    '#00A8FF'
+                ]
+
+            };
+
+        } else if (marker === this.chosenTypeOfDataForDisplay.lose) {
+
+            this.chartColorPallet = {
+
+                domain: [
+
+                    '#f30625'
+                ]
+
+            };
+
+        }
+
+        // generating new list of trades profit or lose
+        this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
 
     }
 

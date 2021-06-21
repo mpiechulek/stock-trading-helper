@@ -12,7 +12,7 @@ export class PipeGridChartComponent implements OnInit {
   // options
   gradient: boolean = true;
   showLegend: boolean = false;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
   
@@ -23,7 +23,7 @@ export class PipeGridChartComponent implements OnInit {
     ]
   };
   
-  @Input() profitLossesData;
+  @Input() profitLossesData: any;
   
   constructor() {  
 
@@ -39,8 +39,10 @@ export class PipeGridChartComponent implements OnInit {
    * 
    * @param event 
    */
-  onResize(event) {
+  onResize(event: any): void {
+
     this.onChangeChartSize(event.target.innerWidth);
+
   }
 
   /**
@@ -51,18 +53,16 @@ export class PipeGridChartComponent implements OnInit {
 
     if (width <= 1440 && width > 960) {
 
-      this.view = [500, 400];
-      this.showLabels = true;
+      this.view = [500, 400];     
 
     } else if (width <= 960 && width > 800) {
 
-      this.view = [430, 350];
-      this.showLabels = true;
+      this.view = [430, 350];     
 
     } else if (width <= 800 ) {
 
       this.view = [450, 200];
-      this.showLabels = false;
+     
     } 
   }
 
