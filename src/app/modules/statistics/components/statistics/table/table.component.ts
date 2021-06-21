@@ -27,7 +27,8 @@ export class TableComponent implements OnInit, OnChanges {
     @Input() transactionsData: StockSellModel[] = [];
 
     @Output()
-    deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
+    deleteTradePositionFromTable: EventEmitter<string> =
+        new EventEmitter<string>();
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -52,7 +53,7 @@ export class TableComponent implements OnInit, OnChanges {
     ngOnChanges(): void {
 
         this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
-        
+
     }
 
     /**
