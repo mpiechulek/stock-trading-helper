@@ -12,7 +12,11 @@
 
         <div class="statistics-charts-wrapper">
 
-            <app-advanced-pipe-chart [transactionWallet]="getTransactionWallet"></app-advanced-pipe-chart>
+            <app-advanced-pipe-chart 
+                [transactionWallet]="getTransactionWallet"
+                [colorScheme]="getChartColorPallet"
+            >
+            </app-advanced-pipe-chart>
 
         </div>
 

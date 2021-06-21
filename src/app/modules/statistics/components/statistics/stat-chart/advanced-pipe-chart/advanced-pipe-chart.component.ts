@@ -15,11 +15,7 @@ export class AdvancedPipeChartComponent implements OnInit {
   showLegend: boolean = true;
   showLabels: boolean = true;
 
-  colorScheme = {
-    domain: [
-      '#00A8FF'    
-    ]
-  };
+  @Input() readonly colorScheme:Object;
 
   @Input() transactionWallet: TransactionWalletModel[];
 
@@ -60,4 +56,5 @@ export class AdvancedPipeChartComponent implements OnInit {
   onSelect(event) {
    
   }
+  
 }

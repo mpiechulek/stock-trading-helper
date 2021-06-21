@@ -8,16 +8,21 @@ import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/stat
 
 export class StatChartComponent implements OnInit {
 
-  @Input() profitLossesData: any;
-  @Input() transactionWallet: TransactionWalletModel[];
+  @Input()
+  profitLossesData: any;
+
+  @Input()
+  transactionWallet: TransactionWalletModel[];
+
+  @Input()
+  chartColorPallet: Object;
 
   ngOnInit(): void { }
-
 
   /**
    * 
    */
-  get getProfitLossesData(): any{
+  get getProfitLossesData(): any {
     return this.profitLossesData;
   }
 
@@ -30,5 +35,13 @@ export class StatChartComponent implements OnInit {
 
   }
 
+  /**
+    * 
+    */
+  get getChartColorPallet(): Object {
+
+    return this.chartColorPallet;
+
+  }
 
 }

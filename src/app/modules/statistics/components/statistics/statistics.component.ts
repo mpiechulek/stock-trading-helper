@@ -21,6 +21,9 @@ export class StatisticsComponent implements OnInit {
   @Input()
   transactionWallet: TransactionWalletModel[];
 
+  @Input()
+  chartColorPallet: Object;
+
   @Output()
   deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
 
@@ -47,6 +50,17 @@ export class StatisticsComponent implements OnInit {
     return this.transactionWallet;
 
   }
+
+  /**
+    * 
+    */
+  get getChartColorPallet(): Object {
+
+    return this.chartColorPallet;
+
+  }
+
+  // ===========================================================================
 
   /**
    * 

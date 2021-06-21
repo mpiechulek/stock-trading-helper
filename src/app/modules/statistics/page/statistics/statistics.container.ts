@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
+import { StatisticTypeMarker } from 'src/app/data/enums/statistics-markers.enum';
 import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
@@ -10,9 +11,17 @@ import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/stat
 })
 export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
+
+    private chosenTypeOfDataForDisplay = StatisticTypeMarker;
+    private loseProfitDataMarker: string = this.chosenTypeOfDataForDisplay.profit
+    private chartColorPallet =  {
+        domain: [
+          '#00A8FF'    
+        ]
+      };
+
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
-    private chosenTypeOfDataForDisplay:string = 'profit';
 
     private transactionsDataSubject = new Subject<StockSellModel[]>();
     private transactionsDataSubject$: Observable<StockSellModel[]> = this.transactionsDataSubject.asObservable();
@@ -86,7 +95,16 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         return this.transactionsData;
 
     }
- 
+
+    /**
+      * 
+      */
+    get getChartColorPallet(): Object {
+
+        return this.chartColorPallet;        
+
+    }
+
     //==========================================================================
 
     /**
