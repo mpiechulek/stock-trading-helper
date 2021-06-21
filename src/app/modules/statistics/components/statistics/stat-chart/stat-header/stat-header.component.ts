@@ -12,18 +12,19 @@ export class StatHeaderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    
-
+  ngOnInit(): void { 
 
   }
 
   onShowProfitCharts(): void {
 
+    console.log('profit data');
+    
+
   }
 
   onShowLoseCharts(): void {
-    
+    console.log('lode data');
   }
 
 }
