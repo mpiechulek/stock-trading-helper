@@ -19,3 +19,8 @@ export interface TransactionWalletModel {
     name: string;
     value: number;
 }
+
+// export interface TradeLinearChartData {
+
+// }
+

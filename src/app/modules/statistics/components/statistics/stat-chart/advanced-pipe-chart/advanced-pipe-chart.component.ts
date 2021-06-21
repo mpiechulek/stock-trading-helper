@@ -17,7 +17,7 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   colorScheme = {
     domain: [
-      '#00A8FF',     
+      '#00A8FF'    
     ]
   };
 

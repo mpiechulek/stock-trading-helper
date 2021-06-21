@@ -12,6 +12,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
+    private chosenTypeOfDataForDisplay:string = 'profit';
 
     private transactionsDataSubject = new Subject<StockSellModel[]>();
     private transactionsDataSubject$: Observable<StockSellModel[]> = this.transactionsDataSubject.asObservable();
