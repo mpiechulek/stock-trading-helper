@@ -1,31 +1,30 @@
-import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
-
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html'
 })
 
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit, OnChanges {
 
     public dataSource: any;
-    
+
     public displayedColumns: string[] =
-    [
-        'stockName',
-        'quantity',
-        'buyPrice',
-        'sellPrice',
-        'profitBeforeTax',
-        'profitAfterTax',
-        'sellDate',
-        'deleteBtn'
-    ];
-    
-    @Input() transactionsData: StockSellModel[] = [];   
+        [
+            'stockName',
+            'quantity',
+            'buyPrice',
+            'sellPrice',
+            'profitBeforeTax',
+            'profitAfterTax',
+            'sellDate',
+            'deleteBtn'
+        ];
+
+    @Input() transactionsData: StockSellModel[] = [];
 
     @Output()
     deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
@@ -43,13 +42,18 @@ export class TableComponent implements OnInit{
     ngOnInit(): void {
 
         this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
-        // this.dataSource.connect().next(this.transactionsData);
 
         // the time out is used because normally it didn't work
         setTimeout(() => this.dataSource.paginator = this.paginator);
         setTimeout(() => this.dataSource.sort = this.sort);
 
-    }   
+    }
+
+    ngOnChanges(): void {
+
+        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
+        
+    }
 
     /**
      * 
@@ -73,7 +77,6 @@ export class TableComponent implements OnInit{
     onDeletePosition(id: string): void {
 
         this.deleteTradePositionFromTable.emit(id);
-        // this.table.renderRows();
 
     }
 
