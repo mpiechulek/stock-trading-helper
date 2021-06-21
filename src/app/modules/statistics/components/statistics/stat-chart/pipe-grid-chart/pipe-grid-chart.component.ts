@@ -5,9 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './pipe-grid-chart.component.html'
 })
 export class PipeGridChartComponent implements OnInit {
-
   
-  view = [500, 350];
+  view = [800, 450];
   
   // options
   gradient: boolean = true;
@@ -51,7 +50,10 @@ export class PipeGridChartComponent implements OnInit {
    */
   onChangeChartSize(width: number): void {
 
-    if (width <= 1440 && width > 960) {
+    if(width > 1440) {
+      this.view = [800, 450];
+    }
+    else if (width <= 1440 && width > 960) {
 
       this.view = [500, 400];     
 
