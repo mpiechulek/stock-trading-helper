@@ -13,8 +13,17 @@ export class StatHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
 
 
+  }
+
+  onShowProfitCharts(): void {
+
+  }
+
+  onShowLoseCharts(): void {
+    
   }
 
 }
