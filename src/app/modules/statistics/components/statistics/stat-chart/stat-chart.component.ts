@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
@@ -16,9 +16,12 @@ export class StatChartComponent implements OnInit {
 
   @Input()
   chartColorPallet: Object;
-  
+
   @Input()
   loseProfitDataMarker: string;
+
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> =  new EventEmitter<string>();
 
   ngOnInit(): void { }
 
@@ -47,13 +50,23 @@ export class StatChartComponent implements OnInit {
 
   }
 
-    /**
-   * 
-   */
-     get getLoseProfitDataMarker(): string {
+  /**
+ * 
+ */
+  get getLoseProfitDataMarker(): string {
 
-      return this.loseProfitDataMarker;
-  
-    }
+    return this.loseProfitDataMarker;
+
+  }
+
+  /**
+   * 
+   * @param marker 
+   */
+  onSwitchProfitLoseCharts(marker: string):void {
+
+    this.switchProfitLoseCharts.emit(marker);
+    
+  }
 
 }

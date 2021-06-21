@@ -4,6 +4,7 @@
         class="statistics-container-stats-wrapper"
         [profitLossesData]="getProfitLossesData"
         [loseProfitDataMarker]="getLoseProfitDataMarker"
+        (switchProfitLoseCharts)="onSwitchProfitLoseCharts($event)"
      >
     </app-stat-header>
 

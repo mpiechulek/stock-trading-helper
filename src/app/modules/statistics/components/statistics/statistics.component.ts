@@ -30,6 +30,9 @@ export class StatisticsComponent implements OnInit {
   @Output()
   deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> =  new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -82,6 +85,16 @@ export class StatisticsComponent implements OnInit {
 
     this.deleteTradePositionFromTable.emit(id);
 
+  }
+  
+  /**
+   * 
+   * @param marker 
+   */
+   onSwitchProfitLoseCharts(marker: string):void {
+
+    this.switchProfitLoseCharts.emit(marker);
+    
   }
 
 }

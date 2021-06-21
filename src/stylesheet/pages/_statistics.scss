@@ -6,38 +6,39 @@
 
   .statistics-header {
 
-    margin: 1.5rem 0;
-
-    @include respond(sm) {
-
-      margin: 1rem 0;
-
-    }
+    display: inline-block;
+    margin: 1rem 0;
 
   }
 
   .statistics-header-underline {
     position: relative;
-    display: flex;
-    background-color: white;
+    display: inline-block;  
+    background-color: transparent;
     height: 2px;
     width: 100%;
 
-    animation: underline-animation 0.65s linear;    
+    &--animation-effect {
+      height: 2px;
+      background-color: var(--color-text-prime);
+      animation: underline-animation 0.3s linear;
 
-    @keyframes underline-animation {
+      @keyframes underline-animation {
 
-      0% {
+        0% {
 
-        width: 0;
+          width: 1%;
+
+        }
+
+        100% {
+
+          width: 100%;
+
+        }
 
       }
 
-      100% {
-
-        width: 100%;
-
-      }
     }
 
   }

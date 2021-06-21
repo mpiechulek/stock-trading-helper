@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { StatisticTypeMarker } from 'src/app/data/enums/statistics-markers.enum';
-import { TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
+
 
 @Component({
   selector: 'app-stat-header',
@@ -17,6 +17,9 @@ export class StatHeaderComponent implements OnInit {
   @Input()
   readonly loseProfitDataMarker: string;
 
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -28,7 +31,7 @@ export class StatHeaderComponent implements OnInit {
    */
   onShowProfitCharts(): void {
 
-    console.log('profit data');
+    this.switchProfitLoseCharts.emit(this.chosenTypeOfDataForDisplay.profit);
 
   }
 
@@ -37,7 +40,7 @@ export class StatHeaderComponent implements OnInit {
    */
   onShowLoseCharts(): void {
 
-    console.log('lode data');
+    this.switchProfitLoseCharts.emit(this.chosenTypeOfDataForDisplay.lose)
 
   }
 
