@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html' 
+  templateUrl: './auth.container.html' 
 })
 export class AuthContainerComponent implements OnInit {
 

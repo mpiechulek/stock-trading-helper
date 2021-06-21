@@ -3,9 +3,9 @@ import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStar
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html'
+  templateUrl: './auth-layout.component.html'
 })
-export class AuthComponent implements OnInit {
+export class AuthLayoutComponent implements OnInit {
 
   private showLoadingIndicator: boolean = false;
 
@@ -33,7 +33,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   /**
