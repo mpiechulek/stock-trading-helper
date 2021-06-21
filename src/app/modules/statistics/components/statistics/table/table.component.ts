@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild,EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -9,52 +9,47 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
     templateUrl: './table.component.html'
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit{
 
-    public dataSource;   
-
+    public dataSource: any;
+    
     public displayedColumns: string[] =
-        [
-            'stockName',
-            'quantity',
-            'buyPrice',
-            'sellPrice',
-            'profitBeforeTax',
-            'profitAfterTax',
-            'sellDate',
-            'deleteBtn'
-        ];
+    [
+        'stockName',
+        'quantity',
+        'buyPrice',
+        'sellPrice',
+        'profitBeforeTax',
+        'profitAfterTax',
+        'sellDate',
+        'deleteBtn'
+    ];
+    
+    @Input() transactionsData: StockSellModel[] = [];   
 
-    @Input()
-     transactions: StockSellModel[]; 
-
-    @Output() 
-    deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();  
+    @Output()
+    deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
 
     @ViewChild(MatPaginator)
-     paginator: MatPaginator;
+    paginator: MatPaginator;
 
     @ViewChild(MatSort)
-     sort: MatSort;
+    sort: MatSort;
 
     constructor() {
 
     }
 
-    ngOnInit() {     
+    ngOnInit(): void {
 
-        /**
-         * !! Tutaj trzeba sie zasubskrybowac do danych by po kliknieciu usun tabela sie odswierzała !!
-         */
-
-        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactions);
+        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
+        // this.dataSource.connect().next(this.transactionsData);
 
         // the time out is used because normally it didn't work
         setTimeout(() => this.dataSource.paginator = this.paginator);
-
         setTimeout(() => this.dataSource.sort = this.sort);
 
-    }
+    }   
 
     /**
      * 
@@ -75,9 +70,10 @@ export class TableComponent implements OnInit {
      * 
      * @param id 
      */
-    onDeletePosition(id: string): void {            
+    onDeletePosition(id: string): void {
 
-        this.deleteTradePositionFromTable.emit(id);       
+        this.deleteTradePositionFromTable.emit(id);
+        // this.table.renderRows();
 
     }
 

@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
-import { StockSellModel,TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
+import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
     selector: 'app-statistics',
     templateUrl: './statistics.container.html'
 
 })
-export class StatisticsContainerComponent implements OnInit {
+export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
+
+    private transactionsDataSubject = new Subject<StockSellModel[]>();
+    private transactionsDataSubject$: Observable<StockSellModel[]> = this.transactionsDataSubject.asObservable();
 
     private profitLossesData: any;
     private linearChartData: any;
@@ -25,12 +28,11 @@ export class StatisticsContainerComponent implements OnInit {
 
             this.stockTradeBoardService.getTransactionsArray
 
-                .subscribe((data) => {                 
+                .subscribe((data) => {
 
                     this.makeCalculationsForDisplay(data);
 
-                }
-            );
+                });
 
         this.stockTradeBoardService.fetchTransactions();
 
@@ -83,16 +85,19 @@ export class StatisticsContainerComponent implements OnInit {
         return this.transactionsData;
 
     }
-
+ 
     //==========================================================================
 
     /**
      * 
      * @param data 
      */
-    makeCalculationsForDisplay(data): void {
+    makeCalculationsForDisplay(data: StockSellModel[]): void {
 
         this.transactionsData = this.fixDateInArrayOfObjects(data);
+
+        // informing the subscriber that the data has changed
+        this.transactionsDataSubject.next(this.transactionsData);
 
         this.profitLossesData = this.calculateProfitLosses(this.transactionsData);
 
@@ -274,8 +279,6 @@ export class StatisticsContainerComponent implements OnInit {
     deletePositionFromTable(id: string): void {
 
         this.stockTradeBoardService.deleteTransaction(id);
-
-        this.stockTradeBoardService.fetchTransactions();
 
     }
 
