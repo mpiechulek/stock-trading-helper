@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { CurrencyApiDataModel } from '../../../../../data/models/currency.model';
@@ -9,7 +9,7 @@ import { CurrencyFromService } from '../../../../../core/services/currency-form.
   templateUrl: './currency-form.component.html'
 })
 
-export class CurrencyFormComponent implements OnInit {
+export class CurrencyFormComponent implements OnInit, OnDestroy {
 
   private currencySelectListContainer: Object[];
   private currencyFormData: FormGroup;
@@ -17,13 +17,13 @@ export class CurrencyFormComponent implements OnInit {
   private currencyCalculationResultSubscription: Subscription;
   private firstCurrencyNameSubscription: Subscription;
   private secondCurrencyNameSubscription: Subscription;
-  
+
   @Output()
   swapCurrencies = new EventEmitter();
-  
+
   @Output()
   currencyQuantity: EventEmitter<number> = new EventEmitter<number>();
-  
+
   @Output()
   choseCurrencyOne: EventEmitter<string> = new EventEmitter<string>();
 
@@ -131,13 +131,13 @@ export class CurrencyFormComponent implements OnInit {
     this.swapCurrencies.emit();
   }
 
-  
+
   /**
    * Fetching currency data from backend
    * @param currencyName 
    */
-   onSelectCurrencyOne(currencyName: string) {
-    
+  onSelectCurrencyOne(currencyName: string) {
+
     this.choseCurrencyOne.emit(currencyName);
   }
 

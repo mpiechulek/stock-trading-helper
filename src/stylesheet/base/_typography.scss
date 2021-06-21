@@ -199,7 +199,7 @@
 
 .trade-board-info-text {
 
-  color: $color-tundora;
+  color: var(--color-text-prime);
 
   @include respond(sm) {
 
@@ -230,8 +230,8 @@
 .trade-tile-stock-name-text {
   color: var(--color-text-prime);
   max-width: 13ch;
-  overflow: hidden;
   font-weight: 500;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 2.3rem;

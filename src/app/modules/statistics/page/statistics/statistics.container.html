@@ -1,7 +1,8 @@
-<app-statistics-ui
-    [transactionsData]="getTransactionsData"
+<app-statistics-ui  
     [linearChartData]="getLinearChartData"
     [profitLossesData]="getProfitLossesData" 
     [transactionWallet]="getTransactionWallet" 
+    [transactionsData]="getTransactionsData" 
+    (deleteTradePositionFromTable)="deletePositionFromTable($event)"
 >
 </app-statistics-ui>

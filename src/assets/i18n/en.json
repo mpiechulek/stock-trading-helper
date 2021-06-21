@@ -118,6 +118,7 @@
         "statisticsTableProfitBeforeTax": "Profit bef. tax",
         "statisticsTableProfitAfterTax": "Profit aft. tax",
         "statisticsTableDate": "Date",
+        "statisticsTableDelete": "Delete",
 
         "statisticsStatisticsProfitTransactions": "Profit transactions",
         "statisticsStatisticsProfits": "Profits",

@@ -1,19 +1,16 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
-import { Observable, Subscriber, Subscription } from 'rxjs';
-
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html'
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
 
-    public dataSource;   
+    public dataSource: any;
 
     public displayedColumns: string[] =
         [
@@ -23,29 +20,46 @@ export class TableComponent implements OnInit {
             'sellPrice',
             'profitBeforeTax',
             'profitAfterTax',
-            'sellDate'
+            'sellDate',
+            'deleteBtn'
         ];
 
-    @Input() transactions: StockSellModel[];  
+    @Input() transactionsData: StockSellModel[] = [];
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @Output()
+    deleteTradePositionFromTable: EventEmitter<string> =
+        new EventEmitter<string>();
+
+    @ViewChild(MatPaginator)
+    paginator: MatPaginator;
+
+    @ViewChild(MatSort)
+    sort: MatSort;
 
     constructor() {
 
     }
 
-    ngOnInit() {     
+    ngOnInit(): void {
 
-        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactions);
+        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
 
         // the time out is used because normally it didn't work
         setTimeout(() => this.dataSource.paginator = this.paginator);
-
         setTimeout(() => this.dataSource.sort = this.sort);
 
     }
 
+    ngOnChanges(): void {
+
+        this.dataSource = new MatTableDataSource<StockSellModel>(this.transactionsData);
+
+    }
+
+    /**
+     * 
+     * @param filterValue 
+     */
     applyFilter(filterValue: string) {
 
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -57,10 +71,19 @@ export class TableComponent implements OnInit {
         }
     }
 
-    onDeletePosition(): void {
+    /**
+     * 
+     * @param id 
+     */
+    onDeletePosition(id: string): void {
+
+        this.deleteTradePositionFromTable.emit(id);
 
     }
 
+    /**
+     * 
+     */
     onEditPosition(): void {
 
     }

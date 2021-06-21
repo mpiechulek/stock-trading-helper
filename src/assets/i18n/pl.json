@@ -116,6 +116,7 @@
         "statisticsTableProfitBeforeTax": "Zysk brutto",
         "statisticsTableProfitAfterTax": "Zysk netto",
         "statisticsTableDate": "Data",
+        "statisticsTableDelete": "Usuń",
 
         "statisticsStatisticsProfitTransactions": "Transakcje zyskowne",
         "statisticsStatisticsProfits": "Zysk",
