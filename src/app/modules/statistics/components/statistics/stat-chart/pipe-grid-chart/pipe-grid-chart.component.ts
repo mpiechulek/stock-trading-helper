@@ -12,7 +12,7 @@ export class PipeGridChartComponent implements OnInit {
   // options
   gradient: boolean = true;
   showLegend: boolean = false;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
   
