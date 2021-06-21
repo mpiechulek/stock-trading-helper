@@ -1,4 +1,4 @@
-<h1 class="statistics-header statistics-header--color-blue statistics-header-align-center"
+<h1 class="statistics-header btn statistics-header--color-blue statistics-header-align-center"
     (click)="onShowProfitCharts()">
 
     {{ 'statistics.statisticsStatisticsProfits'| translate}}: {{profitLossesData[1]?.percentage}}%
@@ -6,7 +6,7 @@
 
 </h1>
 
-<h1 class="statistics-header statistics-header--color-red statistics-header-align-center" (click)="onShowLoseCharts()">
+<h1 class="statistics-header btn statistics-header--color-red statistics-header-align-center" (click)="onShowLoseCharts()">
 
     {{ 'statistics.statisticsStatisticsLosses'| translate}}: {{profitLossesData[0]?.percentage}}%
     ({{profitLossesData[0]?.value}})
