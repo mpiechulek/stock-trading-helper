@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AuthComponent } from './layout/auth/auth.component';
 
 
 
@@ -19,7 +20,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
