@@ -224,3 +224,31 @@ mat-label#currency-label {
   background-color: $color-dodger-blue;
   color: white;
 }
+
+// =============================================================================
+// auth section 
+
+mat-form-field#login-mat-form-field,
+mat-label#login-mat-form-field,
+matInput#login-mat-form-field {
+
+  color: black;
+  
+}
+mat-form-field#login-mat-form-field {
+
+  width: 250px;
+
+  @include respond(xs) {
+
+    width: 200px;
+
+  }
+
+}
+
+.login-container .mat-form-field-appearance-legacy .mat-form-field-underline {
+
+  background-color: black;
+
+}
