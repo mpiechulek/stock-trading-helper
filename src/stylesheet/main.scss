@@ -24,6 +24,8 @@
         'layout/navbar',
         'layout/tables',
         'layout/loading-screen',
+        'layout/auth-image-styling',
+        'layout/login',
         'layout/grid';
       
 @import 'pages/home',
@@ -31,7 +33,8 @@
         'pages/statistics',
         'pages/calendar',
         'pages/currency',
-        'pages/trade';
+        'pages/trade',
+        'pages/auth';
 
 @import 'themes/themes';
 
