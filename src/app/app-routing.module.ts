@@ -6,7 +6,12 @@ import { MainLayoutComponent } from './layout/main/main-layout.component';
 const routes: Routes = [
 
 	{
-		path: 'auth',
+		path: '',
+		redirectTo: 'auth',
+		pathMatch: 'full',
+	},
+	{
+		path: 'auth',	
 		component: AuthLayoutComponent,
 		loadChildren: () =>
 			import('./modules/auth/auth.module').then(m => m.AuthModule)
@@ -17,7 +22,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'home',
-			
+
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
 						m => m.HomeModule
@@ -25,7 +30,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'trade',
-			
+
 				loadChildren: () =>
 					import('./modules/trade/trade.module').then(
 						m => m.TradeModule
@@ -33,7 +38,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'calculator',
-				
+
 				loadChildren: () =>
 					import('./modules/calculator/calculator.module').then(
 						m => m.CalculatorModule
@@ -41,7 +46,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'currency',
-			
+
 				loadChildren: () =>
 					import('./modules/currency/currency.module').then(
 						m => m.CurrencyModule
@@ -49,7 +54,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'statistics',
-				
+
 				loadChildren: () =>
 					import('./modules/statistics/statistics.module').then(
 						m => m.StatisticsModule
@@ -62,7 +67,7 @@ const routes: Routes = [
 			//       m => m.CalendarDateModule
 			//     )
 			// },
-			// { path: '**', redirectTo: '/', pathMatch: 'full' } 
+			{ path: '**', redirectTo: '/', pathMatch: 'full' }
 		]
 	}
 ];
