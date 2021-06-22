@@ -1,8 +1,36 @@
-
 <app-loading-screen *ngIf="getShowLoadingIndicator"></app-loading-screen>
 
-<div class="main">   
+<div class="main">
 
-    <router-outlet></router-outlet>        
- 
+    <div class="auth-container">
+
+        <div class="auth-form-wrapper">
+
+            <router-outlet></router-outlet>
+
+        </div>
+
+        <div class="auth-images-wrapper">
+
+            <div class="">
+                <h1>Stock Helper</h1>
+
+            </div>
+
+            <div class="">
+
+                <img src="" alt="img">
+
+            </div>
+
+            <div class="">
+
+                <h2>some text</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
