@@ -26,7 +26,11 @@
 
         <div class="statistics-charts-wrapper">
 
-            <app-pipe-grid-chart [profitLossesData]="getProfitLossesData"></app-pipe-grid-chart>
+            <app-pipe-grid-chart 
+                [profitLossesData]="getProfitLossesData"
+                (switchProfitLoseCharts)="onSwitchProfitLoseCharts($event)"
+            >
+            </app-pipe-grid-chart>
 
         </div>
 

@@ -202,12 +202,12 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         let profitLossesData = [
 
             {
-                "name": "Lose",
+                "name": "lose",
                 "percentage": (((lossValue) * 100) / (profitValue + lossValue)).toFixed(2),
                 "value": lossValue.toFixed(2)
             },
             {
-                "name": "Profit",
+                "name": "profit",
                 "percentage": (((profitValue) * 100) / (profitValue + lossValue)).toFixed(2),
                 "value": profitValue.toFixed(2)
             }

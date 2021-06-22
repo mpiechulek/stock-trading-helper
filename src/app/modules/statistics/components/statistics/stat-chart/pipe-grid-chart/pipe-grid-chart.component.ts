@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pipe-grid-chart',
@@ -23,6 +23,9 @@ export class PipeGridChartComponent implements OnInit {
   };
   
   @Input() profitLossesData: any;
+
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> = new EventEmitter<string>();
   
   constructor() {  
 
@@ -77,7 +80,9 @@ export class PipeGridChartComponent implements OnInit {
    * @param data 
    */
   onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+
+    this.switchProfitLoseCharts.emit(data.name); 
+    
   }
 
   /**
