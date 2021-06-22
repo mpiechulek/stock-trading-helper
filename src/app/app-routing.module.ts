@@ -16,7 +16,7 @@ const routes: Routes = [
 		component: MainLayoutComponent,
 		children: [
 			{
-				path: '',
+				path: 'home',
 			
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
@@ -24,7 +24,7 @@ const routes: Routes = [
 					)
 			},
 			{
-				path: '',
+				path: 'trade',
 			
 				loadChildren: () =>
 					import('./modules/trade/trade.module').then(
@@ -32,7 +32,7 @@ const routes: Routes = [
 					)
 			},
 			{
-				path: '',
+				path: 'calculator',
 				
 				loadChildren: () =>
 					import('./modules/calculator/calculator.module').then(
@@ -40,7 +40,7 @@ const routes: Routes = [
 					)
 			},
 			{
-				path: '',
+				path: 'currency',
 			
 				loadChildren: () =>
 					import('./modules/currency/currency.module').then(
@@ -48,7 +48,7 @@ const routes: Routes = [
 					)
 			},
 			{
-				path: '',
+				path: 'statistics',
 				
 				loadChildren: () =>
 					import('./modules/statistics/statistics.module').then(
@@ -56,7 +56,7 @@ const routes: Routes = [
 					)
 			},
 			// {
-			//   path: '',
+			//   path: 'calendar',
 			//   loadChildren: () => 
 			//     import('./modules/calendar/calendar.module').then(
 			//       m => m.CalendarDateModule

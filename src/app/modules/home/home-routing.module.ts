@@ -4,10 +4,10 @@ import { HomeContainerComponent } from './page/home/home.container';
 
 const routes: Routes = [
   {
-    path: '',  
+    path: '',      
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomeContainerComponent
       }
     ]

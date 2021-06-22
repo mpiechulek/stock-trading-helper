@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',  
     children: [
       {
-        path: 'trade',
+        path: '',
         component: TradeContainerComponent
       }
     ]
