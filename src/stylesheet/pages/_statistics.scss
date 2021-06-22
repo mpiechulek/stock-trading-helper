@@ -135,7 +135,7 @@
       max-width: 50%;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       overflow-y: auto;
 
       @include respond(sm) {

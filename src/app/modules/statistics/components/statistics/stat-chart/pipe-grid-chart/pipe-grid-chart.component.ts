@@ -61,9 +61,13 @@ export class PipeGridChartComponent implements OnInit {
 
       this.view = [430, 350];     
 
-    } else if (width <= 800 ) {
+    } else if (width <= 800 && width > 400) {
 
-      this.view = [450, 200];
+      this.view = [400,400];
+     
+    } else if (width <= 400 ) {
+
+      this.view = [250,250];
      
     } 
   }
@@ -73,7 +77,7 @@ export class PipeGridChartComponent implements OnInit {
    * @param data 
    */
   onSelect(data): void {
-    // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
   /**

@@ -9,7 +9,7 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   single: any[];
 
-  view = [600, 500];
+  view = [600, 400];
 
   // options
   showLegend: boolean = true;
@@ -44,15 +44,15 @@ export class AdvancedPipeChartComponent implements OnInit {
   onChangeChartSize(width: number): void {
 
     if (width > 1440) {
-      this.view = [500, 500];
+      this.view = [600, 400];
     } else if (width <= 1440 && width > 960) {
-      this.view = [450, 500];
+      this.view = [450, 400];
     } else if (width <= 960 && width > 800) {
-      this.view = [350, 500];
+      this.view = [350, 400];
     } else if (width <= 800 && width > 400) {
-      this.view = [340, 500];
+      this.view = [340, 400];
     } else if (width <= 400) {
-      this.view = [200, 1200];
+      this.view = [200, 600];
     }
 
   }
