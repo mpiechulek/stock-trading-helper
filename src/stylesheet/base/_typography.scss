@@ -90,7 +90,7 @@
 }
 
 .main-header-h1 {
-  color: $color-java;
+
   font-size: 4.5rem;
   list-style: none;
 
@@ -106,7 +106,19 @@
     font-size: 4rem;
   }
 
-  span {
+  &--blue {
+
+    color: $color-java;
+
+  }
+
+  &--gray {
+
+    color: $color-tundora;
+
+  }
+
+  &--span {
     color: var(--color-text-prime);
     font-size: 4.5rem;
     list-style: none;
@@ -123,9 +135,11 @@
       font-size: 4rem;
     }
   }
+  
 }
 
 .home {
+
   .home-grid-1-header {
     color: $color-white;
     font-size: 8.2rem;
