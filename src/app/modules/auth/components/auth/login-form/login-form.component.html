@@ -1,39 +1,38 @@
-
-<form class="login-form" >
+<form class="login-form">
 
     <!-- User name -->
 
     <mat-form-field id="login-mat-form-field">
 
-        <mat-label id="login-mat-form-field" >User</mat-label>
+        <mat-label id="login-mat-form-field">User</mat-label>
 
-        <input matInput id="login-mat-form-field"  type="text" placeholder="User"> 
+        <input matInput id="login-mat-form-field" type="text" placeholder="User">
 
-        <mat-error>
+        <mat-error >
 
-           User name is required
+            User name is required
 
-        </mat-error>     
+        </mat-error>
 
     </mat-form-field>
 
-     <!-- Password -->
+    <!-- Password -->
 
     <mat-form-field id="login-mat-form-field">
 
-        <mat-label id="login-mat-form-field" >Password</mat-label>
+        <mat-label id="login-mat-form-field">Password</mat-label>
 
-        <input matInput id="login-mat-form-field"  type="text" placeholder="Password"> 
+        <input matInput id="login-mat-form-field" type="text" placeholder="Password">
 
         <mat-error>
 
-            Password  is required
+            Password is required
 
-        </mat-error>     
+        </mat-error>
 
     </mat-form-field>
 
-    <button mat-raised-button color="primary" [disabled]="true">Login</button>
+    <button class="login-button" mat-raised-button color="primary" [disabled]="true">Login</button>
 
-    
+
 </form>
