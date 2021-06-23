@@ -1,10 +1,10 @@
 .calculator-result-board-text {
   font-size: 1.6rem;
   color: $color-white;
-  
+
   @include respond(sm) {
     font-size: 12px;
-  }  
+  }
 
   &--bold {
     font-weight: 700;
@@ -74,13 +74,13 @@
   color: var(--color-text-prime);
   // font-family: monospace;
 
-  
+
   @include respond(sm) {
 
-    font-size:12px;
+    font-size: 12px;
 
   }
-  
+
   &--bold {
     font-weight: 500;
   }
@@ -136,7 +136,7 @@
       font-size: 4rem;
     }
   }
-  
+
 }
 
 .home {
@@ -184,7 +184,7 @@
     @include respond(sm) {
       font-size: 12px;
       line-height: 2.1rem;
-      
+
     }
   }
 
@@ -219,9 +219,9 @@
   @include respond(sm) {
 
     font-size: 12px;
-    
+
   }
-  
+
 }
 
 // Trade tile 
@@ -305,9 +305,20 @@
 // footer
 
 .footer-text {
-  color: var(--color-text-prime);
   font-size: 12px;
   text-align: center;
+
+  &--color-global {
+
+    color: var(--color-text-prime);
+
+  }
+
+  &--color-dark {
+
+    color: $color-tundora;
+    
+  }
 }
 
 // Dialog
@@ -332,15 +343,58 @@
 }
 
 // Auth
+.auth-header {
+  font-size: 5rem;
+  color: $color-tundora;
+}
 
 .auth-quotation-text {
 
-  color: $color-white;
   letter-spacing: 1px;
   font-weight: 400;
-  font-size: 1.5rem;
+
   text-align: right;
 
+  &--font-size-big {
+
+    font-size: 2.3rem;
+
+    @include respond(sm) {
+
+      font-size: 2rem;
+
+    }
+
+  }
+
+  &--font-size-small {
+
+    font-size: 1.8rem;
+
+    @include respond(ld) {
+
+      font-size: 1.6rem;
+
+    }
+
+  }
+
+  &--white {
+
+    color: $color-white;
+
+  }
+
+  &--dark {
+
+    color: $color-tundora;
+
+  }
+
+  &--italic {
+
+    font-style: italic;
+
+  }
+
 }
-
-
