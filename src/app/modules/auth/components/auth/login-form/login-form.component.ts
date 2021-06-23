@@ -11,4 +11,25 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
+
+//   <mat-form-field [formGroup]="form">
+//     <input matInput placeholder='Name' [formControlName]="formControlName">
+//   </mat-form-field>
+
+// ngOnInit() {
+//   this.form = this.fb.group({
+//       name: new FormControl({ value: '', disabled: this.disabled })
+//   });
+// }
+
+// public form: FormGroup;
+// public form: any;
+
+// import { FormGroup, FormControl } from '@angular/forms';
+
+
+  
+
 }
