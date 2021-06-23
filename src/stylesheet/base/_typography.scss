@@ -69,6 +69,7 @@
   }
 }
 
+// calculator
 .currency-calc-text {
   color: var(--color-text-prime);
   // font-family: monospace;
@@ -329,4 +330,17 @@
 .table-font-color-red {
   color: $color-red;
 }
+
+// Auth
+
+.auth-quotation-text {
+
+  color: $color-white;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: right;
+
+}
+
 

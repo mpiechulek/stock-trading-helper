@@ -1,62 +1,129 @@
 .auth-container {
-    
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $color-white;
+
+  @include respond(sm) {
+
+    flex-direction: column-reverse;
+
+  }
+
+  .auth-form-wrapper {
+
+    width: 35%;
+    height: 100%;
+
+    @include respond(md) {
+
+      width: 50%;
+
+    }
 
     @include respond(sm) {
 
-        flex-direction: column-reverse;
+      width: 100%;
 
     }
 
-    .auth-form-wrapper {
+  }
 
-        width: 65rem;
-        height: 100%;
+  .auth-graphic-wrapper {
 
-        @include respond(md) {
+    padding-top: 3rem;
+    height: 100%;
+    width: 65%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: hidden;
+    background-image: url('./../../assets/img/dot-back.jpg');
+    background-repeat: no-repeat;
+    background-position: left bottom; 
+    background-size:65% ;
+    background-attachment: fixed;
 
-            width: 50%;
+    @include respond(md) {
 
-        }
-
-        @include respond(sm) {
-
-            width: 100%;
-
-        }
+      width: 50%;
 
     }
 
-    .auth-graphic-wrapper {
+    @include respond(sm) {
 
-        padding: 3rem;
-        height: 100%;
+      width: 100%;
+      height: 275px;
+
+    }
+
+    .auth-header {
+
+      &--margin-left {
+
+        margin-left: 4rem;
+
+      }
+
+    }
+
+    .auth-image {
+
+      width: 60%;
+
+      @include respond(ld) {
+
+        width: 70%;
+
+      }
+
+      @include respond(md) {
+
         width: 100%;
-        background-color: $color-white;
-        display: flex;
-        flex-direction: column;
 
-        @include respond(md) {
+      }
 
-            width: 50%;
+      @include respond(sm) {
 
-        }
+        width: auto;
+        height: 28rem;
 
-        @include respond(sm) {
-
-            width: 100%;
-            height: 200px;
-
-        }
-
-        .auth-image {
-            width: 60%;
-        }
+      }
 
     }
+
+    .auth-quotation-wrapper {
+
+      position: absolute;
+      background-color: $color-azure-radiance;
+      padding: 1.6rem;
+      width: 65%;
+      right: 0px;
+      top: 95px;
+
+      @include respond(xld) {
+
+        width: 80%;
+
+      }
+
+      @include respond(sm) {
+
+        width: 55%;
+        padding: 1.4rem;
+        top: auto;
+        right: 0px;
+        bottom: 0px;
+
+      }
+
+    }
+
+  }
 
 }
