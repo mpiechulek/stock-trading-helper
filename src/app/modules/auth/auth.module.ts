@@ -9,6 +9,7 @@ import { LoginFormComponent } from './components/auth/login-form/login-form.comp
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     LoginContainerComponent,
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     AuthRoutingModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }

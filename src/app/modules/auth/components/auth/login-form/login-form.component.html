@@ -22,7 +22,9 @@
 
         <mat-label id="login-mat-form-field">Password</mat-label>
 
-        <input matInput id="login-mat-form-field" type="text" placeholder="Password">
+        <input matInput id="login-mat-form-field" [type]="hide ? 'password' : 'text'" placeholder="Password">
+
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 
         <mat-error>
 
