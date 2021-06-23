@@ -160,6 +160,13 @@
 
       }
 
+      @include respond(sm) {
+        top: 50px;
+        bottom: auto;
+        display: block;
+
+      }
+
     }
 
   }

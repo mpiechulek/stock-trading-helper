@@ -361,7 +361,7 @@
 
     @include respond(sm) {
 
-      font-size: 2rem;
+      font-size: 1.9rem;
 
     }
 
@@ -375,6 +375,13 @@
 
       font-size: 1.6rem;
 
+    }
+
+    @include respond(sm) {
+
+      font-size: 12px;
+      letter-spacing: 0px;
+      
     }
 
   }
