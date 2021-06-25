@@ -18,13 +18,13 @@
   .auth-form-wrapper {
 
     position: relative;
-    width: 35%;  
-    height: 100% ;
+    width: 35%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 2;  
+    flex-grow: 2;
 
     @include respond(md) {
 
@@ -175,6 +175,14 @@
 }
 
 .auth-spinner-container {
-  margin-top: 2rem;
+
+  margin-top: 3rem;
   width: 50px;
+  visibility: hidden;
+
+  &--visible {
+
+    visibility: visible;
+
+  }
 }
