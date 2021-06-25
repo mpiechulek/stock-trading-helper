@@ -71,7 +71,7 @@
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="loginForm.invalid"
+        [disabled]="(loginForm.invalid || loginFormDisabled)"
     >
 
         Login

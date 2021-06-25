@@ -8,7 +8,7 @@ export class LoginFormComponent implements OnInit {
 
   public hide: boolean = true;
   public loginForm: FormGroup;
-  public disabledFormField: boolean = false;
+  public loginFormDisabled: boolean = false;
 
   @Output() userLoginData =  new EventEmitter<FormGroup>();
 
@@ -17,8 +17,8 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.loginForm = this.FormBuilder.group({    
-      userName: [{value:'', disabled: this.disabledFormField}, Validators.required] ,
-      password: [{value:'', disabled: this.disabledFormField}, Validators.required]
+      userName: ['', Validators.required] ,
+      password: ['', Validators.required]
     });
 
   }
@@ -31,7 +31,6 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('userName');
 
   }
-
   
   /**
    * 
@@ -48,10 +47,11 @@ export class LoginFormComponent implements OnInit {
     this.userLoginData.emit(this.loginForm.value);
 
     // Disabling the form submit button, and the form inputs
-    this.disabledFormField = true;
- 
-    // resting the form
+    this.loginFormDisabled = true;
+
     this.loginForm.reset();
+
+    this.loginForm.disable();
 
   }
 
