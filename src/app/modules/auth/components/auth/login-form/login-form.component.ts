@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { UserLoginData } from 'src/app/data/models/auth.model';
 @Component({
@@ -10,17 +10,27 @@ export class LoginFormComponent implements OnInit {
 
   public hide: boolean = true;
   public loginForm: FormGroup;
-  public loginFormDisabled: boolean = false;
 
   @Output()
   userLoginData: EventEmitter<UserLoginData> = new EventEmitter<UserLoginData>();
+
+  private _loginFormDisabled: boolean;
+
+  @Input('loginFormDisabled')
+  set loginFormDisabled(value: boolean) {
+    this._loginFormDisabled = value;
+  }
+
+  get loginFormDisabled(): boolean {
+    return this._loginFormDisabled;
+  }
 
   constructor(private FormBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.loginForm = this.FormBuilder.group({    
-      userName: ['', Validators.required] ,
+    this.loginForm = this.FormBuilder.group({
+      userName: ['', Validators.required],
       password: ['', Validators.required]
     });
 
@@ -29,16 +39,16 @@ export class LoginFormComponent implements OnInit {
   /**
    * 
    */
-  get userName(): AbstractControl  {
+  get userName(): AbstractControl {
 
     return this.loginForm.get('userName');
 
   }
-  
+
   /**
    * 
    */
-   get password(): AbstractControl  {
+  get password(): AbstractControl {
 
     return this.loginForm.get('password');
 
@@ -47,7 +57,7 @@ export class LoginFormComponent implements OnInit {
   /**
    * 
    */
-  onSubmitLogin(): void { 
+  onSubmitLogin(): void {
 
     // sending the form data
     this.userLoginData.emit(this.loginForm.value);
@@ -56,7 +66,6 @@ export class LoginFormComponent implements OnInit {
     this.loginFormDisabled = true;
 
     this.loginForm.reset();
-
     this.loginForm.disable();
 
   }

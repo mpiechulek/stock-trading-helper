@@ -7,8 +7,20 @@ import { UserLoginData } from 'src/app/data/models/auth.model';
 })
 export class LoginComponent implements OnInit {
 
+  
   @Output()
   userLoginData: EventEmitter<UserLoginData> = new EventEmitter<UserLoginData>();
+  
+  private _loginFormDisabled: boolean;
+  
+  @Input('loginFormDisabled')
+  set loginFormDisabled(value:boolean) {
+    this._loginFormDisabled = value;
+  }
+
+  get loginFormDisabled():boolean {
+    return this._loginFormDisabled;
+  }
 
   constructor() { }
 
