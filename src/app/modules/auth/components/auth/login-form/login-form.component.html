@@ -2,9 +2,9 @@
 
     <!-- User name -->
 
-    <mat-form-field id="login-mat-form-field">
+    <mat-form-field id="login-mat-form-field-user">
 
-        <mat-label id="login-mat-form-field">
+        <mat-label id="login-mat-form-field-user-label">
 
             User
 
@@ -12,9 +12,10 @@
 
         <input 
             matInput
-            id="login-mat-form-field"
+            id="login-mat-form-field-user-input"
             type="text"
-            name="user"
+            name="userName"
+            autocomplete="userName"
             formControlName="userName"
             placeholder="User"
         >
@@ -29,9 +30,9 @@
 
     <!-- Password -->
 
-    <mat-form-field id="login-mat-form-field">
+    <mat-form-field id="login-mat-form-field-password">
 
-        <mat-label id="login-mat-form-field">
+        <mat-label id="login-mat-form-field-password-label">
 
             Password
 
@@ -39,8 +40,9 @@
 
         <input 
             matInput
-            id="login-mat-form-field"
-            name="password"  
+            id="login-mat-form-field-password-input"
+            name="current-password"  
+            autocomplete="current-password"
             formControlName="password"       
             [type]="hide ? 'password' : 'text'"
             placeholder="Password"

@@ -228,22 +228,21 @@ mat-label#currency-label {
 // =============================================================================
 // auth section 
 
-mat-form-field#login-mat-form-field,
-mat-label#login-mat-form-field,
-matInput#login-mat-form-field {
+mat-form-field#login-mat-form-field-user,
+mat-form-field#login-mat-form-field-password,
+mat-label#login-mat-form-field-user-label,
+mat-label#login-mat-form-field-password-label,
+mat-label#login-mat-form-field-user-input,
+mat-label#login-mat-form-field-password-input {
 
   color: black;
   
 }
-mat-form-field#login-mat-form-field {
+
+mat-form-field#login-mat-form-field-user,
+mat-form-field#login-mat-form-field-password {
 
   width: 250px;
-
-  // @include respond(xs) {
-
-  //   width: 200px;
-
-  // }
 
 }
 
