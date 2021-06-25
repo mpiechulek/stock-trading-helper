@@ -4,4 +4,11 @@
     
     <app-login-form (userLoginData)="submitLogin($event)" [loginFormDisabled]="loginFormDisabled"></app-login-form>
 
+    <div class="auth-spinner-container" *ngIf="loginFormDisabled">
+
+        <mat-spinner></mat-spinner>
+
+    </div>
+
+
 </div>
