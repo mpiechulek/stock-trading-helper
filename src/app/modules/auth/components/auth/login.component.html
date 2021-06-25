@@ -1,0 +1,14 @@
+<div class="login-container">
+
+    <h1 class="auth-header">Login</h1>
+    
+    <app-login-form (userLoginData)="submitLogin($event)" [loginFormDisabled]="loginFormDisabled"></app-login-form>
+
+    <div class="auth-spinner-container" [ngClass]="{'auth-spinner-container--visible': loginFormDisabled}">
+
+        <mat-spinner diameter="50"></mat-spinner>
+
+    </div>
+
+
+</div>

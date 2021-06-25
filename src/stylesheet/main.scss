@@ -24,14 +24,17 @@
         'layout/navbar',
         'layout/tables',
         'layout/loading-screen',
-        'layout/grid';
+        'layout/auth-image-styling',
+        'layout/login',
+        'layout/main-grid';
       
 @import 'pages/home',
         'pages/calculator',
         'pages/statistics',
         'pages/calendar',
         'pages/currency',
-        'pages/trade';
+        'pages/trade',
+        'pages/auth';
 
 @import 'themes/themes';
 

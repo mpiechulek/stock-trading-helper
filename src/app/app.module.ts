@@ -11,15 +11,14 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    AuthLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +27,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule ,
+    HttpClientModule,
     MatSnackBarModule,
     TranslateModule.forRoot({
       loader: {
@@ -38,7 +37,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       }
     })
   ],
-  
+
   providers: [TranslateService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

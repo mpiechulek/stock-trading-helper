@@ -1,13 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pipe-grid-chart',
   templateUrl: './pipe-grid-chart.component.html'
 })
 export class PipeGridChartComponent implements OnInit {
-
   
-  view = [500, 350];
+  view = [800, 450];
   
   // options
   gradient: boolean = true;
@@ -24,6 +23,9 @@ export class PipeGridChartComponent implements OnInit {
   };
   
   @Input() profitLossesData: any;
+
+  @Output()
+  switchProfitLoseCharts: EventEmitter<string> = new EventEmitter<string>();
   
   constructor() {  
 
@@ -51,7 +53,10 @@ export class PipeGridChartComponent implements OnInit {
    */
   onChangeChartSize(width: number): void {
 
-    if (width <= 1440 && width > 960) {
+    if(width > 1440) {
+      this.view = [800, 450];
+    }
+    else if (width <= 1440 && width > 960) {
 
       this.view = [500, 400];     
 
@@ -59,9 +64,13 @@ export class PipeGridChartComponent implements OnInit {
 
       this.view = [430, 350];     
 
-    } else if (width <= 800 ) {
+    } else if (width <= 800 && width > 400) {
 
-      this.view = [450, 200];
+      this.view = [400,400];
+     
+    } else if (width <= 400 ) {
+
+      this.view = [250,250];
      
     } 
   }
@@ -71,7 +80,9 @@ export class PipeGridChartComponent implements OnInit {
    * @param data 
    */
   onSelect(data): void {
-    // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+
+    this.switchProfitLoseCharts.emit(data.name); 
+    
   }
 
   /**

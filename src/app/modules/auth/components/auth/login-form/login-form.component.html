@@ -1,0 +1,81 @@
+<form class="login-form" (submit)="onSubmitLogin()" [formGroup]="loginForm">
+
+    <!-- User name -->
+
+    <mat-form-field id="login-mat-form-field-user">
+
+        <mat-label id="login-mat-form-field-user-label">
+
+            User
+
+        </mat-label>
+
+        <input 
+            matInput
+            id="login-mat-form-field-user-input"
+            type="text"
+            name="userName"
+            autocomplete="userName"          
+            formControlName="userName"
+            placeholder="User"
+        >
+
+        <mat-error >
+
+            User name is required
+
+        </mat-error>
+
+    </mat-form-field>
+
+    <!-- Password -->
+
+    <mat-form-field id="login-mat-form-field-password">
+
+        <mat-label id="login-mat-form-field-password-label">
+
+            Password
+
+        </mat-label>
+
+        <input 
+            matInput
+            id="login-mat-form-field-password-input"
+            name="current-password"  
+            autocomplete="current-password"
+            formControlName="password"    
+          
+            [type]="hide ? 'password' : 'text'"
+            placeholder="Password"
+        >
+
+        <mat-icon 
+            matSuffix
+            (click)="hide = !hide"
+        >
+
+            {{hide ? 'visibility_off' : 'visibility'}}
+
+        </mat-icon>
+
+        <mat-error>
+
+            Password is required
+
+        </mat-error>
+
+    </mat-form-field>
+
+    <button 
+        class="login-button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="(loginForm.invalid || loginFormDisabled)"
+    >
+
+        Login
+
+    </button>
+
+</form>

@@ -9,17 +9,17 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   single: any[];
 
-  view = [500, 500];
+  view = [600, 400];
 
   // options
   showLegend: boolean = true;
   showLabels: boolean = true;
 
-  @Input() readonly colorScheme:Object;
+  @Input() readonly colorScheme: Object;
 
   @Input() transactionWallet: TransactionWalletModel[];
 
-  constructor() {   
+  constructor() {
 
     this.onChangeChartSize(window.innerWidth);
 
@@ -29,10 +29,10 @@ export class AdvancedPipeChartComponent implements OnInit {
 
   }
 
-/**
- * 
- * @param event 
- */
+  /**
+   * 
+   * @param event 
+   */
   onResize(event): void {
     this.onChangeChartSize(event.target.innerWidth);
   }
@@ -42,19 +42,23 @@ export class AdvancedPipeChartComponent implements OnInit {
    * @param width 
    */
   onChangeChartSize(width: number): void {
-    if (width <= 1440 && width > 960) {
-      this.view = [450, 500];
+
+    if (width > 1440) {
+      this.view = [600, 400];
+    } else if (width <= 1440 && width > 960) {
+      this.view = [450, 400];
     } else if (width <= 960 && width > 800) {
-      this.view = [350, 500];
+      this.view = [350, 400];
     } else if (width <= 800 && width > 400) {
-      this.view = [340, 500];
-    }else if (width <= 400 ) {
-      this.view = [200, 1200];
+      this.view = [340, 400];
+    } else if (width <= 400) {
+      this.view = [200, 600];
     }
+
   }
 
   onSelect(event) {
-   
+
   }
-  
+
 }

@@ -1,0 +1,188 @@
+.auth-container {
+
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $color-white;
+  align-items: stretch;
+
+  @include respond(sm) {
+
+    flex-direction: column-reverse;
+
+  }
+
+  .auth-form-wrapper {
+
+    position: relative;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+
+    @include respond(md) {
+
+      width: 50%;
+
+    }
+
+    @include respond(sm) {
+
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 5rem;
+
+    }
+
+    .auth-header {
+
+      margin-bottom: 2rem;
+
+    }
+
+    .auth-footer {
+
+      position: absolute;
+      width: 100%;
+      height: auto;
+      margin: 1rem 0;
+      bottom: 0;
+
+    }
+
+  }
+
+  .auth-graphic-wrapper {
+
+    padding-top: 3rem;
+    height: 100%;
+    width: 65%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: hidden;
+    background-image: url('./../../assets/img/dot-back.jpg');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 65%;
+    background-attachment: fixed;
+
+    @include respond(md) {
+
+      width: 50%;
+      background-size: 90%;
+
+    }
+
+    @include respond(sm) {
+
+      width: 100%;
+      height: 300px;
+
+    }
+
+    .auth-header {
+
+      &--margin-left {
+
+        margin-left: 4rem;
+
+      }
+
+    }
+
+    .auth-image {
+
+      width: 60%;
+
+      @include respond(xld) {
+
+        width: 75%;
+
+      }
+
+      @include respond(md) {
+
+        width: 100%;
+
+      }
+
+      @include respond(sm) {
+
+        width: auto;
+        height: 27rem;
+
+      }
+
+    }
+
+    .auth-quotation-wrapper {
+
+      position: absolute;
+      background-color: $color-azure-radiance;
+      border-top-left-radius: 35px;
+      border-bottom-left-radius: 35px;
+      padding: 1.6rem 1.6rem 1.6rem 3rem;
+      width: auto;
+      right: 0px;
+      top: 95px;
+
+      @include respond(sm) {
+        padding: 1.4rem;
+        top: auto;
+        right: 0px;
+        bottom: 0px;
+
+      }
+
+    }
+
+    .auth-quotation-wrapper-2 {
+
+      position: absolute;
+      display: block;
+      padding: 1.6rem;
+      width: 50%;
+      right: 0px;
+      bottom: 70px;
+      margin-right: 2rem;
+
+      @include respond(md) {
+
+        display: none;
+
+      }
+
+      @include respond(sm) {
+        top: 50px;
+        bottom: auto;
+        display: block;
+
+      }
+
+    }
+
+  }
+
+}
+
+.auth-spinner-container {
+
+  margin-top: 3rem;
+  width: 50px;
+  visibility: hidden;
+
+  &--visible {
+
+    visibility: visible;
+
+  }
+}

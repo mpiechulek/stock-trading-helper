@@ -1,10 +1,10 @@
 .calculator-result-board-text {
   font-size: 1.6rem;
   color: $color-white;
-  
+
   @include respond(sm) {
     font-size: 12px;
-  }  
+  }
 
   &--bold {
     font-weight: 700;
@@ -69,17 +69,18 @@
   }
 }
 
+// calculator
 .currency-calc-text {
   color: var(--color-text-prime);
   // font-family: monospace;
 
-  
+
   @include respond(sm) {
 
-    font-size:12px;
+    font-size: 12px;
 
   }
-  
+
   &--bold {
     font-weight: 500;
   }
@@ -90,7 +91,7 @@
 }
 
 .main-header-h1 {
-  color: $color-java;
+
   font-size: 4.5rem;
   list-style: none;
 
@@ -106,7 +107,19 @@
     font-size: 4rem;
   }
 
-  span {
+  &--blue {
+
+    color: $color-java;
+
+  }
+
+  &--gray {
+
+    color: $color-tundora;
+
+  }
+
+  &--span {
     color: var(--color-text-prime);
     font-size: 4.5rem;
     list-style: none;
@@ -123,9 +136,11 @@
       font-size: 4rem;
     }
   }
+
 }
 
 .home {
+
   .home-grid-1-header {
     color: $color-white;
     font-size: 8.2rem;
@@ -169,7 +184,7 @@
     @include respond(sm) {
       font-size: 12px;
       line-height: 2.1rem;
-      
+
     }
   }
 
@@ -204,9 +219,9 @@
   @include respond(sm) {
 
     font-size: 12px;
-    
+
   }
-  
+
 }
 
 // Trade tile 
@@ -290,9 +305,20 @@
 // footer
 
 .footer-text {
-  color: var(--color-text-prime);
   font-size: 12px;
   text-align: center;
+
+  &--color-global {
+
+    color: var(--color-text-prime);
+
+  }
+
+  &--color-dark {
+
+    color: $color-tundora;
+    
+  }
 }
 
 // Dialog
@@ -316,3 +342,66 @@
   color: $color-red;
 }
 
+// Auth
+.auth-header {
+  font-size: 5rem;
+  color: $color-tundora;
+}
+
+.auth-quotation-text {
+
+  letter-spacing: 1px;
+  font-weight: 400;
+
+  text-align: right;
+
+  &--font-size-big {
+
+    font-size: 2.3rem;
+
+    @include respond(sm) {
+
+      font-size: 1.9rem;
+
+    }
+
+  }
+
+  &--font-size-small {
+
+    font-size: 1.8rem;
+
+    @include respond(ld) {
+
+      font-size: 1.6rem;
+
+    }
+
+    @include respond(sm) {
+
+      font-size: 12px;
+      letter-spacing: 0px;
+      
+    }
+
+  }
+
+  &--white {
+
+    color: $color-white;
+
+  }
+
+  &--dark {
+
+    color: $color-tundora;
+
+  }
+
+  &--italic {
+
+    font-style: italic;
+
+  }
+
+}

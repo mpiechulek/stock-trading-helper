@@ -1,0 +1,67 @@
+<app-loading-screen *ngIf="getShowLoadingIndicator"></app-loading-screen>
+
+<main class="auth-container">
+
+    <section class="auth-form-wrapper">
+
+        <router-outlet></router-outlet>
+
+        <footer class="auth-footer">
+
+            <p class="footer-text footer-text--color-dark"><strong>Stock Helper.</strong> Designed and created by Michał Piechulek &copy; 2021</p>
+            
+        </footer>
+
+    </section>
+
+    <section class="auth-graphic-wrapper">
+
+        <div class="header-main auth-header--margin-left">
+
+            <!-- <svg class="icon icon--header-main header-icon-margin-right"></svg> -->
+
+            <h1 class="main-header-h1 main-header-h1--blue">
+
+                Stock
+
+                <span class="main-header-h1 main-header-h1--gray">
+
+                    Helper
+
+                </span>
+
+            </h1>
+
+        </div>
+
+        <div class="auth-quotation-wrapper">
+
+            <h2 class="auth-quotation-text auth-quotation-text--font-size-big auth-quotation-text--white">
+
+                Your stock market trading helper tool
+
+            </h2>
+
+        </div>
+
+        <div class="auth-quotation-wrapper-2">
+
+            <p class="auth-quotation-text auth-quotation-text--italic auth-quotation-text--dark auth-quotation-text--font-size-small">
+
+                “The stock market is filled with individuals who know the price of everything, but the value of nothing.”
+                
+            </p>
+
+            <p class="auth-quotation-text auth-quotation-text--dark auth-quotation-text--font-size-small">
+
+                – Phillip Fisher
+
+            </p>
+
+        </div>
+
+        <img class="auth-image" src="./assets/img/bul.png" alt="bul_img">
+
+    </section>
+
+</main>

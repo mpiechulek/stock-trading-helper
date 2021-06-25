@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormService } from './../../../../../core/services/form.service';
 import { FormState } from '../../../../../data/enums/form-state.enum';
@@ -11,9 +11,9 @@ import { FormState } from '../../../../../data/enums/form-state.enum';
 
 export class TradeDialogComponent implements OnInit {
 
-   public entryStockForm: FormGroup;
-   public dialogState: string;
-   public formState = FormState;
+  public entryStockForm: FormGroup;
+  public dialogState: string;
+  public formState = FormState;
 
   constructor(
     private formService: FormService,
@@ -35,20 +35,20 @@ export class TradeDialogComponent implements OnInit {
       ]],
       buyPrice: ['0', [
         Validators.required,
-        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'), 
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
         Validators.min(0.00000000001)
       ]],
       taxRate: ['0.0000', [
         Validators.min(0),
-        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
       ]],
       commission: ['0.0000', [
         Validators.min(0),
-        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
       ]],
       minCommission: ['0.0000', [
         Validators.min(0),
-        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
       ]],
       calcStepCount: ['200', [
         Validators.min(1),
@@ -56,41 +56,41 @@ export class TradeDialogComponent implements OnInit {
       ]],
       calcStepValue: ['0.5', [
         Validators.min(0.1),
-         Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')    
+        Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
       ]]
-    });    
+    });
 
     // The state of the dialog box
     this.dialogState = this.data.state
 
     // Overwriting the form value with received data
-    if (this.data.formData) {      
+    if (this.data.formData) {
       this.entryStockForm.patchValue(this.data.formData);
     }
   }
 
   // ===========================================================================
 
-  get companyName() {
+  get companyName(): AbstractControl {
     return this.entryStockForm.get('companyName');
   }
 
-  get amountOfShares() {
+  get amountOfShares(): AbstractControl {
     return this.entryStockForm.get('amountOfShares');
   }
 
-  get buyPrice() {
+  get buyPrice(): AbstractControl {
     return this.entryStockForm.get('buyPrice');
   }
-  get taxRate() {
+  get taxRate(): AbstractControl {
     return this.entryStockForm.get('taxRate');
   }
 
-  get commission() {
+  get commission(): AbstractControl {
     return this.entryStockForm.get('commission');
   }
 
-  get minCommission() {
+  get minCommission(): AbstractControl {
     return this.entryStockForm.get('minCommission');
   }
 
@@ -110,7 +110,7 @@ export class TradeDialogComponent implements OnInit {
 
       return;
 
-    }      
+    }
 
     this.entryStockForm.patchValue({
       companyName: this.entryStockForm.value.companyName,
