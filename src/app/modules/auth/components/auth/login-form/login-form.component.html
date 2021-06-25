@@ -1,12 +1,23 @@
-<form class="login-form">
+<form class="login-form" (submit)="onSubmit()" [formGroup]="loginForm">
 
     <!-- User name -->
 
     <mat-form-field id="login-mat-form-field">
 
-        <mat-label id="login-mat-form-field">User</mat-label>
+        <mat-label id="login-mat-form-field">
 
-        <input matInput id="login-mat-form-field" type="text" placeholder="User">
+            User
+
+        </mat-label>
+
+        <input 
+            matInput
+            id="login-mat-form-field"
+            type="text"
+            name="user"
+            formControlName="userName"
+            placeholder="User"
+        >
 
         <mat-error >
 
@@ -20,11 +31,29 @@
 
     <mat-form-field id="login-mat-form-field">
 
-        <mat-label id="login-mat-form-field">Password</mat-label>
+        <mat-label id="login-mat-form-field">
 
-        <input matInput id="login-mat-form-field" [type]="hide ? 'password' : 'text'" placeholder="Password">
+            Password
 
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-label>
+
+        <input 
+            matInput
+            id="login-mat-form-field"
+            name="password"  
+            formControlName="password"       
+            [type]="hide ? 'password' : 'text'"
+            placeholder="Password"
+        >
+
+        <mat-icon 
+            matSuffix
+            (click)="hide = !hide"
+        >
+
+            {{hide ? 'visibility_off' : 'visibility'}}
+
+        </mat-icon>
 
         <mat-error>
 
@@ -34,7 +63,16 @@
 
     </mat-form-field>
 
-    <button class="login-button" mat-raised-button color="primary" [disabled]="true">Login</button>
+    <button 
+        class="login-button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loginForm.invalid"
+    >
 
+        Login
+
+    </button>
 
 </form>

@@ -1,37 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-form',
-  templateUrl: './login-form.component.html' 
+  templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent implements OnInit {
 
   public hide: boolean = true;
+  public loginForm: FormGroup;
+  private disabledFormField: boolean = false;
 
-  constructor() { }
+  constructor(private FormBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.loginForm = this.FormBuilder.group({    
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
   }
 
+  /**
+   * 
+   */
+  get userName(): string {
 
+    return this.loginForm.value.userName;
 
-
-//   <mat-form-field [formGroup]="form">
-//     <input matInput placeholder='Name' [formControlName]="formControlName">
-//   </mat-form-field>
-
-// ngOnInit() {
-//   this.form = this.fb.group({
-//       name: new FormControl({ value: '', disabled: this.disabled })
-//   });
-// }
-
-// public form: FormGroup;
-// public form: any;
-
-// import { FormGroup, FormControl } from '@angular/forms';
-
+  }
 
   
+  /**
+   * 
+   */
+   get password(): string {
+
+    return this.loginForm.value.password;
+
+  }
+
+  onSubmit(): void {
+
+    console.log(this.loginForm.value);
+
+  }
 
 }
