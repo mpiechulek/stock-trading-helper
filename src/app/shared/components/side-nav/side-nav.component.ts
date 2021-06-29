@@ -85,4 +85,11 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * 
+   */
+  onClearStorage() {
+
+  }
+
 }
