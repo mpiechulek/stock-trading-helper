@@ -16,6 +16,7 @@ export class CalculatorContainerComponent implements OnInit {
 
 	private calculatorResult: AdvanceCalculatorResultDataModel;
 	private arrayOfResults: Object[] = [];
+	private formExpand = 1;
 
 	// =========================================================================
 
@@ -31,7 +32,7 @@ export class CalculatorContainerComponent implements OnInit {
 	ngOnInit(): void {
 
 	}
-	
+
 
 	//==========================================================================
 
@@ -62,9 +63,34 @@ export class CalculatorContainerComponent implements OnInit {
 
 	}
 
+	/**
+	 * 
+	 */
+	get getFormExpand(): number {
+
+		return this.formExpand;
+
+	}
+
 	// =============================================================================
 	// ============================ Calculation methods ============================
 	// =============================================================================
+
+	/**
+	 * 
+	 * @param calcData 
+	 */
+	toggleAccordionFormExpand() {
+		if(this.formExpand === 0) {
+
+			this.formExpand = 1;
+
+		} else {
+
+			this.formExpand = 0;
+		}
+
+	}
 
 	/**
 	 * 
@@ -133,6 +159,8 @@ export class CalculatorContainerComponent implements OnInit {
 
 		};
 
+		this.formExpand = 0;
+
 		this.calculatorResult = result;
 
 	}
@@ -159,18 +187,18 @@ export class CalculatorContainerComponent implements OnInit {
 	/**
 	  * 
 	  */
-	onSaveResultToArray(arrayOfResults: any): void {	
+	onSaveResultToArray(arrayOfResults: any): void {
 
 		this.arrayOfResults.push(arrayOfResults);
-		
+
 		return;
 
-	}	
-	
+	}
+
 	/**
 	  * 
 	  */
-	 onResetBoardOfResults(): void {
+	onResetBoardOfResults(): void {
 
 		this.arrayOfResults = [];
 
@@ -180,7 +208,7 @@ export class CalculatorContainerComponent implements OnInit {
 	 * 
 	 * @param result 
 	 */
-	onChoseResult(result: string): void {		
+	onChoseResult(result: string): void {
 
 		this.chosenResultSubject.next(result);
 

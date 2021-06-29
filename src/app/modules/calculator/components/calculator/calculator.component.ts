@@ -15,6 +15,9 @@ export class CalculatorComponent implements OnInit {
   readonly arrayOfResults: Object[];
 
   @Input()
+  readonly formExpand: number;
+
+  @Input()
   readonly chosenResult$: Observable<string>;
 
   @Output()
@@ -30,9 +33,21 @@ export class CalculatorComponent implements OnInit {
   @Output()
   chosenResult: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  public toggleExpandForm: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * 
+   */
+  get getFormExpand(): number {
+
+    return this.formExpand;
+
   }
 
   /**
@@ -66,13 +81,20 @@ export class CalculatorComponent implements OnInit {
   /**
  * 
  */
-   onChoseResult(chosenResult: string): void {
-
-    console.log('111');
+   onChoseResult(chosenResult: string): void { 
 
     this.chosenResult.emit(chosenResult);
 
   }
+
+    /**
+   * 
+   */
+     onToggleExpandForm(): void {    
+
+      this.toggleExpandForm.emit();
+  
+    }
 
 
 }
