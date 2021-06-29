@@ -77,6 +77,19 @@ mat-label#trade-dialog-form {
   color: var(--color-text-form);
 }
 
+.mat-raised-button#trade-board-add-button {
+
+  @include respond(md) {
+
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+}
+
 // Calculator form 
 
 mat-form-field#stock-advanced-calculator-form-field {
@@ -131,11 +144,11 @@ mat-table#statistics-table {
   .mat-header-cell,
   .mat-cell {
     color: var(--color-text-form);
-    overflow: hidden;   
+    overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 2px;  
-  }  
- 
+    padding-right: 2px;
+  }
+
   // styling custom column in mat table
   .mat-column-deleteBtn {
     max-width: 5rem;
@@ -236,7 +249,7 @@ mat-label#login-mat-form-field-user-input,
 mat-label#login-mat-form-field-password-input {
 
   color: black;
-  
+
 }
 
 mat-form-field#login-mat-form-field-user,
