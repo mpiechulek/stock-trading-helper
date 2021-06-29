@@ -12,12 +12,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-right: 1rem;
-
-    @include respond(ld) {
-      width: auto;
-      flex-grow: 2;
-    }
+    margin-right: 1rem;   
 
     @include respond(md) {
       display: none;
