@@ -59,8 +59,6 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
-
 
       @include respond(sm) {
 
@@ -82,7 +80,7 @@
 
       }
 
-      .language-wrapper {}
+      // .language-wrapper {}
 
       .icon-theme {
 
