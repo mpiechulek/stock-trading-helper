@@ -200,12 +200,25 @@ mat-form-field#currency-select {
   width: 10rem;
   margin-right: 2rem;
   color: var(--color-text-form);
+
+  @include respond(md) {
+
+    width: 15rem;
+
+  }
+
 }
 
 mat-form-field#currency-input {
   width: 10rem;
   text-align: right;
   color: var(--color-text-form);
+
+  @include respond(md) {
+
+    width: 15rem;
+
+  }
 }
 
 mat-label#currency-label {

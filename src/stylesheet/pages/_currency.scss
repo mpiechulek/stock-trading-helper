@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: flex-start;
 
   @include respond(sm) {
     overflow: auto;
@@ -15,12 +15,12 @@
   &__header {
 
     margin-bottom: 2rem;
-    
+
   }
 
   &__container {
 
-    position: relative;   
+    position: relative;
     width: 40rem;
     display: flex;
     flex-direction: column;
@@ -30,10 +30,10 @@
 
     @include respond(sm) {
       justify-content: center;
-      align-items: center;	 
+      align-items: center;
       width: 100%;
     }
-   
+
     &--margin-bottom {
       margin-bottom: 2rem;
     }
@@ -77,7 +77,7 @@
 
     margin-bottom: 2rem;
     align-items: center;
-    
+
   }
 
   .currency-offer-overflow-wrapper {
@@ -100,7 +100,7 @@
     width: auto;
 
     @include respond(sm) {
-      width: 30rem;
+      width: 40rem;
     }
 
   }
@@ -118,19 +118,19 @@
 
   .currency-offer-wrapper {
 
-    margin-bottom: 1rem; 
-    width: 25rem;
+    margin-bottom: 1rem;
+    width: 30rem;
 
     @include respond(sm) {
 
-       width: 30rem;
+      width: 36rem;
 
     }
   }
 
   .offer-margin-right {
 
-    margin-right: 1rem;
+    margin-right: 2.2rem;
 
   }
 
@@ -140,29 +140,54 @@
 
     @include respond(sm) {
 
-      width: 7ch;
+      width: 8ch;
 
     }
+
+  }
+
+  .currency-calc-result-width {
+
+    min-width: 13rem;
 
   }
 
 }
 
 .currency-btn-wrapper {
+  
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 3.2rem;
+  margin-top: 3.2rem;  
 
   .btn-margin-right {
+
     margin-right: 2rem;
+
   }
+  
 }
 
 .currency-flag-img {
+
   width: 3rem;
   height: 3rem;
-  margin-right: 2rem;
+  margin-right: 3rem;
+
+  @include respond(sm) {
+
+    width: 4rem;
+    height: 4rem;
+
+  }
+
+}
+
+.currency-calc-footer { 
+
+  margin: 1.3rem 0 ;
+
 }
