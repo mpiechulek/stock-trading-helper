@@ -83,7 +83,7 @@
     }
 
     @include respond(sm) {
-
+      background-image: none;
       width: 100%;
       height: 300px;
 
