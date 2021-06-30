@@ -102,8 +102,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     dialogConfig.id = "modal-component";
 
     dialogConfig.data = {
-      header: 'trade.sellConfirmDialogHeader',
-      description: 'trade.sellConfirmDialogText'
+      header: 'home.sideNavClearStorageButton',
+      description: 'home.sideNavClearStorageDialogText'
     }
 
     // Initializing dialog

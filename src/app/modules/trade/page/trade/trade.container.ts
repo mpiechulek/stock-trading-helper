@@ -12,7 +12,7 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 @Component({
 
   selector: 'app-trade',
-  templateUrl: './trade.container.html',
+  templateUrl: './trade.container.html'
 
 })
 
