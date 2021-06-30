@@ -117,7 +117,7 @@ export class TradeContainerComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
+    dialogConfig.id = "modal-component";  
     dialogConfig.data = {
       formData: this.previousFormData,
       state: this.formState.Add
