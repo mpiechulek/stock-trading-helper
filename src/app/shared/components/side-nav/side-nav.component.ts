@@ -5,6 +5,8 @@ import { SideNavService } from 'src/app/core/services/side-nav.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { LanguageService } from 'src/app/core/services/language.service';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { GlobalDialogComponent } from '../global-dialog/global-dialog.component';
 @Component({
   selector: 'app-side-nav-ui',
   templateUrl: './side-nav.component.html'
@@ -26,7 +28,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private sideNavService: SideNavService,
     public translate: TranslateService,
     private languageService: LanguageService,  
-    private stockTradeBoardService: StockTradeBoardService
+    private stockTradeBoardService: StockTradeBoardService,
+    public matDialog: MatDialog
   ) { }
 
   //============================================================================
@@ -93,8 +96,31 @@ export class SideNavComponent implements OnInit, OnDestroy {
    */
   onClearStorage() {
 
-    this.stockTradeBoardService.clearLocalStorageData();
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+
+    dialogConfig.data = {
+      header: 'trade.sellConfirmDialogHeader',
+      description: 'trade.sellConfirmDialogText'
+    }
+
+    // Initializing dialog
+    const modalDialog = this.matDialog
+      .open(GlobalDialogComponent, dialogConfig);
+
+    // Receive data from dialog
+    modalDialog.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.stockTradeBoardService.clearLocalStorageData();        
+
+      }
+
+    });
 
   }
-
+    
 }

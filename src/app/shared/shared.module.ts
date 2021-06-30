@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 import {MatExpansionModule} from '@angular/material/expansion'; 
 
@@ -43,6 +44,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     FormsModule,
     MatFormFieldModule, 
     MatInputModule,  
+    MatDialogModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     HttpClientModule,   
