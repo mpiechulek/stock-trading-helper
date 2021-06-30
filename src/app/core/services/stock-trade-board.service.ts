@@ -42,7 +42,6 @@ export class StockTradeBoardService {
 		return this.transactionsArraySubject$;
 	}
 
-
 	// =============================================================================
 	// ========================= Trade board local storage =========================
 	// =============================================================================
@@ -72,8 +71,6 @@ export class StockTradeBoardService {
 			tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
 		}
 
-
-
 		return [...tradeBoardDataArray];
 	}
 
@@ -97,7 +94,6 @@ export class StockTradeBoardService {
 		this.stockBoardArraySubject.next(boardData);
 		
 	}
-
 
 	// =============================================================================
 	// ==================== Trade board data manipulator logic =====================
@@ -445,7 +441,6 @@ export class StockTradeBoardService {
 
 	}
 
-
 	/**
 	* 
 	* @param stockId 
@@ -459,6 +454,7 @@ export class StockTradeBoardService {
 		if (elementIndex === null || elementIndex === -1) return null;
 
 		return transactionArr[elementIndex];
+
 	}
 
 	/**
@@ -478,15 +474,22 @@ export class StockTradeBoardService {
 		});
 
 		return elementIndex;
+
 	}
 
 	/**
 	 * Removing trade board and transactions data dorm local storage
 	 */
 	clearLocalStorageData(): void {
-
+		
 		localStorage.removeItem(this.storageTradeBoardKeyName);
 		localStorage.removeItem(this.storageTradeTransactionKeyName);
+
+		const transaction = this.getTransactionsFromLocalStorage();
+		const tradeBoard = this.getTradeBoardDataFromLocalStorage();
+
+		this.transactionsArraySubject.next(transaction);
+		this.stockBoardArraySubject.next(tradeBoard);
 
 	}
 

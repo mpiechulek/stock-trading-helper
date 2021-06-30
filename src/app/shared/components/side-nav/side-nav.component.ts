@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SideNavService } from 'src/app/core/services/side-nav.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { LanguageService } from 'src/app/core/services/language.service';
+import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
 @Component({
   selector: 'app-side-nav-ui',
   templateUrl: './side-nav.component.html'
@@ -23,7 +24,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private themeService: ThemeService,
     private sideNavService: SideNavService,
     public translate: TranslateService,
-    private languageService: LanguageService  
+    private languageService: LanguageService,  
+    private stockTradeBoardService: StockTradeBoardService
   ) { }
 
   //============================================================================
@@ -89,6 +91,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
    * 
    */
   onClearStorage() {
+
+    this.stockTradeBoardService.clearLocalStorageData();
 
   }
 
