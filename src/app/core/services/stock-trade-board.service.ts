@@ -480,4 +480,14 @@ export class StockTradeBoardService {
 		return elementIndex;
 	}
 
+	/**
+	 * Removing trade board and transactions data dorm local storage
+	 */
+	clearLocalStorageData(): void {
+
+		localStorage.removeItem(this.storageTradeBoardKeyName);
+		localStorage.removeItem(this.storageTradeTransactionKeyName);
+
+	}
+
 }
