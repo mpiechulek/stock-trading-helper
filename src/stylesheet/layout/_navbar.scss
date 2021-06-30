@@ -1,21 +1,29 @@
 .nav-bar {
-  flex-grow: 2;
+
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 
   &__list {
-    width: 68rem;
+    width: 78rem;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-right: 1rem;   
+    margin-right: 1rem;
+
+    @include respond(ld) {
+
+      width: 68rem;
+
+    }
 
     @include respond(md) {
+
       display: none;
+
     }
 
     .nav-list-item {
@@ -43,13 +51,13 @@
         &:hover {
           // border: 1px solid $color-tundora;
           border-radius: 20rem;
-          background-color: $color-gray-light;        
+          background-color: $color-gray-light;
         }
       }
 
       .router-link-active {
         border-radius: 20rem;
-        background-color: $color-gray-light;          
+        background-color: $color-gray-light;
       }
 
       .nav-bar-text-margin-left {
