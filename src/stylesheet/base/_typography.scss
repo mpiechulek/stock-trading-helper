@@ -224,22 +224,12 @@
 
 }
 
-// Trade tile 
-.trade-tile-stock-percentage-change-text {
-  font-size: 1.8rem;
-  font-weight: 500;
+// Trade tile  dialog form 
+.trade-tile-form-buy-price {
 
-  &--color-green {
-    color: $color-green;
-  }
-
-  &--color-red {
-    color: $color-red;
-  }
-
-  &--size-big {
-    font-size: 3rem;
-  }
+  font-size: 14px;  
+  color: var(--color-text-prime);
+ 
 }
 
 .trade-tile-stock-name-text {
