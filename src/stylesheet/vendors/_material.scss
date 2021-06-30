@@ -36,12 +36,8 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 
 //global font size change for material form fields
 .mat-form-field {
-
-  @include respond(sm) {
-
-    font-size: 2.3rem;
-
-  }
+  
+ font-size: 16px;
 
 }
 
@@ -59,6 +55,11 @@ mat-dialog-container#modal-component {
 mat-form-field#trade-dialog-form {
   color: var(--color-text-form);
   margin-bottom: 10px;
+
+  @include respond(md) {
+    width: 100%;
+    margin-bottom: 6px;
+  }
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {

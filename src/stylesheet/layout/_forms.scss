@@ -1,8 +1,17 @@
 .trade-entry-form {
-  position: relative;
+   position: relative;  
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
 
   @include respond(md) {
-   
+    padding: 1rem;
+  }
+
+  @include respond(sm) {
+    padding: 0;
   }
 
   &__close-btn {
@@ -14,12 +23,6 @@
   &__header {
     margin-bottom: 2rem;
   }
-
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: flex-start;
 
   &__section-1 {
     display: flex;
