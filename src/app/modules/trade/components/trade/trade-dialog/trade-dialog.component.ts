@@ -36,7 +36,7 @@ export class TradeDialogComponent implements OnInit {
       buyPrice: ['0', [
         Validators.required,
         Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
-        Validators.min(0.00000000001)
+        Validators.min(0.0001)
       ]],
       taxRate: ['0.0000', [
         Validators.min(0),

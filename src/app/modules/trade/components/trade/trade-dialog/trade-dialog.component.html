@@ -136,7 +136,13 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormPercentageStep' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>         
+            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>  
+            
+            <mat-error >
+
+                The min. value of the calculate step is 0.1
+
+            </mat-error>    
 
         </mat-form-field>
 
