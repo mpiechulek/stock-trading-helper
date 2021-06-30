@@ -17,6 +17,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
+  public panelOpenState: boolean= false;
 
   //============================================================================
 

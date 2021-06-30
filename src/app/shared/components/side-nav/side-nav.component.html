@@ -47,9 +47,27 @@
                     </mat-form-field>
 
                 </div>
+        </div>
 
-            </div>
+    <!-- mat expansion panel  -->
 
+        <mat-accordion class="side-nav-expansion-panel-margin">
+
+            <mat-expansion-panel 
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+            >
+
+                <mat-expansion-panel-header>
+
+                <mat-panel-title>
+
+                    Advanced Settings
+
+                </mat-panel-title>                
+
+            </mat-expansion-panel-header>
+            
             <button            
                 mat-raised-button
                 color="warn"
@@ -59,6 +77,11 @@
                 Clear Local Storage
         
             </button>
+
+            </mat-expansion-panel>             
+
+        </mat-accordion>   
+
 
             <h1 class="sidenav-header sidenav-list-hide">{{'home.sideNavHeaderMenu' | translate }}</h1>
 

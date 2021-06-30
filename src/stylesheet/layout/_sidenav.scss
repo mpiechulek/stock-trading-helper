@@ -9,10 +9,10 @@
   .sidenav-container {
 
     position: relative;
-    width: 30rem;
+    width: 40rem;
     height: 100%;
     background-color: var(--color-page-background);
-    padding: 3rem;
+    padding: 3rem 2.5rem;
     z-index: 400;
 
     display: flex;
@@ -47,8 +47,14 @@
     .sidenav-header {
 
       width: auto;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       display: inline-block;
+
+    }
+
+    .side-nav-expansion-panel-margin {
+
+      margin-bottom: 20px;
 
     }
 
