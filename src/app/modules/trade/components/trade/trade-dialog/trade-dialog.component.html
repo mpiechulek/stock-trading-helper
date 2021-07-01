@@ -67,7 +67,8 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormBuyPrice' | translate}}</mat-label>
             
-            <input matInput type="text" formControlName="buyPrice" appNumberDigit> 
+            <input matInput type="text" formControlName="buyPrice" (outputData) ="onOverwriteFormPosition($event, 'buyPrice')" appNumberDigit 
+             >    
                        
             <mat-error *ngIf="buyPrice.touched">
 
@@ -158,9 +159,11 @@
 
             :
 
-            {{entryStockForm.value.amountOfShares * entryStockForm.value.buyPrice}}
+            {{(entryStockForm.value.amountOfShares * entryStockForm.value.buyPrice) | number:'1.2-2'}}
 
         </p>
+
+        <p>{{entryStockForm.value.buyPrice}}</p>
         
     </div>
 

@@ -1,7 +1,11 @@
 import {
     Directive,
     ElementRef,
-    HostListener
+    EventEmitter,
+    HostListener,
+    Output,
+    Renderer2,
+    ViewChild
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -13,7 +17,7 @@ import { debounceTime } from 'rxjs/operators';
 export class NumberDigitDirective {
 
     private el: ElementRef;
-    private elementEnterValue: string;
+    private elementEnterValue: string = '';
     private previousNumber: string = '';
     private numberOfDecimalPointPlaces: number;
     private isBlur: boolean = false;
@@ -23,40 +27,62 @@ export class NumberDigitDirective {
 
     // ===========================================================================
 
-    constructor(el: ElementRef) {
+    @Output() outputData: EventEmitter<string> = new EventEmitter<string>();
 
-        this.el = el;
+    constructor(private element: ElementRef, private renderer: Renderer2) {
+
+        this.el = element;
 
     }
 
-    // ===========================================================================
+    // ===========================================================================    
 
-    @HostListener('keyup', ['$event']) onKeyboardEnter(event) {
+    // @ViewChild('username') input: ElementRef<HTMLInputElement>;
+
+    @HostListener('input', ['$event'])
+    onInput(event) {
+
+        if (this.elementEnterValue === '' &&
+            this.previousNumber === '' &&
+            !isNaN(event.target.value)) {
+
+            this.assignOutputValues(event.target.value);
+
+        }
 
         event.preventDefault();
         event.stopPropagation();
-        this.keyStroke.next(event);
+
     }
 
-    @HostListener('blur', ['$event']) onBlur(event) {
+    @HostListener('keyup', ['$event'])
+    onKeyboardEnter(event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+        this.verifyInput(event);
+    }
+
+    @HostListener('blur', ['$event'])
+    onBlur(event) {
 
         this.isBlur = true;
-
-        this.verifyInput(event);
+        this.assignOutputValues(this.addZerosToEnd(this.previousNumber));
 
     }
 
-    @HostListener('focus', ['$event']) onFocus() {
+    @HostListener('focus', ['$event'])
+    onFocus() {
 
         this.isBlur = false;
-
+        this.assignOutputValues(this.removeZerosFromEnd(this.previousNumber));
     }
 
     ngOnInit(): void {
 
-        this.subscription = this.keyStroke
-            .pipe(debounceTime(200))
-            .subscribe(event => this.verifyInput(event));
+        // this.subscription = this.keyStroke
+        //     .pipe(debounceTime(10))
+        // .subscribe(event => );
     }
 
     // =========================================================================
@@ -70,8 +96,8 @@ export class NumberDigitDirective {
 
         this.elementEnterValue = this.el.nativeElement.value;
 
-        // If pressed key is backspace
-        if (event.keyCode === 8) {
+        // If pressed key is backspace or delete
+        if (event.keyCode === 8 || event.keyCode === 46) {
 
             return this.previousNumber = this.elementEnterValue;
 
@@ -84,8 +110,11 @@ export class NumberDigitDirective {
             (event.keyCode !== 188) &&
             (event.keyCode !== 190)
         ) {
+            console.log('222222222');
 
-            return this.el.nativeElement.value = this.previousNumber;
+            this.outputData.emit(this.previousNumber);
+            this.el.nativeElement.value = this.previousNumber;
+            return;
 
         }
 
@@ -94,24 +123,20 @@ export class NumberDigitDirective {
 
         // If entered string has a dot, and after the dot there are more than 4 characters
         if (this.stringHasEnoughNumbersAfterDecimal(this.elementEnterValue)) {
-            console.log('444');
+
             return this.assignOutputValues(this.previousNumber);
 
         }
-     
+
         // Checking if the input string is a positive float number or has a comma (','), because '.'
         // is taken as a number
         if ((this.isPositiveFloat(this.elementEnterValue) || this.elementEnterValue.includes(','))) {
-            console.log('666');
+
             this.toValidNumber(this.elementEnterValue);
 
-        } else {
-            console.log('777???');
-            this.el.nativeElement.value = this.previousNumber;
-
         }
-
     }
+
     /**
      * 
      * @param value 
@@ -138,8 +163,9 @@ export class NumberDigitDirective {
      */
     assignOutputValues(value: string): void {
 
-        //here we assign the output value
+        //here we assign the output value     
         this.el.nativeElement.value = value;
+        this.outputData.emit(value);
         this.previousNumber = value;
 
     }
@@ -155,6 +181,8 @@ export class NumberDigitDirective {
 
     }
 
+    //===========================================================================
+
     /**
      * 
      * @param value 
@@ -167,29 +195,22 @@ export class NumberDigitDirective {
         let fixedToString: string
 
         if (value.includes('.') || value.includes(',')) {
-          
+
             // replaces all dots to commas
             commaToDot = this.changeCommaToDots(value);
 
             // one dot only stays 
             oneDotInString = this.onlyOneDotInString(commaToDot);
-        
 
             // setting the fixedNumber value
             this.setDecimalPoints(oneDotInString);
 
             number = this.toFloatNumber(oneDotInString);
 
-            console.log(number);
-
             fixedNumber = this.fixToDecimalNumbers(number);
-
-            console.log(fixedNumber);
 
             // Resetting the decimal places container    
             fixedToString = this.numberToString(fixedNumber);
-
-            console.log(fixedToString);
 
             // If the entered string was '123.' or '123,', the last character was 
             // removed in the process of number fixing, we are adding it back
@@ -323,6 +344,57 @@ export class NumberDigitDirective {
         return value.toString();
 
     }
+
+    /**
+     * 
+     * @param value 
+     * @returns 
+     */
+    addZerosToEnd(value: string): string {
+        let newValue: string;
+        let stringSplit: string[];
+
+
+        if (!value.includes('.') && value.length >= 1) {
+
+            return value + '.0000'
+
+        }
+
+        if (value === '.') {
+
+            return '0.0000';
+
+        }
+
+        stringSplit = value.split('.');
+
+        if (stringSplit[1] === '' && value.length >= 1) {
+
+            return newValue = stringSplit[0] + '.0000';
+        }
+
+        return value;
+    }
+
+    /**
+     * 
+     * @param value 
+     * @returns 
+     */
+    removeZerosFromEnd(value: string): string {
+
+        const stringSplit = value.split('.');
+
+        if (stringSplit[1] === '0000') {
+
+            return value = stringSplit[0];
+        }
+
+        return value;
+    }
+
+
 
 }
 

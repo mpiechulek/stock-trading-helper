@@ -82,6 +82,7 @@ export class TradeDialogComponent implements OnInit {
   get buyPrice(): AbstractControl {
     return this.entryStockForm.get('buyPrice');
   }
+
   get taxRate(): AbstractControl {
     return this.entryStockForm.get('taxRate');
   }
@@ -94,11 +95,11 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
-  get calcStepCount() {
+  get calcStepCount(): AbstractControl  {
     return this.entryStockForm.get('calcStepCount');
   }
 
-  get calcStepValue() {
+  get calcStepValue(): AbstractControl  {
     return this.entryStockForm.get('calcStepValue');
   }
 
@@ -125,6 +126,16 @@ export class TradeDialogComponent implements OnInit {
     });
 
     this.dialogRef.close(this.entryStockForm.value);
+  }
+
+  onOverwriteFormPosition(event, inputName)  {
+
+    this.entryStockForm.patchValue({
+      [inputName]: event
+    })
+
+    console.log('click event',event);
+    
   }
 
   onClearField(event) {
