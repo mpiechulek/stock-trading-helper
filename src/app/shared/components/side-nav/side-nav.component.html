@@ -67,11 +67,43 @@
                 </mat-panel-title>                
 
             </mat-expansion-panel-header>
+
+            <button            
+                mat-raised-button
+                color="accent" 
+                    
+            >
+        
+                To Excel Board
+        
+            </button>
+
+            <button            
+                mat-raised-button
+                color="accent" 
+                
+            >
+    
+                To Excel Transactions
+    
+            </button>
             
             <button            
                 mat-raised-button
                 color="warn"
-                (click)="onClearStorage()"            
+                disabled="disableDeleteTransactions"
+                (click)="onClearTransactions()"            
+            >
+        
+                {{'home.sideNavClearStorageButton' | translate }}
+        
+            </button>
+
+            <button            
+                mat-raised-button
+                color="warn"
+                disabled="disableDeleteBoard"
+                (click)="onClearTradeBoard()"            
             >
         
                 {{'home.sideNavClearStorageButton' | translate }}

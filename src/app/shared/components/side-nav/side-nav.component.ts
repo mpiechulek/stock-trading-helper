@@ -19,7 +19,9 @@ export class SideNavComponent implements OnInit, OnDestroy {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
-  public panelOpenState: boolean= false;
+  public disableDeleteTransactions: boolean = false;
+  public disableDeleteBoard: boolean = false;
+  public panelOpenState: boolean = false;
 
   //============================================================================
 
@@ -27,7 +29,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private themeService: ThemeService,
     private sideNavService: SideNavService,
     public translate: TranslateService,
-    private languageService: LanguageService,  
+    private languageService: LanguageService,
     private stockTradeBoardService: StockTradeBoardService,
     public matDialog: MatDialog
   ) { }
@@ -35,6 +37,20 @@ export class SideNavComponent implements OnInit, OnDestroy {
   //============================================================================
 
   ngOnInit(): void {
+
+    // checking if there is some data to by deleted
+    if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
+
+      this.disableDeleteBoard = true;
+
+    }
+
+    // checking if there is some data to by deleted
+    if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
+
+      this.disableDeleteTransactions = true;
+
+    }
 
     // Setting the slider position
     this.sliderChecked = this.themeService.checkLocaleStorage();
@@ -94,10 +110,10 @@ export class SideNavComponent implements OnInit, OnDestroy {
   /**
    * 
    */
-  onClearStorage() {
+  onClearTransactions() {
 
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
@@ -115,12 +131,44 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
       if (result) {
 
-        this.stockTradeBoardService.clearLocalStorageData();        
+        this.stockTradeBoardService.clearLocalStorageTransactionData();
 
       }
 
     });
 
   }
-    
+
+  /**
+   * 
+   */
+  onClearTradeBoard() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+
+    dialogConfig.data = {
+      header: 'home.sideNavClearStorageButton',
+      description: 'home.sideNavClearStorageDialogText'
+    }
+
+    // Initializing dialog
+    const modalDialog = this.matDialog
+      .open(GlobalDialogComponent, dialogConfig);
+
+    // Receive data from dialog
+    modalDialog.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.stockTradeBoardService.clearLocalStorageTradeBoardData();
+
+      }
+
+    });
+
+  }
+
 }
