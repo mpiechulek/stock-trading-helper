@@ -19,7 +19,13 @@ export class SideNavComponent implements OnInit, OnDestroy {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
-  public panelOpenState: boolean= false;
+
+  public disableBoardButton: boolean = false;
+  public disableTransactionsButton: boolean = false;
+  public panelOpenState: boolean = false;
+
+  private stockTradeBoardSubscription: Subscription;
+  private stockTransactionsSubscription: Subscription;
 
   //============================================================================
 
@@ -27,7 +33,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private themeService: ThemeService,
     private sideNavService: SideNavService,
     public translate: TranslateService,
-    private languageService: LanguageService,  
+    private languageService: LanguageService,
     private stockTradeBoardService: StockTradeBoardService,
     public matDialog: MatDialog
   ) { }
@@ -35,6 +41,28 @@ export class SideNavComponent implements OnInit, OnDestroy {
   //============================================================================
 
   ngOnInit(): void {
+
+
+    this.stockTradeBoardSubscription = this.stockTradeBoardService.getStockBoardArray.subscribe(() => {
+      // checking if there is some data to by deleted
+      if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
+
+        this.disableBoardButton = true;
+
+      }
+
+    });
+
+    this.stockTransactionsSubscription = this.stockTradeBoardService.getTransactionsArray.subscribe(() => {
+
+      // checking if there is some data to by deleted
+      if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
+
+        this.disableTransactionsButton = true;
+
+      }
+
+    });
 
     // Setting the slider position
     this.sliderChecked = this.themeService.checkLocaleStorage();
@@ -49,11 +77,27 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
       this.sideNavVisible = value;
     });
+
   }
 
   ngOnDestroy(): void {
+
     if (!!this.sideNavVisibleSubscription) {
+
       this.sideNavVisibleSubscription.unsubscribe();
+
+    }
+
+    if (!!this.stockTradeBoardSubscription) {
+
+      this.stockTradeBoardSubscription.unsubscribe();
+
+    }
+
+    if (!!this.stockTransactionsSubscription) {
+
+      this.stockTransactionsSubscription.unsubscribe();
+
     }
   }
 
@@ -94,16 +138,16 @@ export class SideNavComponent implements OnInit, OnDestroy {
   /**
    * 
    */
-  onClearStorage() {
+  onClearTransactions() {
 
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
 
     dialogConfig.data = {
-      header: 'home.sideNavClearStorageButton',
-      description: 'home.sideNavClearStorageDialogText'
+      header: 'home.sideNavDeleteTransactionsButton',
+      description: 'home.sideNavDeleteTransactionsDialogText'
     }
 
     // Initializing dialog
@@ -115,12 +159,44 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
       if (result) {
 
-        this.stockTradeBoardService.clearLocalStorageData();        
+        this.stockTradeBoardService.clearLocalStorageTransactionData();
 
       }
 
     });
 
   }
-    
+
+  /**
+   * 
+   */
+  onClearTradeBoard() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+
+    dialogConfig.data = {
+      header: 'home.sideNavDeleteBoardButton',
+      description: 'home.sideNavDeleteBoardDialogText'
+    }
+
+    // Initializing dialog
+    const modalDialog = this.matDialog
+      .open(GlobalDialogComponent, dialogConfig);
+
+    // Receive data from dialog
+    modalDialog.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.stockTradeBoardService.clearLocalStorageTradeBoardData();
+
+      }
+
+    });
+
+  }
+
 }

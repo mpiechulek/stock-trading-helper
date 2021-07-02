@@ -60,27 +60,86 @@
 
                 <mat-expansion-panel-header>
 
-                <mat-panel-title>
+                    <mat-panel-title>
 
-                    {{'home.sideNavAdvancedSettings' | translate }}
-                  
-                </mat-panel-title>                
+                        {{'home.sideNavAdvancedSettings' | translate }}
+                    
+                    </mat-panel-title>                
 
-            </mat-expansion-panel-header>
+                </mat-expansion-panel-header>
             
-            <button            
-                mat-raised-button
-                color="warn"
-                (click)="onClearStorage()"            
-            >
-        
-                {{'home.sideNavClearStorageButton' | translate }}
-        
-            </button>
+                <!-- Button to export to excel transaction data -->
 
-            </mat-expansion-panel>             
+                    <div class="advanced-settings-button-container">
 
-        </mat-accordion>   
+                        <button  
+                            class="advanced-settings-button-width"     
+                            mat-raised-button
+                            color="accent" 
+                            [disabled]="disableTransactionsButton"               
+                        >
+                        
+                        {{'home.sideNavExportTransactionsButton' | translate }}
+                        
+                        </button>
+                        
+                    </div>                
+
+                    <!-- Button to export to excel trade board data -->
+
+                    <div class="advanced-settings-button-container">
+
+                        <button  
+                            class="advanced-settings-button-width"     
+                            mat-raised-button
+                            color="accent" 
+                            [disabled]="disableBoardButton"   
+                        >
+                
+                        {{'home.sideNavExportBoardButton' | translate }}
+                
+                        </button>
+
+                    </div>
+                    
+                    <!-- Delete transactions data form storage button -->
+
+                    <div class="advanced-settings-button-container">
+                            
+                        <button  
+                            class="advanced-settings-button-width"   
+                            mat-raised-button
+                            color="warn"
+                            [disabled]="disableTransactionsButton"
+                            (click)="onClearTransactions()"            
+                        >
+                    
+                            {{'home.sideNavDeleteTransactionsButton' | translate }}
+                    
+                        </button>
+
+                    </div>
+
+                    <!-- Delete trade board  data form storage button -->
+
+                    <div class="advanced-settings-button-container">
+                        
+                        <button  
+                            class="advanced-settings-button-width"  
+                            mat-raised-button
+                            color="warn"
+                            [disabled]="disableBoardButton"
+                            (click)="onClearTradeBoard()"            
+                        >
+                    
+                            {{'home.sideNavDeleteBoardButton' | translate }}
+                    
+                        </button>
+
+                     </div>
+                </mat-expansion-panel>             
+
+            </mat-accordion>   
 
 
             <h1 class="sidenav-header sidenav-list-hide">{{'home.sideNavHeaderMenu' | translate }}</h1>

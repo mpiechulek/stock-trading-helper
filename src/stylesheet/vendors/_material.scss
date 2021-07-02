@@ -278,3 +278,12 @@ mat-form-field#login-mat-form-field-password {
   background-color: black;
 
 }
+
+// Material button rased accent color change
+.mat-raised-button.mat-accent,
+.mat-flat-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+  color: #f0fff3;
+  background-color: $color-excel-green;
+}

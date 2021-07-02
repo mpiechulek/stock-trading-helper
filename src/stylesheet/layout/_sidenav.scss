@@ -214,3 +214,14 @@
 .show-side-nav {
   display: flex;
 }
+
+.advanced-settings-button-container:not(:last-child) {
+
+  margin-bottom: 2rem;
+}
+
+.advanced-settings-button-width {
+
+  width: 100%;
+
+}
