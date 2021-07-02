@@ -31,7 +31,7 @@ export class StockPriceCalculatorService {
    */
   calculatePercentageCommission(buyValue: number, percentageCommission: number): number {    
 
-    return (buyValue * percentageCommission) / 1000;
+    return (buyValue * percentageCommission) / 100;
 
   }
 
@@ -43,11 +43,11 @@ export class StockPriceCalculatorService {
    */
   calculateCommissionValue(buyValue: number, commissionValue: number, minCommissionValue: number): number {
     let calcCommission: number;
-
+    
     // The brokers commission can't by less than the min. commission
-    if (calcCommission < minCommissionValue) return minCommissionValue;
+    if (commissionValue < minCommissionValue) return minCommissionValue;
 
-    calcCommission = buyValue * (commissionValue / 100);
+    calcCommission = commissionValue;
 
     return this.roundingNumberFloorTwoDecimalPlaces(calcCommission);
   }
