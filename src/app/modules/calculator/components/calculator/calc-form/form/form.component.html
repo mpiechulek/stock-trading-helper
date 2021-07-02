@@ -8,7 +8,7 @@
 
             <mat-label> {{'calculator.calculatorFormBuyPrice' | translate}} </mat-label>
 
-            <input matInput type="number" formControlName="buyPrice">
+            <input matInput type="text" formControlName="buyPrice" (outputData) ="onOverwriteFormPosition($event, 'calcStepValue')" appNumberDigit>
 
             <!-- <button mat-button *ngIf="buyPrice" matSuffix mat-icon-button aria-label="Clear" (click)="buyPrice=''"></button> -->
 
@@ -54,7 +54,7 @@
 
             <mat-label>{{'calculator.calculatorFormSellPrice' | translate}}</mat-label>
 
-            <input matInput type="number" formControlName="sellPrice">
+            <input matInput type="text" formControlName="sellPrice" (outputData) ="onOverwriteFormPosition($event, 'sellPrice')" appNumberDigit>
 
             <mat-error *ngIf="sellPrice.touched && !(sellPrice.hasError('pattern'))">
 
@@ -81,7 +81,7 @@
 
             <mat-label>{{'calculator.calculatorFormTaxRate' | translate}} </mat-label>
 
-            <input matInput type="number" formControlName="taxRate">
+            <input matInput type="text" formControlName="taxRate" (outputData) ="onOverwriteFormPosition($event, 'taxRate')" appNumberDigit>
 
             <mat-error *ngIf="taxRate.touched && !(taxRate.hasError('pattern'))">
 
@@ -103,7 +103,7 @@
 
             <mat-label>{{'calculator.calculatorFormCommission' | translate}}</mat-label>
 
-            <input matInput type="number" formControlName="commission">
+            <input matInput type="text" formControlName="commission" (outputData) ="onOverwriteFormPosition($event, 'commission')" appNumberDigit>
 
             <mat-error *ngIf="commission.touched && !(commission.hasError('pattern'))">
 
@@ -125,7 +125,7 @@
 
             <mat-label>{{'calculator.calculatorFormMinCommission' | translate}}</mat-label>
 
-            <input matInput type="number" formControlName="minCommission">
+            <input matInput type="text" formControlName="minCommission" (outputData) ="onOverwriteFormPosition($event, 'minCommission')" appNumberDigit>
 
             <mat-error *ngIf="minCommission.touched && !(minCommission.hasError('pattern'))">
 

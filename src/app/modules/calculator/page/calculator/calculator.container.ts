@@ -96,7 +96,7 @@ export class CalculatorContainerComponent implements OnInit {
 	 * 
 	 * @param calcData 
 	 */
-	calculate(calcData: AdvanceCalculatorFormStringDataModel): void {
+	calculate(calcData: AdvanceCalculatorFormStringDataModel): void {		
 
 		// converting string object to numeric object
 		const numericObject: AdvanceCalculatorFormNumberDataModel =
@@ -158,6 +158,9 @@ export class CalculatorContainerComponent implements OnInit {
 			profitAfterTax: profitAfterTax
 
 		};
+
+		console.log(result);
+		
 
 		this.formExpand = 0;
 
