@@ -19,9 +19,13 @@ export class SideNavComponent implements OnInit, OnDestroy {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
+
   public disableBoardButton: boolean = false;
   public disableTransactionsButton: boolean = false;
   public panelOpenState: boolean = false;
+
+  private stockTradeBoardSubscription: Subscription;
+  private stockTransactionsSubscription: Subscription;
 
   //============================================================================
 
@@ -38,22 +42,27 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    console.log(this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length);
-    
 
-    // checking if there is some data to by deleted
-    if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
+    this.stockTradeBoardSubscription = this.stockTradeBoardService.getStockBoardArray.subscribe(() => {
+      // checking if there is some data to by deleted
+      if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
 
-      this.disableBoardButton= true;
+        this.disableBoardButton = true;
 
-    }
+      }
 
-    // checking if there is some data to by deleted
-    if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
+    });
 
-      this.disableTransactionsButton = true;
+    this.stockTransactionsSubscription = this.stockTradeBoardService.getTransactionsArray.subscribe(() => {
 
-    }
+      // checking if there is some data to by deleted
+      if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
+
+        this.disableTransactionsButton = true;
+
+      }
+
+    });
 
     // Setting the slider position
     this.sliderChecked = this.themeService.checkLocaleStorage();
@@ -68,11 +77,27 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
       this.sideNavVisible = value;
     });
+
   }
 
   ngOnDestroy(): void {
+
     if (!!this.sideNavVisibleSubscription) {
+
       this.sideNavVisibleSubscription.unsubscribe();
+
+    }
+
+    if (!!this.stockTradeBoardSubscription) {
+
+      this.stockTradeBoardSubscription.unsubscribe();
+
+    }
+
+    if (!!this.stockTransactionsSubscription) {
+
+      this.stockTransactionsSubscription.unsubscribe();
+
     }
   }
 

@@ -22,9 +22,6 @@ export class StockTradeBoardService {
 	private transactionsArraySubject = new Subject<StockSellModel[]>();
 	private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
-	private transactionsProfitArray = new Subject<StockSellModel[]>();
-	private transactionsProfitArray$ = this.transactionsProfitArray.asObservable();
-
 	constructor(private snackBarService: SnackBarService) { }
 
 	// =========================================================================
@@ -32,7 +29,7 @@ export class StockTradeBoardService {
 	/**
 	 * 
 	 */
-	get getStockBoardArray() {
+	get getStockBoardArray():Observable<StockTileModel[]> {
 		return this.stockBoardArray$;
 	}
 
