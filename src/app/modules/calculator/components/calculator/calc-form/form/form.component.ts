@@ -25,10 +25,10 @@ export class FormComponent implements OnInit {
 
         this.calculatorForm = this.formBuilder.group({
 
-            buyPrice: ['1', [               
+            buyPrice: ['1', [
                 Validators.required,
-                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'), 
-                Validators.min(0)
+                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
+                Validators.min(0.0001)
             ]],
             amountOfShares: ['1', [
                 Validators.required,
@@ -37,23 +37,23 @@ export class FormComponent implements OnInit {
             ]],
             sellPrice: ['1', [
                 Validators.required,
-                Validators.min(0),
-                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+                Validators.min(0.0001),
+                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
             ]],
             taxRate: ['0', [
-                Validators.required,               
+                Validators.required,
                 Validators.min(0),
-                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
             ]],
             commission: ['0', [
                 Validators.required,
                 Validators.min(0),
-                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
             ]],
             minCommission: ['0', [
                 Validators.required,
                 Validators.min(0),
-                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
+                Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')
             ]]
         });
 
@@ -145,7 +145,7 @@ export class FormComponent implements OnInit {
 
             },
             { emitEvent: false }
-        );        
+        );
 
         this.outputFormData.emit(this.calculatorForm.value);
 
@@ -172,9 +172,24 @@ export class FormComponent implements OnInit {
 
             },
             { emitEvent: false }
-        );        
+        );
 
         this.outputFormData.emit(this.calculatorForm.value);
+
+    }
+
+    /**
+     * 
+     * @param event 
+     * @param inputName 
+     */
+     onOverwriteFormPosition(newValue, inputName): void {
+
+        this.calculatorForm.patchValue({
+
+            [inputName]: newValue
+
+        });
 
     }
 
