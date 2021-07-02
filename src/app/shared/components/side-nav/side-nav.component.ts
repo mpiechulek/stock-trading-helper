@@ -19,8 +19,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
   sideNavVisible: boolean;
   sideNavVisibleSubscription: Subscription;
   languages: string[];
-  public disableDeleteTransactions: boolean = false;
-  public disableDeleteBoard: boolean = false;
+  public disableBoardButton: boolean = false;
+  public disableTransactionsButton: boolean = false;
   public panelOpenState: boolean = false;
 
   //============================================================================
@@ -41,14 +41,14 @@ export class SideNavComponent implements OnInit, OnDestroy {
     // checking if there is some data to by deleted
     if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
 
-      this.disableDeleteBoard = true;
+      this.disableBoardButton= true;
 
     }
 
     // checking if there is some data to by deleted
     if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
 
-      this.disableDeleteTransactions = true;
+      this.disableTransactionsButton = true;
 
     }
 
@@ -118,8 +118,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     dialogConfig.id = "modal-component";
 
     dialogConfig.data = {
-      header: 'home.sideNavClearStorageButton',
-      description: 'home.sideNavClearStorageDialogText'
+      header: 'home.sideNavDeleteTransactionsButton',
+      description: 'home.sideNavDeleteTransactionsDialogText'
     }
 
     // Initializing dialog
@@ -150,8 +150,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     dialogConfig.id = "modal-component";
 
     dialogConfig.data = {
-      header: 'home.sideNavClearStorageButton',
-      description: 'home.sideNavClearStorageDialogText'
+      header: 'home.sideNavDeleteBoardButton',
+      description: 'home.sideNavDeleteBoardDialogText'
     }
 
     // Initializing dialog

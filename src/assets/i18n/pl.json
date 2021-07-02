@@ -9,9 +9,13 @@
 
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Ustawienia:",
-        "sideNavAdvancedSettings": "Ustawiania zaawansowane",
-        "sideNavClearStorageButton": "Wyczyść pamięć lokalną",
-        "sideNavClearStorageDialogText": "Wszystkie dane transakcji oraz zawartość tablicy transakcji zostaną utracone.",       
+        "sideNavAdvancedSettings": "Ustawiania zaawansowane",       
+        "sideNavExportBoardButton": "Eksportuj tablicę",
+        "sideNavExportTransactionsButton": "Eksportuj transakcje",
+        "sideNavDeleteBoardButton": "Usuń tablicę",
+        "sideNavDeleteTransactionsButton": "Usuń transakcje",
+        "sideNavDeleteTransactionsDialogText": "Czy na pewno chcesz usunąć dane tablicy z pamięci lokalnej?",        
+        "sideNavDeleteBoardDialogText": "Czy na pewno chcesz usunąć dane transakcji z pamięci lokalnej?",      
 
         "gridComponentOneHeader": "Kapitał",
         "gridComponentTwoHeader": "Strategia",
