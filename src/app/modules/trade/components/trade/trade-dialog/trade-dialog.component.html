@@ -84,7 +84,7 @@
         
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormTax' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="taxRate" appNumberDigit>  
+            <input matInput type="text" formControlName="taxRate" (outputData) ="onOverwriteFormPosition($event, 'taxRate')" appNumberDigit>  
 
         </mat-form-field>
 
@@ -98,7 +98,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormCommission' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="commission" appNumberDigit>  
+            <input matInput type="text" formControlName="commission" (outputData) ="onOverwriteFormPosition($event, 'commission')" appNumberDigit>  
 
         </mat-form-field>
 
@@ -108,7 +108,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormMinCommission' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="minCommission" appNumberDigit>    
+            <input matInput type="text" formControlName="minCommission" (outputData) ="onOverwriteFormPosition($event, 'minCommission')" appNumberDigit>    
 
         </mat-form-field>
 
@@ -137,7 +137,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormPercentageStep' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>  
+            <input matInput type="text" formControlName="calcStepValue" (outputData) ="onOverwriteFormPosition($event, 'calcStepValue')" appNumberDigit>  
             
             <mat-error >
 
