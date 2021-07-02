@@ -128,13 +128,16 @@ export class TradeDialogComponent implements OnInit {
     this.dialogRef.close(this.entryStockForm.value);
   }
 
+  /**
+   * updating the form position triggered by event emitted from numeric directive
+   * @param event 
+   * @param inputName 
+   */
   onOverwriteFormPosition(event, inputName)  {
 
     this.entryStockForm.patchValue({
       [inputName]: event
-    })
-
-    console.log('click event',event);
+    });
     
   }
 
