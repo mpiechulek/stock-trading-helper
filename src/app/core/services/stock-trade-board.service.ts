@@ -207,7 +207,7 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (value.id === savedStock.id) {
 
-			this.snackBarService.onDisplaySuccess('Success saved position offer');
+			this.snackBarService.onDisplaySuccess('{{snackBar.snackBarSuccessTradeBoardSave | translate}}');
 
 		} else {
 

@@ -131,6 +131,11 @@
         "statisticsStatisticsProfits": "Profits",
         "statisticsStatisticsLosses": "Losses"       
       
+    },
+    "snackBar": {
+
+        "snackBarSuccessTradeBoardSave": "Position was saved"
+
     }
 }
 
