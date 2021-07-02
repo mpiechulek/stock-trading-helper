@@ -29,7 +29,7 @@ export class StockPriceCalculatorService {
    * @param percentageCommission 
    * @returns 
    */
-  calculatePercentageCommission(buyValue: number, percentageCommission: number): number {    
+  calculatePercentageCommission(buyValue: number, percentageCommission: number): number {
 
     return (buyValue * percentageCommission) / 100;
 
@@ -43,7 +43,7 @@ export class StockPriceCalculatorService {
    */
   calculateCommissionValue(buyValue: number, commissionValue: number, minCommissionValue: number): number {
     let calcCommission: number;
-    
+
     // The brokers commission can't by less than the min. commission
     if (commissionValue < minCommissionValue) return minCommissionValue;
 
@@ -98,7 +98,7 @@ export class StockPriceCalculatorService {
   calculateProfitBeforeTax(currentValue: number, buyValue: number, totalCommission: number): number {
     let result: number;
 
-    result = (currentValue - buyValue) - totalCommission;  
+    result = (currentValue - buyValue) - totalCommission;
 
     return this.roundingNumberFloorTwoDecimalPlaces(result);
   }
@@ -111,8 +111,8 @@ export class StockPriceCalculatorService {
   calculateProfitAfterTax(profitBeforeTax: number, taxRate: number): number {
     let result: number;
 
-    result = profitBeforeTax - (profitBeforeTax * (taxRate / 100));  
-      
+    result = profitBeforeTax - (profitBeforeTax * (taxRate / 100));
+
     return this.roundingNumberFloorTwoDecimalPlaces(result);
   }
 
@@ -145,7 +145,7 @@ export class StockPriceCalculatorService {
    * 
    * @param value 
    */
-   roundingNumberFloorThreeDecimalPlaces(value: number): number {
+  roundingNumberFloorThreeDecimalPlaces(value: number): number {
     return Math.floor((value) * 1000) / 1000;
   }
 }

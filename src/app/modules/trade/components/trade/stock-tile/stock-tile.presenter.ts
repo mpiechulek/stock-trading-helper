@@ -85,7 +85,7 @@ export class StockTilePresenterService {
    */
   convertStringObjectElementsToNumber(stockTileData: StockTileModel) {
 
-    let newObject = {} as StockTileNumericModel;    
+    let newObject = {} as StockTileNumericModel;
 
     if (stockTileData.taxRate === '') {
 
@@ -187,10 +187,13 @@ export class StockTilePresenterService {
         numericObject.buyPrice
       );
 
+    const percentageBuyCommissionValue = this.stockPriceCalculatorService
+      .calculatePercentageCommission(buyValue, numericObject.commission);
+
     const commission: number =
       this.stockPriceCalculatorService.calculateCommissionValue(
         buyValue,
-        numericObject.commission,
+        percentageBuyCommissionValue,
         numericObject.minCommission
       );
 
@@ -231,18 +234,22 @@ export class StockTilePresenterService {
       percentageChange = percentageChange * -1;
     }
 
-    let buyValue: number =
+    const buyValue: number =
       this.stockPriceCalculatorService
         .calculateBuyValue(
           numericObject.amountOfShares,
           numericObject.buyPrice
         );
 
-    let buyCommission: number =
+    const percentageBuyCommissionValue =
+      this.stockPriceCalculatorService
+        .calculatePercentageCommission(buyValue, numericObject.commission);
+
+    const buyCommission: number =
       this.stockPriceCalculatorService
         .calculateCommissionValue(
           buyValue,
-          numericObject.commission,
+          percentageBuyCommissionValue,
           numericObject.minCommission
         );
 
@@ -259,11 +266,15 @@ export class StockTilePresenterService {
       sellValue =
         currentPrice * numericObject.amountOfShares;
 
+      const percentageSellCommissionValue =
+        this.stockPriceCalculatorService
+          .calculatePercentageCommission(sellValue, numericObject.commission);
+
       sellCommission =
         this.stockPriceCalculatorService
           .calculateCommissionValue(
             sellValue,
-            numericObject.commission,
+            percentageSellCommissionValue,
             numericObject.minCommission
           );
 
@@ -364,18 +375,26 @@ export class StockTilePresenterService {
           numericObject.amountOfShares
         );
 
+    const percentageBuyCommissionValue =
+      this.stockPriceCalculatorService
+        .calculatePercentageCommission(result.buyValue, numericObject.commission);
+
     buyCommission =
       this.stockPriceCalculatorService
         .calculateCommissionValue(
           result.buyValue,
-          numericObject.commission,
+          percentageBuyCommissionValue,
           numericObject.minCommission
         );
+
+        const percentageSellCommissionValue =
+        this.stockPriceCalculatorService
+          .calculatePercentageCommission(result.currentValue, numericObject.commission);
 
     sellCommission =
       this.stockPriceCalculatorService.calculateCommissionValue(
         result.currentValue,
-        numericObject.commission,
+        percentageSellCommissionValue,
         numericObject.minCommission
       );
 
