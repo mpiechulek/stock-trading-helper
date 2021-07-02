@@ -9,6 +9,9 @@
 
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Settings:",
+        "sideNavAdvancedSettings": "Advanced settings",
+        "sideNavClearStorageButton": "Clear LocalStorage",
+        "sideNavClearStorageDialogText": "Are you sure, you want to clear the local storage. All trading and board content data will be erased",        
         
         "gridComponentOneHeader": "Money",
         "gridComponentTwoHeader": "Strategy",

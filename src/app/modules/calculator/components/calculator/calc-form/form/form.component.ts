@@ -25,32 +25,32 @@ export class FormComponent implements OnInit {
 
         this.calculatorForm = this.formBuilder.group({
 
-            buyPrice: ['10', [               
+            buyPrice: ['1', [               
                 Validators.required,
                 Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'), 
-                Validators.min(0.00000000001)
+                Validators.min(0)
             ]],
-            amountOfShares: ['100', [
+            amountOfShares: ['1', [
                 Validators.required,
                 Validators.pattern('^[1-9][0-9]*$'),
                 Validators.min(1)
             ]],
-            sellPrice: ['12', [
+            sellPrice: ['1', [
                 Validators.required,
                 Validators.min(0),
                 Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
             ]],
-            taxRate: ['19', [
+            taxRate: ['0', [
                 Validators.required,               
-                Validators.min(0.00000000001),
+                Validators.min(0),
                 Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
             ]],
-            commission: ['0.3', [
+            commission: ['0', [
                 Validators.required,
                 Validators.min(0),
                 Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
             ]],
-            minCommission: ['3', [
+            minCommission: ['0', [
                 Validators.required,
                 Validators.min(0),
                 Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$')  
@@ -158,6 +158,23 @@ export class FormComponent implements OnInit {
     onClearForm(): void {
 
         this.calculatorForm.reset();
+
+        this.calculatorForm.patchValue(
+
+            {
+
+                buyPrice: 1,
+                amountOfShares: 1,
+                sellPrice: 1,
+                taxRate: 0,
+                commission: 0,
+                minCommission: 0
+
+            },
+            { emitEvent: false }
+        );        
+
+        this.outputFormData.emit(this.calculatorForm.value);
 
     }
 

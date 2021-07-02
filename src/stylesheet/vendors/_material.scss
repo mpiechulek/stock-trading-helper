@@ -36,12 +36,8 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 
 //global font size change for material form fields
 .mat-form-field {
-
-  @include respond(sm) {
-
-    font-size: 2.3rem;
-
-  }
+  
+ font-size: 14px;
 
 }
 
@@ -50,23 +46,28 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 /* Overwrite the styles of the mat-dialog-container element globally, but only for those
 that have an id of `modal-component` */
 mat-dialog-container#modal-component {
+
   position: relative;
   width: 50rem;
   height: auto;
-  background-color: var(--color-page-background);
+  background-color: var(--color-page-background); 
 
   @include respond(md) {
-    width: 65rem;
-  }
 
-  @include respond(md) {
-    width: 70rem;
-  }
+    width: 60rem;  
+
+  } 
+  
 }
 
 mat-form-field#trade-dialog-form {
   color: var(--color-text-form);
   margin-bottom: 10px;
+
+  @include respond(md) {
+    width: 100%;
+    margin-bottom: 6px;
+  }
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -75,6 +76,19 @@ mat-form-field#trade-dialog-form {
 
 mat-label#trade-dialog-form {
   color: var(--color-text-form);
+}
+
+.mat-raised-button#trade-board-add-button {
+
+  @include respond(md) {
+
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
 }
 
 // Calculator form 
@@ -131,11 +145,11 @@ mat-table#statistics-table {
   .mat-header-cell,
   .mat-cell {
     color: var(--color-text-form);
-    overflow: hidden;   
+    overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 2px;  
-  }  
- 
+    padding-right: 2px;
+  }
+
   // styling custom column in mat table
   .mat-column-deleteBtn {
     max-width: 5rem;
@@ -187,12 +201,25 @@ mat-form-field#currency-select {
   width: 10rem;
   margin-right: 2rem;
   color: var(--color-text-form);
+
+  @include respond(md) {
+
+    width: 15rem;
+
+  }
+
 }
 
 mat-form-field#currency-input {
   width: 10rem;
   text-align: right;
   color: var(--color-text-form);
+
+  @include respond(md) {
+
+    width: 15rem;
+
+  }
 }
 
 mat-label#currency-label {
@@ -236,7 +263,7 @@ mat-label#login-mat-form-field-user-input,
 mat-label#login-mat-form-field-password-input {
 
   color: black;
-  
+
 }
 
 mat-form-field#login-mat-form-field-user,

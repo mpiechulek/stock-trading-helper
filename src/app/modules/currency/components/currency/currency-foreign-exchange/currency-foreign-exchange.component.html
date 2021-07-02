@@ -23,16 +23,23 @@
                    =             
                 </p>
 
+                <p class="currency-calc-text currency-calc-result-width">
+
+                    {{1 / currencyData?.rates[currency.value] | number:'1.3-3'}}                  
+
+                </p>
+
                 <p class="currency-calc-text">
-                    {{1 / currencyData?.rates[currency.value] | number:'1.3-3'}}
+                    
                     {{currencyData?.base}}
+
                 </p>
 
             </div>
 
         </div>
    
-        <div class="currency-calc-text currency-calc-text--small">
+        <footer class="currency-calc-text currency-calc-footer currency-calc-text--small">
             Icons made by
             <a href="https://www.freepik.com" title="Freepik">
                 Freepik
@@ -41,7 +48,7 @@
             <a href="https://www.flaticon.com/" title="Flaticon">
                 www.flaticon.com
             </a>
-        </div>
+        </footer>
 
     </div>
 

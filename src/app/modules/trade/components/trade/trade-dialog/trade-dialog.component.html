@@ -67,11 +67,12 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormBuyPrice' | translate}}</mat-label>
             
-            <input matInput type="text" formControlName="buyPrice" appNumberDigit> 
+            <input matInput type="text" formControlName="buyPrice" (outputData) ="onOverwriteFormPosition($event, 'buyPrice')" appNumberDigit 
+             >    
                        
             <mat-error *ngIf="buyPrice.touched">
 
-                  {{'trade.entireDialogFormErrorMessageBuyPrice' | translate}}
+                {{'trade.entireDialogFormErrorMessageBuyPrice' | translate}}
 
             </mat-error>    
         
@@ -83,7 +84,7 @@
         
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormTax' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="taxRate" appNumberDigit>  
+            <input matInput type="text" formControlName="taxRate" (outputData) ="onOverwriteFormPosition($event, 'taxRate')" appNumberDigit>  
 
         </mat-form-field>
 
@@ -97,7 +98,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormCommission' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="commission" appNumberDigit>  
+            <input matInput type="text" formControlName="commission" (outputData) ="onOverwriteFormPosition($event, 'commission')" appNumberDigit>  
 
         </mat-form-field>
 
@@ -107,7 +108,7 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormMinCommission' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="minCommission" appNumberDigit>    
+            <input matInput type="text" formControlName="minCommission" (outputData) ="onOverwriteFormPosition($event, 'minCommission')" appNumberDigit>    
 
         </mat-form-field>
 
@@ -136,13 +137,35 @@
 
             <mat-label id="trade-dialog-form">{{'trade.entireDialogFormPercentageStep' | translate}}</mat-label>
 
-            <input matInput type="text" formControlName="calcStepValue" appNumberDigit>         
+            <input matInput type="text" formControlName="calcStepValue" (outputData) ="onOverwriteFormPosition($event, 'calcStepValue')" appNumberDigit>  
+            
+            <mat-error >
+
+                The min. value of the calculate step is 0.1
+
+            </mat-error>    
 
         </mat-form-field>
 
     </div>
 
+    <!-- calculating the buy value for better user experience -->
+
     <div class="trade-entry-form__section-3">
+
+        <p class="trade-tile-form-buy-price">
+
+            {{'trade.tileHeaderBuyValue' | translate}} 
+
+            :
+
+            {{(entryStockForm.value.amountOfShares * entryStockForm.value.buyPrice) | number:'1.2-2'}}
+
+        </p>      
+        
+    </div>
+
+    <div class="trade-entry-form__section-4">
 
         <!-- Submit -->
 
@@ -156,9 +179,7 @@
 
            <span  *ngIf="dialogState == formState.Edit"> {{'trade.saveButtonText' | translate}}</span>   
 
-        </button>
-
-        <!-- <p>{{'value: ' }}</p> -->
+        </button>        
 
         <!-- clear -->
 

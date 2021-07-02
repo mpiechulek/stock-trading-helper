@@ -12,7 +12,7 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 @Component({
 
   selector: 'app-trade',
-  templateUrl: './trade.container.html',
+  templateUrl: './trade.container.html'
 
 })
 
@@ -117,7 +117,7 @@ export class TradeContainerComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
+    dialogConfig.id = "modal-component";  
     dialogConfig.data = {
       formData: this.previousFormData,
       state: this.formState.Add

@@ -9,6 +9,9 @@
 
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Ustawienia:",
+        "sideNavAdvancedSettings": "Ustawiania zaawansowane",
+        "sideNavClearStorageButton": "Wyczyść pamięć lokalną",
+        "sideNavClearStorageDialogText": "Wszystkie dane transakcji oraz zawartość tablicy transakcji zostaną utracone.",       
 
         "gridComponentOneHeader": "Kapitał",
         "gridComponentTwoHeader": "Strategia",

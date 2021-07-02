@@ -7,6 +7,8 @@
         <app-calc-form 
             class="calculator-component-container"
             [calculationResults]="calculationResults"
+            [formExpand]="formExpand"
+            (toggleExpandForm)="onToggleExpandForm()"
             (outputFormData)="calculate($event)"
          >
         </app-calc-form>

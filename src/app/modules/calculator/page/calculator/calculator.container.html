@@ -2,10 +2,12 @@
     [calculationResults]="getCalculationResults"
     [arrayOfResults]="getArrayOfResults"
     [chosenResult$] = "getChosenResult$"
+    [formExpand]="getFormExpand"
 
     (outputFormData)="calculate($event)"
     (resultArrayEmitter)="onSaveResultToArray($event)"
     (resetResultArray)="onResetBoardOfResults()"
     (chosenResult)="onChoseResult($event)"
+    (toggleExpandForm)="toggleAccordionFormExpand()"
  >
 </app-calculator-ui>

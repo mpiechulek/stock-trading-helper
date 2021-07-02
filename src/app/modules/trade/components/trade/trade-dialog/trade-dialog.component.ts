@@ -36,7 +36,7 @@ export class TradeDialogComponent implements OnInit {
       buyPrice: ['0', [
         Validators.required,
         Validators.pattern('^[0-9]+(\.[0-9]{1,4})?$'),
-        Validators.min(0.00000000001)
+        Validators.min(0.0001)
       ]],
       taxRate: ['0.0000', [
         Validators.min(0),
@@ -82,6 +82,7 @@ export class TradeDialogComponent implements OnInit {
   get buyPrice(): AbstractControl {
     return this.entryStockForm.get('buyPrice');
   }
+
   get taxRate(): AbstractControl {
     return this.entryStockForm.get('taxRate');
   }
@@ -94,11 +95,11 @@ export class TradeDialogComponent implements OnInit {
     return this.entryStockForm.get('minCommission');
   }
 
-  get calcStepCount() {
+  get calcStepCount(): AbstractControl  {
     return this.entryStockForm.get('calcStepCount');
   }
 
-  get calcStepValue() {
+  get calcStepValue(): AbstractControl  {
     return this.entryStockForm.get('calcStepValue');
   }
 
@@ -125,6 +126,19 @@ export class TradeDialogComponent implements OnInit {
     });
 
     this.dialogRef.close(this.entryStockForm.value);
+  }
+
+  /**
+   * updating the form position triggered by event emitted from numeric directive
+   * @param event 
+   * @param inputName 
+   */
+  onOverwriteFormPosition(event, inputName)  {
+
+    this.entryStockForm.patchValue({
+      [inputName]: event
+    });
+    
   }
 
   onClearField(event) {
