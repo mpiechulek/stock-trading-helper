@@ -38,6 +38,9 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    console.log(this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length);
+    
+
     // checking if there is some data to by deleted
     if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
 

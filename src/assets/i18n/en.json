@@ -9,7 +9,7 @@
 
         "sideNavHeaderMenu": "Menu:",
         "sideNavHeaderSettings": "Settings:",
-        "sideNavAdvancedSettings": "Advanced settings",
+        "sideNavAdvancedSettings": "Advanced",
         "sideNavExportBoardButton": "Export board data",
         "sideNavExportTransactionsButton": "Export transactions",
         "sideNavDeleteBoardButton": "Delete trade board",
