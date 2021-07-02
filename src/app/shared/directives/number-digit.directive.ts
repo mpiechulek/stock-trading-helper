@@ -1,3 +1,4 @@
+import { LogicalProjectPath } from '@angular/compiler-cli/src/ngtsc/file_system';
 import {
     Directive,
     ElementRef,
@@ -117,13 +118,14 @@ export class NumberDigitDirective {
         }
 
         // Entered value type must by a string
-        if (typeof this.elementEnterValue != "string") return;
+        if (typeof this.elementEnterValue != "string") return;       
 
         // preventing of error when the first character is a '.' or ','
-        if (this.returnFirstCharacterOfString(this.elementEnterValue) === '.' || ',') {
+        if (this.returnFirstCharacterOfString(this.elementEnterValue) === '.' ||
+            this.returnFirstCharacterOfString(this.elementEnterValue) === ',') {
 
             this.elementEnterValue = '0' + this.elementEnterValue;
-            
+
         }
 
         // Preventing from dots on the end of the string 
@@ -158,19 +160,19 @@ export class NumberDigitDirective {
      * @param value 
      * @returns 
      */
-    returnFirstCharacterOfString(value:string) :string {
+    returnFirstCharacterOfString(value: string): string {
 
         return value.charAt(0);
 
     }
 
 
-     /**
-     * 
-     * @param value 
-     * @returns 
-     */
-      countCharactersInString(value: string): string[] {
+    /**
+    * 
+    * @param value 
+    * @returns 
+    */
+    countCharactersInString(value: string): string[] {
 
         return value.split('.');
 
@@ -181,7 +183,7 @@ export class NumberDigitDirective {
      * @param value 
      * @returns 
      */
-     returnLastStringCharacter(value: string): string {
+    returnLastStringCharacter(value: string): string {
 
         return value[value.length - 1];
 
@@ -231,7 +233,7 @@ export class NumberDigitDirective {
 
         return !isNaN(value) && Number(value) > 0;
 
-    }   
+    }
 
     //===========================================================================
 
@@ -285,7 +287,7 @@ export class NumberDigitDirective {
             this.assignOutputValues(value);
 
         }
-    }    
+    }
 
     /**
      * 
