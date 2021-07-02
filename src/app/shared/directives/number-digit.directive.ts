@@ -119,12 +119,20 @@ export class NumberDigitDirective {
         // Entered value type must by a string
         if (typeof this.elementEnterValue != "string") return;
 
-        // Preventing form asigning dot onthe end of the 
+        // preventing of error when the first character is a '.' or ','
+        if (this.returnFirstCharacterOfString(this.elementEnterValue) === '.' || ',') {
+
+            this.elementEnterValue = '0' + this.elementEnterValue;
+            
+        }
+
+        // Preventing from dots on the end of the string 
         if (this.countCharactersInString(this.elementEnterValue).length > 2 &&
-            this.findLastStringCharacter(this.elementEnterValue) === '.') {
+            this.returnLastStringCharacter(this.elementEnterValue) === '.') {
 
             this.outputData.emit(this.previousNumber);
             this.el.nativeElement.value = this.previousNumber;
+
             return;
         }
 
@@ -142,6 +150,40 @@ export class NumberDigitDirective {
             this.toValidNumber(this.elementEnterValue);
 
         }
+
+    }
+
+    /**
+     * 
+     * @param value 
+     * @returns 
+     */
+    returnFirstCharacterOfString(value:string) :string {
+
+        return value.charAt(0);
+
+    }
+
+
+     /**
+     * 
+     * @param value 
+     * @returns 
+     */
+      countCharactersInString(value: string): string[] {
+
+        return value.split('.');
+
+    }
+
+    /**
+     * 
+     * @param value 
+     * @returns 
+     */
+     returnLastStringCharacter(value: string): string {
+
+        return value[value.length - 1];
 
     }
 
@@ -189,18 +231,7 @@ export class NumberDigitDirective {
 
         return !isNaN(value) && Number(value) > 0;
 
-    }
-
-    /**
-     * 
-     * @param value 
-     * @returns 
-     */
-    countCharactersInString(value: string): string[] {
-
-        return value.split('.');
-
-    }
+    }   
 
     //===========================================================================
 
@@ -235,13 +266,13 @@ export class NumberDigitDirective {
 
             // If the entered string was '123.' or '123,', the last character was 
             // removed in the process of number fixing, we are adding it back
-            if (this.findLastStringCharacter(this.elementEnterValue) === '.' && !this.isBlur) {
+            if (this.returnLastStringCharacter(this.elementEnterValue) === '.' && !this.isBlur) {
 
                 fixedToString = fixedToString + '.';
 
             }
 
-            if (this.findLastStringCharacter(this.elementEnterValue) === ',' && !this.isBlur) {
+            if (this.returnLastStringCharacter(this.elementEnterValue) === ',' && !this.isBlur) {
 
                 fixedToString = fixedToString + '.';
 
@@ -254,18 +285,7 @@ export class NumberDigitDirective {
             this.assignOutputValues(value);
 
         }
-    }
-
-    /**
-     * 
-     * @param value 
-     * @returns 
-     */
-    findLastStringCharacter(value: string): string {
-
-        return value[value.length - 1];
-
-    }
+    }    
 
     /**
      * 
