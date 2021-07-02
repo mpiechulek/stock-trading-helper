@@ -5,6 +5,7 @@ import * as uuid from 'uuid';
 import { Observable, Subject } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 import { SnackBarService } from './snack-bar.service';
+import { RippleState } from '@angular/material/core';
 
 @Injectable({
 	providedIn: 'root'
@@ -92,7 +93,7 @@ export class StockTradeBoardService {
 		let boardData = this.getTradeBoardDataFromLocalStorage();
 
 		this.stockBoardArraySubject.next(boardData);
-		
+
 	}
 
 	// =============================================================================
@@ -480,16 +481,45 @@ export class StockTradeBoardService {
 	/**
 	 * Removing trade board and transactions data dorm local storage
 	 */
-	clearLocalStorageData(): void {
+	clearLocalStorageTransactionData(): void {
 		
-		localStorage.removeItem(this.storageTradeBoardKeyName);
 		localStorage.removeItem(this.storageTradeTransactionKeyName);
 
-		const transaction = this.getTransactionsFromLocalStorage();
-		const tradeBoard = this.getTradeBoardDataFromLocalStorage();
+		const transaction = this.getTransactionsFromLocalStorage();	
 
-		this.transactionsArraySubject.next(transaction);
-		this.stockBoardArraySubject.next(tradeBoard);
+		this.transactionsArraySubject.next(transaction);	
+
+		// Show alert message, in snack bar
+		if (this.getTransactionsFromLocalStorage().length === 0) {
+
+			this.snackBarService.onDisplaySuccess('Transactions were removed from localStorage');
+
+		} else {
+
+			this.snackBarService.onDisplayError('Failed to remove transactions from localStorage');
+		}
+
+	}
+
+	/**
+	 * Removing trade board and transactions data dorm local storage
+	 */
+	 clearLocalStorageTradeBoardData(): void {
+
+		localStorage.removeItem(this.storageTradeBoardKeyName);
+
+		const tradeBoard = this.getTradeBoardDataFromLocalStorage();
+	
+		this.stockBoardArraySubject.next(tradeBoard);	
+
+		if (this.getTradeBoardDataFromLocalStorage().length === 0) {
+
+			this.snackBarService.onDisplaySuccess('Board data was removed from localStorage');
+
+		} else {
+
+			this.snackBarService.onDisplayError('Failed to remove board data from localStorage');
+		}
 
 	}
 
