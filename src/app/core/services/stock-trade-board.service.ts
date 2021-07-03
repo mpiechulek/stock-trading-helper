@@ -5,8 +5,7 @@ import * as uuid from 'uuid';
 import { Observable, Subject } from 'rxjs';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 import { SnackBarService } from './snack-bar.service';
-import { RippleState } from '@angular/material/core';
-
+import { LanguageService } from './language.service';
 @Injectable({
 	providedIn: 'root'
 })
@@ -22,14 +21,17 @@ export class StockTradeBoardService {
 	private transactionsArraySubject = new Subject<StockSellModel[]>();
 	private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
-	constructor(private snackBarService: SnackBarService) { }
+	constructor(
+		private snackBarService: SnackBarService,
+		private languageService: LanguageService
+	) { }
 
 	// =========================================================================
 
 	/**
 	 * 
 	 */
-	get getStockBoardArray():Observable<StockTileModel[]> {
+	get getStockBoardArray(): Observable<StockTileModel[]> {
 		return this.stockBoardArray$;
 	}
 
@@ -137,7 +139,7 @@ export class StockTradeBoardService {
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to create position');
+			this.snackBarService.onDisplayError('Failed to a create position');
 
 		}
 
@@ -479,12 +481,12 @@ export class StockTradeBoardService {
 	 * Removing trade board and transactions data dorm local storage
 	 */
 	clearLocalStorageTransactionData(): void {
-		
+
 		localStorage.removeItem(this.storageTradeTransactionKeyName);
 
-		const transaction = this.getTransactionsFromLocalStorage();	
+		const transaction = this.getTransactionsFromLocalStorage();
 
-		this.transactionsArraySubject.next(transaction);	
+		this.transactionsArraySubject.next(transaction);
 
 		// Show alert message, in snack bar
 		if (this.getTransactionsFromLocalStorage().length === 0) {
@@ -501,17 +503,19 @@ export class StockTradeBoardService {
 	/**
 	 * Removing trade board and transactions data dorm local storage
 	 */
-	 clearLocalStorageTradeBoardData(): void {
+	clearLocalStorageTradeBoardData(): void {
 
 		localStorage.removeItem(this.storageTradeBoardKeyName);
 
 		const tradeBoard = this.getTradeBoardDataFromLocalStorage();
-	
-		this.stockBoardArraySubject.next(tradeBoard);	
+
+		this.stockBoardArraySubject.next(tradeBoard);
 
 		if (this.getTradeBoardDataFromLocalStorage().length === 0) {
 
 			this.snackBarService.onDisplaySuccess('Board data was removed from localStorage');
+
+			this.languageService.getLanguageData
 
 		} else {
 

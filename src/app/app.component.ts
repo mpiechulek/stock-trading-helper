@@ -18,20 +18,22 @@ export class AppComponent {
         private translateService: TranslateService,
         private languageService: LanguageService
     ) {       
-
+        
+        // setting theme
+        this.themeService.lodeTheme();
+    
+        // setting translations    
+        this.currentLanguage = this.languageService.getFromLocalStorage();
+    
+        this.translateService.addLangs(['en', 'pl']);    
+      
+        this.translateService.setDefaultLang(this.currentLanguage);
+       
+        this.languageService.fetchTranslations();
     }
 
     ngOnInit(): void {
 
-        // setting theme
-        this.themeService.lodeTheme();
-
-        // setting translations    
-        this.currentLanguage = this.languageService.getFromLocalStorage();
-
-        this.translateService.addLangs(['en', 'pl']);
-
-        this.translateService.setDefaultLang(this.currentLanguage);
     }
     
 }
