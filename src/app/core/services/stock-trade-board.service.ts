@@ -135,11 +135,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (newStockTile.id === createdStock.id) {
 
-			this.snackBarService.onDisplaySuccess('Success created new position');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardAdd);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to a create position');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardAdd);
 
 		}
 
@@ -171,11 +171,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (stockId === editedStock.id) {
 
-			this.snackBarService.onDisplaySuccess('Success edited position');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardEdit);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to edit position');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardEdit);
 
 		}
 
@@ -209,11 +209,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (value.id === savedStock.id) {
 
-			this.snackBarService.onDisplaySuccess('{{snackBar.snackBarSuccessTradeBoardSave | translate}}');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSave);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to save position offer');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSave);
 
 		}
 	}
@@ -243,11 +243,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (deleteStock === null) {
 
-			this.snackBarService.onDisplaySuccess('Position was deleted successfully');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardDelete);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to delete position');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardDelete);
 
 		}
 
@@ -363,11 +363,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (soldStock.id === stockSellData.id) {
 
-			this.snackBarService.onDisplaySuccess('Position was sold successfully');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSell);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to sell position');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSell);
 
 		}
 	}
@@ -424,11 +424,11 @@ export class StockTradeBoardService {
 		// Displaying proper snack bar message
 		if (deleteTransaction === null) {
 
-			this.snackBarService.onDisplaySuccess('Transaction was deleted');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTransactionDelete);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to delete transaction');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTransactionDelete);
 
 		}
 
@@ -491,11 +491,11 @@ export class StockTradeBoardService {
 		// Show alert message, in snack bar
 		if (this.getTransactionsFromLocalStorage().length === 0) {
 
-			this.snackBarService.onDisplaySuccess('Transactions were removed from localStorage');
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTransactionsData);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to remove transactions from localStorage');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTransactionsData);
 		}
 
 	}
@@ -513,13 +513,11 @@ export class StockTradeBoardService {
 
 		if (this.getTradeBoardDataFromLocalStorage().length === 0) {
 
-			this.snackBarService.onDisplaySuccess('Board data was removed from localStorage');
-
-			this.languageService.getLanguageData
+			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTradeBoardData);
 
 		} else {
 
-			this.snackBarService.onDisplayError('Failed to remove board data from localStorage');
+			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTradeBoardData);
 		}
 
 	}

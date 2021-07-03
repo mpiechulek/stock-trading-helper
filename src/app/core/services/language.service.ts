@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LanguageService {
 
   private chosenLanguage: string;
-  private languageData: {};
+  private languageData: any;
 
   constructor(public translate: TranslateService, public http: HttpClient) {
 
@@ -20,7 +20,7 @@ export class LanguageService {
   /**
    * 
    */
-  get getLanguageData(): {} {
+  get getLanguageData(): any {
 
     return this.languageData;
 
