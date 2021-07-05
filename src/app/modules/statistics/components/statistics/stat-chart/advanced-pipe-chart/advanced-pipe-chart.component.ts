@@ -52,7 +52,7 @@ export class AdvancedPipeChartComponent implements OnInit {
     } else if (width <= 800 && width > 400) {
       this.view = [340, 400];
     } else if (width <= 400) {
-      this.view = [200, 600];
+      this.view = [290, 300];
     }
 
   }
