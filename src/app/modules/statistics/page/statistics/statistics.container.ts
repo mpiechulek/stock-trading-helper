@@ -18,16 +18,25 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     private loseProfitDataMarker: string = this.chosenTypeOfDataForDisplay.profit
 
     private chartColorPallet = {
+
         domain: [
+
             '#00A8FF'
+
         ]
+
     };
 
     private transactionsSubscription: Subscription;
     private transactionsData: StockSellModel[];
 
     private transactionsDataSubject = new Subject<StockSellModel[]>();
-    private transactionsDataSubject$: Observable<StockSellModel[]> = this.transactionsDataSubject.asObservable();
+    private transactionsDataSubject$: Observable<StockSellModel[]> =
+        this.transactionsDataSubject.asObservable();
+
+    private transactionsDataProfitLoseSubject = new Subject<TransactionWalletModel[]>();
+    private transactionsDataProfitLoseSubject$: Observable<TransactionWalletModel[]>
+        = this.transactionsDataProfitLoseSubject.asObservable();
 
     private profitLossesData: any;
     private linearChartData: any;
@@ -64,7 +73,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     //==========================================================================
 
     /**
-     * 
+     *  total lost nad profit data
      */
     get getProfitLossesData(): any {
 
@@ -73,7 +82,16 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     }
 
     /**
-   * 
+     * transaction wallet as an observable
+     */
+    get getProfitLossesData$(): Observable<TransactionWalletModel[]> {
+
+        return this.transactionsDataProfitLoseSubject$;
+
+    }
+
+    /**
+   * linear chart data of total profit/los balance
    */
     get getLinearChartData(): any {
 
@@ -82,20 +100,20 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     }
 
     /**
-    * 
-    */
-    get getTransactionWallet(): TransactionWalletModel[] {
+     * transaction data for table display 
+     */
+    get getTransactionsData(): StockSellModel[] {
 
-        return this.transactionWallet;
+        return this.transactionsData;
 
     }
 
     /**
      * 
      */
-    get getTransactionsData(): StockSellModel[] {
+    get getTransactionWallet(): TransactionWalletModel[] {
 
-        return this.transactionsData;
+        return this.transactionWallet;
 
     }
 
@@ -134,8 +152,8 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
         this.linearChartData = this.calculateLinearChart(this.transactionsData);
 
-        this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
-
+        this.generateTransactionsWallet(this.transactionsData);
+     
     }
 
     /**
@@ -248,7 +266,11 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
                 });
             }
 
-        });
+        });    
+        
+        this.transactionWallet = dataArray;
+
+        this.transactionsDataProfitLoseSubject.next(dataArray);           
 
         return dataArray;
 
@@ -318,7 +340,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
      */
     switchProfitLoseCharts(marker: string): void {
 
-        if( this.loseProfitDataMarker === marker) return;
+        if (this.loseProfitDataMarker === marker) return;
 
         //overWriting the marker
         this.loseProfitDataMarker = marker;
@@ -331,6 +353,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
                 domain: [
 
                     '#00A8FF'
+
                 ]
 
             };
@@ -342,6 +365,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
                 domain: [
 
                     '#f30625'
+
                 ]
 
             };
@@ -349,7 +373,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         }
 
         // generating new list of trades profit or lose
-        this.transactionWallet = this.generateTransactionsWallet(this.transactionsData);
+        this.generateTransactionsWallet(this.transactionsData);
 
     }
 

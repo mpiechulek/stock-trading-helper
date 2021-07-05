@@ -1,31 +1,57 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { viewClassName } from '@angular/compiler';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
-
+import { AdvancedPipeChartPresenter } from './advanced-pipe-chart.presenter';
 @Component({
   selector: 'app-advanced-pipe-chart',
   templateUrl: './advanced-pipe-chart.component.html'
 })
-export class AdvancedPipeChartComponent implements OnInit {
+export class AdvancedPipeChartComponent implements OnInit, OnDestroy {
 
-  single: any[];
+  public view: number[] = [];
+  private windowWidth: number;
 
-  view = [600, 400];
+  private profitLossesDataSubscription: Subscription;
 
-  // options
-  showLegend: boolean = true;
-  showLabels: boolean = true;
+  @Input()
+  readonly colorScheme: Object;
 
-  @Input() readonly colorScheme: Object;
+  @Input()
 
-  @Input() transactionWallet: TransactionWalletModel[];
+  public transactionWallet: TransactionWalletModel[];
 
-  constructor() {
+  @Input()
+  private profitLossesData$: Observable<TransactionWalletModel[]>;
 
-    this.onChangeChartSize(window.innerWidth);
+  constructor(private advancedPipeChartPresenter: AdvancedPipeChartPresenter) {
 
   }
 
   ngOnInit(): void {
+
+
+    this.windowWidth = window.innerWidth;
+
+    this.getViewData(this.windowWidth, this.transactionWallet);
+
+    this.profitLossesDataSubscription = this.profitLossesData$.subscribe((data) => {
+     
+      this.transactionWallet = data;
+
+      this.getViewData(this.windowWidth, this.transactionWallet);
+
+    });
+
+  }
+
+  ngOnDestroy(): void {
+
+    if (!!this.profitLossesDataSubscription) {
+
+      this.profitLossesDataSubscription.unsubscribe();
+
+    }
 
   }
 
@@ -34,30 +60,20 @@ export class AdvancedPipeChartComponent implements OnInit {
    * @param event 
    */
   onResize(event): void {
-    this.onChangeChartSize(event.target.innerWidth);
+
+    this.getViewData(event.target.innerWidth, this.transactionWallet);
+
   }
 
   /**
    * 
    * @param width 
+   * @param transactionWallet 
    */
-  onChangeChartSize(width: number): void {
+  getViewData(width: number, transactionWallet: TransactionWalletModel[]): void {
+console.log(width);
 
-    if (width > 1440) {
-      this.view = [600, 400];
-    } else if (width <= 1440 && width > 960) {
-      this.view = [450, 400];
-    } else if (width <= 960 && width > 800) {
-      this.view = [350, 400];
-    } else if (width <= 800 && width > 400) {
-      this.view = [340, 400];
-    } else if (width <= 400) {
-      this.view = [290, 300];
-    }
-
-  }
-
-  onSelect(event) {
+    this.view = this.advancedPipeChartPresenter.onChangeChartSize(width, transactionWallet);
 
   }
 
