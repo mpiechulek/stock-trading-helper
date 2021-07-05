@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { id } from '@swimlane/ngx-charts';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
 import { StatisticTypeMarker } from 'src/app/data/enums/statistics-markers.enum';
 import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
+import { GlobalDialogComponent } from 'src/app/shared/components/global-dialog/global-dialog.component';
 
 @Component({
     selector: 'app-statistics',
@@ -42,7 +44,7 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     private linearChartData: any;
     private transactionWallet: TransactionWalletModel[];
 
-    constructor(private stockTradeBoardService: StockTradeBoardService) { }
+    constructor(private stockTradeBoardService: StockTradeBoardService, public matDialog: MatDialog) { }
 
     ngOnInit(): void {
 
@@ -192,6 +194,8 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
         return dataArray;
 
     }
+
+    //==========================================================================
 
     /**
      * Calculating total profits value, total loses value and total trade balance
@@ -377,13 +381,38 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
     }
 
+    //==========================================================================
+
     /**
      * 
      * @param id 
      */
     deletePositionFromTable(id: string): void {
+        
+        const dialogConfig = new MatDialogConfig();
 
-        this.stockTradeBoardService.deleteTransaction(id);
+        dialogConfig.disableClose = false;
+        dialogConfig.id = "modal-component";
+    
+        dialogConfig.data = {
+          header: 'home.sideNavDeleteTransactionsButton',
+          description: 'home.sideNavDeleteTransactionsDialogText'
+        }
+    
+        // Initializing dialog
+        const modalDialog = this.matDialog
+          .open(GlobalDialogComponent, dialogConfig);
+    
+        // Receive data from dialog
+        modalDialog.afterClosed().subscribe(result => {
+    
+          if (result) {
+    
+            this.stockTradeBoardService.deleteTransaction(id);
+    
+          }
+    
+        });       
 
     }
 
