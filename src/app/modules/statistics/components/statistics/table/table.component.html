@@ -4,11 +4,11 @@
 
     <div class="statistics-table-container">
 
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
+        <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
 
             <!-- Name Column -->
             
-            <ng-container matColumnDef="stockName">
+            <ng-container matColumnDef="companyName">
 
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
 
@@ -26,7 +26,7 @@
 
             <!-- Quantity Column -->
 
-            <ng-container matColumnDef="quantity">
+            <ng-container matColumnDef="amountOfShares">
 
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
 
@@ -62,7 +62,7 @@
 
             <!-- Sell Price Column -->
 
-            <ng-container matColumnDef="sellPrice">
+            <ng-container matColumnDef="currentPrice">
 
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
 
@@ -148,9 +148,9 @@
                     
                 </mat-header-cell>
 
-                <mat-cell *matCellDef="let element">
+                <mat-cell *matCellDef="let element" >
 
-                     <button 
+                     <button
                         class="btn"
                         (click)="onDeletePosition(element.id)"
                      >
