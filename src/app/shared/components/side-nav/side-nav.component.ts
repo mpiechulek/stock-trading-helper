@@ -115,7 +115,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 
+   * Change theme by slider change
    * @param event 
    */
   changeTheme(event): void {
@@ -124,6 +124,16 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
     this.sliderChecked = this.themeService.checkLocaleStorage();
 
+  }
+
+  /**
+   * Change theme on icon button click
+   */
+  onToggleTheme(): void {    
+
+    this.themeService.toggleTheme();
+
+    this.sliderChecked = this.themeService.checkLocaleStorage();
   }
 
   /**

@@ -1,8 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
-@Injectable({
+@Injectable({  
   providedIn: 'root'
 })
 export class ThemeService implements OnInit {
@@ -18,9 +17,9 @@ export class ThemeService implements OnInit {
   }
 
   get themeState(): Observable<boolean> {
+
       return this.darkTheme$;
   }
-
 
   /**
    * Setting the light or dark theme
@@ -29,22 +28,49 @@ export class ThemeService implements OnInit {
   changeThemes(state: boolean): void {
 
     if (state) {
+
       this.setDarkTheme();
+
     } else {
+
       this.setThemLight();
+
     }
 
     this.lodeTheme();
   }
+
+   /**
+   * 
+   */
+    toggleTheme(): void {       
+
+      if(this.checkLocaleStorage() !== true) {
+  
+        this.setDarkTheme();
+  
+      } else {
+  
+        this.setThemLight();
+  
+      }
+  
+      this.lodeTheme();
+  
+    }
 
   /**
    * 
    * @returns 
    */
   setDarkTheme(): void {
+
     localStorage.setItem(this.storageThemeKeyName, 'true');
+
     this.getThemeStateFormLocalStorage();
+
     return;
+
   }
 
   /**
@@ -52,10 +78,14 @@ export class ThemeService implements OnInit {
    * @returns 
    */
   setThemLight(): void {
+
     localStorage.setItem(this.storageThemeKeyName, 'false');
+
     this.getThemeStateFormLocalStorage();
+
     return;
-  }
+
+  } 
 
   /**
    * 
@@ -65,9 +95,12 @@ export class ThemeService implements OnInit {
 
     let state: boolean = false;
 
-    if (localStorage.getItem('darkTheme') !== null) {      
+    if (localStorage.getItem('darkTheme') !== null) {   
+
       state = JSON.parse(localStorage.getItem(this.storageThemeKeyName));
+
     }
+
     this.darkThemeSubject.next(state);
   }
 
@@ -76,11 +109,17 @@ export class ThemeService implements OnInit {
    * @returns 
    */
   lodeTheme(): void {
+
     if (this.checkLocaleStorage()) {
+
       this.document.body.classList.add('dark-theme');
+
     } else {
+
       this.document.body.classList.remove('dark-theme');
+
     }
+
     return;
   }
 
@@ -88,8 +127,11 @@ export class ThemeService implements OnInit {
    * Checking if dark theme is set to true
    */
   checkLocaleStorage(): boolean {
-    let darkTheme: string = 'true';
+
+    let darkTheme: string = 'true';       
+
     return darkTheme === localStorage.getItem(this.storageThemeKeyName)
+
   }
 
 }

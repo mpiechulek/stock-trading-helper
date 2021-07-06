@@ -2,6 +2,8 @@
 
     <div class="sidenav-container">
 
+        <!-- Close btn -->
+
         <div class="sidenav-container__menu">
 
             <div class="sidenav-btn-wrapper">
@@ -18,17 +20,25 @@
 
             <div class="sidenav-container__settings">
 
+                <!-- Theme mode -->
+
                 <div class="theme-wrapper">
 
                     <mat-slide-toggle [checked]="sliderChecked" (change)="changeTheme($event)">
 
                     </mat-slide-toggle>
 
-                    <svg class="icon icon--moon theme-icon-margin-left" *ngIf="sliderChecked"></svg>
+                    <button class="btn theme-icon-margin-left theme-icon-margin-right" (click)="onToggleTheme()">
 
-                    <svg class="icon icon--sun theme-icon-margin-left" *ngIf="!sliderChecked"></svg>
+                        <svg class="icon icon--moon" *ngIf="sliderChecked"></svg>
+
+                        <svg class="icon icon--sun" *ngIf="!sliderChecked"></svg>
+
+                    </button>
 
                 </div>
+
+                <!-- Language -->
 
                 <div class="language-wrapper">
 
@@ -47,6 +57,17 @@
                     </mat-form-field>
 
                 </div>
+
+                <!-- info -->
+
+                <button class="btn theme-icon-margin-left">
+
+                    <svg class="icon icon--info-dark">
+
+                    </svg>
+
+                </button>
+
         </div>
 
     <!-- mat expansion panel  -->
