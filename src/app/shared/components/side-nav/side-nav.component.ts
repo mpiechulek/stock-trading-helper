@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GlobalDialogComponent } from '../global-dialog/global-dialog.component';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 @Component({
   selector: 'app-side-nav-ui',
   templateUrl: './side-nav.component.html'
@@ -206,6 +207,22 @@ export class SideNavComponent implements OnInit, OnDestroy {
       }
 
     });
+
+  }
+
+  /**
+   * on lick opens the dialog with the info slider
+   */
+   onOpenInfoDialog() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";   
+
+    // Initializing dialog
+    const modalDialog = this.matDialog
+      .open(InfoDialogComponent, dialogConfig);    
 
   }
 

@@ -60,11 +60,13 @@
 
                 <!-- info -->
 
-                <button mat-mini-fab color="primary" class="btn theme-icon-margin-left">
-
-                    <svg class="icon icon--info-white">
-
-                    </svg>
+                <button 
+                    mat-mini-fab
+                    color="primary"
+                    class="btn theme-icon-margin-left"
+                    (click)="onOpenInfoDialog()"
+                  >
+                    <svg class="icon icon--info-white"></svg>
 
                 </button>
 
