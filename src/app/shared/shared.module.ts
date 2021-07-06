@@ -48,6 +48,7 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatStepperModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     HttpClientModule,

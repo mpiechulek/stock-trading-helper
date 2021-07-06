@@ -1,7 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TradeDialogComponent } from '../../../modules/trade/components/trade/trade-dialog/trade-dialog.component';
-
 @Component({
   selector: 'app-global-dialog',
   templateUrl: './global-dialog.component.html'
@@ -9,7 +7,7 @@ import { TradeDialogComponent } from '../../../modules/trade/components/trade/tr
 export class GlobalDialogComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<TradeDialogComponent>,
+    private dialogRef: MatDialogRef<GlobalDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any 
   ) { }
 

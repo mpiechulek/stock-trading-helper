@@ -17,9 +17,9 @@ export class TradeDialogComponent implements OnInit {
 
   constructor(
     private formService: FormService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,  
     private dialogRef: MatDialogRef<TradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any 
   ) { }
 
   ngOnInit(): void {
