@@ -15,6 +15,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AdvancedPipeChartComponent } from './components/statistics/stat-chart/advanced-pipe-chart/advanced-pipe-chart.component';
 import { PipeGridChartComponent } from './components/statistics/stat-chart/pipe-grid-chart/pipe-grid-chart.component';
@@ -22,7 +24,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
 import { StatHeaderComponent } from './components/statistics/stat-chart/stat-header/stat-header.component';
-
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     StatisticsContainerComponent,
@@ -42,8 +44,10 @@ import { StatHeaderComponent } from './components/statistics/stat-chart/stat-hea
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     NgxChartsModule,
+    MatTableExporterModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateModule,
