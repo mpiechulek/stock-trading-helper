@@ -16,6 +16,12 @@
     }
   }
 
+  &--info-dark {
+    background-image: url('./../../assets/icon/information-button.svg');
+    width: 5rem;
+    height: 5rem;  
+  }
+
   &--moon {
     background-image: url('./../../assets/icon/Icon awesome-moon.svg');
     width: 2rem;
