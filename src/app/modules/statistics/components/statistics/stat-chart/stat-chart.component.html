@@ -10,17 +10,15 @@
 
     <div class="statistics-charts__container">
 
-        <!-- multi circle charts -->
+        <!-- multi circle charts -->        
 
-        <div class="statistics-charts-wrapper">
-
-            <app-advanced-pipe-chart 
-                [transactionWallet]="getTransactionWallet"
-                [colorScheme]="getChartColorPallet"
-            >
-            </app-advanced-pipe-chart>
-
-        </div>
+        <app-advanced-pipe-chart 
+            class="statistics-charts-wrapper"            
+            [colorScheme]="getChartColorPallet"
+            [profitLossesData$]="getProfitLossesData$"
+            [transactionWallet]="getTransactionWallet"
+        >
+        </app-advanced-pipe-chart>    
 
         <!-- sliced circle chart -->
 

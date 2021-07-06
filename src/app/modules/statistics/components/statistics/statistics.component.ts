@@ -27,11 +27,14 @@ export class StatisticsComponent implements OnInit {
   @Input()
   loseProfitDataMarker: string;
 
+  @Input()
+  profitLossesData$: Observable<TransactionWalletModel[]>;
+
   @Output()
   deleteTradePositionFromTable: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  switchProfitLoseCharts: EventEmitter<string> =  new EventEmitter<string>();
+  switchProfitLoseCharts: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -75,6 +78,15 @@ export class StatisticsComponent implements OnInit {
 
   }
 
+  /**
+  * 
+  */
+  get getProfitLossesData$(): Observable<TransactionWalletModel[]> {
+
+    return this.profitLossesData$;
+
+  }
+
 
   // ===========================================================================
 
@@ -86,15 +98,15 @@ export class StatisticsComponent implements OnInit {
     this.deleteTradePositionFromTable.emit(id);
 
   }
-  
+
   /**
    * 
    * @param marker 
    */
-   onSwitchProfitLoseCharts(marker: string):void {
+  onSwitchProfitLoseCharts(marker: string): void {
 
     this.switchProfitLoseCharts.emit(marker);
-    
+
   }
 
 }

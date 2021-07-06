@@ -129,6 +129,37 @@
         "statisticsStatisticsProfits": "Zysk",
         "statisticsStatisticsLosses": "Strata"    
       
+    },
+    "snackBar": {
+
+        "snackBarSuccessTradeBoardAdd": "Stworzono nową pozycje",
+        "snackBarFailTradeBoardAdd": "Nie udało się utworzyć pozycji",
+
+        "snackBarSuccessTradeBoardSave": "Pomyślnie zapisano zmiany",
+        "snackBarFailTradeBoardSave": "Nie udało się zapisać zmian",
+
+        "snackBarSuccessTradeBoardSell": "Pomyślnie sprzedano pozycje",
+        "snackBarFailTradeBoardSell": "Nie udało się sprzedać pozycji",
+
+        "snackBarSuccessTradeBoardEdit": "Pomyślnie dokonano edycji",
+        "snackBarFailTradeBoardEdit": "Nie udało się dokonać edycji",
+        
+        "snackBarSuccessTradeBoardDelete": "Pomyślnie usunięto pozycję",
+        "snackBarFailTradeBoardDelete": "Nie udało się usunąć pozycji",
+
+        "snackBarSuccessTransactionDelete": "Successfully deleted transaction",
+        "snackBarFailTransactionDelete": "Failed to  deleted transaction",        
+
+        "snackBarFailFetchCurrency": "Nie udało sie pobrać danych walut",
+        "snackBarFailFetchCryptoBtc": "Nie udało sie pobrać danych BTC",
+        "snackBarFailFetchCryptoEthereum": "Nie udało sie pobrać danych ETH",
+
+        "snackBarSuccessDeleteTransactionsData": "Pomyślnie usunięto wszystkie dane transakcji",
+        "snackBarFailDeleteTransactionsData": "Nie udało sie usunąc danych transakcji",
+        
+        "snackBarSuccessDeleteTradeBoardData": "Pomyślnie usunięto wszystkie dane tablicy",
+        "snackBarFailDeleteTradeBoardData": "Nie udało sie usunąc danych tablicy"       
+
     }
 
 }

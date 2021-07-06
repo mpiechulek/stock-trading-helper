@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { CurrencyService } from '../../../data/api/currency.service';
-import { catchError, map, shareReplay} from 'rxjs/operators';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 import { CurrencyApiDataModel } from '../../../data/models/currency.model';
 import { Observable, throwError } from 'rxjs';
 import { SnackBarService } from '../snack-bar.service';
+import { LanguageService } from '../language.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrencyFacadeService {
 
-  constructor(private currencyService: CurrencyService, private snackBarService:SnackBarService) { }
+  constructor(
+    private currencyService: CurrencyService,
+    private snackBarService: SnackBarService,
+    private languageService: LanguageService
+  ) { }
 
   /**
    * 
@@ -25,7 +30,7 @@ export class CurrencyFacadeService {
 
         catchError((err) => {
 
-          this.snackBarService.onDisplayError('Failed to GET currency data');
+          this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailFetchCurrency);
 
           return throwError(err);
 
@@ -42,7 +47,7 @@ export class CurrencyFacadeService {
    */
   getBitCoinData(): Observable<string> {
     return this.currencyService.getBitCoinData()
-      .pipe(   
+      .pipe(
 
         map((res) =>
 
@@ -51,7 +56,7 @@ export class CurrencyFacadeService {
         ),
         catchError((err) => {
 
-          this.snackBarService.onDisplayError('Failed to GET Bitcoin data');
+          this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailFetchCryptoBtc);
 
           return throwError(err);
 
@@ -79,7 +84,7 @@ export class CurrencyFacadeService {
 
         catchError((err) => {
 
-          this.snackBarService.onDisplayError('Failed to GET Ethereum data');
+          this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailFetchCryptoEthereum);
 
           return throwError(err);
 

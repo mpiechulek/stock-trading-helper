@@ -134,7 +134,33 @@
     },
     "snackBar": {
 
-        "snackBarSuccessTradeBoardSave": "Position was saved"
+        "snackBarSuccessTradeBoardAdd": "Successfully created a new position",
+        "snackBarFailTradeBoardAdd": "Failed to a create position",
+
+        "snackBarSuccessTradeBoardSave": "Successfully saved position",
+        "snackBarFailTradeBoardSave": "Failed to saved position",
+
+        "snackBarSuccessTradeBoardSell": "Successfully sold position",
+        "snackBarFailTradeBoardSell": "Failed to sell position",
+
+        "snackBarSuccessTradeBoardEdit": "Successfully edited position",
+        "snackBarFailTradeBoardEdit": "Fail to edit position",
+        
+        "snackBarSuccessTradeBoardDelete": "Successfully deleted position",
+        "snackBarFailTradeBoardDelete": "Fail to delete position",
+
+        "snackBarSuccessTransactionDelete": "Successfully deleted transaction",
+        "snackBarFailTransactionDelete": "Failed to  deleted transaction",        
+
+        "snackBarFailFetchCurrency": "Fail to GET currency data",
+        "snackBarFailFetchCryptoBtc": "Fail to GET BTC data",
+        "snackBarFailFetchCryptoEthereum": "Fail to GET Ethereum data",
+
+        "snackBarSuccessDeleteTransactionsData": "Successfully deleted all transactions data",
+        "snackBarFailDeleteTransactionsData": "Fail to deleted transactions data",
+        
+        "snackBarSuccessDeleteTradeBoardData": "Successfully deleted all trade board data",
+        "snackBarFailDeleteTradeBoardData": "Fail to deleted trade board data"       
 
     }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StockSellModel, TransactionWalletModel } from 'src/app/data/models/statistics-section.model';
 
 @Component({
@@ -12,16 +13,19 @@ export class StatChartComponent implements OnInit {
   profitLossesData: any;
 
   @Input()
-  transactionWallet: TransactionWalletModel[];
-
-  @Input()
   chartColorPallet: Object;
 
   @Input()
   loseProfitDataMarker: string;
 
+  @Input()
+  private transactionWallet: TransactionWalletModel[];
+  
+  @Input()
+  private profitLossesData$: Observable<TransactionWalletModel[]>;
+
   @Output()
-  switchProfitLoseCharts: EventEmitter<string> =  new EventEmitter<string>();
+  switchProfitLoseCharts: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void { }
 
@@ -30,16 +34,7 @@ export class StatChartComponent implements OnInit {
    */
   get getProfitLossesData(): any {
     return this.profitLossesData;
-  }
-
-  /**
-  * 
-  */
-  get getTransactionWallet(): TransactionWalletModel[] {
-
-    return this.transactionWallet;
-
-  }
+  } 
 
   /**
     * 
@@ -59,14 +54,34 @@ export class StatChartComponent implements OnInit {
 
   }
 
+    /**
+  * 
+  */
+     get getTransactionWallet(): TransactionWalletModel[] {
+
+      return this.transactionWallet;
+  
+    }
+
+
+  /**
+  * 
+  */
+  get getProfitLossesData$(): Observable<TransactionWalletModel[]> {
+
+    return this.profitLossesData$;
+
+  }
+
+
   /**
    * 
    * @param marker 
    */
-  onSwitchProfitLoseCharts(marker: string):void {
+  onSwitchProfitLoseCharts(marker: string): void {
 
     this.switchProfitLoseCharts.emit(marker);
-    
+
   }
 
 }
