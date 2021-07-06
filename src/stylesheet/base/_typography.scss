@@ -402,3 +402,23 @@
   }
 
 }
+
+.not-found-header {
+
+  font-weight: 500;
+  color: var(--color-text-form);
+  text-align: center;
+
+  &--large {
+
+    font-size: 10rem;
+
+  }
+
+  &--medium{
+
+    font-size: 4rem;
+
+  }
+
+}

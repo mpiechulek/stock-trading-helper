@@ -13,12 +13,14 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
+import { NotFoundPageComponent } from './layout/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

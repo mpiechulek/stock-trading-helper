@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
+import { NotFoundPageComponent } from './layout/not-found-page/not-found-page.component';
 
 const routes: Routes = [
 
@@ -11,7 +12,7 @@ const routes: Routes = [
 		pathMatch: 'full',
 	},
 	{
-		path: 'auth',	
+		path: 'auth',
 		component: AuthLayoutComponent,
 		loadChildren: () =>
 			import('./modules/auth/auth.module').then(m => m.AuthModule)
@@ -67,9 +68,16 @@ const routes: Routes = [
 			//       m => m.CalendarDateModule
 			//     )
 			// },
-			{ path: '**', redirectTo: '/', pathMatch: 'full' }
+			
 		]
-	}
+	},
+	{
+		path: '404', 
+		component: NotFoundPageComponent,
+		loadChildren: () =>
+			import('./modules/not-found-404/not-found-404.module').then(m => m.NotFound404Module)
+	},
+	{ path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
