@@ -24,7 +24,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
 import { StatHeaderComponent } from './components/statistics/stat-chart/stat-header/stat-header.component';
-
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     StatisticsContainerComponent,
@@ -44,6 +44,7 @@ import { StatHeaderComponent } from './components/statistics/stat-chart/stat-hea
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     NgxChartsModule,
     MatTableExporterModule,
