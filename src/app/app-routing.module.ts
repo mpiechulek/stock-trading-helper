@@ -18,7 +18,7 @@ const routes: Routes = [
 			import('./modules/auth/auth.module').then(m => m.AuthModule)
 	},
 	{
-		path: '',
+		path: 'main',
 		component: MainLayoutComponent,
 		children: [
 			{

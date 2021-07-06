@@ -47,7 +47,7 @@
     display: block;
     position: relative;
     animation-name: slide-from-right;
-    animation-duration: 2s;
+    animation-duration: 1.75s;
     transition: ease-in;
 
     @include respond(md) {
@@ -159,6 +159,7 @@
       }
 
       .home-grid-3-wrapper {
+
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -166,18 +167,26 @@
         margin-bottom: 2rem;
 
         @include respond(sm) {
+
           margin-bottom: 0;
           width: 100%;
+
         }
 
         .home-grid-3-header-margin {
-          margin-bottom: 2rem;         
+
+          margin-bottom: 2rem;   
+
         }
 
         .container-width {
+
           width: 50%;
+
           @include respond(sm) {
+
             width: 90%;
+            
           }
         }
       }
