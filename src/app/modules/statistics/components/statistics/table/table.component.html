@@ -188,15 +188,9 @@
 
         <div>
 
-            
-            <mat-form-field>
-                
-                <input matInput id="table-search-field" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                
-            </mat-form-field>
-
             <button  
                 mat-raised-button
+                class="export-button-margin"
                 color="accent"
                 (click)="exporter.exportTable('xlsx')"
                 [disabled]="transactionsData?.length === 0"
@@ -205,6 +199,12 @@
             Excel
 
             </button>
+            
+            <mat-form-field>
+                
+                <input matInput id="table-search-field" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                
+            </mat-form-field>
 
         </div>
 
