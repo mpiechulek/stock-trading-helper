@@ -1,185 +1,190 @@
-<article class="statistics-table">
+<article class="statistics-table-container">
 
     <!-- <h1 class="statistics-header" >Trade data table</h1> -->
 
-    <div class="statistics-table-container">
-
-        <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
-
-            <!-- Name Column -->
-            
-            <ng-container matColumnDef="companyName">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                     {{ 'statistics.statisticsTableName'| translate}} 
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element"> 
-
-                    {{element?.companyName}} 
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- Quantity Column -->
-
-            <ng-container matColumnDef="amountOfShares">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                     {{ 'statistics.statisticsTableQuantity'| translate}}
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element">
-
-                     {{element?.amountOfShares}} 
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- Buy price Column -->
-
-            <ng-container matColumnDef="buyPrice">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header> 
-
-                    {{ 'statistics.statisticsTableBuyPrice'| translate}} 
-
-                 </mat-header-cell>
-
-                <mat-cell *matCellDef="let element">
-
-                     {{element?.buyPrice}}
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- Sell Price Column -->
-
-            <ng-container matColumnDef="currentPrice">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                     {{ 'statistics.statisticsTableSellPrice'| translate}} 
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element"> 
-
-                    {{element?.currentPrice}} 
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- profitBeforeTax Column -->
-
-            <ng-container matColumnDef="profitBeforeTax">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header> 
-
-                    {{ 'statistics.statisticsTableProfitBeforeTax'| translate}}  
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element">
-
-                    <span [ngClass]="{'table-font-color-green':(0 < element.profitBeforeTax),
-                                      'table-font-color-red': (0 > element.profitBeforeTax) }">
-
-                        {{element?.profitBeforeTax}}
-
-                    </span>
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- profitAfterTax Column -->
-
-            <ng-container matColumnDef="profitAfterTax">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                     {{ 'statistics.statisticsTableProfitAfterTax'| translate}} 
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element">
-
-                    <span [ngClass]="{'table-font-color-green': (0 < element.profitAfterTax),
-                                'table-font-color-red': (0 > element.profitAfterTax)}">
-
-                        {{element?.profitAfterTax}}
-
-                    </span>
-
-                </mat-cell>
-
-            </ng-container>
-
-            <!-- Date --> 
-
-            <ng-container matColumnDef="sellDate">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                     {{ 'statistics.statisticsTableDate'| translate}} 
-
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element"> {{element?.sellDate}} </mat-cell>
-
-            </ng-container>
-
-            <!-- Delete button -->
-
-            <ng-container matColumnDef="deleteBtn">
-
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-
-                    {{ 'statistics.statisticsTableDelete'| translate}} 
-                    
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let element" >
-
-                     <button
-                        class="btn"
-                        (click)="onDeletePosition(element.id)"
-                     >
-
-                        <svg class="icon icon--delete-black"></svg>                       
-
-                     </button> 
-
-                 </mat-cell>
-
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-        </mat-table>
-
+    <div class="statistics-table-wrapper">
+
+        <div class="statistics-table">
+
+            <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" matSort id="statistics-table">
+
+                <!-- Name Column -->
+                
+                <ng-container matColumnDef="companyName" >
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                         {{ 'statistics.statisticsTableName'| translate}} 
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element"> 
+    
+                        {{element?.companyName}} 
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- Quantity Column -->
+    
+                <ng-container matColumnDef="amountOfShares">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                         {{ 'statistics.statisticsTableQuantity'| translate}}
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element">
+    
+                         {{element?.amountOfShares}} 
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- Buy price Column -->
+    
+                <ng-container matColumnDef="buyPrice">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> 
+    
+                        {{ 'statistics.statisticsTableBuyPrice'| translate}} 
+    
+                     </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element">
+    
+                         {{element?.buyPrice}}
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- Sell Price Column -->
+    
+                <ng-container matColumnDef="currentPrice">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                         {{ 'statistics.statisticsTableSellPrice'| translate}} 
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element"> 
+    
+                        {{element?.currentPrice}} 
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- profitBeforeTax Column -->
+    
+                <ng-container matColumnDef="profitBeforeTax">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> 
+    
+                        {{ 'statistics.statisticsTableProfitBeforeTax'| translate}}  
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element">
+    
+                        <span [ngClass]="{'table-font-color-green':(0 < element.profitBeforeTax),
+                                          'table-font-color-red': (0 > element.profitBeforeTax) }">
+    
+                            {{element?.profitBeforeTax}}
+    
+                        </span>
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- profitAfterTax Column -->
+    
+                <ng-container matColumnDef="profitAfterTax">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                         {{ 'statistics.statisticsTableProfitAfterTax'| translate}} 
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element">
+    
+                        <span [ngClass]="{'table-font-color-green': (0 < element.profitAfterTax),
+                                    'table-font-color-red': (0 > element.profitAfterTax)}">
+    
+                            {{element?.profitAfterTax}}
+    
+                        </span>
+    
+                    </mat-cell>
+    
+                </ng-container>
+    
+                <!-- Date --> 
+    
+                <ng-container matColumnDef="sellDate">
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                         {{ 'statistics.statisticsTableDate'| translate}} 
+    
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element"> {{element?.sellDate}} </mat-cell>
+    
+                </ng-container>
+    
+                <!-- Delete button -->
+    
+                <ng-container matColumnDef="deleteBtn" >
+    
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    
+                        {{ 'statistics.statisticsTableDelete'| translate}} 
+                        
+                    </mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element" >
+    
+                         <button
+                            class="btn"
+                            (click)="onDeletePosition(element.id)"
+                         >
+    
+                            <svg class="icon icon--delete-black"></svg>                       
+    
+                         </button> 
+    
+                     </mat-cell>
+    
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+            </mat-table>    
+
+        </div>
+        
     </div>
 
-
+    <!-- Pagination and filtration -->
+    
     <div class="statistics-table-tools-wrapper">
-
+    
         <mat-form-field>
             <input matInput id="table-search-field" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
-
+    
         <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
-
+    
     </div>
-
+    
 </article>
