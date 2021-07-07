@@ -44,26 +44,46 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
 
-    this.stockTradeBoardSubscription = this.stockTradeBoardService.getStockBoardArray.subscribe(() => {
-      // checking if there is some data to by deleted
-      if (this.stockTradeBoardService.getTradeBoardDataFromLocalStorage().length === 0) {
+    // Subscribing to trade board data
+    this.stockTradeBoardSubscription =
 
-        this.disableBoardButton = true;
+      this.stockTradeBoardService
 
-      }
+        .getStockBoardArray
 
-    });
+        .subscribe((data) => {
+          
+          // checking if there is some data to by deleted
+          if (data.length === 0) {
 
-    this.stockTransactionsSubscription = this.stockTradeBoardService.getTransactionsArray.subscribe(() => {
+            this.disableBoardButton = true;
 
-      // checking if there is some data to by deleted
-      if (this.stockTradeBoardService.getTransactionsFromLocalStorage().length === 0) {
+          }
 
-        this.disableTransactionsButton = true;
+        });
 
-      }
+    // Getting the data to subscription 
+    this.stockTradeBoardService.fetchTradeBoardData();
 
-    });
+    this.stockTransactionsSubscription =
+
+      this.stockTradeBoardService
+
+        .getTransactionsArray
+
+        .subscribe((data) => {
+
+          // checking if there is some data to by deleted
+          if (data.length === 0) {
+
+            this.disableTransactionsButton = true;
+
+          }
+
+        });
+
+    // Getting the data to subscription 
+    this.stockTradeBoardService.fetchTransactions()
 
     // Setting the slider position
     this.sliderChecked = this.themeService.checkLocaleStorage();
@@ -75,9 +95,15 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.selectedLanguage = this.languageService.getFromLocalStorage();
 
     // Setting the component visibility
-    this.sideNavVisibleSubscription = this.sideNavService.sideNavOpen().subscribe((value) => {
-      this.sideNavVisible = value;
-    });
+    this.sideNavVisibleSubscription =
+
+      this.sideNavService
+        .sideNavOpen()
+        .subscribe((value) => {
+
+          this.sideNavVisible = value;
+
+        });
 
   }
 
@@ -130,7 +156,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
   /**
    * Change theme on icon button click
    */
-  onToggleTheme(): void {    
+  onToggleTheme(): void {
 
     this.themeService.toggleTheme();
 
@@ -213,16 +239,16 @@ export class SideNavComponent implements OnInit, OnDestroy {
   /**
    * on lick opens the dialog with the info slider
    */
-   onOpenInfoDialog() {
+  onOpenInfoDialog() {
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";   
+    dialogConfig.id = "modal-component";
 
     // Initializing dialog
     const modalDialog = this.matDialog
-      .open(InfoDialogComponent, dialogConfig);    
+      .open(InfoDialogComponent, dialogConfig);
 
   }
 
