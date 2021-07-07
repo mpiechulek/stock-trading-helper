@@ -61,10 +61,11 @@
     &__settings {
 
       display: flex;
-      width: 16rem;
+      width: 17rem;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 1rem;
 
       @include respond(sm) {
 
