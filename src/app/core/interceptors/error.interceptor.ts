@@ -3,10 +3,14 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../services/auth/authentication.service';
+import { SnackBarService } from '../services/snack-bar.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-    constructor(private authenticationService: AuthenticationService) { }
+    constructor(
+        private authenticationService: AuthenticationService,
+        private snackBarService: SnackBarService
+    ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -19,10 +23,12 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             }
 
-            const error = (err && err.error && err.error.message) || err.statusText;           
+            const error = (err && err.error && err.error.message) || err.statusText;
+
+            this.snackBarService.onDisplayError(error);
 
             return throwError(error);
-            
+
         }))
     }
 }
