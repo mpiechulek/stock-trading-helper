@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { UserLoginData } from 'src/app/data/models/auth.model';
 
 @Component({
@@ -9,7 +10,7 @@ export class LoginContainerComponent implements OnInit {
 
   private _loginFormDisabled: boolean = false;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -26,8 +27,17 @@ export class LoginContainerComponent implements OnInit {
 
     this._loginFormDisabled = true;
 
-    console.log(loginData);
+    this.loginUser(loginData);
 
+  }
+
+  /**
+   * 
+   * @param loginData 
+   */
+  loginUser(loginData: UserLoginData): void {
+
+    this.authenticationService.login(loginData.userName, loginData.password);
 
   }
 

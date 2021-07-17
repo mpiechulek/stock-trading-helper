@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
+import { Role } from './data/enums/role.enum';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { NotFoundPageComponent } from './layout/not-found-page/not-found-page.component';
@@ -22,8 +24,7 @@ const routes: Routes = [
 		component: MainLayoutComponent,
 		children: [
 			{
-				path: 'home',
-
+				path: 'home',	
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
 						m => m.HomeModule
@@ -39,7 +40,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'calculator',
-
+				canActivate: [AuthGuard],
+				data: { roles: Role.Trader },
 				loadChildren: () =>
 					import('./modules/calculator/calculator.module').then(
 						m => m.CalculatorModule
@@ -55,7 +57,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'statistics',
-
+				canActivate: [AuthGuard],
+				data: { roles: Role.Trader },
 				loadChildren: () =>
 					import('./modules/statistics/statistics.module').then(
 						m => m.StatisticsModule

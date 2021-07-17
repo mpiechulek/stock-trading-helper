@@ -65,7 +65,7 @@ export class AuthenticationService {
 
         this.userSubject.next(null);
 
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
 
     }
 
