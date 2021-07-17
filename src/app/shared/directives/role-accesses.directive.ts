@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { AuthenticationService } from './_services';
-import { User } from './_models/user';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
+import { User } from 'src/app/data/models/user.model';
 
 @Directive({
   selector: '[appRoleDirective]'
@@ -12,7 +12,7 @@ export class RoleAccessesDirective {
 
   private permissions = {
 
-    'Admin': [
+    'User': [
       {
         'module_name': 'home',
         'create_action': true,
@@ -21,7 +21,7 @@ export class RoleAccessesDirective {
         'edit_action': true
       }      
     ],
-    'User': [
+    'Trader': [
       {
         'module_name': 'home',
         'create_action': false,

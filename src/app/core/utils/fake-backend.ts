@@ -12,7 +12,7 @@ import {
 
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Role } from 'src/app/data/models/role.model';
+import { Role } from 'src/app/data/enums/role.enum';
 
 // array in local storage for users
 const usersKey = 'Users';
@@ -22,10 +22,26 @@ let users = JSON.parse(sessionStorage.getItem(usersKey)) || [];
 // add test user and save if users array is empty
 if (!users.length) {
 
-    users = [
-        { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'Admin', role: Role.Admin, refreshTokens: [] },
-        { id: 2, username: 'user', password: 'user', firstName: 'User', lastName: 'User', role: Role.User, refreshTokens: [] },
-        { id: 3, username: 'god', password: 'god', firstName: 'Mr.God', lastName: 'God', role: Role.God, refreshTokens: [] }
+     users = [
+
+        {
+            id: 1,
+            username: 'trader',
+            password: 'trader',
+            firstName: 'Trader',
+            lastName: 'Trader',
+            role: Role.Trader,
+            refreshTokens: []
+        },
+        {
+            id: 2,
+            username: 'user',
+            password: 'user',
+            firstName: 'User',
+            lastName: 'User',
+            role: Role.User,
+            refreshTokens: []
+        }
     ]
 
     sessionStorage.setItem(usersKey, JSON.stringify(users));
@@ -204,7 +220,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function isAdmin() {
 
             // return isLoggedIn() && currentUser().role.includes(Role.Admin);
-            return isLoggedIn() && currentUser().indexOf(Role.Admin) === -1;
+            return isLoggedIn() && currentUser().indexOf(Role.Trader) === -1;
 
         }
 

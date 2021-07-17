@@ -11,7 +11,6 @@ export interface StockTileModel {
     calcStepCount?: number;
     calcStepValue?: string;
 }
-
 export interface HeaderCalculationsModel {
     id?: string;
     amountOfShares: number;
