@@ -1,90 +1,125 @@
-<header class="header"> 
-                
+<header class="header">
 
-    <a class="header-main" 
-         routerLink="home"
-         routerLinkActive="router-link-active"        
-    >
+    <a class="header-main" routerLink="home" routerLinkActive="router-link-active">
+
         <svg class="icon icon--header-main header-icon-margin-right"></svg>
-        <h1 class="main-header-h1 main-header-h1--blue">Stock <span class="main-header-h1 main-header-h1--span">Helper</span></h1>
+
+        <h1 class="main-header-h1 main-header-h1--blue">
+
+            Stock
+
+            <span class="main-header-h1 main-header-h1--span">
+
+                Helper
+
+            </span>
+
+        </h1>
 
     </a>
 
     <nav class="nav-bar">
 
-        <!-- Home -->
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 
-        <ul class="nav-bar__list">
+        <mat-menu #menu="matMenu">
 
-            <li class="nav-list-item">
+            <ul class="nav-bar__list">
 
-                <a 
-                    class="nav-bar-link"                  
-                    routerLink="/main/home"
-                    routerLinkActive="router-link-active"
-                >
+                <!-- Home -->
 
-                    <svg class="icon icon--home"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarHome' | translate }}</p>
+                <li class="nav-list-item">
 
-                </a>
-            </li>
+                    <a class="nav-bar-link" routerLink="/main/home" routerLinkActive="router-link-active">
 
-            <!-- Trades -->
+                        <div class="nav-icon-wrapper">
 
-            <li class="nav-list-item">
-                <a 
-                    class="nav-bar-link"                 
-                    routerLink="/main/trade"
-                    routerLinkActive="router-link-active"
-                 >
-                    <svg class="icon icon--plan"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarTrade' | translate }}</p>
-                </a>
-            </li>
+                            <svg class="icon icon--home"></svg>
 
-            <!-- Calculator -->
+                        </div>
 
-            <li class="nav-list-item">
-                <a 
-                    class="nav-bar-link"                  
-                    routerLink="/main/calculator"
-                    routerLinkActive="router-link-active"
-                >
-                    <svg class="icon icon--calculator"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCalculator' | translate }}</p>
-                </a>
-            </li>
+                        <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarHome' | translate }}</p>
 
-            <!-- Currency -->
+                    </a>
 
-            <li class="nav-list-item">
-                <a 
-                    class="nav-bar-link"                 
-                    routerLink="/main/currency"
-                    routerLinkActive="router-link-active"
-                >
-                    <svg class="icon icon--money"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCurrency' | translate }}</p>
-                </a>
-            </li>
+                </li>
 
-            <!-- Statistics -->
+                <!-- Trades -->
 
-            <li class="nav-list-item">
-                <a 
-                    class="nav-bar-link"                  
-                    routerLink="/main/statistics"                  
-                    routerLinkActive="router-link-active"
-                >
-                    <svg class="icon icon--chart"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarStatistics' | translate }}</p>
-                </a>
-            </li>
+                <li class="nav-list-item">
 
-            <!-- Calendar -->
+                    <a class="nav-bar-link" routerLink="/main/trade" routerLinkActive="router-link-active">
 
-            <!-- <li class="nav-list-item">
+                        <div class="nav-icon-wrapper">
+
+                            <svg class="icon icon--plan"></svg>
+
+
+                        </div>
+
+                        <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarTrade' | translate }}</p>
+
+                    </a>
+
+                </li>
+
+                <!-- Calculator -->
+
+                <li class="nav-list-item">
+
+                    <a class="nav-bar-link" routerLink="/main/calculator" routerLinkActive="router-link-active">
+
+                        <div class="nav-icon-wrapper">
+
+                            <svg class="icon icon--calculator"></svg>
+
+                        </div>
+
+                        <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCalculator' | translate }}</p>
+
+                    </a>
+
+                </li>
+
+                <!-- Currency -->
+
+                <li class="nav-list-item">
+
+                    <a class="nav-bar-link" routerLink="/main/currency" routerLinkActive="router-link-active">
+
+                        <div class="nav-icon-wrapper">
+
+                            <svg class="icon icon--money"></svg>
+
+                        </div>
+
+                        <p class="nav-bar-text nav-bar-text-margin-left ">{{'home.navBarCurrency' | translate }}</p>
+
+                    </a>
+
+                </li>
+
+                <!-- Statistics -->
+
+                <li class="nav-list-item">
+
+                    <a class="nav-bar-link" routerLink="/main/statistics" routerLinkActive="router-link-active">
+
+                        <div class="nav-icon-wrapper">
+
+                            <svg class="icon icon--chart"></svg>
+
+                        </div>
+
+                        <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarStatistics' | translate }}</p>
+
+                    </a>
+
+                </li>
+
+                <!-- Calendar -->
+
+                <!-- <li class="nav-list-item">
                 <a 
                     class="nav-bar-link"                    
                     routerLink="/main/calendar"
@@ -95,16 +130,29 @@
                 </a>
             </li> -->
 
-        </ul>
 
-    </nav>      
+            </ul>
 
-        <button aria-label="menu" class="btn" (click)="onToggleSideNavBar()">
+        </mat-menu>
 
-            <svg class="icon icon--menu"></svg>
+        <div class="user-header-container">
+    
+            <p class="nav-bar-text ">Trader</p>
+    
+            <img class="user-avatar-img" src="./assets/icon/profile-user-dark.svg" alt="avatar">       
+    
+            <button mat-raised-button (click)="logout()">Logout</button>
+    
+        </div>
 
-            <svg class="icon icon--gear"></svg>
+    </nav>
 
-        </button>    
+    <button aria-label="menu" class="btn" (click)="onToggleSideNavBar()">
+
+        <svg class="icon icon--menu"></svg>
+
+        <svg class="icon icon--gear"></svg>
+
+    </button>
 
 </header>

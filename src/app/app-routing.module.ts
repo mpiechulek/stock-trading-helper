@@ -25,6 +25,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'home',	
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
 						m => m.HomeModule
@@ -32,7 +33,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'trade',
-
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/trade/trade.module').then(
 						m => m.TradeModule
@@ -49,7 +50,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'currency',
-
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/currency/currency.module').then(
 						m => m.CurrencyModule
@@ -66,6 +67,7 @@ const routes: Routes = [
 			},
 			// {
 			//   path: 'calendar',
+			//   canActivate: [AuthGuard],
 			//   loadChildren: () => 
 			//     import('./modules/calendar/calendar.module').then(
 			//       m => m.CalendarDateModule

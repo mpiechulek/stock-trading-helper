@@ -7,6 +7,7 @@ import { User } from 'src/app/data/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthenticationService {
 
     private userSubject: BehaviorSubject<User>;

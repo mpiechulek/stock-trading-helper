@@ -1,24 +1,19 @@
 .nav-bar {
 
+  width: 300px;
   display: flex;
-  flex-direction: row;
+  flex-direction: space-between;
   justify-content: flex-end;
   align-items: center;
 
   &__list {
-    width: 78rem;
+
     list-style: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-right: 1rem;
-
-    @include respond(ld) {
-
-      width: 68rem;
-
-    }
+    padding: 2rem;
 
     @include respond(md) {
 
@@ -28,10 +23,14 @@
 
     .nav-list-item {
 
+      margin: 1rem 0;
+
       .nav-bar-link {
+
+        width: 20rem;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         padding: 0.6rem 1.8rem;
         transition: all 0.3s ease;
@@ -53,6 +52,13 @@
           border-radius: 20rem;
           background-color: $color-gray-light;
         }
+
+        .nav-icon-wrapper {
+
+          width: 4rem;
+
+        }
+
       }
 
       .router-link-active {
@@ -70,3 +76,5 @@
     }
   }
 }
+
+

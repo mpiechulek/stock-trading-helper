@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100; 
+  z-index: 100;
 
   .header-main {
 
@@ -31,4 +31,22 @@
       }
     }
   }
+}
+
+.user-header-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+  align-items: center;
+
+  .user-avatar-img {
+      
+    width: 22px;
+    height: 22px;
+    margin: 0 10px;
+
+  }
+
 }

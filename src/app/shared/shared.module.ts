@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 import { NumberDigitDirective } from './directives/number-digit.directive';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
@@ -50,6 +51,7 @@ import { RoleAccessesDirective } from './directives/role-accesses.directive';
     MatDialogModule,
     MatStepperModule,
     MatButtonModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     HttpClientModule,
     TranslateModule.forChild({
