@@ -61,10 +61,11 @@
     &__settings {
 
       display: flex;
-      width: 16rem;
+      width: 17rem;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 1rem;
 
       @include respond(sm) {
 
@@ -83,6 +84,12 @@
       .theme-icon-margin-left {
 
         margin-left: 1.9rem;
+
+      }
+
+      .theme-icon-margin-right {
+
+        margin-right: 1.9rem;
 
       }
 
