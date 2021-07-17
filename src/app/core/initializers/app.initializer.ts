@@ -1,4 +1,4 @@
-import { AuthenticationService } from '@app/_services';
+import { AuthenticationService } from "../services/auth/authentication.service";
 
 export function appInitializer(authenticationService: AuthenticationService) {
 
@@ -12,4 +12,5 @@ export function appInitializer(authenticationService: AuthenticationService) {
             .add(resolve);
             
     });
+    
 }

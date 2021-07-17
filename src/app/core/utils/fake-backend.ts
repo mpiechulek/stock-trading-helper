@@ -12,7 +12,7 @@ import {
 
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Role } from '../_models/role';
+import { Role } from 'src/app/data/models/role.model';
 
 // array in local storage for users
 const usersKey = 'Users';
