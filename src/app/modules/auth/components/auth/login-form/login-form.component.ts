@@ -59,6 +59,8 @@ export class LoginFormComponent implements OnInit {
    */
   onSubmitLogin(): void {
 
+    if(!this.loginForm.valid) return;
+
     // sending the form data
     this.userLoginData.emit(this.loginForm.value);
 
