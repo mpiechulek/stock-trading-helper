@@ -52,7 +52,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
         .getStockBoardArray
 
         .subscribe((data) => {
-          
+
           // checking if there is some data to by deleted
           if (data.length === 0) {
 
