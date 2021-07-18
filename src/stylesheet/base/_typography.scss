@@ -27,7 +27,7 @@
   font-size: 12px;
   max-width: 7ch;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 
   @include respond(md) {
@@ -35,7 +35,13 @@
     max-width: 10ch;
 
   }
-  
+
+  @include respond(sm) {
+
+    display: none;
+
+  }
+
 }
 
 .sidenav-link {
@@ -67,9 +73,9 @@
 }
 
 .nav-bar-text {
-  
+
   color: $color-tundora;
-  
+
 }
 
 .sidenav-header {

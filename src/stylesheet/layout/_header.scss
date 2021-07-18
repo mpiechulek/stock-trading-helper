@@ -46,7 +46,7 @@
 
     flex-direction: row;
     align-items: center;
-
+    margin: 0 10px;
   }
 
   .user-header-wrapper {
@@ -59,7 +59,7 @@
     align-items: center;
 
     @include respond(md) {
-
+      width: auto;
       margin-bottom: 0px;
 
     }
