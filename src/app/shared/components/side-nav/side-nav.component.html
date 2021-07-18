@@ -100,7 +100,10 @@
                             mat-raised-button
                             color="warn"
                             [disabled]="disableTransactionsButton"
-                            (click)="onClearTransactions()"            
+                            (click)="onClearTransactions()"   
+                            appRoleDirective
+                            accessType="settings_delete_action"
+                            moduleType="settings"         
                         >
                     
                             {{'home.sideNavDeleteTransactionsButton' | translate }}
@@ -118,7 +121,10 @@
                             mat-raised-button
                             color="warn"
                             [disabled]="disableBoardButton"
-                            (click)="onClearTradeBoard()"            
+                            (click)="onClearTradeBoard()"     
+                            appRoleDirective
+                            accessType="settings_delete_action"
+                            moduleType="settings"           
                         >
                     
                             {{'home.sideNavDeleteBoardButton' | translate }}
