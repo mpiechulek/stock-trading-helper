@@ -1,15 +1,18 @@
 <section class="trade-board">
 
-    <button 
-        id="trade-board-add-button"
-        class="trade-board__button-postion" 
-        color="primary"
-        mat-raised-button (click)="onAddNewStock()"
-    >
+    <div class="trade-board__button-wrapper">
 
-        {{'trade.addButtonText' | translate}}
+        <button 
+            id="trade-board-add-button"          
+            color="primary"
+            mat-raised-button (click)="onAddNewStock()"
+        >
+    
+            {{'trade.addButtonText' | translate}}
+    
+        </button>
 
-    </button>
+    </div>
 
     <article class="trade-board__container">
 

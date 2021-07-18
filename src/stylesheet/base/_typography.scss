@@ -22,8 +22,20 @@
 }
 
 .user-nav-avatar-text {
+
   color: var(--color-text-nav);
   font-size: 12px;
+  max-width: 7ch;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+
+  @include respond(md) {
+
+    max-width: 10ch;
+
+  }
+  
 }
 
 .sidenav-link {
