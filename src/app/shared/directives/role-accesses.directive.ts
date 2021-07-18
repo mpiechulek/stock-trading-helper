@@ -1,7 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { User } from 'src/app/data/models/user.model';
-
 @Directive({
   selector: '[appRoleDirective]'
 })

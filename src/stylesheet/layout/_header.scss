@@ -34,17 +34,28 @@
 }
 
 .user-header-container {
-
+  
+  max-width: 11rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 10px;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin: 0 20px;
+
+  .user-header-wrapper {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    align-items: center;
+
+  }
 
   .user-avatar-img {
-      
-    width: 22px;
-    height: 22px;
+
+    width: 18px;
+    height: 18px;
     margin: 0 10px;
 
   }

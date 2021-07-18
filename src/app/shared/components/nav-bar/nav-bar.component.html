@@ -20,7 +20,7 @@
 
     <nav class="nav-bar">
 
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <button id="nav-menu-button" mat-raised-button color="primary" [matMenuTriggerFor]="menu">Menu</button>
 
         <mat-menu #menu="matMenu">
 
@@ -53,7 +53,6 @@
                         <div class="nav-icon-wrapper">
 
                             <svg class="icon icon--plan"></svg>
-
 
                         </div>
 
@@ -136,23 +135,27 @@
         </mat-menu>
 
         <div class="user-header-container">
-    
-            <p class="nav-bar-text ">Trader</p>
-    
-            <img class="user-avatar-img" src="./assets/icon/profile-user-dark.svg" alt="avatar">       
-    
-            <button mat-raised-button (click)="logout()">Logout</button>
-    
+
+            <div class="user-header-wrapper">
+
+                <p class="user-nav-avatar-text ">Trader</p>
+
+                <img class="user-avatar-img" src="./assets/icon/profile-user-dark.svg" alt="avatar">
+
+            </div>
+
+            <button id="nav-logout-button" mat-raised-button (click)="logout()">Logout</button>
+
         </div>
 
+        <button aria-label="menu" class="btn" (click)="onToggleSideNavBar()">
+    
+            <svg class="icon icon--menu"></svg>
+    
+            <svg class="icon icon--gear"></svg>
+    
+        </button>
+
     </nav>
-
-    <button aria-label="menu" class="btn" (click)="onToggleSideNavBar()">
-
-        <svg class="icon icon--menu"></svg>
-
-        <svg class="icon icon--gear"></svg>
-
-    </button>
 
 </header>
