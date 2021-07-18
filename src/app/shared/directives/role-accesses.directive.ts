@@ -17,8 +17,14 @@ export class RoleAccessesDirective {
         'create_action': false,
         'read_action': true,
         'delete_action': false,
-        'edit_action': false
-      }      
+        'edit_action': false.valueOf,
+        'navigate_home_action': true,
+        'navigate_trade_action': true,
+        'navigate_calculator_action': false,
+        'navigate_currency_action': true,
+        'navigate_statistics_action': false,
+        'navigate_calendar_action': false,
+      }
     ],
     'Trader': [
       {
@@ -26,8 +32,14 @@ export class RoleAccessesDirective {
         'create_action': true,
         'read_action': true,
         'delete_action': true,
-        'edit_action': true
-      }      
+        'edit_action': true,
+        'navigate_home_action': true,
+        'navigate_trade_action': true,
+        'navigate_calculator_action': true,
+        'navigate_currency_action': true,
+        'navigate_statistics_action': true,
+        'navigate_calendar_action': false,
+      }
     ]
 
   }
@@ -50,8 +62,8 @@ export class RoleAccessesDirective {
   checkAccess(): void {
 
     const userValue: User = this.authenticationService.userValue;
-    
-    const useRole: string = userValue.role;   
+
+    const useRole: string = userValue.role;
 
     const module: any = this.permissions[useRole].find(access => access.module_name === this.moduleType);
 
