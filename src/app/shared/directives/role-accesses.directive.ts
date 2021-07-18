@@ -14,10 +14,17 @@ export class RoleAccessesDirective {
     'User': [
       {
         'module_name': 'home',
+        'create_action': true,
+        'read_action': true,
+        'delete_action': true,
+        'edit_action': true   
+      },
+      {
+        'module_name': 'trade',
         'create_action': false,
         'read_action': true,
         'delete_action': false,
-        'edit_action': false.valueOf    
+        'edit_action': false   
       },
       {
         'module_name': 'navigation',        
@@ -35,7 +42,14 @@ export class RoleAccessesDirective {
         'create_action': true,
         'read_action': true,
         'delete_action': true,
-        'edit_action': true       
+        'edit_action': true   
+      },
+      {
+        'module_name': 'trade',
+        'create_action': true,
+        'read_action': true,
+        'delete_action': true,
+        'edit_action': true    
       },
       {
         'module_name': 'navigation',        

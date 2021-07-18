@@ -52,7 +52,7 @@
             [disabled]="saveButtonDisabled"
             appRoleDirective
             accessType="create_action"
-            moduleType="home"
+            moduleType="trade"
         >
         {{'trade.saveButtonText' | translate}}
         </button>
@@ -62,6 +62,9 @@
             color="primary"
             mat-raised-button
             (click)="onSellStock()"
+            appRoleDirective
+            accessType="navigate_statistics_action"
+            moduleType="trade"
         >
         {{'trade.sellButtonText' | translate}}
         </button>
