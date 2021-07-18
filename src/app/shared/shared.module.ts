@@ -22,18 +22,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 import { NumberDigitDirective } from './directives/number-digit.directive';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
-
-
+import { RoleAccessesDirective } from './directives/role-accesses.directive';
 @NgModule({
   declarations: [
     NavBarComponent,
     SideNavComponent,
     FooterComponent,
     NumberDigitDirective,
+    RoleAccessesDirective,
     GlobalDialogComponent,
     LoadingScreenComponent,
     InfoDialogComponent,
@@ -50,6 +51,7 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
     MatDialogModule,
     MatStepperModule,
     MatButtonModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     HttpClientModule,
     TranslateModule.forChild({
@@ -59,8 +61,7 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
         deps: [HttpClient]
       }
     })
-  ],
-  // entryComponents: [ComicSliderDialogComponent],
+  ], 
   exports: [
     NavBarComponent,
     SideNavComponent,
@@ -69,7 +70,8 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
     NumberDigitDirective,
     GlobalDialogComponent,
     LoadingScreenComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    RoleAccessesDirective
   ],
   providers: [TranslateService]
 })

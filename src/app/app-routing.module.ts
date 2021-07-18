@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
+import { Role } from './data/enums/role.enum';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { NotFoundPageComponent } from './layout/not-found-page/not-found-page.component';
@@ -22,8 +24,8 @@ const routes: Routes = [
 		component: MainLayoutComponent,
 		children: [
 			{
-				path: 'home',
-
+				path: 'home',	
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
 						m => m.HomeModule
@@ -31,7 +33,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'trade',
-
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/trade/trade.module').then(
 						m => m.TradeModule
@@ -39,7 +41,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'calculator',
-
+				canActivate: [AuthGuard],
+				data: { roles: Role.Trader },
 				loadChildren: () =>
 					import('./modules/calculator/calculator.module').then(
 						m => m.CalculatorModule
@@ -47,7 +50,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'currency',
-
+				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/currency/currency.module').then(
 						m => m.CurrencyModule
@@ -55,7 +58,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'statistics',
-
+				canActivate: [AuthGuard],
+				data: { roles: Role.Trader },
 				loadChildren: () =>
 					import('./modules/statistics/statistics.module').then(
 						m => m.StatisticsModule
@@ -63,6 +67,7 @@ const routes: Routes = [
 			},
 			// {
 			//   path: 'calendar',
+			//   canActivate: [AuthGuard],
 			//   loadChildren: () => 
 			//     import('./modules/calendar/calendar.module').then(
 			//       m => m.CalendarDateModule

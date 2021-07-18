@@ -1,19 +1,34 @@
 <section class="trade-board">
 
-    <button 
-        id="trade-board-add-button"
-        class="trade-board__button-postion" 
-        color="primary"
-        mat-raised-button (click)="onAddNewStock()"
-    >
+    <div class="trade-board__button-wrapper">
 
-        {{'trade.addButtonText' | translate}}
+        <button 
+            id="trade-board-add-button"          
+            color="primary"
+            mat-raised-button (click)="onAddNewStock()"
+            appRoleDirective
+            accessType="create_action"
+            moduleType="trade"
+        >
+    
+            {{'trade.addButtonText' | translate}}
+    
+        </button>
 
-    </button>
+    </div>
 
     <article class="trade-board__container">
 
-        <div class="pulsing-rings" *ngIf="stockBoardArray.length === 0" (click)="onAddNewStock()">
+        <div 
+
+            class="pulsing-rings"
+            *ngIf="stockBoardArray.length === 0"
+            (click)="onAddNewStock()"
+            appRoleDirective
+            accessType="create_action"
+            moduleType="trade"
+
+        >
         
             <div class="trade-board-info-sign-wrapper ">
     

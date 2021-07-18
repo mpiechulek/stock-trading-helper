@@ -48,10 +48,16 @@
         <button 
             class="trade-board__button-postion"            
             mat-raised-button
+            color="accent"
             (click)="onSavePickedOfferData()"
             [disabled]="saveButtonDisabled"
+            appRoleDirective
+            accessType="edit_action"
+            moduleType="trade"
         >
-        {{'trade.saveButtonText' | translate}}
+
+            {{'trade.saveButtonText' | translate}}
+
         </button>
 
         <button 
@@ -59,8 +65,13 @@
             color="primary"
             mat-raised-button
             (click)="onSellStock()"
+            appRoleDirective
+            accessType="create_action"
+            moduleType="trade"
         >
-        {{'trade.sellButtonText' | translate}}
+
+            {{'trade.sellButtonText' | translate}}
+        
         </button>
 
         <button 
@@ -68,8 +79,14 @@
             mat-raised-button
             (click)="onFindSelectedOffer()"
             [disabled]="!getOfferMarker && !getOfferId"
+            appRoleDirective
+            accessType="read_action"
+            moduleType="trade"
         >
+
             {{'trade.findButtonText' | translate}}
+
         </button>
+
     </div>
  

@@ -36,8 +36,8 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 
 //global font size change for material form fields
 .mat-form-field {
-  
- font-size: 14px;
+
+  font-size: 14px;
 
 }
 
@@ -50,14 +50,14 @@ mat-dialog-container#modal-component {
   position: relative;
   width: 50rem;
   height: auto;
-  background-color: var(--color-page-background); 
+  background-color: var(--color-page-background);
 
   @include respond(md) {
 
-    width: 60rem;  
+    width: 60rem;
 
-  } 
-  
+  }
+
 }
 
 mat-form-field#trade-dialog-form {
@@ -78,14 +78,52 @@ mat-label#trade-dialog-form {
   color: var(--color-text-form);
 }
 
-.mat-raised-button#trade-board-add-button {
+.mat-raised-button#trade-board-add-button,
+.mat-raised-button#trade-board-sell-button,
+.mat-raised-button#trade-board-save-button,
+.mat-raised-button#trade-board-find-button {
 
   @include respond(md) {
 
-    height: 28px;
+    height: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+  }
+
+}
+
+.mat-raised-button#trade-board-add-button,
+.mat-raised-button#nav-logout-button,
+.mat-raised-button#nav-menu-button {
+
+  width: 80px;
+
+}
+
+.mat-raised-button#nav-menu-button {
+
+  height: 45px;
+
+  @include respond(md) {
+
+   display: none;
+
+  }
+
+}
+
+.mat-raised-button#nav-logout-button {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+
+  @include respond(md) {
+
+    height: 26px;
 
   }
 
