@@ -206,6 +206,8 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
 
         let profitValue: number = 0;
         let lossValue: number = 0;
+        let percentageLoseValue: string;
+        let percentageProfitValue: string;
 
         tradeData.forEach((trade) => {
 
@@ -220,17 +222,31 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
             }
 
         });
+      
+
+        if(lossValue === 0) {
+            percentageLoseValue = '0';
+        } else {
+            percentageLoseValue = (((lossValue) * 100) / (profitValue + lossValue)).toFixed(2)
+        } 
+        
+        
+        if(profitValue === 0) {
+            percentageProfitValue = '0';
+        } else {
+            percentageProfitValue = (((profitValue) * 100) / (profitValue + lossValue)).toFixed(2)
+        }   
 
         let profitLossesData = [
 
             {
                 "name": "lose",
-                "percentage": (((lossValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "percentage": percentageLoseValue,
                 "value": lossValue.toFixed(2)
             },
             {
                 "name": "profit",
-                "percentage": (((profitValue) * 100) / (profitValue + lossValue)).toFixed(2),
+                "percentage": percentageProfitValue,
                 "value": profitValue.toFixed(2)
             }
 
