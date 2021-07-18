@@ -15,18 +15,18 @@ export class RoleAccessesDirective {
     'User': [
       {
         'module_name': 'home',
-        'create_action': true,
+        'create_action': false,
         'read_action': true,
         'delete_action': false,
-        'edit_action': true
+        'edit_action': false
       }      
     ],
     'Trader': [
       {
         'module_name': 'home',
-        'create_action': false,
+        'create_action': true,
         'read_action': true,
-        'delete_action': false,
+        'delete_action': true,
         'edit_action': true
       }      
     ]

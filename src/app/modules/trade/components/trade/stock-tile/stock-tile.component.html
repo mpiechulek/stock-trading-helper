@@ -50,6 +50,9 @@
             mat-raised-button
             (click)="onSavePickedOfferData()"
             [disabled]="saveButtonDisabled"
+            appRoleDirective
+            accessType="create_action"
+            moduleType="home"
         >
         {{'trade.saveButtonText' | translate}}
         </button>
