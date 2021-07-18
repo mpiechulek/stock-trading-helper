@@ -51,10 +51,12 @@
             (click)="onSavePickedOfferData()"
             [disabled]="saveButtonDisabled"
             appRoleDirective
-            accessType="create_action"
+            accessType="edit_action"
             moduleType="trade"
         >
-        {{'trade.saveButtonText' | translate}}
+
+            {{'trade.saveButtonText' | translate}}
+
         </button>
 
         <button 
@@ -63,10 +65,12 @@
             mat-raised-button
             (click)="onSellStock()"
             appRoleDirective
-            accessType="navigate_statistics_action"
+            accessType="create_action"
             moduleType="trade"
         >
-        {{'trade.sellButtonText' | translate}}
+
+            {{'trade.sellButtonText' | translate}}
+        
         </button>
 
         <button 
@@ -74,8 +78,14 @@
             mat-raised-button
             (click)="onFindSelectedOffer()"
             [disabled]="!getOfferMarker && !getOfferId"
+            appRoleDirective
+            accessType="read_action"
+            moduleType="trade"
         >
+
             {{'trade.findButtonText' | translate}}
+
         </button>
+
     </div>
  
