@@ -46,7 +46,12 @@
 
                 <!-- Trades -->
 
-                <li class="nav-list-item">
+                <li 
+                    class="nav-list-item" 
+                    appRoleDirective
+                    accessType="navigate_trade_action"
+                    moduleType="navigation"
+                >
 
                     <a class="nav-bar-link" routerLink="/main/trade" routerLinkActive="router-link-active">
 
@@ -64,7 +69,12 @@
 
                 <!-- Calculator -->
 
-                <li class="nav-list-item">
+                <li 
+                    class="nav-list-item" 
+                    appRoleDirective
+                    accessType="navigate_calculator_action"
+                    moduleType="navigation"
+                >
 
                     <a class="nav-bar-link" routerLink="/main/calculator" routerLinkActive="router-link-active">
 
@@ -82,7 +92,12 @@
 
                 <!-- Currency -->
 
-                <li class="nav-list-item">
+                <li 
+                    class="nav-list-item" 
+                    appRoleDirective
+                    accessType="navigate_currency_action"
+                    moduleType="navigation"
+                >
 
                     <a class="nav-bar-link" routerLink="/main/currency" routerLinkActive="router-link-active">
 
@@ -100,7 +115,12 @@
 
                 <!-- Statistics -->
 
-                <li class="nav-list-item">
+                <li 
+                    class="nav-list-item" 
+                    appRoleDirective
+                    accessType="navigate_statistics_action"
+                    moduleType="navigation"
+                >
 
                     <a class="nav-bar-link" routerLink="/main/statistics" routerLinkActive="router-link-active">
 
@@ -118,17 +138,26 @@
 
                 <!-- Calendar -->
 
-                <!-- <li class="nav-list-item">
-                <a 
-                    class="nav-bar-link"                    
-                    routerLink="/main/calendar"
-                    routerLinkActive="router-link-active"
+                <!--  
+                <li 
+                    class="nav-list-item" 
+                    appRoleDirective
+                    accessType="navigate_calendar_action"
+                    moduleType="home"
                 >
-                    <svg class="icon icon--calendar"></svg>
-                    <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarCalendar' | translate }}</p>
-                </a>
-            </li> -->
 
+                    <a 
+                        class="nav-bar-link"                    
+                        routerLink="/main/calendar"
+                        routerLinkActive="router-link-active"
+                    >
+
+                        <svg class="icon icon--calendar"></svg>
+                        <p class="nav-bar-text nav-bar-text-margin-left">{{'home.navBarCalendar' | translate }}</p>
+
+                </a>
+
+            </li> -->
 
             </ul>
 

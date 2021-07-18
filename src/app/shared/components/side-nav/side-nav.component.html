@@ -137,7 +137,14 @@
 
                 <!-- Home -->
 
-                <li class="sidenav-list-item" (click)="onToggleSideNav()" routerLinkActive="sidenav-list-item-border-bottom">
+                <li 
+                    class="sidenav-list-item"
+                    (click)="onToggleSideNav()"
+                    routerLinkActive="sidenav-list-item-border-bottom"
+                    appRoleDirective
+                    accessType="navigate_home_action"
+                    moduleType="navigation"
+                >
 
                     <a class="sidenav-link" routerLink="/main/home">
 
@@ -154,7 +161,14 @@
 
                 <!-- Trades -->
 
-                <li class="sidenav-list-item" (click)="onToggleSideNav()" routerLinkActive="sidenav-list-item-border-bottom">
+                <li 
+                    class="sidenav-list-item"
+                    (click)="onToggleSideNav()"
+                    routerLinkActive="sidenav-list-item-border-bottom"
+                    appRoleDirective
+                    accessType="navigate_trade_action"
+                    moduleType="navigation"
+                >
 
                     <a class="sidenav-link" routerLink ="/main/trade">
 
@@ -171,7 +185,14 @@
 
                 <!-- Calculator -->
 
-                <li class="sidenav-list-item" (click)="onToggleSideNav()" routerLinkActive="sidenav-list-item-border-bottom">
+                <li 
+                    class="sidenav-list-item"
+                    (click)="onToggleSideNav()"                    
+                    routerLinkActive="sidenav-list-item-border-bottom"
+                    appRoleDirective
+                    accessType="navigate_calculator_action"
+                    moduleType="navigation"
+                 >
 
                     <a class="sidenav-link" routerLink ="/main/calculator">
 
@@ -188,7 +209,14 @@
 
                 <!-- Currency -->
 
-                <li class="sidenav-list-item" (click)="onToggleSideNav()" routerLinkActive="sidenav-list-item-border-bottom">
+                <li 
+                    class="sidenav-list-item"
+                    (click)="onToggleSideNav()"
+                    routerLinkActive="sidenav-list-item-border-bottom"
+                    appRoleDirective
+                    accessType="navigate_currency_action"
+                    moduleType="navigation"
+                >
 
                     <a class="sidenav-link" routerLink ="/main/currency">
 
@@ -205,7 +233,14 @@
 
                 <!-- Statistics -->
 
-                <li class="sidenav-list-item" (click)="onToggleSideNav()" routerLinkActive="sidenav-list-item-border-bottom">
+                <li 
+                    class="sidenav-list-item"
+                    (click)="onToggleSideNav()"
+                    routerLinkActive="sidenav-list-item-border-bottom"
+                    appRoleDirective
+                    accessType="navigate_statistics_action"
+                    moduleType="navigation"
+                >
 
                     <a class="sidenav-link" routerLink="/main/statistics">
 

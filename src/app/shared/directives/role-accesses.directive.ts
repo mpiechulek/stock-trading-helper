@@ -9,7 +9,7 @@ export class RoleAccessesDirective {
   @Input() private accessType: string;
   @Input() private moduleType: string;
 
-  private permissions = {
+  private permissions = {  
 
     'User': [
       {
@@ -17,7 +17,10 @@ export class RoleAccessesDirective {
         'create_action': false,
         'read_action': true,
         'delete_action': false,
-        'edit_action': false.valueOf,
+        'edit_action': false.valueOf    
+      },
+      {
+        'module_name': 'navigation',        
         'navigate_home_action': true,
         'navigate_trade_action': true,
         'navigate_calculator_action': false,
@@ -32,7 +35,10 @@ export class RoleAccessesDirective {
         'create_action': true,
         'read_action': true,
         'delete_action': true,
-        'edit_action': true,
+        'edit_action': true       
+      },
+      {
+        'module_name': 'navigation',        
         'navigate_home_action': true,
         'navigate_trade_action': true,
         'navigate_calculator_action': true,
