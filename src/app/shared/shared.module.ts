@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu'; 
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 
 import { NumberDigitDirective } from './directives/number-digit.directive';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
@@ -45,6 +46,7 @@ import { RoleAccessesDirective } from './directives/role-accesses.directive';
     MatExpansionModule,
     RouterModule,
     MatSelectModule,
+    MatTooltipModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

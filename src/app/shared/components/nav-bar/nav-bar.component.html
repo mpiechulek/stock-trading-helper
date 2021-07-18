@@ -167,9 +167,21 @@
 
             <div class="user-header-wrapper">
 
-                <p class="user-nav-avatar-text ">Trader</p>
+                <p 
+                    class="user-nav-avatar-text "                  
+                    matTooltip="{{getUser.firstName}}"                    
+                >
 
-                <img class="user-avatar-img" src="./assets/icon/profile-user-dark.svg" alt="avatar">
+                    {{getUser.firstName}}
+                    
+                </p>
+
+                <img 
+                    class="user-avatar-img"
+                    matTooltip="{{getUser.firstName}}"
+                    src="./assets/icon/profile-user-dark.svg"
+                    alt="avatar"
+                >
 
             </div>
 
