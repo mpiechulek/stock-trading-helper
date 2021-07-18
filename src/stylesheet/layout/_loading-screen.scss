@@ -3,10 +3,17 @@
     z-index: 9999;
     width: 100%;
     height: 100%;
-    background-color:  rgba(0, 0, 0, 0.2);
+    background-color: var(--color-page-background);
+    background-image: linear-gradient(to bottom right, var(--color-page-background), $color-gray);
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    .loading-header-margin-bottom {
+
+        margin-bottom: 4rem;
+
+    }
 }
