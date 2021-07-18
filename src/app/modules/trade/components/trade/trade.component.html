@@ -19,7 +19,16 @@
 
     <article class="trade-board__container">
 
-        <div class="pulsing-rings" *ngIf="stockBoardArray.length === 0" (click)="onAddNewStock()">
+        <div 
+
+            class="pulsing-rings"
+            *ngIf="stockBoardArray.length === 0"
+            (click)="onAddNewStock()"
+            appRoleDirective
+            accessType="create_action"
+            moduleType="trade"
+
+        >
         
             <div class="trade-board-info-sign-wrapper ">
     
