@@ -38,7 +38,7 @@ export class CalcDeviceComponent implements OnInit {
 	@Input()
 	readonly chosenResult$: Observable<string>;
 
-	@Output() 
+	@Output()
 	resultArrayEmitter: EventEmitter<any> = new EventEmitter<any>();
 
 	constructor() { }
@@ -66,6 +66,7 @@ export class CalcDeviceComponent implements OnInit {
 			this.chosenResultFromBoardSubscription.unsubscribe();
 
 		}
+
 	}
 
 	// ===========================================================================
@@ -120,7 +121,7 @@ export class CalcDeviceComponent implements OnInit {
 	 */
 	isStringLengthApproval(value: string): boolean {
 
-		return this.enteredNumber.length < 13;
+		return value.length < 13;
 
 	}
 
@@ -155,7 +156,7 @@ export class CalcDeviceComponent implements OnInit {
 	}
 
 	/**
-	 * Appending the string with numbers only if it contains max 1 dot symbol
+	 * Checking if the enetered value is a dot and the entered number value is a dot
 	 * @param value 
 	 * @returns 
 	 */
@@ -482,7 +483,7 @@ export class CalcDeviceComponent implements OnInit {
 	 * @param value 
 	 * @returns 
 	 */
-	removeStringsLastCharacter(value: string) {
+	removeStringsLastCharacter(value: string): string {
 
 		return value.slice(0, -1);
 
