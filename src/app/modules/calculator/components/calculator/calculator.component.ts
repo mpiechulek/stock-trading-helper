@@ -8,6 +8,8 @@ import { AdvanceCalculatorFormStringDataModel, AdvanceCalculatorResultDataModel 
 })
 export class CalculatorComponent implements OnInit {
 
+  public chosenResult$: Observable<string>;
+
   @Input()
   readonly calculationResults: AdvanceCalculatorResultDataModel;
 
@@ -18,7 +20,11 @@ export class CalculatorComponent implements OnInit {
   readonly formExpand: number;
 
   @Input()
-  readonly chosenResult$: Observable<string>;
+  set setChosenResult$(data) {
+
+      this.chosenResult$ = data;
+
+  }
 
   @Output()
   outputFormData: EventEmitter<AdvanceCalculatorFormStringDataModel> =
@@ -47,6 +53,15 @@ export class CalculatorComponent implements OnInit {
   get getFormExpand(): number {
 
     return this.formExpand;
+
+  }  
+
+  /**
+   * 
+   */
+   get getChosenResult(): Observable<string> {
+
+    return this.chosenResult$;
 
   }
 

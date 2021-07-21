@@ -38,7 +38,8 @@ export class CalcDeviceComponent implements OnInit {
 	@Input()
 	readonly chosenResult$: Observable<string>;
 
-	@Output() resultArrayEmitter: EventEmitter<any> = new EventEmitter<any>();
+	@Output() 
+	resultArrayEmitter: EventEmitter<any> = new EventEmitter<any>();
 
 	constructor() { }
 
@@ -48,7 +49,7 @@ export class CalcDeviceComponent implements OnInit {
 
 			this.chosenResult$
 
-				.subscribe(result => {								
+				.subscribe(result => {
 
 					this.result = result;
 
@@ -209,7 +210,7 @@ export class CalcDeviceComponent implements OnInit {
 			this.enteredNumber === '0') {
 
 			this.chosenOperator = operator;
-			this.createEquationForDisplay(operator);				
+			this.createEquationForDisplay(operator);
 
 			return;
 		}
@@ -220,7 +221,7 @@ export class CalcDeviceComponent implements OnInit {
 			this.numberWasEntered = false;
 			this.enteredNumber = '0';
 			this.chosenOperator = operator;
-			this.createEquationForDisplay(operator);		
+			this.createEquationForDisplay(operator);
 
 			return;
 		}
@@ -231,18 +232,18 @@ export class CalcDeviceComponent implements OnInit {
 			//calculating the previous entries
 			this.createEquationForDisplay(this.chosenOperator);
 			this.result = this.chooseOperation(this.chosenOperator);
-			this.displayResult = this.prepareResultToDisplay(this.result);	
+			this.displayResult = this.prepareResultToDisplay(this.result);
 
 			if (!this.orderOfEquation()) {
 
 				this.saveResultToArray();
-	
-			}	
+
+			}
 
 			// displaying the new operator and result
 			this.enteredNumber = '0';
-			this.numberWasEntered = false;			
-			this.chosenOperator = operator;	
+			this.numberWasEntered = false;
+			this.chosenOperator = operator;
 
 			return;
 		}

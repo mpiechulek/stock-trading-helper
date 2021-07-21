@@ -1,7 +1,7 @@
 <app-calculator-ui
     [calculationResults]="getCalculationResults"
     [arrayOfResults]="getArrayOfResults"
-    [chosenResult$] = "getChosenResult$"
+    [setChosenResult$] = "getChosenResult$"
     [formExpand]="getFormExpand"
 
     (outputFormData)="calculate($event)"
