@@ -86,7 +86,10 @@ mat-label#trade-dialog-form {
   @include respond(md) {
 
     height: 26px;
-    padding:0;   
+    padding: 0;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 
   }
 
