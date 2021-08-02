@@ -33,7 +33,7 @@
 
         <app-calc-device 
             class="calculator-component-container"
-            [chosenResult$]="chosenResult$"
+            [chosenResult$]="getChosenResult"
             (resultArrayEmitter)="onSaveResultToArray($event)"
         >
         </app-calc-device>

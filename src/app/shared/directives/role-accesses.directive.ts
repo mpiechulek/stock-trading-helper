@@ -34,6 +34,10 @@ export class RoleAccessesDirective {
         'navigate_currency_action': true,
         'navigate_statistics_action': false,
         'navigate_calendar_action': false,
+      },
+      {
+        'module_name': 'settings',        
+        'settings_delete_action': false        
       }
     ],
     'Trader': [
@@ -59,6 +63,10 @@ export class RoleAccessesDirective {
         'navigate_currency_action': true,
         'navigate_statistics_action': true,
         'navigate_calendar_action': false,
+      },
+      {
+        'module_name': 'settings',        
+        'settings_delete_action': true        
       }
     ]
 

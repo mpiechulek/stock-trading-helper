@@ -30,6 +30,15 @@ export class NavBarComponent implements OnInit {
   /**
    * 
    */
+  get getUser(): User {
+
+    return this.user;
+
+  }
+
+  /**
+   * 
+   */
   onToggleSideNavBar(): void {
 
     this.sideNavService.toggleSideNav();

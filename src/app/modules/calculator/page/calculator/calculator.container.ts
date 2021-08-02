@@ -81,6 +81,7 @@ export class CalculatorContainerComponent implements OnInit {
 	 * @param calcData 
 	 */
 	toggleAccordionFormExpand() {
+
 		if(this.formExpand === 0) {
 
 			this.formExpand = 1;
@@ -88,6 +89,7 @@ export class CalculatorContainerComponent implements OnInit {
 		} else {
 
 			this.formExpand = 0;
+
 		}
 
 	}
@@ -208,7 +210,7 @@ export class CalculatorContainerComponent implements OnInit {
 	}
 
 	/**
-	 * 
+	 * Choosing a result from the result board
 	 * @param result 
 	 */
 	onChoseResult(result: string): void {
