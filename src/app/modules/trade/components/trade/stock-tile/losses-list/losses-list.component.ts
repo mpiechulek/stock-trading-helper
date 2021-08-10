@@ -24,13 +24,13 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
 export class LossesListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public tradeTileOffers = TradeTileOffersState;
-    
+
     //==========================================================================
-    
+
     private loseOfferIdSubscription: Subscription;
-    
+
     //==========================================================================
-    
+
     @Input() loseQuotes: StockOfferDictionaryModel;
     @Input() loseOfferId: Observable<string>;
     @Input() loseOfferIdInit: string;
@@ -59,7 +59,7 @@ export class LossesListComponent implements OnInit, OnDestroy, AfterViewInit {
 
             if (id !== null) {
 
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id), 'smooth');                
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(id), 'smooth');
 
             }
 
@@ -71,9 +71,9 @@ export class LossesListComponent implements OnInit, OnDestroy, AfterViewInit {
 
         setTimeout(() => {
 
-            if(this.loseOfferIdInit !== null) {
+            if (this.loseOfferIdInit !== null) {
 
-                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.loseOfferIdInit),'smooth');
+                this.cdkVirtualScrollViewport.scrollToIndex(parseInt(this.loseOfferIdInit), 'smooth');
 
             }
 

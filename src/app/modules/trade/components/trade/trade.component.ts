@@ -69,4 +69,14 @@ export class TradeComponent implements OnInit {
   onSellStock(stockSellData: StockSellModel): void {
     this.sellStock.emit(stockSellData);
   }
+
+  /**
+   * 
+   * @param index 
+   * @param item 
+   * @returns 
+   */
+  identify(index: number, item: StockTileModel): string {       
+    return item.id;
+  }
 }
