@@ -82,17 +82,22 @@ mat-label#trade-dialog-form {
 .mat-raised-button#trade-board-sell-button,
 .mat-raised-button#trade-board-save-button,
 .mat-raised-button#trade-board-find-button {
+  
+  position: relative;
 
   @include respond(md) {
-
     height: 26px;
     padding: 0;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-
   }
 
+}
+
+.mat-raised-button#trade-board-add-button .mat-button-wrapper,
+.mat-raised-button#nav-logout-button .mat-button-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .mat-raised-button#trade-board-add-button,
