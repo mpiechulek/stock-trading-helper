@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { UserLoginData } from 'src/app/data/models/auth.model';
 @Component({
   selector: 'app-login-form',
@@ -10,15 +12,18 @@ export class LoginFormComponent implements OnInit {
 
   public hide: boolean = true;
   public loginForm: FormGroup;
+  private _loginFormDisabled: boolean;
+
+  private inputDisabled = new BehaviorSubject<boolean>(false);
+  private inputDisabled$: Observable<boolean> = this.inputDisabled.asObservable();
 
   @Output()
   userLoginData: EventEmitter<UserLoginData> = new EventEmitter<UserLoginData>();
 
-  private _loginFormDisabled: boolean;
-
   @Input('loginFormDisabled')
   set loginFormDisabled(value: boolean) {
     this._loginFormDisabled = value;
+    this.inputDisabled.next(value);
   }
 
   get loginFormDisabled(): boolean {
@@ -33,6 +38,14 @@ export class LoginFormComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.inputDisabled$.subscribe(value => {
+
+      if (!value) this.loginForm.enable();
+
+      if (value) this.loginForm.disable();
+
+    })
 
   }
 
@@ -59,7 +72,7 @@ export class LoginFormComponent implements OnInit {
    */
   onSubmitLogin(): void {
 
-    if(!this.loginForm.valid) return;
+    if (!this.loginForm.valid) return;
 
     // sending the form data
     this.userLoginData.emit(this.loginForm.value);
@@ -68,6 +81,7 @@ export class LoginFormComponent implements OnInit {
     this.loginFormDisabled = true;
 
     this.loginForm.reset();
+
     this.loginForm.disable();
 
   }
