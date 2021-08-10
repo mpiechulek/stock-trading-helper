@@ -121,14 +121,8 @@
 // calculator
 .currency-calc-text {
   color: var(--color-text-prime);
-  // font-family: monospace;
 
-
-  @include respond(sm) {
-
-    font-size: 14px;
-
-  }
+  font-size: 14px;
 
   &--bold {
     font-weight: 500;
