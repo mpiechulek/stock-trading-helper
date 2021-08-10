@@ -24,7 +24,10 @@ const routes: Routes = [
 		component: MainLayoutComponent,
 		children: [
 			{
-				path: 'home',	
+				path: 'home',
+				data: {
+					title: 'Home | Stock Helper'
+				},
 				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/home/home.module').then(
@@ -33,6 +36,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'trade',
+				data: {
+					title: 'Trade | Stock Helper '
+				},
 				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/trade/trade.module').then(
@@ -42,7 +48,10 @@ const routes: Routes = [
 			{
 				path: 'calculator',
 				canActivate: [AuthGuard],
-				data: { roles: Role.Trader },
+				data: {
+					roles: Role.Trader,
+					title: 'Calculator | Stock Helper'
+				},
 				loadChildren: () =>
 					import('./modules/calculator/calculator.module').then(
 						m => m.CalculatorModule
@@ -50,6 +59,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'currency',
+				data: {
+					title: 'Currency | Stock Helper'
+				},
 				canActivate: [AuthGuard],
 				loadChildren: () =>
 					import('./modules/currency/currency.module').then(
@@ -59,7 +71,10 @@ const routes: Routes = [
 			{
 				path: 'statistics',
 				canActivate: [AuthGuard],
-				data: { roles: Role.Trader },
+				data: { 
+					roles: Role.Trader,
+					title: 'Statistics | Stock Helper '
+				 },
 				loadChildren: () =>
 					import('./modules/statistics/statistics.module').then(
 						m => m.StatisticsModule
@@ -73,11 +88,11 @@ const routes: Routes = [
 			//       m => m.CalendarDateModule
 			//     )
 			// },
-			
+
 		]
 	},
 	{
-		path: '404', 
+		path: '404',
 		component: NotFoundPageComponent,
 		loadChildren: () =>
 			import('./modules/not-found-404/not-found-404.module').then(m => m.NotFound404Module)
