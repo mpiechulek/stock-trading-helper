@@ -29,7 +29,7 @@
 
     @include respond(sm) {
       width: 3rem;
-      height: 3.3rem;
+      height: 3.5rem;
     }
   }
 
@@ -96,6 +96,11 @@
     background-image: url('./../../assets/icon/Icon awesome-pencil-alt.svg');
     width: 2rem;
     height: 2rem;
+    
+    @include respond(sm) {
+      width: 2.7rem;
+      height: 2.7rem;     
+    }
 
   }
 

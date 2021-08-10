@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 9999;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: var(--color-page-background);
     background-image: linear-gradient(to bottom right, var(--color-page-background), $color-gray);
 
