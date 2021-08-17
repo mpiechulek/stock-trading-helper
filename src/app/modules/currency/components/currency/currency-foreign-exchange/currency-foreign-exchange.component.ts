@@ -18,6 +18,6 @@ export class CurrencyForeignExchangeComponent implements OnInit {
   ngOnInit(): void {
 
     this.currenciesList = this.currencyFromService.currencyListArr;
-  }
+  } 
 
 }
