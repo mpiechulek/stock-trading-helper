@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 /* Overwriting angular material color themes */
 @include mat-core();
@@ -8,18 +8,14 @@ $candy-app-warm: mat-palette($mat-red);
 $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 @include angular-material-theme($candy-app-theme);
 
-
 /*  Styling mat select in language choice */
 .language-wrapper mat-form-field {
   margin-left: 1rem;
   width: 5rem;
 
   @include respond(sm) {
-
     width: 6rem;
-
   }
-
 }
 
 .language-wrapper .mat-select-value {
@@ -36,9 +32,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 
 //global font size change for material form fields
 .mat-form-field {
-
   font-size: 14px;
-
 }
 
 /* Trade component material elements */
@@ -46,18 +40,14 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 /* Overwrite the styles of the mat-dialog-container element globally, but only for those
 that have an id of `modal-component` */
 mat-dialog-container#modal-component {
-
   position: relative;
   width: 50rem;
   height: auto;
   background-color: var(--color-page-background);
 
   @include respond(md) {
-
     width: 60rem;
-
   }
-
 }
 
 mat-form-field#trade-dialog-form {
@@ -82,14 +72,15 @@ mat-label#trade-dialog-form {
 .mat-raised-button#trade-board-sell-button,
 .mat-raised-button#trade-board-save-button,
 .mat-raised-button#trade-board-find-button {
-  
   position: relative;
-
+  height: 36px;
+  
   @include respond(md) {
+
     height: 26px;
     padding: 0;
-  }
 
+  }
 }
 
 .mat-raised-button#trade-board-add-button .mat-button-wrapper,
@@ -103,39 +94,29 @@ mat-label#trade-dialog-form {
 .mat-raised-button#trade-board-add-button,
 .mat-raised-button#nav-logout-button,
 .mat-raised-button#nav-menu-button {
-
   width: 80px;
-
 }
 
 .mat-raised-button#nav-menu-button {
-
   height: 45px;
 
   @include respond(md) {
-
     display: none;
-
   }
-
 }
 
 .mat-raised-button#nav-logout-button {
-
   display: flex;
   justify-content: center;
   align-items: center;
   height: 22px;
 
   @include respond(md) {
-
     height: 26px;
-
   }
-
 }
 
-// Calculator form 
+// Calculator form
 
 mat-form-field#stock-advanced-calculator-form-field {
   color: var(--color-text-form);
@@ -145,39 +126,28 @@ mat-form-field#stock-advanced-calculator-form-field {
   @include respond(sm) {
     margin-bottom: 0;
     width: 14rem;
-
   }
 
   @include respond(xs) {
-
     width: 100%;
-
   }
-
 }
 
 // Statistics-Module
 
 .statistics .mat-tab-body-wrapper {
-
   height: 100%;
-
 }
 
 .mat-tab-label-content {
-
   color: var(--color-text-form);
-
 }
 
 mat-tab-group#statistics {
-
   height: 100%;
-
 }
 
 mat-table#statistics-table {
-
   width: 99%;
   // overflow: auto;
   max-height: 100%;
@@ -209,7 +179,6 @@ mat-table#statistics-table {
   td.mat-footer-cell {
     border-bottom-color: var(--color-text-form);
   }
-
 }
 
 .mat-paginator,
@@ -249,11 +218,8 @@ mat-form-field#currency-select {
   color: var(--color-text-form);
 
   @include respond(md) {
-
     width: 15rem;
-
   }
-
 }
 
 mat-form-field#currency-input {
@@ -262,9 +228,7 @@ mat-form-field#currency-input {
   color: var(--color-text-form);
 
   @include respond(md) {
-
     width: 15rem;
-
   }
 }
 
@@ -281,7 +245,7 @@ mat-label#currency-label {
 }
 
 // ======================================================================
-// Snack bar 
+// Snack bar
 
 .mat-snack-bar-container.snack-bar-error {
   background-color: $color-monza;
@@ -299,7 +263,7 @@ mat-label#currency-label {
 }
 
 // =============================================================================
-// auth section 
+// auth section
 
 mat-form-field#login-mat-form-field-user,
 mat-form-field#login-mat-form-field-password,
@@ -307,22 +271,16 @@ mat-label#login-mat-form-field-user-label,
 mat-label#login-mat-form-field-password-label,
 mat-label#login-mat-form-field-user-input,
 mat-label#login-mat-form-field-password-input {
-
   color: black;
-
 }
 
 mat-form-field#login-mat-form-field-user,
 mat-form-field#login-mat-form-field-password {
-
   width: 250px;
-
 }
 
 .login-container .mat-form-field-appearance-legacy .mat-form-field-underline {
-
   background-color: black;
-
 }
 
 // Material button rased accent color change
