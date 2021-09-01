@@ -42,10 +42,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                     }
 
-                    const error = (err && err.error && err.error.message) || err.statusText;
-
-                    console.log( this.currentUrl.includes('/auth/login'));
-                    console.log( this.currentUrl);                    
+                    const error = (err && err.error && err.error.message) || err.statusText;                                     
 
                     // preventing to pop unauthorized snackbar in /auth/login
                     if (err.error.message === 'Unauthorized' && this.currentUrl.includes('/auth/login')) return throwError(error);
