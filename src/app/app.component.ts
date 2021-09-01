@@ -26,7 +26,7 @@ export class AppComponent implements OnDestroy {
         private activatedRoute: ActivatedRoute,  
         private router: Router,
         private titleService: Title
-    ) {
+    ) {        
 
         // loading spinner when changing roots
         this.routerSubscription = router.events.subscribe((routerEvent) => {
