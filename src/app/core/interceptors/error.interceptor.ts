@@ -4,21 +4,29 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { AuthenticationService } from '../services/auth/authentication.service';
 import { SnackBarService } from '../services/snack-bar.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
     private currentUrl: string;
 
+    private listOfRoutes: string[] = [      
+        '/main/home',
+        '/main/calculator',
+        '/main/trade',
+        '/main/statistics',
+        '/main/currency',       
+    ]
+
     constructor(
         private authenticationService: AuthenticationService,
         private snackBarService: SnackBarService,
-        public location: Location 
-    )  {    
+        public location: Location
+    ) {
 
-        this.currentUrl = this.location.path();       
-      
-    }  
+        this.currentUrl = this.location.path();
+
+    }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -34,17 +42,25 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                     }
 
-                    const error = (err && err.error && err.error.message) || err.statusText;                 
+                    const error = (err && err.error && err.error.message) || err.statusText;
 
-                    if (err.error.message === 'Unauthorized' && this.currentUrl === '/auth/login') return throwError(error);
+                    console.log( this.currentUrl.includes('/auth/login'));
+                    console.log( this.currentUrl);                    
 
-                    if (err.error.message === 'Unauthorized' && this.currentUrl === '/404') return throwError(error);
+                    // preventing to pop unauthorized snackbar in /auth/login
+                    if (err.error.message === 'Unauthorized' && this.currentUrl.includes('/auth/login')) return throwError(error);
+
+                    // preventing to pop unauthorized snackbar in /404 or other not existing root
+                    if (err.error.message === 'Unauthorized' && !(this.listOfRoutes.indexOf(this.currentUrl) > -1)) return throwError(error);
 
                     this.snackBarService.onDisplayError(error);
 
                     return throwError(error);
 
                 })
+
             );
+
     }
+
 }
