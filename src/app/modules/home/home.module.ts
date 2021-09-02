@@ -10,6 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DateTimeComponent } from './components/home/date-time/date-time.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DateTimeComponent } from './components/home/date-time/date-time.compone
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
     HomeRoutingModule,
     HttpClientModule,
     TranslateModule.forChild({

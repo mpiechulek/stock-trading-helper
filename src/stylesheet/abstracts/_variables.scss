@@ -1,7 +1,9 @@
 //fonts 
 @font-face {
-  font-family: 'RobotoMedium';
-  src: local('Roboto-Medium.ttf') format('truetype');
+    
+  font-family: 'RobotoMedium'; 
+  src: url('./../../assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+
 }
 
 // Colors

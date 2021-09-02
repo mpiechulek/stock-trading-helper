@@ -1,0 +1,41 @@
+[
+    {
+        "companyName": "Tesla",
+        "amountOfShares": 10,
+        "buyPrice": "682.23",
+        "taxRate": "19.0000",
+        "commission": "0.3",
+        "minCommission": "5.0000",
+        "calcStepCount": "200",
+        "calcStepValue": "0.5",
+        "id": "01c94ad7-a41c-470e-8190-26f109d7ebbf",
+        "markerOfferType": "profit",
+        "markerOfferValue": "19"
+    },
+    {
+        "companyName": "ABC",
+        "amountOfShares": 1000,
+        "buyPrice": "2.56",
+        "taxRate": "19.0000",
+        "commission": "0.3",
+        "minCommission": "5.0000",
+        "calcStepCount": "200",
+        "calcStepValue": "0.5",
+        "id": "abc9a503-5739-46f0-a63a-5e09e1feab10",
+        "markerOfferType": "lose",
+        "markerOfferValue": "5"
+    },
+    {
+        "companyName": "McPotato",
+        "amountOfShares": 1000,
+        "buyPrice": "15.68",
+        "taxRate": "19.0000",
+        "commission": "0.3",
+        "minCommission": "5.0000",
+        "calcStepCount": "200",
+        "calcStepValue": "0.5",
+        "id": "c25a38c9-99ee-424e-a258-11e0fc9c0976",
+        "markerOfferType": "profit",
+        "markerOfferValue": "80"
+    }
+]

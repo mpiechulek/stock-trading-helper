@@ -412,7 +412,8 @@ export class StatisticsContainerComponent implements OnInit, OnDestroy {
     
         dialogConfig.data = {
           header: 'home.sideNavDeleteTransactionsButton',
-          description: 'home.sideNavDeleteTransactionsDialogText'
+          description: 'home.sideNavDeleteTransactionsDialogText',
+          buttonColor: 'warn'
         }
     
         // Initializing dialog

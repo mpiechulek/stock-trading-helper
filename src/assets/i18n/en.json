@@ -31,7 +31,13 @@
         "dayThursday": "Thursday",
         "dayFriday": "Friday",
         "daySaturday": "Saturday",
-        "daySunday": "Sunday"
+        "daySunday": "Sunday",
+
+        "dialogDummyDataHeader": "Welcome to Stock Helper",
+        "dialogDummyDataText": "Your trading board and statistics sections are empty. Do you want to insert some dummy data, to better review the app? This window only appearers once.",
+        "dialogCheckboxInfo": "Don not show this message again",
+        "dialogConfirmButtonText": "Yes",
+        "dialogDeclineButtonText": "No"
     },
     "trade": {    
         

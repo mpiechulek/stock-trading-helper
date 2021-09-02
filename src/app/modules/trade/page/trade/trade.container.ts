@@ -11,269 +11,271 @@ import { GlobalDialogComponent } from '../../../../shared/components/global-dial
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 @Component({
 
-  selector: 'app-trade',
-  templateUrl: './trade.container.html'
+    selector: 'app-trade',
+    templateUrl: './trade.container.html'
 
 })
 
 export class TradeContainerComponent implements OnInit {
 
-  // form state edit or add
-  private formState = FormState;
+    // form state edit or add
+    private formState = FormState;
 
-  // Last entered form data 
-  private previousFormDataSubscription: Subscription;
-  private previousFormData: TradeFormData;
+    // Last entered form data 
+    private previousFormDataSubscription: Subscription;
+    private previousFormData: TradeFormData;
 
-  //The array of all stock tiles to render on the trade board
-  private stockBoardDataSubscription: Subscription;
-  private stockBoardArray: StockTileModel[] | [] = [];
+    //The array of all stock tiles to render on the trade board
+    private stockBoardDataSubscription: Subscription;
+    private stockBoardArray: StockTileModel[] | [] = [];
 
-  constructor(
-    private formService: FormService,
-    private stockTradeBoardService: StockTradeBoardService,
-    public matDialog: MatDialog
-  ) { }
+    constructor(
+        private formService: FormService,
+        private stockTradeBoardService: StockTradeBoardService,
+        public matDialog: MatDialog
+    ) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.previousFormDataSubscription =
-      this.formService.getEntreFormSubject()
-        .subscribe((data) => {
-          this.previousFormData = data;
-        });
+        this.previousFormDataSubscription =
+            this.formService.getEntreFormSubject()
+                .subscribe((data) => {
+                    this.previousFormData = data;
+                });
 
-    this.getLastFormEntre();
+        this.getLastFormEntre();
 
-    this.stockBoardDataSubscription =
-      this.stockTradeBoardService.getStockBoardArray
-        .subscribe((data) => {          
-          this.stockBoardArray = data;
-        });
+        this.stockBoardDataSubscription =
+            this.stockTradeBoardService.getStockBoardArray
+                .subscribe((data) => {
+                    this.stockBoardArray = data;
+                });
 
-    this.fetchStockBoardArray();
-  }
-
-  ngOnDestroy(): void {
-    if (this.previousFormDataSubscription) {
-      this.previousFormDataSubscription.unsubscribe();
+        this.fetchStockBoardArray();
     }
 
-    if (this.stockBoardDataSubscription) {
-      this.stockBoardDataSubscription.unsubscribe();
-    }
-  }
-
-  /**
-   * 
-   */
-  get getStockBoardArray(): StockTileModel[] {
-    return this.stockBoardArray;
-  }
-
-  /**
-   * Saving the entered data to, local storage trade array
-   * @param formData 
-   */
-  saveStockToBoardArray(formData: TradeFormData): void {
-    this.stockTradeBoardService.creatingNewPosition(formData);
-    this.saveEntreFormDataToLocalStorage(formData);
-  }
-
-  /**
-   * Saving the entered data , for future reuse if we want to 
-   * open the form and it will by filled with the last session
-   * @param formData  
-   */
-  saveEntreFormDataToLocalStorage(formData: TradeFormData): void {
-    this.formService.saveEntreFormDataToLocalStorage(formData);
-  }
-
-  /**
-   * 
-   */
-  fetchStockBoardArray(): void {
-    this.stockTradeBoardService.fetchTradeBoardData();
-  }
-
-  /**
-   * 
-   * @param value 
-   */
-  savePickedOffer(value: StockMarkerSaveDataModel): void {
-    this.stockTradeBoardService.savePickedOfferToStockData(value);
-  }
-
-  // ===========================================================================
-  // ==================== Angular material form dialog triggering ==============
-  // ===========================================================================
-  /**
-   * Dialog trigger for adding new stocks
-   */
-  openFormDialogAdd(): void {
-
-    this.getLastFormEntre();
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";  
-    dialogConfig.data = {
-      formData: this.previousFormData,
-      state: this.formState.Add
-    };
-
-    // Initializing dialog
-    const modalDialog = this.matDialog
-      .open(TradeDialogComponent, dialogConfig);
-
-    // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.saveStockToBoardArray(result);
-      }
-    });
-  }
-
-  /**
- * Getting the last form entre
- */
-  getLastFormEntre(): void {
-    this.formService.getEntreFormDataFromLocalStorage();
-  }
-
-  // ==========================================================================
-
-  /**
-   * Dialog trigger for editing stocks
-   */
-  openFormDialogEdit(stockId: string): Promise<void> {
-
-    const stockData: StockTileModel = this.fetchStockDataToEdit(stockId);
-
-    if (stockData === null) return;
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    dialogConfig.data = {
-      formData: stockData,
-      state: this.formState.Edit
-    };
-
-    // Initializing dialog
-    const modalDialog = this.matDialog
-      .open(TradeDialogComponent, dialogConfig);
-
-    // Receive data from dialog
-    modalDialog.afterClosed()
-      .subscribe(result => {
-        if (result) {
-          this.updateStockBoardArray(result, stockId);
+    ngOnDestroy(): void {
+        if (this.previousFormDataSubscription) {
+            this.previousFormDataSubscription.unsubscribe();
         }
-      });
-  }
 
-  /**
-   * 
-   * @param stockToEdit 
-   */
-  fetchStockDataToEdit(stockId: string): StockTileModel {
-    return this.stockTradeBoardService.findStockInArray(stockId);
-  }
-
-  /**
-   * 
-   * @param result 
-   * @param stockId 
-   */
-  updateStockBoardArray(result: TradeFormData, stockId: string): void {
-    this.stockTradeBoardService.editTradeBoardArrayData(result, stockId);
-  }
-
-  // ===========================================================================
-
-  /**
-   * Deleting a stock by id 
-   * Opening global dialog to confirm the deletion
-   * if true then call the delete method
-   * @param tileId 
-   */
-  openFormDialogDelete(tileId: string): void {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-
-
-    dialogConfig.data = {
-      header: 'trade.deleteConfirmDialogHeader',
-      description: 'trade.deleteConfirmDialogText'
+        if (this.stockBoardDataSubscription) {
+            this.stockBoardDataSubscription.unsubscribe();
+        }
     }
 
-    // Initializing dialog
-    const modalDialog = this.matDialog
-      .open(GlobalDialogComponent, dialogConfig);
-
-    // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteStockTileData(tileId);
-      }
-    });
-  }
-
-  /**
-  * 
-  * @param tileId 
-  */
-  deleteStockTileData(tileId: string): void {
-    this.stockTradeBoardService.deletePositionFromBoard(tileId);
-  }
-
-  /**
-   * Deleting a stock by id 
-   * Opening global dialog to confirm the deletion
-   * if true then call the delete method
-   * @param tileId 
-   */
-  openFormDialogSell(stockSellData: StockSellModel): void {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-
-    dialogConfig.data = {
-      header: 'trade.sellConfirmDialogHeader',
-      description: 'trade.sellConfirmDialogText'
+    /**
+     * 
+     */
+    get getStockBoardArray(): StockTileModel[] {
+        return this.stockBoardArray;
     }
 
-    // Initializing dialog
-    const modalDialog = this.matDialog
-      .open(GlobalDialogComponent, dialogConfig);
+    /**
+     * Saving the entered data to, local storage trade array
+     * @param formData 
+     */
+    saveStockToBoardArray(formData: TradeFormData): void {
+        this.stockTradeBoardService.creatingNewPosition(formData);
+        this.saveEntreFormDataToLocalStorage(formData);
+    }
 
-    // Receive data from dialog
-    modalDialog.afterClosed().subscribe(result => {
+    /**
+     * Saving the entered data , for future reuse if we want to 
+     * open the form and it will by filled with the last session
+     * @param formData  
+     */
+    saveEntreFormDataToLocalStorage(formData: TradeFormData): void {
+        this.formService.saveEntreFormDataToLocalStorage(formData);
+    }
 
-      if (result) {
+    /**
+     * 
+     */
+    fetchStockBoardArray(): void {
+        this.stockTradeBoardService.fetchTradeBoardData();
+    }
 
-        this.sellStock(stockSellData);
+    /**
+     * 
+     * @param value 
+     */
+    savePickedOffer(value: StockMarkerSaveDataModel): void {
+        this.stockTradeBoardService.savePickedOfferToStockData(value);
+    }
 
-      }
-    });
-  }
+    // ===========================================================================
+    // ==================== Angular material form dialog triggering ==============
+    // ===========================================================================
+    /**
+     * Dialog trigger for adding new stocks
+     */
+    openFormDialogAdd(): void {
 
-  /**
-   * 
-   * @param stockSellData 
+        this.getLastFormEntre();
+
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.id = "modal-component";
+        dialogConfig.data = {
+            formData: this.previousFormData,
+            state: this.formState.Add
+        };
+
+        // Initializing dialog
+        const modalDialog = this.matDialog
+            .open(TradeDialogComponent, dialogConfig);
+
+        // Receive data from dialog
+        modalDialog.afterClosed().subscribe(result => {
+            if (result) {
+                this.saveStockToBoardArray(result);
+            }
+        });
+    }
+
+    /**
+   * Getting the last form entre
    */
-  sellStock(stockSellData: StockSellModel): void {
+    getLastFormEntre(): void {
+        this.formService.getEntreFormDataFromLocalStorage();
+    }
 
-    this.stockTradeBoardService.sellStock(stockSellData);
+    // ==========================================================================
 
-  }
+    /**
+     * Dialog trigger for editing stocks
+     */
+    openFormDialogEdit(stockId: string): Promise<void> {
+
+        const stockData: StockTileModel = this.fetchStockDataToEdit(stockId);
+
+        if (stockData === null) return;
+
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.id = "modal-component";
+        dialogConfig.data = {
+            formData: stockData,
+            state: this.formState.Edit,
+            buttonColor: 'accent'
+        };
+
+        // Initializing dialog
+        const modalDialog = this.matDialog
+            .open(TradeDialogComponent, dialogConfig);
+
+        // Receive data from dialog
+        modalDialog.afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    this.updateStockBoardArray(result, stockId);
+                }
+            });
+    }
+
+    /**
+     * 
+     * @param stockToEdit 
+     */
+    fetchStockDataToEdit(stockId: string): StockTileModel {
+        return this.stockTradeBoardService.findStockInArray(stockId);
+    }
+
+    /**
+     * 
+     * @param result 
+     * @param stockId 
+     */
+    updateStockBoardArray(result: TradeFormData, stockId: string): void {
+        this.stockTradeBoardService.editTradeBoardArrayData(result, stockId);
+    }
+
+    // ===========================================================================
+
+    /**
+     * Deleting a stock by id 
+     * Opening global dialog to confirm the deletion
+     * if true then call the delete method
+     * @param tileId 
+     */
+    openFormDialogDelete(tileId: string): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.id = "modal-component";
+
+        dialogConfig.data = {
+            header: 'trade.deleteConfirmDialogHeader',
+            description: 'trade.deleteConfirmDialogText',
+            buttonColor: 'warn'
+        }
+
+        // Initializing dialog
+        const modalDialog = this.matDialog
+            .open(GlobalDialogComponent, dialogConfig);
+
+        // Receive data from dialog
+        modalDialog.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteStockTileData(tileId);
+            }
+        });
+    }
+
+    /**
+    * 
+    * @param tileId 
+    */
+    deleteStockTileData(tileId: string): void {
+        this.stockTradeBoardService.deletePositionFromBoard(tileId);
+    }
+
+    /**
+     * Deleting a stock by id 
+     * Opening global dialog to confirm the deletion
+     * if true then call the delete method
+     * @param tileId 
+     */
+    openFormDialogSell(stockSellData: StockSellModel): void {
+
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.id = "modal-component";
+
+        dialogConfig.data = {
+            header: 'trade.sellConfirmDialogHeader',
+            description: 'trade.sellConfirmDialogText',
+            buttonColor: 'primary'
+        }
+
+        // Initializing dialog
+        const modalDialog = this.matDialog
+            .open(GlobalDialogComponent, dialogConfig);
+
+        // Receive data from dialog
+        modalDialog.afterClosed().subscribe(result => {
+
+            if (result) {
+
+                this.sellStock(stockSellData);
+
+            }
+        });
+    }
+
+    /**
+     * 
+     * @param stockSellData 
+     */
+    sellStock(stockSellData: StockSellModel): void {
+
+        this.stockTradeBoardService.sellStock(stockSellData);
+
+    }
 
 
 }
