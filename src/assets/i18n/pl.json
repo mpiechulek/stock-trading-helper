@@ -31,7 +31,13 @@
         "dayThursday": "Czwartek",
         "dayFriday": "Piątek",
         "daySaturday": "Sobota",
-        "daySunday": "Niedziela"
+        "daySunday": "Niedziela",
+
+        "dialogDummyDataHeader": "Witaj w Stock Helper",
+        "dialogDummyDataText": "Twoja tablica handlowa i sekcje statystyk są puste. Czy chcesz wstawić fałszywe dane, aby lepiej przejrzeć aplikację? To okno pojawiło się tylko raz. ",
+        "dialogCheckboxInfo": "Nie wyświetlaj więcej tej wiadomości",
+        "dialogConfirmButtonText": "Tak",
+        "dialogDeclineButtonText": "Nie"
     },
     "trade": {
 

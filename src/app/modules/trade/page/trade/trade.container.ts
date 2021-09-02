@@ -159,7 +159,8 @@ export class TradeContainerComponent implements OnInit {
         dialogConfig.id = "modal-component";
         dialogConfig.data = {
             formData: stockData,
-            state: this.formState.Edit
+            state: this.formState.Edit,
+            buttonColor: 'accent'
         };
 
         // Initializing dialog
@@ -206,10 +207,10 @@ export class TradeContainerComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.id = "modal-component";
 
-
         dialogConfig.data = {
             header: 'trade.deleteConfirmDialogHeader',
-            description: 'trade.deleteConfirmDialogText'
+            description: 'trade.deleteConfirmDialogText',
+            buttonColor: 'warn'
         }
 
         // Initializing dialog
@@ -247,7 +248,8 @@ export class TradeContainerComponent implements OnInit {
 
         dialogConfig.data = {
             header: 'trade.sellConfirmDialogHeader',
-            description: 'trade.sellConfirmDialogText'
+            description: 'trade.sellConfirmDialogText',
+            buttonColor: 'primary'
         }
 
         // Initializing dialog

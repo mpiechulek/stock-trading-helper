@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CookiesService } from 'src/app/core/services/cookies.service';
 import { StockTradeBoardService } from 'src/app/core/services/stock-trade-board.service';
 import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 import { StockTileModel } from 'src/app/data/models/stock-tile.model';
@@ -11,22 +12,23 @@ import { GlobalDialogComponent } from 'src/app/shared/components/global-dialog/g
 })
 
 export class HomeContainerComponent implements OnInit {
-  
-    private cookieName: string = 'dummyDataDialog';
-    
+
     constructor(
         private stockTradeBoardService: StockTradeBoardService,
         private matDialog: MatDialog,
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
+        private cookiesService: CookiesService
     ) { }
 
     ngOnInit(): void {
 
         /**
-         * checking if the cookie value is false, i fo so open dialog 
-         */
+         * checking if the cookie value is false, i fo so open dialog      */
 
-        if (!this.getCookieValue(this.cookieName)) {
+        if (
+            !this.cookiesService.getCookieValue(this.cookiesService.homeDialogCookieName)
+
+        ) {
 
             this.openFormDialogDummyData();
 
@@ -34,38 +36,6 @@ export class HomeContainerComponent implements OnInit {
 
     }
 
-    /**
-    * 
-    */
-    getCookieValue(cookieName: string): string {
-
-        const name = cookieName + "=";
-
-        const decodedCookie = decodeURIComponent(document.cookie);
-
-        const cookieArray = decodedCookie.split(';');
-
-        for (let i = 0; i < cookieArray.length; i++) {
-
-            let cookie = cookieArray[i];
-
-            while (cookie.charAt(0) == ' ') {
-
-                cookie = cookie.substring(1);
-
-            }
-
-            if (cookie.indexOf(name) == 0) {
-
-                return cookie.substring(name.length, cookie.length);
-
-            }
-
-        }
-
-        return "";
-
-    }
 
     /**
      * 
@@ -79,8 +49,11 @@ export class HomeContainerComponent implements OnInit {
         dialogConfig.id = "modal-component";
 
         dialogConfig.data = {
-            header: 'trade.sellConfirmDialogHeader',
-            description: 'trade.sellConfirmDialogText'
+            header: 'home.dialogDummyDataHeader',
+            description: 'home.dialogDummyDataText',
+            checkBoxInfo: 'home.dialogCheckboxInfo',
+            buttonColor: 'primary',
+            showCheckBox: true
         }
 
         // Initializing dialog
@@ -96,7 +69,7 @@ export class HomeContainerComponent implements OnInit {
                 // when true the the cookie is set to true and DUMMY DATA IS FETCHED FORM MOCKS
                 if (result) {
 
-                    this.setCookie(this.cookieName, true);
+                    this.cookiesService.setCookie(this.cookiesService.homeDialogCookieName, true);
 
                     this.getDummyTradeBoardData();
 
@@ -104,16 +77,9 @@ export class HomeContainerComponent implements OnInit {
 
                 }
 
+                this.cookiesService.setCookie(this.cookiesService.homeDialogCookieName, false);
+
             });
-
-    }
-
-    /**
-     * 
-     */
-    setCookie(cookieName: string, value: boolean): void {
-
-        document.cookie = `${cookieName}=${value}`;
 
     }
 
@@ -141,6 +107,9 @@ export class HomeContainerComponent implements OnInit {
 
         this.stockTradeBoardService.saveTradeBoardDataToLocalStorage(data);
 
+        // lets know the subscribers
+        this.stockTradeBoardService.fetchTradeBoardData();
+
     }
 
     /**
@@ -166,6 +135,9 @@ export class HomeContainerComponent implements OnInit {
     addDummyTransactionsDataToStatistics(data: StockSellModel[]): void {
 
         this.stockTradeBoardService.saveTransactionToLocalStorage(data);
+
+        // lets know the subscribers
+        this.stockTradeBoardService.fetchTransactions();
 
     }
 }
