@@ -7,519 +7,522 @@ import { StockSellModel } from 'src/app/data/models/statistics-section.model';
 import { SnackBarService } from './snack-bar.service';
 import { LanguageService } from './language.service';
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class StockTradeBoardService {
 
-	private storageTradeBoardKeyName: string = 'tradeBoardData';
-	private storageTradeTransactionKeyName: string = 'transactionData';
+    private storageTradeBoardKeyName: string = 'tradeBoardData';
+    private storageTradeTransactionKeyName: string = 'transactionData';
 
-	private stockBoardArraySubject = new Subject<StockTileModel[]>();
-	private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
+    private stockBoardArraySubject = new Subject<StockTileModel[]>();
+    private stockBoardArray$ = this.stockBoardArraySubject.asObservable();
 
-	private transactionsArraySubject = new Subject<StockSellModel[]>();
-	private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
+    private transactionsArraySubject = new Subject<StockSellModel[]>();
+    private transactionsArraySubject$ = this.transactionsArraySubject.asObservable();
 
-	constructor(
-		private snackBarService: SnackBarService,
-		private languageService: LanguageService
-	) { }
+    constructor(
+        private snackBarService: SnackBarService,
+        private languageService: LanguageService
+    ) { }
 
-	// =========================================================================
+    // =========================================================================
 
-	/**
-	 * 
-	 */
-	get getStockBoardArray(): Observable<StockTileModel[]> {
-		return this.stockBoardArray$;
-	}
+    /**
+     * 
+     */
+    get getStockBoardArray(): Observable<StockTileModel[]> {
+        return this.stockBoardArray$;
+    }
 
-	/**
-	 * 
-	 */
-	get getTransactionsArray(): Observable<StockSellModel[]> {
-		return this.transactionsArraySubject$;
-	}
+    /**
+     * 
+     */
+    get getTransactionsArray(): Observable<StockSellModel[]> {
+        return this.transactionsArraySubject$;
+    }
 
-	// =============================================================================
-	// ========================= Trade board local storage =========================
-	// =============================================================================
+    // =============================================================================
+    // ========================= Trade board local storage =========================
+    // =============================================================================
 
-	/**
-	 * 
-	 */
-	checkIfTradeBoardDataInLocalStorage(): boolean {
+    /**
+     * 
+     */
+    checkIfTradeBoardDataInLocalStorage(): boolean {
 
-		return localStorage.getItem(this.storageTradeBoardKeyName) === null;
+        return localStorage.getItem(this.storageTradeBoardKeyName) === null;
 
-	}
+    }
 
-	/**
-	 * 
-	 */
-	getTradeBoardDataFromLocalStorage(): StockTileModel[] {
+    /**
+     * 
+     */
+    getTradeBoardDataFromLocalStorage(): StockTileModel[] {
 
-		let tradeBoardDataArray: StockTileModel[];
+        let tradeBoardDataArray: StockTileModel[];
 
-		if (this.checkIfTradeBoardDataInLocalStorage()) {
+        if (this.checkIfTradeBoardDataInLocalStorage()) {
 
-			tradeBoardDataArray = [];
+            tradeBoardDataArray = [];
 
-		} else {
+        } else {
 
-			tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
-		}
+            tradeBoardDataArray = JSON.parse(localStorage.getItem(this.storageTradeBoardKeyName));
+        }
 
-		return [...tradeBoardDataArray];
-	}
+        return [...tradeBoardDataArray];
+    }
 
-	/**
-	 * 
-	 * @param data 
-	 */
-	saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
+    /**
+     * 
+     * @param data 
+     */
+    saveTradeBoardDataToLocalStorage(data: StockTileModel[]): void {
 
-		localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
+        localStorage.setItem(this.storageTradeBoardKeyName, JSON.stringify(data));
 
-	}
+    }
 
-	/**
-	 * 
-	 */
-	fetchTradeBoardData(): void {
+    /**
+     * 
+     */
+    fetchTradeBoardData(): void {
 
-		let boardData = this.getTradeBoardDataFromLocalStorage();
+        let boardData = this.getTradeBoardDataFromLocalStorage();
 
-		this.stockBoardArraySubject.next(boardData);
+        this.stockBoardArraySubject.next(boardData);
 
-	}
+    }
 
-	// =============================================================================
-	// ==================== Trade board data manipulator logic =====================
-	// =============================================================================
+    // =============================================================================
+    // ==================== Trade board data manipulator logic =====================
+    // =============================================================================
 
-	/**
-	 *  Creating a new object from the received form data, adding to it an id, also 
-	 *  setting the selectedPrice to default value
-	 * @param formData 
-	 */
-	creatingNewPosition(formData: TradeFormData): void {
+    /**
+     *  Creating a new object from the received form data, adding to it an id, also 
+     *  setting the selectedPrice to default value
+     * @param formData 
+     */
+    creatingNewPosition(formData: TradeFormData): void {
 
-		let tradeBoardArr: StockTileModel[];
-		let newStockTile: StockTileModel;
+        let tradeBoardArr: StockTileModel[];
+        let newStockTile: StockTileModel;
 
-		// Creating a new stock trade tile object
-		newStockTile = {
-			...formData,
-			id: uuid.v4(),
-			markerOfferType: null,
-			markerOfferValue: null
-		};
+        // Creating a new stock trade tile object
+        newStockTile = {
+            ...formData,
+            id: uuid.v4(),
+            markerOfferType: null,
+            markerOfferValue: null
+        };
 
-		// Getting the tile object list form local storage
-		tradeBoardArr = this.getTradeBoardDataFromLocalStorage();
+        // Getting the tile object list form local storage
+        tradeBoardArr = this.getTradeBoardDataFromLocalStorage();
 
-		// appending the list with the new position
-		tradeBoardArr.push(newStockTile);
+        // appending the list with the new position
+        tradeBoardArr.push(newStockTile);
 
-		// Save to storage 
-		this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
+        // Save to storage 
+        this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
 
-		// Informing subscribers
-		this.stockBoardArraySubject.next(tradeBoardArr);
+        // Informing subscribers
+        this.stockBoardArraySubject.next(tradeBoardArr);
 
-		// checking if the stock is saved in local storage
-		const createdStock = this.findStockInArray(newStockTile.id);
+        // checking if the stock is saved in local storage
+        const createdStock = this.findStockInArray(newStockTile.id);
 
-		// Displaying proper snack bar message
-		if (newStockTile.id === createdStock.id) {
+        // Displaying proper snack bar message
+        if (newStockTile.id === createdStock.id) {
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardAdd);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardAdd);
 
-		} else {
+        } else {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardAdd);
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardAdd);
 
-		}
+        }
 
-	}
+    }
 
-	/**
-	 * Updating a position in the stock trade board array
-	 * @param objectEdit 
-	 */
-	editTradeBoardArrayData(objectEdit: TradeFormData, stockId: string): void {
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    /**
+     * Updating a position in the stock trade board array
+     * @param objectEdit 
+     */
+    editTradeBoardArrayData(objectEdit: TradeFormData, stockId: string): void {
 
-		const elementsIndex = this.findStockArrayIndex(stockId);
+        let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		tradeBoardArr[elementsIndex] = {
-			...objectEdit,
-			id: stockId,
-			markerOfferType: null,
-			markerOfferValue: null
-		};
+        const elementsIndex = this.findStockArrayIndex(stockId);       
 
-		this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
+        tradeBoardArr[elementsIndex] = {
+            ...objectEdit,
+            id: stockId,
+            markerOfferType: null,
+            markerOfferValue: null
+        };
 
-		this.stockBoardArraySubject.next(tradeBoardArr);
+        console.log(tradeBoardArr);        
 
-		// checking if the stock is saved in local storage
-		const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);
+        this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
 
-		// Displaying proper snack bar message
-		if (stockId === editedStock.id) {
+        this.stockBoardArraySubject.next(tradeBoardArr);
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardEdit);
+        // checking if the stock is saved in local storage
+        const editedStock = this.findStockInArray(tradeBoardArr[elementsIndex].id);
 
-		} else {
+        // Displaying proper snack bar message
+        if (stockId === editedStock.id) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardEdit);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardEdit);
 
-		}
+        } else {
 
-	}
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardEdit);
 
-	/**
-	 * Saving the picked stock offer
-	 *  @param value
-	 */
-	savePickedOfferToStockData(value: StockMarkerSaveDataModel): void {
+        }
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    }
 
-		const stockToEdit: StockTileModel = this.findStockInArray(value.id);
+    /**
+     * Saving the picked stock offer
+     *  @param value
+     */
+    savePickedOfferToStockData(value: StockMarkerSaveDataModel): void {
 
-		const elementsIndex = this.findStockArrayIndex(value.id);
+        let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		tradeBoardArr[elementsIndex] = {
-			...stockToEdit,
-			markerOfferType: value.markerOfferType,
-			markerOfferValue: value.markerOfferValue
-		};
+        const stockToEdit: StockTileModel = this.findStockInArray(value.id);
 
-		this.stockBoardArraySubject.next(tradeBoardArr);
+        const elementsIndex = this.findStockArrayIndex(value.id);
 
-		this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
+        tradeBoardArr[elementsIndex] = {
+            ...stockToEdit,
+            markerOfferType: value.markerOfferType,
+            markerOfferValue: value.markerOfferValue
+        };
 
-		// checking if the stock is saved in local storage
-		const savedStock = this.findStockInArray(value.id);
+        this.stockBoardArraySubject.next(tradeBoardArr);
 
-		// Displaying proper snack bar message
-		if (value.id === savedStock.id) {
+        this.saveTradeBoardDataToLocalStorage(tradeBoardArr);
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSave);
+        // checking if the stock is saved in local storage
+        const savedStock = this.findStockInArray(value.id);
 
-		} else {
+        // Displaying proper snack bar message
+        if (value.id === savedStock.id) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSave);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSave);
 
-		}
-	}
+        } else {
 
-	/**
-	 * 
-	 * @param stockId 
-	 */
-	deletePositionFromBoard(stockId: string): void {
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSave);
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+        }
+    }
 
-		let newArr = [...tradeBoardArr];
+    /**
+     * 
+     * @param stockId 
+     */
+    deletePositionFromBoard(stockId: string): void {
 
-		newArr = newArr.filter((element) => {
-			return element.id !== stockId;
-		});
+        let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		// Updating ui
-		this.stockBoardArraySubject.next(newArr);
+        let newArr = [...tradeBoardArr];
 
-		this.saveTradeBoardDataToLocalStorage(newArr);
+        newArr = newArr.filter((element) => {
+            return element.id !== stockId;
+        });
 
-		// checking if the stock is saved in local storage
-		const deleteStock = this.findStockInArray(stockId);
+        // Updating ui
+        this.stockBoardArraySubject.next(newArr);
 
-		// Displaying proper snack bar message
-		if (deleteStock === null) {
+        this.saveTradeBoardDataToLocalStorage(newArr);
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardDelete);
+        // checking if the stock is saved in local storage
+        const deleteStock = this.findStockInArray(stockId);
 
-		} else {
+        // Displaying proper snack bar message
+        if (deleteStock === null) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardDelete);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardDelete);
 
-		}
+        } else {
 
-	}
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardDelete);
 
-	/**
-	* 
-	* @param stockId 
-	*/
-	findStockInArray(stockId: string): StockTileModel {
+        }
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+    }
 
-		const elementIndex: number = this.findStockArrayIndex(stockId);
+    /**
+    * 
+    * @param stockId 
+    */
+    findStockInArray(stockId: string): StockTileModel {
 
-		if (elementIndex === null || elementIndex === -1) return null;
+        let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-		return tradeBoardArr[elementIndex];
-	}
+        const elementIndex: number = this.findStockArrayIndex(stockId);
 
-	/**
-	 * 
-	 * @param stockId 
-	 */
-	findStockArrayIndex(stockId: string): number {
+        if (elementIndex === null || elementIndex === -1) return null;
 
-		let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
+        return tradeBoardArr[elementIndex];
+    }
 
-		let elementIndex: number = null;
+    /**
+     * 
+     * @param stockId 
+     */
+    findStockArrayIndex(stockId: string): number {
 
-		elementIndex = tradeBoardArr.findIndex((element) => {
+        let tradeBoardArr: StockTileModel[] = this.getTradeBoardDataFromLocalStorage();
 
-			return element.id === stockId;
+        let elementIndex: number = null;
 
-		});
+        elementIndex = tradeBoardArr.findIndex((element) => {
 
-		return elementIndex;
-	}
+            return element.id === stockId;
 
-	// =========================================================================
-	// =================== Sold stock transactions local storage  ==============
-	// =========================================================================
+        });
 
-	/**
-	 * 
-	 * @returns 
-	 */
-	checkIfTransactionsInLocalStorage() {
+        return elementIndex;
+    }
 
-		return localStorage.getItem(this.storageTradeTransactionKeyName) === null;
+    // =========================================================================
+    // =================== Sold stock transactions local storage  ==============
+    // =========================================================================
 
-	}
+    /**
+     * 
+     * @returns 
+     */
+    checkIfTransactionsInLocalStorage() {
 
-	/**
-	 * 
-	 * @returns 
-	 */
-	getTransactionsFromLocalStorage(): StockSellModel[] {
+        return localStorage.getItem(this.storageTradeTransactionKeyName) === null;
 
-		let transactions: StockSellModel[];
+    }
 
-		if (this.checkIfTransactionsInLocalStorage()) {
+    /**
+     * 
+     * @returns 
+     */
+    getTransactionsFromLocalStorage(): StockSellModel[] {
 
-			transactions = [];
+        let transactions: StockSellModel[];
 
-		} else {
+        if (this.checkIfTransactionsInLocalStorage()) {
 
-			transactions = JSON.parse(localStorage.getItem(this.storageTradeTransactionKeyName));
+            transactions = [];
 
-		}
+        } else {
 
-		return [...transactions];
+            transactions = JSON.parse(localStorage.getItem(this.storageTradeTransactionKeyName));
 
-	}
+        }
 
-	/**
-	 * 
-	 * @param data 
-	 */
-	saveTransactionToLocalStorage(data: StockSellModel[]): void {
+        return [...transactions];
 
-		localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
+    }
 
-	}
+    /**
+     * 
+     * @param data 
+     */
+    saveTransactionToLocalStorage(data: StockSellModel[]): void {
 
-	/**
-	 * 
-	 */
-	fetchTransactions(): void {
+        localStorage.setItem(this.storageTradeTransactionKeyName, JSON.stringify(data));
 
-		const transactions = this.getTransactionsFromLocalStorage();
+    }
 
-		this.transactionsArraySubject.next(transactions);
+    /**
+     * 
+     */
+    fetchTransactions(): void {
 
-	}
+        const transactions = this.getTransactionsFromLocalStorage();
 
-	// =========================================================================
-	// ==================== Transactions data manipulator logic ================
-	// =========================================================================
+        this.transactionsArraySubject.next(transactions);
 
-	/**
-	 * Selling the chosen stock, and deleting it form the board list
-	 */
-	sellStock(stockSellData: StockSellModel): void {
+    }
 
-		this.createNewSellTransaction(stockSellData);
+    // =========================================================================
+    // ==================== Transactions data manipulator logic ================
+    // =========================================================================
 
-		this.deletePositionFromBoard(stockSellData.id);
+    /**
+     * Selling the chosen stock, and deleting it form the board list
+     */
+    sellStock(stockSellData: StockSellModel): void {
 
-		// checking if the stock is saved in local storage
-		const soldStock = this.findTransactionInArray(stockSellData.id);
+        this.createNewSellTransaction(stockSellData);
 
-		// Displaying proper snack bar message
-		if (soldStock.id === stockSellData.id) {
+        this.deletePositionFromBoard(stockSellData.id);
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSell);
+        // checking if the stock is saved in local storage
+        const soldStock = this.findTransactionInArray(stockSellData.id);
 
-		} else {
+        // Displaying proper snack bar message
+        if (soldStock.id === stockSellData.id) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSell);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTradeBoardSell);
 
-		}
-	}
+        } else {
 
-	/**
-	 * 
-	 * @param stockSellData 
-	 */
-	createNewSellTransaction(stockSellData: StockSellModel) {
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTradeBoardSell);
 
-		const currentDate = new Date();
+        }
+    }
 
-		const transactions: StockSellModel[] = this.getTransactionsFromLocalStorage();
+    /**
+     * 
+     * @param stockSellData 
+     */
+    createNewSellTransaction(stockSellData: StockSellModel) {
 
-		const newTransaction: StockSellModel = {
+        const currentDate = new Date();
 
-			sellDate: currentDate,
-			...stockSellData
+        const transactions: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
-		}
+        const newTransaction: StockSellModel = {
 
-		transactions.push(newTransaction);
+            sellDate: currentDate,
+            ...stockSellData
 
-		this.saveTransactionToLocalStorage(transactions);
+        }
 
-		this.transactionsArraySubject.next(transactions);
+        transactions.push(newTransaction);
 
-	}
+        this.saveTransactionToLocalStorage(transactions);
 
-	/**
-	 * 
-	 * @param tradeId 
-	 */
-	deleteTransaction(tradeId: string): void {
+        this.transactionsArraySubject.next(transactions);
 
-		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
+    }
 
-		let newTransactionArr = [...transactionArr];
+    /**
+     * 
+     * @param tradeId 
+     */
+    deleteTransaction(tradeId: string): void {
 
-		newTransactionArr = newTransactionArr.filter((element) => {
+        let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
-			return element.id !== tradeId;
+        let newTransactionArr = [...transactionArr];
 
-		});
+        newTransactionArr = newTransactionArr.filter((element) => {
 
-		// Updating ui
-		this.transactionsArraySubject.next(newTransactionArr);
+            return element.id !== tradeId;
 
-		this.saveTransactionToLocalStorage(newTransactionArr);
+        });
 
-		// checking if the stock is saved in local storage
-		const deleteTransaction = this.findTransactionInArray(tradeId);
+        // Updating ui
+        this.transactionsArraySubject.next(newTransactionArr);
 
-		// Displaying proper snack bar message
-		if (deleteTransaction === null) {
+        this.saveTransactionToLocalStorage(newTransactionArr);
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTransactionDelete);
+        // checking if the stock is saved in local storage
+        const deleteTransaction = this.findTransactionInArray(tradeId);
 
-		} else {
+        // Displaying proper snack bar message
+        if (deleteTransaction === null) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTransactionDelete);
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessTransactionDelete);
 
-		}
+        } else {
 
-	}
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailTransactionDelete);
 
-	/**
-	 * 
-	 */
-	editTransaction(): void {
+        }
 
-	}
+    }
 
-	/**
-	* 
-	* @param stockId 
-	*/
-	findTransactionInArray(stockId: string): StockSellModel {
+    /**
+     * 
+     */
+    editTransaction(): void {
 
-		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
+    }
 
-		const elementIndex: number = this.findStockArrayIndex(stockId);
+    /**
+    * 
+    * @param stockId 
+    */
+    findTransactionInArray(stockId: string): StockSellModel {
 
-		if (elementIndex === null || elementIndex === -1) return null;
+        let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
-		return transactionArr[elementIndex];
+        const elementIndex: number = this.findStockArrayIndex(stockId);
 
-	}
+        if (elementIndex === null || elementIndex === -1) return null;
 
-	/**
-	 * 
-	 * @param stockId 
-	 */
-	findTransactionIndex(stockId: string): number {
+        return transactionArr[elementIndex];
 
-		let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
+    }
 
-		let elementIndex: number = null;
+    /**
+     * 
+     * @param stockId 
+     */
+    findTransactionIndex(stockId: string): number {
 
-		elementIndex = transactionArr.findIndex((element) => {
+        let transactionArr: StockSellModel[] = this.getTransactionsFromLocalStorage();
 
-			return element.id === stockId;
+        let elementIndex: number = null;
 
-		});
+        elementIndex = transactionArr.findIndex((element) => {
 
-		return elementIndex;
+            return element.id === stockId;
 
-	}
+        });
 
-	/**
-	 * Removing trade board and transactions data dorm local storage
-	 */
-	clearLocalStorageTransactionData(): void {
+        return elementIndex;
 
-		localStorage.removeItem(this.storageTradeTransactionKeyName);
+    }
 
-		const transaction = this.getTransactionsFromLocalStorage();
+    /**
+     * Removing trade board and transactions data dorm local storage
+     */
+    clearLocalStorageTransactionData(): void {
 
-		this.transactionsArraySubject.next(transaction);
+        localStorage.removeItem(this.storageTradeTransactionKeyName);
 
-		// Show alert message, in snack bar
-		if (this.getTransactionsFromLocalStorage().length === 0) {
+        const transaction = this.getTransactionsFromLocalStorage();
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTransactionsData);
+        this.transactionsArraySubject.next(transaction);
 
-		} else {
+        // Show alert message, in snack bar
+        if (this.getTransactionsFromLocalStorage().length === 0) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTransactionsData);
-		}
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTransactionsData);
 
-	}
+        } else {
 
-	/**
-	 * Removing trade board and transactions data dorm local storage
-	 */
-	clearLocalStorageTradeBoardData(): void {
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTransactionsData);
+        }
 
-		localStorage.removeItem(this.storageTradeBoardKeyName);
+    }
 
-		const tradeBoard = this.getTradeBoardDataFromLocalStorage();
+    /**
+     * Removing trade board and transactions data dorm local storage
+     */
+    clearLocalStorageTradeBoardData(): void {
 
-		this.stockBoardArraySubject.next(tradeBoard);
+        localStorage.removeItem(this.storageTradeBoardKeyName);
 
-		if (this.getTradeBoardDataFromLocalStorage().length === 0) {
+        const tradeBoard = this.getTradeBoardDataFromLocalStorage();
 
-			this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTradeBoardData);
+        this.stockBoardArraySubject.next(tradeBoard);
 
-		} else {
+        if (this.getTradeBoardDataFromLocalStorage().length === 0) {
 
-			this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTradeBoardData);
-		}
+            this.snackBarService.onDisplaySuccess(this.languageService.getLanguageData.snackBar.snackBarSuccessDeleteTradeBoardData);
 
-	}
+        } else {
+
+            this.snackBarService.onDisplayError(this.languageService.getLanguageData.snackBar.snackBarFailDeleteTradeBoardData);
+        }
+
+    }
 
 }

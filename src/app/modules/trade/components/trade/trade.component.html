@@ -48,7 +48,7 @@
             (deleteTile)="onDeleteTile($event)"
             (savePickedOffer)="onSavePickedOffer($event)"
             (sellStock)="onSellStock($event)"
-            *ngFor="let stockElement of stockBoardArray; trackBy: identify "
+            *ngFor="let stockElement of stockBoardArray"
             [stockElement]="stockElement"
             [offerMarker]="stockElement?.markerOfferType"
             [offerId]="stockElement?.markerOfferValue"
