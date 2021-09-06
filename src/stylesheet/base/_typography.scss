@@ -15,14 +15,11 @@
 
 .nav-bar-link,
 .sidenav-link {
-
   cursor: pointer;
   text-decoration: none;
-
 }
 
 .user-nav-avatar-text {
-
   color: var(--color-text-nav);
   font-size: 12px;
   max-width: 7ch;
@@ -31,23 +28,16 @@
   white-space: nowrap;
 
   @include respond(md) {
-
     max-width: 10ch;
-
   }
 
   @include respond(sm) {
-
     display: none;
-
   }
-
 }
 
 .sidenav-link {
-
   color: var(--color-text-nav);
-
 }
 
 .side-nav-text,
@@ -64,7 +54,6 @@
 
   @include respond(sm) {
     font-size: 2.6rem;
-
   }
 }
 
@@ -73,22 +62,17 @@
 }
 
 .nav-bar-text {
-
   color: $color-tundora;
-
 }
 
 .sidenav-header {
-
   color: var(--color-text-nav);
   font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 4px;
 
   @include respond(sm) {
-
     font-size: 3.5rem;
-
   }
 }
 
@@ -101,11 +85,8 @@
   font-size: 2.2rem;
 
   @include respond(sm) {
-
     font-size: 3.3rem;
-
   }
-
 }
 
 .statistics-header {
@@ -134,7 +115,6 @@
 }
 
 .main-header-h1 {
-
   font-size: 4.5rem;
   list-style: none;
 
@@ -147,19 +127,19 @@
   }
 
   @include respond(md) {
-    font-size: 3.6rem;
+    font-size: 3rem;
+  }
+
+  @include respond(xs) {
+    font-size: 16px;
   }
 
   &--blue {
-
     color: $color-java;
-
   }
 
   &--gray {
-
     color: $color-tundora;
-
   }
 
   &--span {
@@ -176,14 +156,16 @@
     }
 
     @include respond(md) {
-      font-size: 4rem;
+      font-size: 3rem;
+    }
+
+    @include respond(xs) {
+      font-size: 16px;
     }
   }
-
 }
 
 .home {
-
   .home-grid-1-header {
     color: $color-white;
     font-size: 8.2rem;
@@ -227,7 +209,6 @@
     @include respond(sm) {
       font-size: 12px;
       line-height: 2.1rem;
-
     }
   }
 
@@ -245,7 +226,6 @@
     @include respond(sm) {
       font-size: 12px;
     }
-
   }
 
   .home-time-text {
@@ -256,23 +236,17 @@
 }
 
 .trade-board-info-text {
-
   color: var(--color-text-prime);
 
   @include respond(sm) {
-
     font-size: 12px;
-
   }
-
 }
 
-// Trade tile  dialog form 
+// Trade tile  dialog form
 .trade-tile-form-buy-price {
-
   font-size: 14px;
   color: var(--color-text-prime);
-
 }
 
 .trade-tile-stock-name-text {
@@ -320,11 +294,9 @@
     @include respond(xs) {
       font-size: 2rem;
     }
-
   }
 
   &--red {
-
     color: $color-red;
     font-weight: 500;
   }
@@ -342,15 +314,11 @@
   text-align: center;
 
   &--color-global {
-
     color: var(--color-text-prime);
-
   }
 
   &--color-dark {
-
     color: $color-tundora;
-
   }
 }
 
@@ -382,79 +350,55 @@
 }
 
 .auth-quotation-text {
-
   letter-spacing: 1px;
   font-weight: 400;
 
   text-align: right;
 
   &--font-size-big {
-
     font-size: 2.3rem;
 
     @include respond(sm) {
-
       font-size: 1.9rem;
-
     }
-
   }
 
   &--font-size-small {
-
     font-size: 1.8rem;
 
     @include respond(ld) {
-
       font-size: 1.6rem;
-
     }
 
     @include respond(sm) {
-
       font-size: 12px;
       letter-spacing: 0px;
-
     }
-
   }
 
   &--white {
-
     color: $color-white;
-
   }
 
   &--dark {
-
     color: $color-tundora;
-
   }
 
   &--italic {
-
     font-style: italic;
-
   }
-
 }
 
 .not-found-header {
-
   font-weight: 500;
   color: var(--color-text-form);
   text-align: center;
 
   &--large {
-
     font-size: 10rem;
-
   }
 
   &--medium {
-
     font-size: 4rem;
-
   }
-
 }

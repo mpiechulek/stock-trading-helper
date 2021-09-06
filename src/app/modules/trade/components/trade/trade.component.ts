@@ -70,13 +70,13 @@ export class TradeComponent implements OnInit {
     this.sellStock.emit(stockSellData);
   }
 
-  /**
-   * 
-   * @param index 
-   * @param item 
-   * @returns 
-   */
-  identify(index: number, item: StockTileModel): string {       
-    return item.id;
-  }
+//   /**
+//    * 
+//    * @param index 
+//    * @param item 
+//    * @returns 
+//    */
+//   identify(index: number, item: StockTileModel): string {       
+//     return item.id;
+//   }
 }

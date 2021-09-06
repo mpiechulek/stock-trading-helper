@@ -170,8 +170,10 @@ export class TradeContainerComponent implements OnInit {
         // Receive data from dialog
         modalDialog.afterClosed()
             .subscribe(result => {
-                if (result) {
+                if (result) {                   
+                    
                     this.updateStockBoardArray(result, stockId);
+                    
                 }
             });
     }
