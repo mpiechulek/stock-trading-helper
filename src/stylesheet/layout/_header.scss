@@ -1,5 +1,4 @@
 .header {
-
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
@@ -7,7 +6,6 @@
   z-index: 100;
 
   .header-main {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,26 +13,28 @@
     // margin-right: 10rem;
 
     @include respond(xld) {
-
       margin-right: 1rem;
-
     }
 
     .header-icon-margin-right {
-
       margin-right: 2rem;
 
       @include respond(xld) {
-
         margin-right: 1rem;
+      }
+    }
 
+    .header-icon-display {
+      display: block;
+
+      @include respond(xs) {
+        display: none;
       }
     }
   }
 }
 
 .user-header-container {
-
   width: auto;
   display: flex;
   flex-direction: column;
@@ -43,14 +43,12 @@
   margin: 0 20px;
 
   @include respond(md) {
-
     flex-direction: row;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 25px;
   }
 
   .user-header-wrapper {
-
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -61,22 +59,16 @@
     @include respond(md) {
       width: auto;
       margin-bottom: 0px;
-
     }
-
   }
 
   .user-avatar-img {
-
     width: 20px;
     height: 20px;
     margin-left: 10px;
 
     @include respond(md) {
-
-      margin-right: 10px
+      margin-right: 10px;
     }
-
   }
-
 }
